@@ -48,7 +48,7 @@ public class UnitMovement : MonoBehaviour
     {
         if (reachedTrg == false) 
         {
-            characterCtr.Move ((target - this.transform.position).normalized * moveSpd * Time.deltaTime);
+            characterCtr.Move ((new Vector3 (target.x, this.transform.position.y, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
             if (Vector3.Distance (feet.position, target) < 0.5f)
             {
                 path.RemoveAt (0);

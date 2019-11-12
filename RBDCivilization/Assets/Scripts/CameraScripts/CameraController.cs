@@ -60,10 +60,10 @@ public class CameraController : MonoBehaviour
             {
                 newZoom.y = 20;
                 newZoom.z = -20;
-            } else if (newZoom.y > 300)
+            } else if (newZoom.y > 1000)
             {
-                newZoom.y = 300;
-                newZoom.z = -300;
+                newZoom.y = 1000;
+                newZoom.z = -1000;
             }
         }
 
@@ -194,10 +194,10 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.F))
         {
             newZoom -= zoomAmount;
-            if (newZoom.y > 300)
+            if (newZoom.y > 1000)
             {
-                newZoom.y = 300;
-                newZoom.z = -300;
+                newZoom.y = 1000;
+                newZoom.z = -1000;
             }
         }
 

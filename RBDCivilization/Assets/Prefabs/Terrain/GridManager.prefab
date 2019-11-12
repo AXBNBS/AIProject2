@@ -47,7 +47,7 @@ MonoBehaviour:
   hexagonHgt: 4
   hexagonPfb: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
     type: 3}
-  gridWth: 100
-  gridHgt: 100
+  gridWth: 1000
+  gridHgt: 1000
   gap: 0.05
   hexagonScl: 10
