@@ -29,8 +29,6 @@ public class Grid : MonoBehaviour
         CreateGrid ();
     }
 
-
-    //
     private void OnDrawGizmos ()
     {
         Gizmos.DrawWireCube (this.transform.position, new Vector3 (gridWth, 1, gridHgt));
@@ -105,8 +103,6 @@ public class Grid : MonoBehaviour
         AssignNeighbours (hexagons);
     }
 
-
-    //
     private void AssignNeighbours (Hexagon[,] hexagons)
     {
         for (int x = 0; x <= hexagonsX; x += 1) 

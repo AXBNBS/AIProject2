@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Hexagon : MonoBehaviour
 {
     public Hexagon[] neighbours;
@@ -12,6 +10,10 @@ public class Hexagon : MonoBehaviour
 
     private UnitMovement[] units;
 
+    private int hexagonType; //-1 rio o montaña sin perforar, 1 pradera o montaña perforada, 2 bosque
+    private bool isBuilded = false; //Si hay construccion en el hexagono
+    private bool visible = false; //Si esta visible o no
+    private City building = null; //Tipo de edificio pudiendo ser "capital", "farm", "sawmill" o "mina"
 
     // .
     private void Awake ()
@@ -20,15 +22,7 @@ public class Hexagon : MonoBehaviour
         presentUnt = 0;
         units = new UnitMovement[5];
     }
-
-
-    // Update is called once per frame.
-    private void Update ()
-    {
-        
-    }
-
-
+    
     //
     private void OnTriggerExit (Collider other)
     {
@@ -38,8 +32,7 @@ public class Hexagon : MonoBehaviour
             presentUnt = 0;
         }
     }
-
-
+    
     //
     public void AddUnit (UnitMovement unit) 
     {
@@ -112,5 +105,45 @@ public class Hexagon : MonoBehaviour
         }
 
         return result;
+    }
+
+    public int GetHexagonType()
+    {
+        return hexagonType;
+    }
+
+    public void SetHexagonType(int n)
+    {
+        hexagonType = n;
+    }
+
+    public bool GetIsBuilded()
+    {
+        return isBuilded;
+    }
+
+    public void SetIsBuilded(bool n)
+    {
+        isBuilded = n;
+    }
+
+    public bool GetVisible()
+    {
+        return visible;
+    }
+
+    public void SetVisible(bool n)
+    {
+        visible = n;
+    }
+
+    public City GetCity()
+    {
+        return building;
+    }
+
+    public void SetCity(City n)
+    {
+        building = n;
     }
 }
