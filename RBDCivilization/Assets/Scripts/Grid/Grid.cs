@@ -99,7 +99,7 @@ public class Grid : MonoBehaviour
                 hexagons[x, y] = hexagon.GetComponent<Hexagon> ();
             }
         }
-
+        //hexagons[1, 1].SetVisible(true);
         AssignNeighbours (hexagons);
     }
 

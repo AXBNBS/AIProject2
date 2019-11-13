@@ -10,6 +10,9 @@ public class Hexagon : MonoBehaviour
 
     private UnitMovement[] units;
 
+    public Material MaterialVisible;
+    public Material MaterialNoVisible;
+
     private int hexagonType; //-1 rio o montaña sin perforar, 1 pradera o montaña perforada, 2 bosque
     private bool isBuilded = false; //Si hay construccion en el hexagono
     private bool visible = false; //Si esta visible o no
@@ -135,6 +138,14 @@ public class Hexagon : MonoBehaviour
     public void SetVisible(bool n)
     {
         visible = n;
+        var renderer = GetComponent<Renderer>();
+        if (n == true)
+        {
+            renderer.material = MaterialVisible;
+        } else
+        {
+            renderer.material = MaterialNoVisible;
+        }
     }
 
     public City GetCity()
