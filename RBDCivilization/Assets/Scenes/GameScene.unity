@@ -624,11 +624,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667840, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5428051322610667842, guid: 93b842466503ffb41ab639b4936890bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -683,36 +678,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: gridHgt
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: hexagonWth
-      value: 1.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: hexagonHgt
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: gridWth
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: hexagonScl
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: gap
-      value: 0.025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
@@ -1900,6 +1865,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capital_Nivel1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78e3891894a613a4687f0b6c0119c2e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78e3891894a613a4687f0b6c0119c2e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1984,7 +1954,7 @@ GameObject:
   - component: {fileID: 635190267}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3671,6 +3641,10 @@ MonoBehaviour:
   buildingInfoMenuUI: {fileID: 1250166696}
   firstPanelUI: {fileID: 1267652949}
   surePanelUI: {fileID: 50796511}
+  descriptionText: {fileID: 1848739337}
+  infoText: {fileID: 1820979790}
+  levelInfoText: {fileID: 1766835258}
+  hex: {fileID: 0}
 --- !u!1 &1190353922
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,6 +5014,7 @@ MonoBehaviour:
   dragCurrentPosition: {x: 0, y: 0, z: 0}
   rotateStartPosition: {x: 0, y: 0, z: 0}
   rotateCurrentPosition: {x: 0, y: 0, z: 0}
+  buildingMenu: {fileID: 1171248211}
 --- !u!4 &1561769427
 Transform:
   m_ObjectHideFlags: 0

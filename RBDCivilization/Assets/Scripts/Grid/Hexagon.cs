@@ -17,6 +17,8 @@ public class Hexagon : MonoBehaviour
     private bool isBuilded = false; //Si hay construccion en el hexagono
     private bool visible = false; //Si esta visible o no
     private City building = null; //Tipo de edificio pudiendo ser "capital", "farm", "sawmill" o "mina"
+    
+    public Transform CentroHexagono; //Para cuando generes edificios
 
     // .
     private void Awake ()

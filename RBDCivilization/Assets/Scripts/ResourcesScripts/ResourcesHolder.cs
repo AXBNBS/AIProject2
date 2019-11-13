@@ -27,8 +27,8 @@ public class ResourcesHolder : MonoBehaviour
 
     void Start()
     {
-        blueWood = 500;
-        blueMineral = 500;
+        blueWood = 10000;
+        blueMineral = 10000;
         blueStores = 500;
 
         redWood = 500;
@@ -143,5 +143,55 @@ public class ResourcesHolder : MonoBehaviour
             else
                 redCurrentPopulation -= n;
         }
+    }
+
+    public int GetBlueWood()
+    {
+        return blueWood;
+    }
+
+    public int GetBlueMineral()
+    {
+        return blueMineral;
+    }
+
+    public int GetBlueStores()
+    {
+        return blueStores;
+    }
+
+    public int GetBlueTotalPopulation()
+    {
+        return blueTotalPopulation;
+    }
+
+    public int GetBlueCurrentPopulation()
+    {
+        return blueCurrentPopulation;
+    }
+
+    public int GetRedWood()
+    {
+        return redWood;
+    }
+
+    public int GetRedMineral()
+    {
+        return redMineral;
+    }
+
+    public int GetRedStores()
+    {
+        return redStores;
+    }
+
+    public int GetRedTotalPopulation()
+    {
+        return redTotalPopulation;
+    }
+
+    public int GetRedCurrentPopulation()
+    {
+        return redCurrentPopulation;
     }
 }

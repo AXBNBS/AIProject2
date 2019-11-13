@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
     private LayerMask terrainMsk;
     private UnitMovement[] selectedUnt;
 
+    public GameObject buildingMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -139,6 +140,11 @@ public class CameraController : MonoBehaviour
 
                             selectedUnt = null;
                         }
+                    }
+
+                    if (hex.GetIsBuilded())
+                    {
+                        buildingMenu.GetComponent<BuildingMenu>().readHexagonBuilding(hex);
                     }
                 }
             }

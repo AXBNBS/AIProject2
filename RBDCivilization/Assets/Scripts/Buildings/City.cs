@@ -8,20 +8,47 @@ public class City : MonoBehaviour
     private int neededMinerals;
     private int neededWood;
     private int defense;
+    private string cityType;
 
     public CitySettings settings;
+    public GameObject nextLevel;
+
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         defense = settings.defense;
         level = settings.level;
         neededMinerals = settings.neededMinerals;
         neededWood = settings.neededWood;
+    }
+    
+    public void SetCityType(string n)
+    {
+        cityType = n;
+    }
+
+    public string GetCityType()
+    {
+        return cityType;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public int GetDefense()
+    {
+        return defense;
+    }
+
+    public int GetNeededMinerals()
+    {
+        return neededMinerals;
+    }
+    
+    public int GetNeededWood()
+    {
+        return neededWood;
     }
 }

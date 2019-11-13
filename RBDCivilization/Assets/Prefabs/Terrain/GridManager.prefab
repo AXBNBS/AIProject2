@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e689f187d775a5e48ab0b22c8d1ca50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexagonWth: 3.46
-  hexagonHgt: 4
+  hexagonWth: 1.73
+  hexagonHgt: 2
   hexagonPfb: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
     type: 3}
-  gridWth: 1000
-  gridHgt: 1000
-  gap: 0.05
-  hexagonScl: 10
+  gridWth: 500
+  gridHgt: 500
+  gap: 0.025
+  hexagonScl: 5
+  Capital: {fileID: 2393157883664804536, guid: 98c71b32c91036b4f9b3c9fe5e4fbdd3, type: 3}

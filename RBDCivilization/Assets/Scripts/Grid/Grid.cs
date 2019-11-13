@@ -15,6 +15,7 @@ public class Grid : MonoBehaviour
     private Vector3 startPos;
     private int hexagonsX, hexagonsY;
 
+    public GameObject Capital; //Generar las dos capitales
 
     // We initialize some variables and add the gap to the hexagons's with and height, we calculate the starting position of the grid, and we finally create it.
     private void Awake ()
@@ -23,7 +24,7 @@ public class Grid : MonoBehaviour
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
-
+        
         AddGap ();
         StartPosition ();
         CreateGrid ();
@@ -99,7 +100,16 @@ public class Grid : MonoBehaviour
                 hexagons[x, y] = hexagon.GetComponent<Hexagon> ();
             }
         }
-        //hexagons[1, 1].SetVisible(true);
+
+        //Fragmento de prueba que borraré
+        hexagons[1, 1].SetVisible(true);
+        hexagons[1, 1].SetIsBuilded(true);
+
+        GameObject build = Instantiate(Capital, new Vector3(hexagons[1, 1].CentroHexagono.position.x, hexagons[1, 1].CentroHexagono.position.y, hexagons[1, 1].CentroHexagono.position.z), Quaternion.identity);
+
+        hexagons[1, 1].SetCity(build.GetComponent<City>());
+        hexagons[1, 1].GetCity().SetCityType("Capital");
+
         AssignNeighbours (hexagons);
     }
 
