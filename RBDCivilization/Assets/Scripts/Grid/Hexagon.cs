@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Hexagon : MonoBehaviour
 {
     public Hexagon[] neighbours;
     public int presentUnt;
 
     private UnitMovement[] units;
+    private SphereCollider sphereCol;
 
     public Material MaterialVisible;
     public Material MaterialNoVisible;
@@ -20,14 +23,17 @@ public class Hexagon : MonoBehaviour
     
     public Transform CentroHexagono; //Para cuando generes edificios
 
+
     // .
     private void Awake ()
     {
         neighbours = new Hexagon[6];
         presentUnt = 0;
         units = new UnitMovement[5];
+        sphereCol = this.gameObject.GetComponent<SphereCollider> ();
     }
-    
+
+
     //
     private void OnTriggerExit (Collider other)
     {
@@ -38,6 +44,7 @@ public class Hexagon : MonoBehaviour
         }
     }
     
+
     //
     public void AddUnit (UnitMovement unit) 
     {
@@ -112,30 +119,36 @@ public class Hexagon : MonoBehaviour
         return result;
     }
 
+
     public int GetHexagonType()
     {
         return hexagonType;
     }
+
 
     public void SetHexagonType(int n)
     {
         hexagonType = n;
     }
 
+
     public bool GetIsBuilded()
     {
         return isBuilded;
     }
+
 
     public void SetIsBuilded(bool n)
     {
         isBuilded = n;
     }
 
+
     public bool GetVisible()
     {
         return visible;
     }
+
 
     public void SetVisible(bool n)
     {
@@ -150,13 +163,22 @@ public class Hexagon : MonoBehaviour
         }
     }
 
+
     public City GetCity()
     {
         return building;
     }
 
+
     public void SetCity(City n)
     {
         building = n;
+    }
+
+
+    //
+    public bool TargetInHexagon (Vector3 target) 
+    {
+        return (Vector3.Distance (this.transform.position, target) <= sphereCol.radius * this.transform.localScale.x);
     }
 }

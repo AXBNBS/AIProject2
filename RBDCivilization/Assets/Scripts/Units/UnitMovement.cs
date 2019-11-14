@@ -10,17 +10,18 @@ public class UnitMovement : MonoBehaviour
     public Vector3 target;
     public bool reachedTrg;
     public Hexagon currentHex;
-    public int startOft;
+    //public int startOft;
 
-    [SerializeField] private int moveSpd;
+    [SerializeField] private int moveSpd, startHex;
     //[SerializeField] private UnitSettings stats;
     private CharacterController characterCtr;
     private Transform feet;
     private List<Vector3> path;
     private float offsetHexX, offsetHexZ;
     private Vector3[] offsets;
-    private List<CharacterController> collided;
-    private UnitMovement[] allies;
+    //private List<UnitMovement> collided;
+    [SerializeField] private UnitMovement[] allies;
+    //private LayerMask unitsMsk;
 
 
     // Start is called before the first frame update.
@@ -32,12 +33,13 @@ public class UnitMovement : MonoBehaviour
         characterCtr = this.GetComponent<CharacterController> ();
         feet = this.transform.GetChild (0);
         path = new List<Vector3> ();
-        target = GameObject.FindGameObjectWithTag("Hexagon").transform.position;
-        offsetHexX = grid.hexagonWth / 4;
-        offsetHexZ = grid.hexagonHgt / 4;
+        target = GameObject.FindGameObjectsWithTag("Hexagon")[startHex].transform.position;
+        offsetHexX = grid.hexagonWth / 5;
+        offsetHexZ = grid.hexagonHgt / 5;
         offsets = new Vector3[] {Vector3.zero, new Vector3 (+offsetHexX, 0, offsetHexZ), new Vector3 (-offsetHexX, 0, +offsetHexZ), new Vector3 (+offsetHexX, 0, -offsetHexZ), new Vector3 (-offsetHexX, 0, -offsetHexZ)};
-        target += offsets[startOft];
-        collided = new List<CharacterController> ();
+        //target += offsets[startOft];
+        //collided = new List<CharacterController> ();
+        //unitsMsk = LayerMask.GetMask ("Units");
 
         path.Add (target);
     }
@@ -48,26 +50,38 @@ public class UnitMovement : MonoBehaviour
     {
         if (reachedTrg == false) 
         {
-            characterCtr.Move((new Vector3(target.x, 1, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
+            characterCtr.Move ((new Vector3 (target.x, 1, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
             //characterCtr.Move ((new Vector3 (target.x, this.transform.position.y, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
+
+            /*RaycastHit hit = new RaycastHit ();
+
+            if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, characterCtr.radius * 2, unitsMsk) == true) 
+            {
+                UnitMovement foundUnt = hit.transform.GetComponent<UnitMovement> ();
+
+                if (foundUnt.reachedTrg == true) 
+                {
+
+                }
+            }*/
+
             if (Vector3.Distance (feet.position, target) < 0.5f)
             {
                 path.RemoveAt (0);
 
                 if (path.Count == 0)
                 {
-                    this.reachedTrg = true;
-                    for (int c = 0; c < this.collided.Count; c += 1) 
+                    reachedTrg = true;
+                    /*for (int c = 0; c < this.collided.Count; c += 1) 
                     {
                         this.collided[c].enabled = true;
                     }
 
-                    this.collided.Clear ();
-                    this.currentHex.AddUnit (this);
-                    allies = this.currentHex.UnitsPlaced ();
+                    this.collided.Clear ();*/
+                    //currentHex.AddUnit (this);
                     foreach (UnitMovement a in allies) 
                     {
-                        a.allies = this.allies;
+                        a.allies = allies;
                     }
                 }
                 else 
@@ -84,7 +98,16 @@ public class UnitMovement : MonoBehaviour
     {
         if (other.tag == "Hexagon")
         {
+            print("Hey");
             currentHex = other.GetComponent<Hexagon> ();
+            if (currentHex.TargetInHexagon (new Vector3 (target.x, currentHex.transform.position.y, target.z)) == true) 
+            {
+                print("hey");
+                target += offsets[currentHex.presentUnt];
+
+                currentHex.AddUnit (this);
+                allies = currentHex.UnitsPlaced ();
+            }
             //unitsInHex = currentHex.presentUnt;
         }
     }
@@ -103,12 +126,22 @@ public class UnitMovement : MonoBehaviour
     }*/
 
 
-    //
+    /*
     private void OnControllerColliderHit (ControllerColliderHit hit)
     {
         if (this.reachedTrg == false && hit.transform.tag == this.tag) 
         {
+            
             CharacterController controllerHit = hit.gameObject.GetComponent<CharacterController> ();
+
+            if (hit.moveDirection.x > hit.moveDirection.z)
+            {
+                controllerHit.Move (new Vector3 (hit.transform.position.x, hit.transform.position.y, hit.moveDirection.x));
+            }
+            else 
+            {
+                controllerHit.Move (new Vector3 (hit.moveDirection.z, hit.transform.position.y, hit.transform.position.z));
+            }
 
             if (controllerHit != null) 
             {
@@ -116,7 +149,7 @@ public class UnitMovement : MonoBehaviour
                 collided.Add (controllerHit);
             }
         }
-    }
+    }*/
 
 
     //
