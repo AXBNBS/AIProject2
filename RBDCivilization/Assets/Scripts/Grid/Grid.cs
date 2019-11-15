@@ -102,13 +102,13 @@ public class Grid : MonoBehaviour
         }
 
         //Fragmento de prueba que borraré
-        hexagons[1, 1].SetVisible(true);
-        hexagons[1, 1].SetIsBuilded(true);
+        hexagons[0, 1].SetVisible(true);
+        hexagons[0, 1].SetIsBuilded(true);
 
-        GameObject build = Instantiate(Capital, new Vector3(hexagons[1, 1].CentroHexagono.position.x, hexagons[1, 1].CentroHexagono.position.y, hexagons[1, 1].CentroHexagono.position.z), Quaternion.identity);
+        GameObject build = Instantiate(Capital, new Vector3(hexagons[0, 1].CentroHexagono.position.x, hexagons[0, 1].CentroHexagono.position.y, hexagons[0, 1].CentroHexagono.position.z), Quaternion.identity);
 
-        hexagons[1, 1].SetCity(build.GetComponent<City>());
-        hexagons[1, 1].GetCity().SetCityType("Capital");
+        hexagons[0, 1].SetCity(build.GetComponent<City>());
+        hexagons[0, 1].GetCity().SetCityType("Capital");
 
         AssignNeighbours (hexagons);
     }

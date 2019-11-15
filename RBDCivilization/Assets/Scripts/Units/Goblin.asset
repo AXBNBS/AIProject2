@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   attack: 0.5
-  speed: 2
+  speed: 3
   defense: 1
   race: Goblin
   occupation: Soldier

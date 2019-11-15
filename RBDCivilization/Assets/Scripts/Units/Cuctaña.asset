@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Cucta\xF1a"
   m_EditorClassIdentifier: 
   attack: 0
-  speed: 1.5
+  speed: 2
   defense: 2
   race: "Cucta\xF1a"
   occupation: Collector

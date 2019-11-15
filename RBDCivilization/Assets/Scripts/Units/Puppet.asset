@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Puppet
   m_EditorClassIdentifier: 
   attack: 0
-  speed: 0.5
+  speed: 1
   defense: 0.5
   race: Puppet
   occupation: Worker

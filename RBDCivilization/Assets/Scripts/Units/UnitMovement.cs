@@ -10,6 +10,7 @@ public class UnitMovement : MonoBehaviour
     public Vector3 target;
     public bool reachedTrg;
     public Hexagon currentHex;
+    public Hexagon previousHex;
     //public int startOft;
 
     [SerializeField] private int moveSpd, startHex;
@@ -99,6 +100,7 @@ public class UnitMovement : MonoBehaviour
         if (other.tag == "Hexagon")
         {
             print("Hey");
+            previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
             if (currentHex.TargetInHexagon (new Vector3 (target.x, currentHex.transform.position.y, target.z)) == true) 
             {
@@ -107,6 +109,7 @@ public class UnitMovement : MonoBehaviour
 
                 currentHex.AddUnit (this);
                 allies = currentHex.UnitsPlaced ();
+                currentHex.SetVisible(true);
             }
             //unitsInHex = currentHex.presentUnt;
         }

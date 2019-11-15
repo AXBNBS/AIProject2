@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orc
   m_EditorClassIdentifier: 
   attack: 1
-  speed: 1
+  speed: 2
   defense: 1
   race: Orc
   occupation: Soldier

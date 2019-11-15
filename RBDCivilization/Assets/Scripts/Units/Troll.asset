@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Troll
   m_EditorClassIdentifier: 
   attack: 2
-  speed: 0.5
+  speed: 1
   defense: 1
   race: Troll
   occupation: Soldier
