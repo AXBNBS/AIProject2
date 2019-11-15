@@ -43,12 +43,21 @@ public class Hexagon : MonoBehaviour
             presentUnt = 0;
         }
     }
-    
+
 
     //
-    public void AddUnit (UnitMovement unit) 
+    private void OnDrawGizmosSelected () 
     {
-        units[presentUnt] = unit;
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere (this.transform.position, sphereCol.radius * this.transform.localScale.x);
+    }
+
+
+    //
+    public void AddUnit (UnitMovement unit, int position) 
+    {
+        units[position] = unit;
         presentUnt += 1;
     }
 

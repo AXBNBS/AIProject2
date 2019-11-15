@@ -8,7 +8,7 @@ using UnityEngine;
 public class UnitMovement : MonoBehaviour
 {
     public Vector3 target;
-    public bool reachedTrg;
+    public bool reachedTrg, regroup;
     public Hexagon currentHex;
     public Hexagon previousHex;
     //public int startOft;
@@ -31,6 +31,7 @@ public class UnitMovement : MonoBehaviour
         Grid grid = GameObject.FindObjectOfType<Grid> ();
 
         reachedTrg = false;
+        regroup = true;
         characterCtr = this.GetComponent<CharacterController> ();
         feet = this.transform.GetChild (0);
         path = new List<Vector3> ();
@@ -80,6 +81,7 @@ public class UnitMovement : MonoBehaviour
 
                     this.collided.Clear ();*/
                     //currentHex.AddUnit (this);
+                    allies = currentHex.UnitsPlaced ();
                     foreach (UnitMovement a in allies) 
                     {
                         a.allies = allies;
@@ -99,17 +101,34 @@ public class UnitMovement : MonoBehaviour
     {
         if (other.tag == "Hexagon")
         {
-            print("Hey");
+            //print("Hey");
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
-            if (currentHex.TargetInHexagon (new Vector3 (target.x, currentHex.transform.position.y, target.z)) == true) 
+            if (path.Count == 1) 
             {
                 print("hey");
-                target += offsets[currentHex.presentUnt];
+                if (regroup == true)
+                {
+                    target = currentHex.transform.position + offsets[currentHex.presentUnt];
+                    regroup = false;
 
-                currentHex.AddUnit (this);
-                allies = currentHex.UnitsPlaced ();
-                currentHex.SetVisible(true);
+                    currentHex.AddUnit (this, currentHex.presentUnt);
+                }
+                else 
+                {
+                    int position = 0;
+
+                    for (int a = 0; a < allies.Length; a += 1) 
+                    {
+                        if (allies[a] == this) 
+                        {
+                            position = a;
+                        }
+                    }
+                    currentHex.AddUnit (this, position);
+                }
+                //currentHex.AddUnit (this);
+                currentHex.SetVisible (true);
             }
             //unitsInHex = currentHex.presentUnt;
         }
@@ -158,7 +177,7 @@ public class UnitMovement : MonoBehaviour
     //
     public void FindPathTo (Hexagon hex) 
     {
-        this.path = this.currentHex.GetPath (hex);
+        path = currentHex.GetPath (hex);
 
         for (int u = 0; u < allies.Length; u += 1) 
         {

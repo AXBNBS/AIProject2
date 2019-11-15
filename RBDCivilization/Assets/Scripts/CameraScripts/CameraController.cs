@@ -114,10 +114,10 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetMouseButtonDown (0) == true) 
         {
-            Plane plane = new Plane (Vector3.up, Vector3.zero);
+            //Plane plane = new Plane (Vector3.up, Vector3.zero);
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
-            float entry;
+            //float entry;
             RaycastHit hit;
 
             if (Physics.Raycast (ray, out hit, Mathf.Infinity, terrainMsk, QueryTriggerInteraction.Collide) == true) 
@@ -138,6 +138,13 @@ public class CameraController : MonoBehaviour
                         {
                             selectedUnt[0].FindPathTo (hex);
 
+                            if (hex.presentUnt != 0) 
+                            {
+                                foreach (UnitMovement u in selectedUnt)
+                                {
+                                    u.regroup = true;
+                                }
+                            }
                             selectedUnt = null;
                         }
                     }
