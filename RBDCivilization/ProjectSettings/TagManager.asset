@@ -7,6 +7,9 @@ TagManager:
   - Hexagon
   - Unit
   - Grid
+  - Undefined
+  - Ally
+  - Enemy
   layers:
   - Default
   - TransparentFX
