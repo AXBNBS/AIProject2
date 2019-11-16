@@ -29,12 +29,12 @@ public class CameraController : MonoBehaviour
     public Vector3 rotateCurrentPosition;
 
     private LayerMask terrainMsk;
-    private UnitMovement[] selectedUnt;
+    [SerializeField] private UnitMovement[] selectedUnt;
 
     public GameObject buildingMenu;
 
-    // Start is called before the first frame update
-    void Start()
+    // Start is called before the first frame update.
+    void Start ()
     {
         newPosition = transform.position;
         newRotation = transform.rotation;
@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update ()
     {
         HandleMouseInput ();
@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void HandleMouseInput()
+    void HandleMouseInput ()
     {
         if (Input.mouseScrollDelta.y != 0)
         {
@@ -134,7 +134,7 @@ public class CameraController : MonoBehaviour
                     }
                     else
                     {
-                        if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length) 
+                        if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length && ((hex.UnitsPlaced () == null) || (hex.UnitsPlaced()[0].stats.race == selectedUnt[0].stats.race))) 
                         {
                             selectedUnt[0].FindPathTo (hex);
 
@@ -145,8 +145,8 @@ public class CameraController : MonoBehaviour
                                     u.regroup = true;
                                 }
                             }
-                            selectedUnt = null;
                         }
+                        selectedUnt = null;
                     }
 
                     if (hex.GetIsBuilded())
@@ -213,7 +213,10 @@ public class CameraController : MonoBehaviour
                 newZoom.z = -1000;
             }
         }
-
+        if (Input.GetKeyDown (KeyCode.Tab) == true) 
+        {
+            selectedUnt = null;
+        }
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);

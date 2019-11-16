@@ -11,10 +11,10 @@ public class UnitMovement : MonoBehaviour
     public bool reachedTrg, regroup;
     public Hexagon currentHex;
     public Hexagon previousHex;
+    public UnitSettings stats;
     //public int startOft;
 
     [SerializeField] private int moveSpd, startHex;
-    //[SerializeField] private UnitSettings stats;
     private CharacterController characterCtr;
     private Transform feet;
     private List<Vector3> path;
@@ -46,7 +46,8 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-    // Update is called once per frame.
+    // In case the current target has not been reached, we move towards it and check if the unit has arrived afterwards. If this last condition has been fullfilled, the next target in the path is defined as its next destination; but if the 
+    //previously assigned target was the last one, we indicate the unit has reached its destination and assign its new allies.
     private void Update ()
     {
         if (reachedTrg == false) 
@@ -95,7 +96,8 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-    //
+    // If we reach a new hexagon, we update the new and previous hexagons, we make sure the current one is visible. Also if this was the last hexagon of the path, we regroup the units accordingly if there were more awaiting at the destination; or 
+    //we just make sure they keep the same structure if that was not the case, we also update the units the current hexagon has assigned either way.
     private void OnTriggerEnter (Collider other)
     {
         if (other.tag == "Hexagon")
@@ -103,10 +105,12 @@ public class UnitMovement : MonoBehaviour
             //print("Hey");
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
-            currentHex.SetVisible(true);
+
+            currentHex.SetVisible (true);
+
             if (path.Count == 1) 
             {
-                print("hey");
+                //print("hey");
                 if (regroup == true)
                 {
                     target = currentHex.transform.position + offsets[currentHex.presentUnt];
@@ -123,8 +127,11 @@ public class UnitMovement : MonoBehaviour
                         if (allies[a] == this) 
                         {
                             position = a;
+
+                            break;
                         }
                     }
+
                     currentHex.AddUnit (this, position);
                 }
                 //currentHex.AddUnit (this);
@@ -174,7 +181,7 @@ public class UnitMovement : MonoBehaviour
     }*/
 
 
-    //
+    // We get the path to the indicated hexagon. We also make sure that our current allies keep the same alignment while the path is being traversed.
     public void FindPathTo (Hexagon hex) 
     {
         path = currentHex.GetPath (hex);

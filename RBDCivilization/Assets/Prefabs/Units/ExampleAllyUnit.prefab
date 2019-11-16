@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7938264708775335950}
   - component: {fileID: 7938264708775335937}
   m_Layer: 10
-  m_Name: ExampleUnit
+  m_Name: ExampleAllyUnit
   m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 7938264708775335946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2840486041666438635}
   m_Father: {fileID: 0}
@@ -146,6 +146,7 @@ MonoBehaviour:
   regroup: 0
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
+  stats: {fileID: 11400000, guid: 7864a1d2eff31b54e9349fd26cb0b153, type: 2}
   moveSpd: 15
   startHex: 0
   allies: []

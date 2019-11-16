@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 
@@ -37,10 +38,13 @@ public class Hexagon : MonoBehaviour
     //
     private void OnTriggerExit (Collider other)
     {
-        if (other.tag == "Ally" || other.tag=="Enemy") 
+        if (other.tag == "Ally" || other.tag == "Enemy") 
         {
-            units = new UnitMovement[5];
-            presentUnt = 0;
+            if (units.Contains (other.GetComponent<UnitMovement> ()) == true) 
+            {
+                units = new UnitMovement[5];
+                presentUnt = 0;
+            }
         }
     }
 
