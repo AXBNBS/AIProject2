@@ -12,6 +12,7 @@ public class City : MonoBehaviour
 
     public CitySettings settings;
     public GameObject nextLevel;
+    public GameObject previousLevel;
 
     // Start is called before the first frame update
     void Start()

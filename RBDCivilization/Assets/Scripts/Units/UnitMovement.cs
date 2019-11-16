@@ -42,7 +42,6 @@ public class UnitMovement : MonoBehaviour
         //target += offsets[startOft];
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
-
         path.Add (target);
     }
 
@@ -104,6 +103,7 @@ public class UnitMovement : MonoBehaviour
             //print("Hey");
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
+            currentHex.SetVisible(true);
             if (path.Count == 1) 
             {
                 print("hey");
@@ -128,7 +128,7 @@ public class UnitMovement : MonoBehaviour
                     currentHex.AddUnit (this, position);
                 }
                 //currentHex.AddUnit (this);
-                currentHex.SetVisible (true);
+                //currentHex.SetVisible (true);
             }
             //unitsInHex = currentHex.presentUnt;
         }

@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
 
     private UnitMovement movement;
 
+    public float totalPower;
+
     void Start()
     {
         attack = settings.attack;
@@ -24,6 +26,7 @@ public class Unit : MonoBehaviour
         occupation = settings.occupation;
         stores = settings.stores;
         movement = this.GetComponent<UnitMovement>();
+        totalPower = 0;
     }
 
     void Update()
@@ -32,20 +35,58 @@ public class Unit : MonoBehaviour
         {
             Assault();
         }
-        //Para el combate habra que poder distinguir dentro de un hexagono entre enemigos y aliados
-        else if(movement.reachedTrg==true && movement.currentHex.UnitsPlaced().Length > 2)
+        else if(movement.reachedTrg==true && this.tag!="Enemy")
         {
-            Fight();
+            bool enemyFound=false;
+            UnitMovement[] aux = movement.currentHex.UnitsPlaced();
+            int x = 0;
+            for (int i = 0; i < aux.Length; i++)
+            {
+                if (aux[i].gameObject.tag == "Enemy")
+                {
+                    enemyFound = true;
+                    x++;
+                }
+            }
+            if (enemyFound == true)
+            {
+                Unit[] enemies = new Unit[x];
+                int j = 0;
+                for (int i = 0; i < aux.Length; i++)
+                {
+                    if (aux[i].gameObject.tag == "Enemy")
+                    {
+                        enemies[j] = aux[i].gameObject.GetComponent<Unit>();
+                        j++;
+                    }
+                }
+                Fight(enemies);
+            }
         }
     }
 
     private void Assault()
     {
         //Habra que mirar de obtener todas las unidades de un mismo bando que esten en un hexagono para crear bien las probabilidades
-        if (Random.Range(0, 10) > 9)
+
+        if (Random.Range(0, 10) > 0)
         {
-            Destroy(movement.currentHex.GetCity().gameObject);
-            movement.currentHex.SetIsBuilded(false);
+            if (movement.currentHex.GetCity().GetLevel() == 1)
+            {
+                Destroy(movement.currentHex.GetCity().gameObject);
+                movement.currentHex.SetIsBuilded(false);
+            }
+            else
+            {
+                GameObject previousLevel = movement.currentHex.GetCity().previousLevel;
+
+                Object.Destroy(movement.currentHex.GetCity().gameObject);
+
+                GameObject build = Instantiate(previousLevel, new Vector3(movement.currentHex.CentroHexagono.position.x, movement.currentHex.CentroHexagono.position.y, movement.currentHex.CentroHexagono.position.z), Quaternion.identity);
+
+                movement.currentHex.SetCity(build.GetComponent<City>());
+                movement.FindPathTo(movement.previousHex);
+            }
         }
         else
         {
@@ -53,17 +94,14 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void Fight()
+    private void Fight(Unit[] enemies)
     {
-        if (Random.Range(0, 10) > 9)
+        if (Random.Range(0, 10) > 0)
         {
-            int enemyUnits = movement.currentHex.UnitsPlaced().Length;
-            for (int i = 0; i < movement.currentHex.UnitsPlaced().Length; i++)
+            for(int i =0; i<enemies.Length; i++)
             {
-                Destroy(movement.currentHex.UnitsPlaced()[i].gameObject);
+                Destroy(enemies[i].gameObject);
             }
-
-            movement.currentHex.presentUnt -= enemyUnits;
         }
         else
         {

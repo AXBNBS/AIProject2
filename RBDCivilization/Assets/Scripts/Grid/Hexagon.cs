@@ -37,7 +37,7 @@ public class Hexagon : MonoBehaviour
     //
     private void OnTriggerExit (Collider other)
     {
-        if (other.tag == "Unit") 
+        if (other.tag == "Ally" || other.tag=="Enemy") 
         {
             units = new UnitMovement[5];
             presentUnt = 0;
@@ -88,7 +88,6 @@ public class Hexagon : MonoBehaviour
             return result;
         }
     }
-
 
     //
     public List<Vector3> GetPath (Hexagon hex) 

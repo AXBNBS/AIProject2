@@ -47,6 +47,8 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: d65afb079368dfb4ca005f79bdaf22d7, type: 2}
   nextLevel: {fileID: 3945401084087359083, guid: abaab935844b9a94dac7505540801da8,
     type: 3}
+  previousLevel: {fileID: 4653918500649975191, guid: b597cf08db905e94c9acfae905532af0,
+    type: 3}
 --- !u!1001 &7923249302776967736
 PrefabInstance:
   m_ObjectHideFlags: 0

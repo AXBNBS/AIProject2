@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 580976b1993dae94eaf064e88382b376, type: 2}
   nextLevel: {fileID: 0}
+  previousLevel: {fileID: 3945401084087359083, guid: abaab935844b9a94dac7505540801da8,
+    type: 3}
 --- !u!1001 &3968717012067210237
 PrefabInstance:
   m_ObjectHideFlags: 0

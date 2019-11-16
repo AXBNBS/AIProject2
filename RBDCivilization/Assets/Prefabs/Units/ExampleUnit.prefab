@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7938264708775335937}
   m_Layer: 10
   m_Name: ExampleUnit
-  m_TagString: Unit
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +143,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
   reachedTrg: 0
+  regroup: 0
   currentHex: {fileID: 0}
-  startOft: 0
+  previousHex: {fileID: 0}
   moveSpd: 15
+  startHex: 0
+  allies: []
