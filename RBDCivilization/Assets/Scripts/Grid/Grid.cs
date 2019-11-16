@@ -8,9 +8,10 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     public float hexagonWth, hexagonHgt;
-    
+    public int gridWth, gridHgt;
+
     [SerializeField] private Transform hexagonPfb;
-    [SerializeField] private int gridWth, gridHgt;
+    //[SerializeField] private int gridWth, gridHgt;
     [SerializeField] private float gap, hexagonScl;
     private Vector3 startPos;
     private int hexagonsX, hexagonsY;
@@ -55,7 +56,7 @@ public class Grid : MonoBehaviour
         }
 
         float x = -(gridWth / 2) + offset;
-        float z = +0.5f * (gridHgt / 2);
+        float z = +0.75f * (gridHgt / 2);
         //float x = -hexagonWth * (gridWth / 2) - offset;
         //float z = +hexagonHgt * 0.75f * (gridHgt / 2);
 

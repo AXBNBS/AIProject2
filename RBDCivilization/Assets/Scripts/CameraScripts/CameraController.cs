@@ -28,18 +28,23 @@ public class CameraController : MonoBehaviour
     public Vector3 rotateStartPosition;
     public Vector3 rotateCurrentPosition;
 
-    private LayerMask terrainMsk;
     [SerializeField] private UnitMovement[] selectedUnt;
+    private LayerMask terrainMsk;
+    private float limitX, limitZ;
 
     public GameObject buildingMenu;
 
     // Start is called before the first frame update.
     void Start ()
     {
+        Grid grid = GameObject.FindObjectOfType<Grid> ();
+        
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
         terrainMsk = LayerMask.GetMask ("Terrain");
+        limitX = grid.gridWth / 2 * 0.9f;
+        limitZ = grid.gridHgt / 2 * 0.9f;
         selectedUnt = null;
     }
 
@@ -217,8 +222,9 @@ public class CameraController : MonoBehaviour
         {
             selectedUnt = null;
         }
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        this.transform.position = Vector3.Lerp (transform.position, newPosition, Time.deltaTime * movementTime);
+        this.transform.position = new Vector3 (Mathf.Clamp (this.transform.position.x, -limitX, +limitX), this.transform.position.y, Mathf.Clamp (this.transform.position.z, -limitZ, +limitZ));
+        this.transform.rotation = Quaternion.Lerp (transform.rotation, newRotation, Time.deltaTime * movementTime);
+        cameraTransform.localPosition = Vector3.Lerp (cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
     }
 }
