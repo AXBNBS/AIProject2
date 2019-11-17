@@ -25,7 +25,7 @@ public class UnitMovement : MonoBehaviour
     //private LayerMask unitsMsk;
 
 
-    // Start is called before the first frame update.
+    // Just some variable initialization.
     private void Start ()
     {
         Grid grid = GameObject.FindObjectOfType<Grid> ();
@@ -42,6 +42,7 @@ public class UnitMovement : MonoBehaviour
         //target += offsets[startOft];
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
+
         path.Add (target);
     }
 

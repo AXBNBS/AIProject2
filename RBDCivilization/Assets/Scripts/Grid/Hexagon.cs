@@ -10,6 +10,7 @@ public class Hexagon : MonoBehaviour
 {
     public Hexagon[] neighbours;
     public int presentUnt;
+    public GameObject environment;
 
     private UnitMovement[] units;
     private SphereCollider sphereCol;
@@ -25,7 +26,7 @@ public class Hexagon : MonoBehaviour
     public Transform CentroHexagono; //Para cuando generes edificios
 
 
-    // .
+    // Variable initialization.
     private void Awake ()
     {
         neighbours = new Hexagon[6];
@@ -35,7 +36,7 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    //
+    // If a unit leaves the hexagon and was a part of the units list, we know every unit is going to leave, so there are now 0 present units and the array is emptied.
     private void OnTriggerExit (Collider other)
     {
         if (other.tag == "Ally" || other.tag == "Enemy") 
@@ -49,16 +50,7 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    //
-    private void OnDrawGizmosSelected () 
-    {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere (this.transform.position, sphereCol.radius * this.transform.localScale.x);
-    }
-
-
-    //
+    // To add a new unit to the hexagon's array of units. 
     public void AddUnit (UnitMovement unit, int position) 
     {
         units[position] = unit;
@@ -66,14 +58,14 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    //
+    // To get the number of units this hexagon can contain.
     public int GetCapacity () 
     {
         return (units.Length - presentUnt);
     }
 
 
-    //
+    // We return an array containing every unit that's currently in the hexagon.
     public UnitMovement[] UnitsPlaced () 
     {
         if (presentUnt == 0)
@@ -93,7 +85,8 @@ public class Hexagon : MonoBehaviour
         }
     }
 
-    //
+
+    // To get the shortest path from the current hexagon to another one that serves as destination.
     public List<Vector3> GetPath (Hexagon hex) 
     {
         float checkedDst;
@@ -132,37 +125,37 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    public int GetHexagonType()
+    public int GetHexagonType ()
     {
         return hexagonType;
     }
 
 
-    public void SetHexagonType(int n)
+    public void SetHexagonType (int n)
     {
         hexagonType = n;
     }
 
 
-    public bool GetIsBuilded()
+    public bool GetIsBuilded ()
     {
         return isBuilded;
     }
 
 
-    public void SetIsBuilded(bool n)
+    public void SetIsBuilded (bool n)
     {
         isBuilded = n;
     }
 
 
-    public bool GetVisible()
+    public bool GetVisible ()
     {
         return visible;
     }
 
 
-    public void SetVisible(bool n)
+    public void SetVisible (bool n)
     {
         visible = n;
         var renderer = GetComponent<Renderer>();
@@ -176,19 +169,19 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    public City GetCity()
+    public City GetCity ()
     {
         return building;
     }
 
 
-    public void SetCity(City n)
+    public void SetCity (City n)
     {
         building = n;
     }
 
 
-    //
+    // We check that the specified point is part of the hexagon's area.
     public bool TargetInHexagon (Vector3 target) 
     {
         return (Vector3.Distance (this.transform.position, target) <= sphereCol.radius * this.transform.localScale.x);

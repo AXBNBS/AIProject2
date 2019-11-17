@@ -18,6 +18,7 @@ public class Grid : MonoBehaviour
 
     public GameObject Capital; //Generar las dos capitales
 
+
     // We initialize some variables and add the gap to the hexagons's with and height, we calculate the starting position of the grid, and we finally create it.
     private void Awake ()
     {
@@ -31,6 +32,8 @@ public class Grid : MonoBehaviour
         CreateGrid ();
     }
 
+
+    // A wired cube is drawn to see the area where the grid will be applied.
     private void OnDrawGizmos ()
     {
         Gizmos.DrawWireCube (this.transform.position, new Vector3 (gridWth, 1, gridHgt));
@@ -114,6 +117,8 @@ public class Grid : MonoBehaviour
         AssignNeighbours (hexagons);
     }
 
+
+    // We check every hexagon of the grid and assign its neighbours.
     private void AssignNeighbours (Hexagon[,] hexagons)
     {
         for (int x = 0; x <= hexagonsX; x += 1) 
