@@ -540,7 +540,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 37.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -867,7 +867,7 @@ PrefabInstance:
     - target: {fileID: 7938264708775335951, guid: cb61bfbbab8e51f4d883988d6dda29a2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 149.8
+      value: 159.92
       objectReference: {fileID: 0}
     - target: {fileID: 7938264708775335951, guid: cb61bfbbab8e51f4d883988d6dda29a2,
         type: 3}
@@ -934,6 +934,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7938264708775335937, guid: cb61bfbbab8e51f4d883988d6dda29a2,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb61bfbbab8e51f4d883988d6dda29a2, type: 3}
 --- !u!1 &294678814
@@ -1090,11 +1096,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1004389689}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 3cd3989ea20445c4aa9e7880712d4e05,
-        type: 3}
-      propertyPath: m_Name
-      value: Capital_Nivel4
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cd3989ea20445c4aa9e7880712d4e05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1164,6 +1165,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3cd3989ea20445c4aa9e7880712d4e05,
+        type: 3}
+      propertyPath: m_Name
+      value: Capital_Nivel4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cd3989ea20445c4aa9e7880712d4e05, type: 3}
@@ -1250,7 +1256,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 27.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1267,7 +1273,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1296,7 +1302,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 1
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1917,7 +1923,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 27.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1934,7 +1940,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1963,7 +1969,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 1
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1996,16 +2002,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1004389689}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 78e3891894a613a4687f0b6c0119c2e2,
-        type: 3}
-      propertyPath: m_Name
-      value: Capital_Nivel1
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 78e3891894a613a4687f0b6c0119c2e2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78e3891894a613a4687f0b6c0119c2e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2075,6 +2071,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78e3891894a613a4687f0b6c0119c2e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Capital_Nivel1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78e3891894a613a4687f0b6c0119c2e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e3891894a613a4687f0b6c0119c2e2, type: 3}
@@ -2284,7 +2290,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 46.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2301,7 +2307,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3317,11 +3323,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1004389689}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 2b0d40e942f5c194c998a6d3228a934f,
-        type: 3}
-      propertyPath: m_Name
-      value: Capital_Nivel2
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2b0d40e942f5c194c998a6d3228a934f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3391,6 +3392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2b0d40e942f5c194c998a6d3228a934f,
+        type: 3}
+      propertyPath: m_Name
+      value: Capital_Nivel2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b0d40e942f5c194c998a6d3228a934f, type: 3}
@@ -3930,7 +3936,7 @@ PrefabInstance:
     - target: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -218.73
+      value: -208.08
       objectReference: {fileID: 0}
     - target: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
@@ -3940,7 +3946,7 @@ PrefabInstance:
     - target: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 144.56
+      value: 159.65
       objectReference: {fileID: 0}
     - target: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
@@ -3995,6 +4001,12 @@ PrefabInstance:
     - target: {fileID: 5432449560844516339, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
       propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51,
+        type: 2}
+    - target: {fileID: 2686838796494821114, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: stats
       value: 
       objectReference: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51,
         type: 2}
@@ -4158,7 +4170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1240455895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4793,7 +4805,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 37.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4810,7 +4822,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4948,7 +4960,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 22
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4965,7 +4977,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4994,7 +5006,7 @@ MonoBehaviour:
     spaceCount: 2
     wordCount: 2
     linkCount: 0
-    lineCount: 3
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -5757,7 +5769,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 46.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5774,7 +5786,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6067,7 +6079,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 19.15
+  m_fontSize: 71.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6222,7 +6234,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 27.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6239,7 +6251,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6268,7 +6280,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 1
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -6377,7 +6389,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 39.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6394,7 +6406,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6776,11 +6788,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1004389689}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 75574e16dbaead24a8242a6a9ba243dc,
-        type: 3}
-      propertyPath: m_Name
-      value: Capital_Nivel5
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 75574e16dbaead24a8242a6a9ba243dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6850,6 +6857,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 75574e16dbaead24a8242a6a9ba243dc,
+        type: 3}
+      propertyPath: m_Name
+      value: Capital_Nivel5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75574e16dbaead24a8242a6a9ba243dc, type: 3}
@@ -7105,6 +7117,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7938264708775335937, guid: cb61bfbbab8e51f4d883988d6dda29a2,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb61bfbbab8e51f4d883988d6dda29a2, type: 3}
 --- !u!1 &2026534041
@@ -7266,7 +7284,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 46.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7283,7 +7301,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7464,7 +7482,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 40.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7481,7 +7499,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7510,7 +7528,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 4
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -7543,11 +7561,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1004389689}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 1394dc5da4c366042a162751486c03b6,
-        type: 3}
-      propertyPath: m_Name
-      value: Capital_Nivel3
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1394dc5da4c366042a162751486c03b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7617,6 +7630,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1394dc5da4c366042a162751486c03b6,
+        type: 3}
+      propertyPath: m_Name
+      value: Capital_Nivel3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1394dc5da4c366042a162751486c03b6, type: 3}
@@ -7692,5 +7710,11 @@ PrefabInstance:
       propertyPath: mapObj
       value: 
       objectReference: {fileID: 1240455894}
+    - target: {fileID: 2686838796494821114, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ebb85bf84325746a1de09ecc930f05, type: 3}

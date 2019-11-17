@@ -132,6 +132,11 @@ public class CameraController : MonoBehaviour
 
                 if (hex != null) 
                 {
+                    if (selectedUnt == null && hex.GetIsBuilded())
+                    {
+                        buildingMenu.GetComponent<BuildingMenu>().readHexagonBuilding(hex);
+                    }
+
                     if (selectedUnt == null)
                     {
                         selectedUnt = hex.UnitsPlaced ();
@@ -151,12 +156,11 @@ public class CameraController : MonoBehaviour
                                 }
                             }
                         }
+                        else if(selectedUnt[0].currentHex != hex && hex.UnitsPlaced()[0].gameObject.tag=="Enemy")
+                        {
+                            selectedUnt[0].SendMessage("Fight",hex);
+                        }
                         selectedUnt = null;
-                    }
-
-                    if (hex.GetIsBuilded())
-                    {
-                        buildingMenu.GetComponent<BuildingMenu>().readHexagonBuilding(hex);
                     }
                 }
             }
