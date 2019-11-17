@@ -112,6 +112,16 @@ public class UnitMovement : MonoBehaviour
                 if (currentHex.neighbours[i] != null)
                 {
                     currentHex.neighbours[i].SetVisible(true);
+                    if (stats.occupation == "Explorer")
+                    {
+                        for(int j=0; j < currentHex.neighbours[i].neighbours.Length; j++)
+                        {
+                            if (currentHex.neighbours[i].neighbours[j] != null)
+                            {
+                                currentHex.neighbours[i].neighbours[j].SetVisible(true);
+                            }
+                        }
+                    }
                 }
             }
             currentHex.SetVisible (true);
