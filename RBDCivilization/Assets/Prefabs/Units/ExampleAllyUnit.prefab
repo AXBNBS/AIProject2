@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7938264708775335949}
   - component: {fileID: 7938264708775335950}
   - component: {fileID: 7938264708775335937}
+  - component: {fileID: 2054449739}
   m_Layer: 10
   m_Name: ExampleAllyUnit
   m_TagString: Ally
@@ -72,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7938264708775335946}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &7938264708775335949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,7 +147,21 @@ MonoBehaviour:
   regroup: 0
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
-  stats: {fileID: 11400000, guid: 7864a1d2eff31b54e9349fd26cb0b153, type: 2}
+  stats: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
   moveSpd: 15
   startHex: 0
   allies: []
+--- !u!114 &2054449739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7938264708775335946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fada6aa490fee44298da2ba8a26f386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
+  totalPower: 0

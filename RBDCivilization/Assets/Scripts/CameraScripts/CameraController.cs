@@ -34,7 +34,6 @@ public class CameraController : MonoBehaviour
 
     public GameObject buildingMenu;
 
-
     // Start is called before the first frame update.
     void Start ()
     {
@@ -142,6 +141,11 @@ public class CameraController : MonoBehaviour
                     {
                         selectedUnt = hex.UnitsPlaced ();
                         //print(selectedUnt[0].name);
+                        if (!hex.GetIsBuilded() && selectedUnt != null)
+                        {
+                            Debug.Log("Hola");
+                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
+                        }
                     }
                     else
                     {
@@ -156,12 +160,15 @@ public class CameraController : MonoBehaviour
                                     u.regroup = true;
                                 }
                             }
+
+                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
                         }
                         else if(selectedUnt[0].currentHex != hex && hex.UnitsPlaced()[0].gameObject.tag=="Enemy")
                         {
                             selectedUnt[0].SendMessage("Fight",hex);
                         }
-                        selectedUnt = null;
+                        buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+                        //selectedUnt = null;
                     }
                 }
             }
@@ -225,11 +232,17 @@ public class CameraController : MonoBehaviour
         }
         if (Input.GetKeyDown (KeyCode.Tab) == true) 
         {
+            buildingMenu.GetComponent<UnityMenu>().CloseWindow();
             selectedUnt = null;
         }
         this.transform.position = Vector3.Lerp (transform.position, newPosition, Time.deltaTime * movementTime);
         this.transform.position = new Vector3 (Mathf.Clamp (this.transform.position.x, -limitX, +limitX), this.transform.position.y, Mathf.Clamp (this.transform.position.z, -limitZ, +limitZ));
         this.transform.rotation = Quaternion.Lerp (transform.rotation, newRotation, Time.deltaTime * movementTime);
         cameraTransform.localPosition = Vector3.Lerp (cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+
+    public void SetNullSelectedUnit()
+    {
+        selectedUnt = null;
     }
 }

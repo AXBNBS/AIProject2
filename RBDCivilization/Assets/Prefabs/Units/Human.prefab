@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 2686838796494821110}
   - component: {fileID: 2686838796494821109}
   - component: {fileID: 2686838796494821114}
-  - component: {fileID: 5432449560844516340}
   - component: {fileID: 5432449560844516339}
   m_Layer: 10
   m_Name: Human
-  m_TagString: Ally
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2686838796494821105}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2686838796494821110
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118,26 +117,10 @@ MonoBehaviour:
   regroup: 0
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
+  stats: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51, type: 2}
   moveSpd: 15
   startHex: 0
   allies: []
---- !u!114 &5432449560844516340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2686838796494821105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33967b51975ea24185b021c6e828278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapObj: {fileID: 0}
-  desiredDistance: 35
-  maxDistance: 1000
-  doShow: 1
-  doScale: 1
 --- !u!114 &5432449560844516339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fada6aa490fee44298da2ba8a26f386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
+  settings: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51, type: 2}
   totalPower: 0
 --- !u!1 &5625878655977805449
 GameObject:

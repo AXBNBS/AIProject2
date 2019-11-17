@@ -45,10 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonWth: 1.73
   hexagonHgt: 2
-  hexagonPfb: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
-    type: 3}
   gridWth: 500
   gridHgt: 500
+  hexagonPfb: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
+    type: 3}
   gap: 0.025
   hexagonScl: 5
   Capital: {fileID: 2393157883664804536, guid: 98c71b32c91036b4f9b3c9fe5e4fbdd3, type: 3}

@@ -186,4 +186,9 @@ public class Hexagon : MonoBehaviour
     {
         return (Vector3.Distance (this.transform.position, target) <= sphereCol.radius * this.transform.localScale.x);
     }
+
+    public UnitMovement[] GetUnits()
+    {
+        return units;
+    }
 }
