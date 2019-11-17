@@ -74,6 +74,7 @@ public class Unit : MonoBehaviour
     {
         float alliesPower = 0;
         float enemiesPower = 0;
+        bool addCurrentHex = true;
         for(int i =0; i < hex.neighbours.Length; i++)
         {
             if (hex.neighbours[i] != null)
@@ -94,6 +95,8 @@ public class Unit : MonoBehaviour
                     }
                 }
             }
+            if (hex.neighbours[i] == movement.currentHex)
+                addCurrentHex = false;
         }
         UnitMovement[] localUnits = hex.UnitsPlaced();
         if (localUnits != null && localUnits.Length != 0)
@@ -110,25 +113,44 @@ public class Unit : MonoBehaviour
                 }
             }
         }
+        if (addCurrentHex)
+        {
+            UnitMovement[] unitsA = movement.currentHex.UnitsPlaced();
+            if (unitsA != null && unitsA.Length != 0)
+            {
+                for (int j = 0; j < unitsA.Length; j++)
+                {
+                    if (unitsA[j].tag == "Enemy")
+                    {
+                        enemiesPower += unitsA[j].stats.attack;
+                    }
+                    else if (unitsA[j].tag == "Ally")
+                    {
+                        alliesPower += unitsA[j].stats.attack;
+                    }
+                }
+            }
+        }
 
         print(alliesPower + "   "+ enemiesPower);
         if (alliesPower > enemiesPower)
         {
-            for(int i =0; i<hex.presentUnt; i++)
+            this.movement.FindPathTo(hex);
+            for (int i = 0; i < hex.presentUnt; i++)
             {
-                Destroy(hex.UnitsPlaced()[i].gameObject);
+                  Destroy(hex.UnitsPlaced()[i].gameObject);
             }
             hex.presentUnt = 0;
-            this.movement.FindPathTo(hex);
+
         }
         else
         {
+            this.movement.FindPathTo(hex);
             for (int i = 0; i < movement.currentHex.presentUnt; i++)
             {
-                Hexagon aux=movement.currentHex;
                 Destroy(movement.currentHex.UnitsPlaced()[i].gameObject);
-                aux.presentUnt = 0;
             }
+            hex.presentUnt = 0;
         }
     }
 

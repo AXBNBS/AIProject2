@@ -107,6 +107,13 @@ public class UnitMovement : MonoBehaviour
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
 
+            for(int i = 0; i < currentHex.neighbours.Length; i++)
+            {
+                if (currentHex.neighbours[i] != null)
+                {
+                    currentHex.neighbours[i].SetVisible(true);
+                }
+            }
             currentHex.SetVisible (true);
 
             if (path.Count == 1) 
