@@ -151,21 +151,39 @@ public class CameraController : MonoBehaviour
                     {
                         if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length && ((hex.UnitsPlaced () == null) || (hex.UnitsPlaced()[0].stats.race == selectedUnt[0].stats.race))) 
                         {
-                            selectedUnt[0].FindPathTo (hex);
-
                             if (hex.presentUnt != 0) 
                             {
                                 foreach (UnitMovement u in selectedUnt)
                                 {
                                     u.regroup = true;
+                                    u.targetHex = hex;
                                 }
                             }
+                            selectedUnt[0].FindPathTo(hex);
 
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
                         }
                         else if(selectedUnt[0].currentHex != hex && hex.UnitsPlaced()[0].gameObject.tag=="Enemy")
                         {
-                            selectedUnt[0].SendMessage("Fight",hex);
+                            foreach(Hexagon neighbour in hex.neighbours)
+                            {
+                                if (neighbour == selectedUnt[0].currentHex)
+                                {
+                                    selectedUnt[0].SendMessage("Fight", hex);
+                                }
+                            }
+                            if (hex.presentUnt != 0)
+                            {
+                                foreach (UnitMovement u in selectedUnt)
+                                {
+                                    u.regroup = true;
+                                    u.targetHex = hex;
+                                }
+                            }
+
+                            selectedUnt[0].FindPathTo(hex);
+
+                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
                         }
                         buildingMenu.GetComponent<UnityMenu>().CloseWindow();
                         //selectedUnt = null;

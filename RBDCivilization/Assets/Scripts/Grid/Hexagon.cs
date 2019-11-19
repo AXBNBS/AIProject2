@@ -12,7 +12,7 @@ public class Hexagon : MonoBehaviour
     public int presentUnt;
     public GameObject environment;
 
-    private UnitMovement[] units;
+    public UnitMovement[] units;
     private SphereCollider sphereCol;
 
     public Material MaterialVisible;

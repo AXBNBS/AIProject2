@@ -11,6 +11,7 @@ public class UnitMovement : MonoBehaviour
     public bool reachedTrg, regroup;
     public Hexagon currentHex;
     public Hexagon previousHex;
+    public Hexagon targetHex;
     public UnitSettings stats;
     //public int startOft;
 
@@ -90,6 +91,23 @@ public class UnitMovement : MonoBehaviour
                 }
                 else 
                 {
+                    print("AAAAAAAAAAAAA");
+                    if (targetHex!= null && Vector3.Distance(path[0], targetHex.transform.position)<0.5f)
+                    {
+                        print("AAAAAAAAAAAAA");
+                        UnitMovement[] units = targetHex.UnitsPlaced();
+                        if (units != null) {
+                            for (int i = 0; i < units.Length;i++)
+                            {
+                                if(units[i]!=null && units[i].tag == "Enemy")
+                                {
+                                    this.SendMessage("Fight", targetHex);
+                                    print("AAAAAAAAAAAAA");
+                                    break;
+                                }
+                            }
+                        }
+                    }
                     this.target = path[0];
                 }
             }
@@ -221,5 +239,10 @@ public class UnitMovement : MonoBehaviour
             allies[u].target = allies[u].path[0];
             allies[u].reachedTrg = false;
         }
+    }
+
+    public UnitMovement[] GetAllies()
+    {
+        return allies;
     }
 }

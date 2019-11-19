@@ -72,9 +72,13 @@ public class Unit : MonoBehaviour
 
     private void Fight(Hexagon hex)
     {
+        if (hex.UnitsPlaced() == null)
+        {
+            return;
+        }
         float alliesPower = 0;
         float enemiesPower = 0;
-        bool addCurrentHex = true;
+        bool addCurrentHexagon = true;
         for(int i =0; i < hex.neighbours.Length; i++)
         {
             if (hex.neighbours[i] != null)
@@ -96,7 +100,9 @@ public class Unit : MonoBehaviour
                 }
             }
             if (hex.neighbours[i] == movement.currentHex)
-                addCurrentHex = false;
+            {
+                addCurrentHexagon = false;
+            }
         }
         UnitMovement[] localUnits = hex.UnitsPlaced();
         if (localUnits != null && localUnits.Length != 0)
@@ -113,44 +119,41 @@ public class Unit : MonoBehaviour
                 }
             }
         }
-        if (addCurrentHex)
+        UnitMovement[] allies = movement.GetAllies();
+        if (addCurrentHexagon)
         {
-            UnitMovement[] unitsA = movement.currentHex.UnitsPlaced();
-            if (unitsA != null && unitsA.Length != 0)
+            for (int j = 0; j < allies.Length; j++)
             {
-                for (int j = 0; j < unitsA.Length; j++)
+                if (allies[j].tag == "Enemy")
                 {
-                    if (unitsA[j].tag == "Enemy")
-                    {
-                        enemiesPower += unitsA[j].stats.attack;
-                    }
-                    else if (unitsA[j].tag == "Ally")
-                    {
-                        alliesPower += unitsA[j].stats.attack;
-                    }
+                    enemiesPower += allies[j].stats.attack;
+                }
+                else if (allies[j].tag == "Ally")
+                {
+                    alliesPower += allies[j].stats.attack;
                 }
             }
         }
-
         print(alliesPower + "   "+ enemiesPower);
         if (alliesPower > enemiesPower)
         {
-            this.movement.FindPathTo(hex);
             for (int i = 0; i < hex.presentUnt; i++)
             {
-                  Destroy(hex.UnitsPlaced()[i].gameObject);
+                if(localUnits[i].tag=="Enemy")
+                  Destroy(localUnits[i].gameObject);
             }
             hex.presentUnt = 0;
 
         }
         else
         {
-            this.movement.FindPathTo(hex);
-            for (int i = 0; i < movement.currentHex.presentUnt; i++)
+            movement.currentHex.presentUnt = 0;
+            movement.currentHex.units = new UnitMovement[5];
+            for (int i = 0; i < allies.Length; i++)
             {
-                Destroy(movement.currentHex.UnitsPlaced()[i].gameObject);
+                if(allies[i].tag=="Ally")
+                  Destroy(allies[i].gameObject);
             }
-            hex.presentUnt = 0;
         }
     }
 
