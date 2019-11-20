@@ -133,7 +133,7 @@ public class Grid : MonoBehaviour
         //Generación de rio
         for (int i = 0; i < 58; i++)
         {
-            hexagons[i, 26].SetHexagonType(-1);
+            hexagons[i, 26].SetHexagonType(-2);
             hexagons[i, 26].SetVisible(true);
         }
 

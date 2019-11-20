@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 
@@ -146,7 +147,7 @@ public class CameraController : MonoBehaviour
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
                         }
                     }
-                    else
+                    else if(!IsMouseOverUI())
                     {
                         if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length && ((hex.UnitsPlaced () == null) || (hex.UnitsPlaced()[0].stats.race == selectedUnt[0].stats.race))) 
                         {
@@ -193,6 +194,11 @@ public class CameraController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
 
@@ -264,5 +270,17 @@ public class CameraController : MonoBehaviour
     public void SetNullSelectedUnit()
     {
         selectedUnt = null;
+    }
+
+    public UnitMovement[] GetSelectedUnits()
+    {
+        if (selectedUnt == null)
+        {
+            return null;
+        }
+        else
+        {
+            return selectedUnt;
+        }
     }
 }

@@ -39,6 +39,10 @@ public class Unit : MonoBehaviour
         {
             Assault();
         }
+        if (occupation == "Worker")
+        {
+
+        }
     }
 
     private void Assault()
