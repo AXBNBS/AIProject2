@@ -27,7 +27,7 @@ public class UnitMovement : MonoBehaviour
     //private List<UnitMovement> collided;
     [SerializeField] private UnitMovement[] allies;
     //private LayerMask unitsMsk;
-
+    private bool visibleTarget = false;
 
     // Just some variable initialization.
     private void Start ()
@@ -114,7 +114,14 @@ public class UnitMovement : MonoBehaviour
                                             currentHex.AddUnit(allies[x], currentHex.presentUnt);
                                     }
                                     //Aqui si se confirma se llama a la función fight, y si no, simplemente no se le llama
-                                    confirmationScript.askCombat(this);
+                                    if (visibleTarget)
+                                    {
+                                        this.SendMessage("Fight", targetHex);
+                                    }
+                                    else
+                                    {
+                                        confirmationScript.askCombat(this);
+                                    }
                                     break;
                                 }
                             }
@@ -237,7 +244,7 @@ public class UnitMovement : MonoBehaviour
     public void FindPathTo (Hexagon hex) 
     {
         path = currentHex.GetPath (hex);
-
+        visibleTarget = hex.GetVisible();
         for (int u = 0; u < allies.Length; u += 1) 
         {
             if (u != 0)
