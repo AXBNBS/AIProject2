@@ -155,8 +155,11 @@ public class CameraController : MonoBehaviour
                                 foreach (UnitMovement u in selectedUnt)
                                 {
                                     u.regroup = true;
-                                    u.targetHex = hex;
                                 }
+                            }
+                            foreach (UnitMovement u in selectedUnt)
+                            {
+                                u.targetHex = hex;
                             }
                             selectedUnt[0].FindPathTo(hex);
 

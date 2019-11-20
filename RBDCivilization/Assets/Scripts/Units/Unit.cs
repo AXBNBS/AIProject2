@@ -39,10 +39,6 @@ public class Unit : MonoBehaviour
         {
             Assault();
         }
-        else if(movement.reachedTrg==false )
-        {
-            
-        }
     }
 
     private void Assault()

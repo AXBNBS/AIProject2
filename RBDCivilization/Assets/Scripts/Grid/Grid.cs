@@ -134,7 +134,7 @@ public class Grid : MonoBehaviour
         for (int i = 0; i < 58; i++)
         {
             hexagons[i, 26].SetHexagonType(-1);
-            //hexagons[i, 26].SetVisible(true);
+            hexagons[i, 26].SetVisible(true);
         }
 
         //Generación de puentes
@@ -142,6 +142,10 @@ public class Grid : MonoBehaviour
         hexagons[23, 26].SetHexagonType(1);
         hexagons[34, 26].SetHexagonType(1);
         hexagons[46, 26].SetHexagonType(1);
+        hexagons[11, 26].SetVisible(false);
+        hexagons[23, 26].SetVisible(false);
+        hexagons[34, 26].SetVisible(false);
+        hexagons[46, 26].SetVisible(false);
 
         //Generación de montañas
         hexagons[5, 10].SetHexagonType(-1);

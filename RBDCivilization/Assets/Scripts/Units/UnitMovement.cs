@@ -57,6 +57,8 @@ public class UnitMovement : MonoBehaviour
     //previously assigned target was the last one, we indicate the unit has reached its destination and assign its new allies.
     private void Update ()
     {
+        if(targetHex!=null)
+            print(targetHex.GetHexagonType());
         if (reachedTrg == false) 
         {
             characterCtr.Move ((new Vector3 (target.x, 1, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
@@ -113,7 +115,7 @@ public class UnitMovement : MonoBehaviour
                                         if (allies[x] != null)
                                             currentHex.AddUnit(allies[x], currentHex.presentUnt);
                                     }
-                                    //Aqui si se confirma se llama a la función fight, y si no, simplemente no se le llama
+                                    
                                     if (visibleTarget)
                                     {
                                         this.SendMessage("Fight", targetHex);
@@ -127,11 +129,28 @@ public class UnitMovement : MonoBehaviour
                             }
                         }
                     }
+                    if (targetHex != null && Vector3.Distance(path[0], targetHex.transform.position) < 0.5f)
+                    {
+                        
+                        if (targetHex.GetHexagonType() == -1)
+                        {
+                            print("AAAAAAAAAAAAA");
+                            foreach (UnitMovement al in allies)
+                            {
+                                al.reachedTrg = true;
+                            }
+                            for (int x = 0; x < allies.Length; x++)
+                            {
+                                if (allies[x] != null)
+                                    currentHex.AddUnit(allies[x], currentHex.presentUnt);
+                            }
+                        }
+                    }
                     this.target = path[0];
+                }
                 }
             }
         }
-    }
 
     public void LookForCombat()
     {
