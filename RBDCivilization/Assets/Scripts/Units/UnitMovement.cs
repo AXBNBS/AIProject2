@@ -91,18 +91,25 @@ public class UnitMovement : MonoBehaviour
                 }
                 else 
                 {
-                    print("AAAAAAAAAAAAA");
                     if (targetHex!= null && Vector3.Distance(path[0], targetHex.transform.position)<0.5f)
                     {
-                        print("AAAAAAAAAAAAA");
                         UnitMovement[] units = targetHex.UnitsPlaced();
                         if (units != null) {
                             for (int i = 0; i < units.Length;i++)
                             {
                                 if(units[i]!=null && units[i].tag == "Enemy")
                                 {
+                                    foreach (UnitMovement al in allies)
+                                    {
+                                        al.reachedTrg = true;
+                                    }
+                                    for (int x = 0; x< allies.Length; x++)
+                                    {
+                                        if (allies[x] != null)
+                                            currentHex.AddUnit(allies[x], currentHex.presentUnt);
+                                    }
+                                    //Aqui si se confirma se llama a la función fight, y si no, simplemente no se le llama
                                     this.SendMessage("Fight", targetHex);
-                                    print("AAAAAAAAAAAAA");
                                     break;
                                 }
                             }

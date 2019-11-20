@@ -143,7 +143,7 @@ public class Unit : MonoBehaviour
                   Destroy(localUnits[i].gameObject);
             }
             hex.presentUnt = 0;
-
+            movement.FindPathTo(hex);
         }
         else
         {
