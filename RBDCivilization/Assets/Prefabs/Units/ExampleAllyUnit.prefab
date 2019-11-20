@@ -147,7 +147,9 @@ MonoBehaviour:
   regroup: 0
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
+  targetHex: {fileID: 0}
   stats: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
+  interf: {fileID: 5370942851254565301, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
   moveSpd: 15
   startHex: 0
   allies: []
@@ -164,4 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
+  gameManager: {fileID: 4133221044724100647, guid: 2ede30c81a7374b42b112e12a47c6b17,
+    type: 3}
   totalPower: 0

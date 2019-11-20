@@ -117,7 +117,9 @@ MonoBehaviour:
   regroup: 0
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
+  targetHex: {fileID: 0}
   stats: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51, type: 2}
+  interf: {fileID: 5370942851254565301, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
   moveSpd: 15
   startHex: 0
   allies: []

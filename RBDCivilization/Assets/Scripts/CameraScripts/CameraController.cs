@@ -143,7 +143,6 @@ public class CameraController : MonoBehaviour
                         //print(selectedUnt[0].name);
                         if (!hex.GetIsBuilded() && selectedUnt != null)
                         {
-                            Debug.Log("Hola");
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
                         }
                     }

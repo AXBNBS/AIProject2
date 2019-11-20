@@ -30,11 +30,15 @@ public class ResourcesHolder : MonoBehaviour
         blueWood = 10000;
         blueMineral = 10000;
         blueStores = 500;
+        blueTotalPopulation = 5;
+        redCurrentPopulation = 0; //Esto se deberá de cambiar cuando sepamos con que unidades se empieza en cada bando
 
         redWood = 500;
         redMineral = 500;
         redStores = 500;
-        
+        redTotalPopulation = 5;
+        redCurrentPopulation = 0; //Esto se deberá de cambiar cuando sepamos con que unidades se empieza en cada bando
+
         woodText.text = blueWood.ToString();
         mineralText.text = blueMineral.ToString();
         storesText.text = blueStores.ToString();
@@ -112,7 +116,7 @@ public class ResourcesHolder : MonoBehaviour
                 blueTotalPopulation += n;
             else
                 blueTotalPopulation -= n;
-
+            
             populationText.text = blueCurrentPopulation.ToString() + " / " + blueTotalPopulation.ToString();
         }
         else if (team == "Red" || team == "red")

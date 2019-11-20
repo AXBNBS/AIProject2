@@ -12,8 +12,10 @@ public class Unit : MonoBehaviour
     private int stores;
 
     public UnitSettings settings;
+    public GameManager gameManager;
 
     private UnitMovement movement;
+    private GameObject GameManager;
 
     public float totalPower;
 
@@ -27,6 +29,8 @@ public class Unit : MonoBehaviour
         stores = settings.stores;
         movement = this.GetComponent<UnitMovement>();
         totalPower = 0;
+
+        GameManager = GameObject.FindGameObjectWithTag("GameController");
     }
 
     void Update()
@@ -62,6 +66,14 @@ public class Unit : MonoBehaviour
 
                 movement.currentHex.SetCity(build.GetComponent<City>());
                 movement.FindPathTo(movement.previousHex);
+            }
+
+            if (movement.currentHex.GetCity().GetCityType() == "Capital")
+            {
+                GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 5, false);
+            } else
+            {
+                GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, false);
             }
         }
         else
@@ -134,7 +146,6 @@ public class Unit : MonoBehaviour
                 }
             }
         }
-        print(alliesPower + "   "+ enemiesPower);
         if (alliesPower > enemiesPower)
         {
             for (int i = 0; i < hex.presentUnt; i++)

@@ -14,6 +14,9 @@ public class UnitMovement : MonoBehaviour
     public Hexagon targetHex;
     public UnitSettings stats;
     //public int startOft;
+    public GameObject interf;
+
+    private ConfirmationScript confirmationScript;
 
     [SerializeField] private int moveSpd, startHex;
     private CharacterController characterCtr;
@@ -43,6 +46,8 @@ public class UnitMovement : MonoBehaviour
         //target += offsets[startOft];
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
+
+        confirmationScript = interf.GetComponentInChildren<ConfirmationScript>();
 
         path.Add (target);
     }
@@ -109,7 +114,7 @@ public class UnitMovement : MonoBehaviour
                                             currentHex.AddUnit(allies[x], currentHex.presentUnt);
                                     }
                                     //Aqui si se confirma se llama a la función fight, y si no, simplemente no se le llama
-                                    this.SendMessage("Fight", targetHex);
+                                    confirmationScript.askCombat(this);
                                     break;
                                 }
                             }
@@ -121,6 +126,10 @@ public class UnitMovement : MonoBehaviour
         }
     }
 
+    public void LookForCombat()
+    {
+        this.SendMessage("Fight", targetHex);
+    }
 
     // If we reach a new hexagon, we update the new and previous hexagons, we make sure the current one is visible. Also if this was the last hexagon of the path, we regroup the units accordingly if there were more awaiting at the destination; or 
     //we just make sure they keep the same structure if that was not the case, we also update the units the current hexagon has assigned either way.
