@@ -16,3 +16,4 @@ MonoBehaviour:
   neededMinerals: 600
   neededWood: 1500
   defense: 15
+  cityType: City

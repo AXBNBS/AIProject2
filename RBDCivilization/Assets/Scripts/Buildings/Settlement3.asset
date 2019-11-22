@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52034ee3c8d1fa6439247dba6f7b38da, type: 3}
   m_Name: Settlement3
   m_EditorClassIdentifier: 
-  level: 2
-  neededMinerals: 300
-  neededWood: 800
+  level: 3
+  neededMinerals: 0
+  neededWood: 0
   defense: 10
+  cityType: Settlement

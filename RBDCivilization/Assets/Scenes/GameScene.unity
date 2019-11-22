@@ -1955,6 +1955,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interface
       objectReference: {fileID: 0}
+    - target: {fileID: 5502659005119433582, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2046470812876249168, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2015,11 +2020,6 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1561769426}
-    - target: {fileID: 5502659005119433582, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5502659003472634471, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2182,8 +2182,9 @@ MonoBehaviour:
   actionTwoUI: {fileID: 1972652460}
   actionThreeUI: {fileID: 589766579}
   camera: {fileID: 1561769426}
-  settlement: {fileID: -927199367670048503, guid: a47952ab185d6494594ffaba3eb79026,
+  settlement: {fileID: 1273044046940879464, guid: f691fabbb5b3b7e4b94b86711c6331b5,
     type: 3}
+  farm: {fileID: 0}
 --- !u!114 &7593202725541785576 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5502659003444006810, guid: 55961fe0920c67d4fb91d6719993f572,

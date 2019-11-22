@@ -8,7 +8,7 @@ public class City : MonoBehaviour
     private int neededMinerals;
     private int neededWood;
     private int defense;
-    private string cityType;
+    public string cityType;
 
     public CitySettings settings;
     public GameObject nextLevel;
@@ -21,6 +21,7 @@ public class City : MonoBehaviour
         level = settings.level;
         neededMinerals = settings.neededMinerals;
         neededWood = settings.neededWood;
+        cityType = settings.cityType;
     }
     
     public void SetCityType(string n)

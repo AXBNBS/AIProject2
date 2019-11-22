@@ -52,7 +52,7 @@ public class BuildingMenu : MonoBehaviour
 
     public void LevelUpButton()
     {
-        if (((hex.GetCity().GetCityType() == "Sawmill" || hex.GetCity().GetCityType() == "Farm" || hex.GetCity().GetCityType() == "Mina") && hex.GetCity().GetLevel() < 3) || hex.GetCity().GetLevel() < 5)
+        if (((hex.GetCity().GetCityType() == "Sawmill" || hex.GetCity().GetCityType() == "Farm" || hex.GetCity().GetCityType() == "Mina" || hex.GetCity().GetCityType() == "Settlement") && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType()=="City"))
         {
             firstPanelUI.SetActive(false);
             levelInfoText.text = "It will cost:" + System.Environment.NewLine + "Wood: " + hex.GetCity().GetNeededWood() + System.Environment.NewLine + "Mineral: " + hex.GetCity().GetNeededMinerals();

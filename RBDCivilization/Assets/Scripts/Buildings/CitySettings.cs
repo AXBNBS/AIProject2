@@ -9,4 +9,5 @@ public class CitySettings : ScriptableObject
     public int neededMinerals;
     public int neededWood;
     public int defense;
+    public string cityType;
 }

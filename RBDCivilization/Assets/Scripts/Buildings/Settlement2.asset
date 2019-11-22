@@ -16,3 +16,4 @@ MonoBehaviour:
   neededMinerals: 300
   neededWood: 800
   defense: 10
+  cityType: Settlement

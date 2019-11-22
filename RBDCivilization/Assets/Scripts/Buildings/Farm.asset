@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52034ee3c8d1fa6439247dba6f7b38da, type: 3}
-  m_Name: Settlement1
+  m_Name: Farm
   m_EditorClassIdentifier: 
   level: 1
-  neededMinerals: 150
-  neededWood: 400
-  defense: 5
-  cityType: Settlement
+  neededMinerals: 50
+  neededWood: 50
+  defense: 1
+  cityType: Farm

@@ -49,7 +49,7 @@ public class Unit : MonoBehaviour
     {
         //Habra que mirar de obtener todas las unidades de un mismo bando que esten en un hexagono para crear bien las probabilidades
 
-        if (Random.Range(0, 10) > 0)
+        if (Random.Range(0, 10) > 11)
         {
             if (movement.currentHex.GetCity().GetLevel() == 1)
             {

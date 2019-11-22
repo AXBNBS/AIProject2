@@ -13,11 +13,14 @@ public class ActionsMenu : MonoBehaviour
     public CameraController camera;
 
     public GameObject settlement;
-
+    public GameObject farm;
+    private BuildingMenu buildingMenu;
+    private GameObject GameManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        buildingMenu=this.GetComponent<BuildingMenu>();
+        GameManager = GameObject.FindGameObjectWithTag("GameController");
     }
 
     // Update is called once per frame
@@ -29,6 +32,8 @@ public class ActionsMenu : MonoBehaviour
             {
                 leftBottomHUD.SetActive(true);
                 actionOneUI.GetComponentInChildren<TextMeshProUGUI>().text = "Settlement";
+                actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text = "Farm";
+                actionThreeUI.GetComponentInChildren<TextMeshProUGUI>().text = "Tunnel";
             }
         }
         else
@@ -41,13 +46,81 @@ public class ActionsMenu : MonoBehaviour
     {
         if (actionOneUI.GetComponentInChildren<TextMeshProUGUI>().text == "Settlement")
         {
-            if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
-            {
-                GameObject build = Instantiate(settlement, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
-
-                camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
-            }
+            BuildSettlement();
         }
-        camera.SetNullSelectedUnit();
+        buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+    }
+
+    public void Action2()
+    {
+        if (actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text == "Farm")
+        {
+            BuildFarm();
+        }
+        buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+    }
+
+    public void Action3()
+    {
+        if (actionThreeUI.GetComponentInChildren<TextMeshProUGUI>().text == "Tunnel")
+        {
+            BuildTunnel();
+        }
+        buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+    }
+
+    public void BuildSettlement()
+    {
+        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
+        {
+            for(int i =0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+            {
+                if(camera.GetSelectedUnits()[0].currentHex.neighbours[i]!=null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded())
+                {
+                    return;
+                }
+            }
+            GameObject build = Instantiate(settlement, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
+
+            camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
+
+            GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, true);
+
+            camera.GetSelectedUnits()[0].currentHex.SetIsBuilded(true);
+
+            camera.SetNullSelectedUnit();
+
+            GameManager.GetComponent<ResourcesHolder>().changeWood("Blue",50, false);
+            GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", 50, false);
+        }
+    }
+
+    public void BuildFarm()
+    {
+        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
+        {
+            for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+            {
+                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded())
+                {
+                    return;
+                }
+            }
+            GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
+
+            camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
+
+            camera.GetSelectedUnits()[0].currentHex.SetIsBuilded(true);
+
+            camera.SetNullSelectedUnit();
+
+            GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
+            GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
+        }
+    }
+
+    public void BuildTunnel()
+    {
+
     }
 }
