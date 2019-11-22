@@ -83,6 +83,7 @@ public class ActionsMenu : MonoBehaviour
             GameObject build = Instantiate(settlement, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
 
             camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
+            camera.GetSelectedUnits()[0].currentHex.GetCity().SetCitySide("Blue");
 
             GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, true);
 
@@ -109,18 +110,32 @@ public class ActionsMenu : MonoBehaviour
             GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
 
             camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
-
+            camera.GetSelectedUnits()[0].currentHex.GetCity().SetCitySide("Blue");
             camera.GetSelectedUnits()[0].currentHex.SetIsBuilded(true);
-
-            camera.SetNullSelectedUnit();
 
             GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
             GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
+
+            camera.SetNullSelectedUnit();
         }
     }
 
     public void BuildTunnel()
     {
+        for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+        {
+            if (camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType()==-1)
+            {
+                //GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
 
+                camera.GetSelectedUnits()[0].currentHex.neighbours[i].SetHexagonType(1);
+
+                //GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
+                //GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
+
+                camera.SetNullSelectedUnit();
+                break;
+            }
+        }
     }
 }

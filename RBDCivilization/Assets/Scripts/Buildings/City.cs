@@ -8,7 +8,8 @@ public class City : MonoBehaviour
     private int neededMinerals;
     private int neededWood;
     private int defense;
-    public string cityType;
+    private string cityType;
+    private string side;
 
     public CitySettings settings;
     public GameObject nextLevel;
@@ -52,5 +53,15 @@ public class City : MonoBehaviour
     public int GetNeededWood()
     {
         return neededWood;
+    }
+
+    public void SetCitySide(string s)
+    {
+        side = s;
+    }
+
+    public string GetCitySide()
+    {
+        return side;
     }
 }

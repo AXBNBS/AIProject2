@@ -150,6 +150,10 @@ public class Grid : MonoBehaviour
         //Generación de montañas
         hexagons[5, 10].SetHexagonType(-1);
         hexagons[5, 40].SetHexagonType(-1);
+        hexagons[5, 10].SetVisible(true);
+        hexagons[5, 40].SetVisible(true);
+        hexagons[5, 10].SetMountain(true);
+        hexagons[5, 40].SetMountain(true);
 
         //Generación de bosques
         hexagons[50, 10].SetHexagonType(2);

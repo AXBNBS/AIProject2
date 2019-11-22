@@ -151,6 +151,14 @@ public class CameraController : MonoBehaviour
                     {
                         if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length && ((hex.UnitsPlaced () == null) || (hex.UnitsPlaced()[0].stats.race == selectedUnt[0].stats.race))) 
                         {
+                            foreach (Hexagon neighbour in hex.neighbours)
+                            {
+                                if (neighbour == selectedUnt[0].currentHex)
+                                {
+                                    buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+                                    return;
+                                }
+                            }
                             if (hex.presentUnt != 0) 
                             {
                                 foreach (UnitMovement u in selectedUnt)
