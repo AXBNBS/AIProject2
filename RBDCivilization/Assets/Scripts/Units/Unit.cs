@@ -35,14 +35,37 @@ public class Unit : MonoBehaviour
 
     void Update()
     {
-        if (movement.reachedTrg == true && movement.currentHex.GetIsBuilded())
+        if (movement.reachedTrg == true && movement.currentHex.GetIsBuilded() && (((movement.currentHex.GetCity().GetCitySide()=="Blue" || movement.currentHex.GetCity().GetCitySide() == "blue") && this.tag=="Enemy") || ((movement.currentHex.GetCity().GetCitySide() == "Red" || movement.currentHex.GetCity().GetCitySide() == "red") && this.tag == "Ally")))
         {
             Assault();
         }
-        if (occupation == "Worker")
+        else if(movement.reachedTrg == true && movement.currentHex.GetIsBuilded() && (((movement.currentHex.GetCity().GetCitySide() == "Blue" || movement.currentHex.GetCity().GetCitySide() == "blue") && this.tag == "Ally") || ((movement.currentHex.GetCity().GetCitySide() == "Red" || movement.currentHex.GetCity().GetCitySide() == "red") && this.tag == "Enemy")))
         {
-
+            Stack();
         }
+    }
+
+    private void Stack()
+    {
+        if (movement.currentHex.GetCity().GetCapacity() < movement.GetAllies().Length)
+        {
+            movement.GetAllies()[0].FindPathTo(movement.previousHex);
+            return;
+        }
+        float defense = 0;
+        foreach(UnitMovement a in movement.GetAllies())
+        {
+            defense += a.stats.defense;
+        }
+        UnitMovement[] allies = movement.GetAllies();
+        movement.currentHex.presentUnt = 0;
+        movement.currentHex.units = new UnitMovement[5];
+        for (int i = 0; i < allies.Length; i++)
+        {
+            if (allies[i].tag == "Ally")
+                Destroy(allies[i].gameObject);
+        }
+        movement.currentHex.GetCity().AddUnits(movement.GetAllies()[0].stats.race, movement.GetAllies().Length, defense);
     }
 
     private void Assault()

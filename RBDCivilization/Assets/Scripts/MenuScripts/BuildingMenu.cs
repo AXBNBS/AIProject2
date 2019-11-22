@@ -86,6 +86,16 @@ public class BuildingMenu : MonoBehaviour
             firstPanelUI.SetActive(true);
             surePanelUI.SetActive(false);
 
+            int humans = hex.GetCity().GetHumans();
+            int cats = hex.GetCity().GetCats();
+            int elves = hex.GetCity().GetElves();
+            int dwarfs = hex.GetCity().GetDwarfs();
+            int twiis = hex.GetCity().GetTwiis();
+            int craftsmen = hex.GetCity().GetCraftsmen();
+            int turroncitos = hex.GetCity().GetTurroncitos();
+
+            print(humans);
+
             CloseWindow(); //Por ahora así esta bien
 
             GameObject nextLevel = hex.GetCity().nextLevel;
@@ -95,6 +105,15 @@ public class BuildingMenu : MonoBehaviour
             GameObject build = Instantiate(nextLevel, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
 
             hex.SetCity(build.GetComponent<City>());
+            hex.GetCity().SetCitySide("Blue");
+
+            hex.GetCity().AddUnits("Human", humans, humans);
+            hex.GetCity().AddUnits("Cat", cats, cats * 1.5f);
+            hex.GetCity().AddUnits("Elf", elves, elves);
+            hex.GetCity().AddUnits("Dwarf", dwarfs, dwarfs);
+            hex.GetCity().AddUnits("Twii", twiis, twiis*2);
+            hex.GetCity().AddUnits("Craftsman", craftsmen, craftsmen*0.5f);
+            hex.GetCity().AddUnits("Turroncito", turroncitos, turroncitos);
         }
     }
 

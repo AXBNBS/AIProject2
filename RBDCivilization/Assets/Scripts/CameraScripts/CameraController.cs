@@ -153,7 +153,7 @@ public class CameraController : MonoBehaviour
                         {
                             foreach (Hexagon neighbour in hex.neighbours)
                             {
-                                if (neighbour == selectedUnt[0].currentHex)
+                                if (neighbour == selectedUnt[0].currentHex && (hex.GetHexagonType()==-1 || hex.GetHexagonType()==-2))
                                 {
                                     buildingMenu.GetComponent<UnityMenu>().CloseWindow();
                                     return;

@@ -8,6 +8,6 @@ public class CitySettings : ScriptableObject
     public int level;
     public int neededMinerals;
     public int neededWood;
-    public int defense;
+    public float defense;
     public string cityType;
 }

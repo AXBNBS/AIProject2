@@ -87,7 +87,25 @@ public class ActionsMenu : MonoBehaviour
 
             GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, true);
 
-            camera.GetSelectedUnits()[0].currentHex.SetIsBuilded(true);
+            Hexagon auxHex = camera.GetSelectedUnits()[0].currentHex;
+           
+            if (camera.GetSelectedUnits()[0].previousHex != null)
+            {
+                camera.GetSelectedUnits()[0].FindPathTo(camera.GetSelectedUnits()[0].previousHex);
+            }
+            else
+            {
+                foreach (Hexagon hex in camera.GetSelectedUnits()[0].currentHex.neighbours)
+                {
+                    if (hex.presentUnt == 0)
+                    {
+                        camera.GetSelectedUnits()[0].FindPathTo(hex);
+                        break;
+                    }
+                }
+            }
+
+            auxHex.SetIsBuilded(true);
 
             camera.SetNullSelectedUnit();
 
