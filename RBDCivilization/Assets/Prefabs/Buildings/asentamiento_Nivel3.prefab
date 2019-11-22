@@ -5641,8 +5641,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9202771454101836806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -227.16531, y: 22.463741, z: 123.26861}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 7285368648608112251}
   - {fileID: 8502953567824494913}
@@ -5731,6 +5731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 
+  humans: 0
+  craftsmen: 0
   settings: {fileID: 11400000, guid: 7e30c76dae188db4ba9150a5c923d98a, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 4067970023479589664, guid: 8c2d6e469e47060419c511ec3fd8636b,

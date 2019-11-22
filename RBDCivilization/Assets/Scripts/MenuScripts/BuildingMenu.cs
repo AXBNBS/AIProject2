@@ -9,6 +9,7 @@ public class BuildingMenu : MonoBehaviour
     public GameObject firstPanelUI;
     public GameObject surePanelUI;
     public GameObject trainPanelUI;
+    public GameObject movePanelUI;
 
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI infoText;
@@ -47,12 +48,17 @@ public class BuildingMenu : MonoBehaviour
 
     public void MovePopulation() 
     {
-        //Aquí será el desplazamiento de población
+        City c = hex.GetCity();
+        if (c.GetHumans() != 0 || c.GetElves() != 0 || c.GetDwarfs() != 0 || c.GetCats() != 0 || c.GetTwiis() != 0 || c.GetTurroncitos() != 0 || c.GetCraftsmen() != 0)
+        {
+            firstPanelUI.SetActive(false);
+            movePanelUI.SetActive(true);
+        }
     }
 
     public void LevelUpButton()
     {
-        if (((hex.GetCity().GetCityType() == "Sawmill" || hex.GetCity().GetCityType() == "Farm" || hex.GetCity().GetCityType() == "Mina" || hex.GetCity().GetCityType() == "Settlement") && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType()=="City"))
+        if ((hex.GetCity().GetCityType() == "Settlement" && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType()=="City"))
         {
             firstPanelUI.SetActive(false);
             levelInfoText.text = "It will cost:" + System.Environment.NewLine + "Wood: " + hex.GetCity().GetNeededWood() + System.Environment.NewLine + "Mineral: " + hex.GetCity().GetNeededMinerals();
@@ -94,8 +100,6 @@ public class BuildingMenu : MonoBehaviour
             int craftsmen = hex.GetCity().GetCraftsmen();
             int turroncitos = hex.GetCity().GetTurroncitos();
 
-            print(humans);
-
             CloseWindow(); //Por ahora así esta bien
 
             GameObject nextLevel = hex.GetCity().nextLevel;
@@ -114,6 +118,8 @@ public class BuildingMenu : MonoBehaviour
             hex.GetCity().AddUnits("Twii", twiis, twiis*2);
             hex.GetCity().AddUnits("Craftsman", craftsmen, craftsmen*0.5f);
             hex.GetCity().AddUnits("Turroncito", turroncitos, turroncitos);
+
+            Debug.Log(hex.GetCity().GetDefense());
         }
     }
 
@@ -127,6 +133,7 @@ public class BuildingMenu : MonoBehaviour
     {
         firstPanelUI.SetActive(true);
         trainPanelUI.SetActive(false);
+        movePanelUI.SetActive(false);
     }
 
     public void TrainHuman()
@@ -300,6 +307,174 @@ public class BuildingMenu : MonoBehaviour
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveHuman()
+    {
+        if (hex.GetCity().GetHumans() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(humanPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveCat()
+    {
+        if (hex.GetCity().GetCats() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(catPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveElf()
+    {
+        if (hex.GetCity().GetElves() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(elfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveDwarf()
+    {
+        if (hex.GetCity().GetDwarfs() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(dwarfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveTwii()
+    {
+        if (hex.GetCity().GetTwiis() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(twiiPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveHazelnut()
+    {
+        if (hex.GetCity().GetCraftsmen() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(hazelnutPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
+            }
+        }
+    }
+
+    public void MoveNougat()
+    {
+        if (hex.GetCity().GetTurroncitos() != 0)
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            if (generate != null)
+            {
+                GameObject train = Instantiate(nougatPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                firstPanelUI.SetActive(true);
+                movePanelUI.SetActive(false);
             }
         }
     }

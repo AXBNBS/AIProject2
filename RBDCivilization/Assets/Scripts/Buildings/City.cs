@@ -11,12 +11,12 @@ public class City : MonoBehaviour
     private string cityType;
     public string side;
 
-    public int humans;
+    private int humans;
     private int cats;
     private int elves;
     private int dwarfs;
     private int twiis;
-    public int craftsmen;
+    private int craftsmen;
     private int turroncitos;
 
     private int orcs;
@@ -34,29 +34,13 @@ public class City : MonoBehaviour
     private int capacity = 35;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         defense = settings.defense;
         level = settings.level;
         neededMinerals = settings.neededMinerals;
         neededWood = settings.neededWood;
         cityType = settings.cityType;
-
-        humans = 0;
-        cats = 0;
-        elves = 0;
-        dwarfs = 0;
-        twiis = 0;
-        craftsmen = 0;
-        turroncitos = 0;
-
-        orcs = 0;
-        panecillos = 0;
-        goblins = 0;
-        trolls = 0;
-        cuctañas = 0;
-        puppets = 0;
-        witchers = 0;
     }
     
     public void SetCityType(string n)

@@ -15,5 +15,5 @@ MonoBehaviour:
   level: 3
   neededMinerals: 0
   neededWood: 0
-  defense: 10
+  defense: 15
   cityType: Settlement
