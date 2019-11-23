@@ -7,27 +7,48 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public List<UnitMovement> playerUnt, AIUnt;
     /*public List<Collector> collectors;
     public List<Builder> builders;
     public List<Farm> farms;
 
-    private ResourcesHolder resourceMng;
+    private ResourcesHolder resourceMng;*/
 
 
     // Start is called before the first frame update.
     private void Start ()
     {
-        collectors = new List<Collector> ();
+        UnitMovement[] units = GameObject.FindObjectsOfType<UnitMovement> ();
+
+        playerUnt = new List<UnitMovement> ();
+        AIUnt = new List<UnitMovement> ();
+
+        foreach (UnitMovement u in units) 
+        {
+            if (u.tag == "Ally")
+            {
+                playerUnt.Add (u);
+            }
+            else 
+            {
+                AIUnt.Add (u);
+            }
+        }
+        /*collectors = new List<Collector> ();
         builders = new List<Builder> ();
         farms = new List<Farm> ();
-        resourceMng = this.GetComponent<ResourcesHolder> ();
-    }*/
+        resourceMng = this.GetComponent<ResourcesHolder> ();*/
+    }
 
 
     // The AI does its actions and, after that, resources are given to each faction if the collectors have completed their tasks, buildings are built or upgraded if builders are done, and every active farm awards 10 stores to its corresponding 
     //faction.
     public void EndTurn () 
     {
+        foreach (UnitMovement u in playerUnt) 
+        {
+            u.ResetMovement ();
+        }
         // (AI does stuff)
 
         /*while (enemyFinished == false) { }

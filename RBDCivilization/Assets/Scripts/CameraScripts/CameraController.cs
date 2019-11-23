@@ -156,45 +156,54 @@ public class CameraController : MonoBehaviour
                                 if (neighbour == selectedUnt[0].currentHex && (hex.GetHexagonType()==-1 || hex.GetHexagonType()==-2))
                                 {
                                     buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+
                                     return;
                                 }
                             }
-                            if (hex.presentUnt != 0) 
-                            {
-                                foreach (UnitMovement u in selectedUnt)
-                                {
-                                    u.regroup = true;
-                                }
-                            }
-                            foreach (UnitMovement u in selectedUnt)
-                            {
-                                u.targetHex = hex;
-                            }
-                            selectedUnt[0].FindPathTo(hex);
 
-                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
-                        }
-                        else if(selectedUnt[0].currentHex != hex && hex.UnitsPlaced()[0].gameObject.tag=="Enemy")
-                        {
-                            foreach(Hexagon neighbour in hex.neighbours)
+                            selectedUnt[0].FindPathTo (hex);
+
+                            if (selectedUnt[0].reachedTrg == false) 
                             {
-                                if (neighbour == selectedUnt[0].currentHex)
+                                if (hex.presentUnt != 0)
                                 {
-                                    selectedUnt[0].SendMessage("Fight", hex);
+                                    foreach (UnitMovement u in selectedUnt)
+                                    {
+                                        u.regroup = true;
+                                    }
                                 }
-                            }
-                            if (hex.presentUnt != 0)
-                            {
                                 foreach (UnitMovement u in selectedUnt)
                                 {
-                                    u.regroup = true;
                                     u.targetHex = hex;
                                 }
                             }
 
-                            selectedUnt[0].FindPathTo(hex);
-
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
+                        }
+                        else if(selectedUnt[0].currentHex != hex && hex.UnitsPlaced()[0].gameObject.tag == "Enemy")
+                        {
+                            selectedUnt[0].FindPathTo (hex);
+                            if (selectedUnt[0].reachedTrg == false)
+                            {
+                                foreach (Hexagon neighbour in hex.neighbours)
+                                {
+                                    if (neighbour == selectedUnt[0].currentHex)
+                                    {
+                                        selectedUnt[0].SendMessage ("Fight", hex);
+                                    }
+                                }
+
+                                if (hex.presentUnt != 0)
+                                {
+                                    foreach (UnitMovement u in selectedUnt)
+                                    {
+                                        u.regroup = true;
+                                        u.targetHex = hex;
+                                    }
+                                }
+                            }
+
+                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity (hex);
                         }
                         buildingMenu.GetComponent<UnityMenu>().CloseWindow();
                         //selectedUnt = null;

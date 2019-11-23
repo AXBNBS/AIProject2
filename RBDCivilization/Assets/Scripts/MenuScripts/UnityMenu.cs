@@ -30,10 +30,10 @@ public class UnityMenu : MonoBehaviour
 
         if (length != 0) {
             descriptionText.text = units[0].stats.race;
-            infoText.text = "This unit is formed by " + length.ToString() + " " + units[0].stats.occupation + System.Environment.NewLine +
-                "Movement: " + units[0].stats.speed + System.Environment.NewLine + "Among them accumulate " + units[0].stats.attack * length + " attack points" +
-                System.Environment.NewLine + "Among them accumulate " + units[0].stats.defense * length + " defense points";
-            unityInfoMenuUI.SetActive(true);
+            infoText.text = "There are " + length + " " + units[0].stats.occupation.ToLower () + "(s) in this cell." + System.Environment.NewLine +
+                "Movement: " + units[0].stats.speed + "." + System.Environment.NewLine + "Total attack power: " + units[0].stats.attack * length + "." +
+                System.Environment.NewLine + "Total defense points: " + units[0].stats.defense * length + ".";
+            unityInfoMenuUI.SetActive (true);
         }
     }
 

@@ -69,13 +69,14 @@ public class ActionsMenu : MonoBehaviour
         buildingMenu.GetComponent<UnityMenu>().CloseWindow();
     }
 
-    public void BuildSettlement()
+
+    public void BuildSettlement ()
     {
         if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
         {
-            for(int i =0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+            for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
             {
-                if(camera.GetSelectedUnits()[0].currentHex.neighbours[i]!=null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded())
+                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i]!=null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded())
                 {
                     return;
                 }
@@ -89,23 +90,17 @@ public class ActionsMenu : MonoBehaviour
 
             Hexagon auxHex = camera.GetSelectedUnits()[0].currentHex;
            
-            if (camera.GetSelectedUnits()[0].previousHex != null)
+            foreach (Hexagon hex in camera.GetSelectedUnits()[0].currentHex.neighbours)
             {
-                camera.GetSelectedUnits()[0].FindPathTo(camera.GetSelectedUnits()[0].previousHex);
-            }
-            else
-            {
-                foreach (Hexagon hex in camera.GetSelectedUnits()[0].currentHex.neighbours)
+                if (hex.presentUnt == 0)
                 {
-                    if (hex.presentUnt == 0)
-                    {
-                        camera.GetSelectedUnits()[0].FindPathTo(hex);
-                        break;
-                    }
+                    camera.GetSelectedUnits()[0].FindPathTo (hex);
+
+                    break;
                 }
             }
 
-            auxHex.SetIsBuilded(true);
+            auxHex.SetIsBuilded (true);
 
             camera.SetNullSelectedUnit();
 
@@ -114,7 +109,8 @@ public class ActionsMenu : MonoBehaviour
         }
     }
 
-    public void BuildFarm()
+
+    public void BuildFarm ()
     {
         if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
         {
@@ -125,11 +121,24 @@ public class ActionsMenu : MonoBehaviour
                     return;
                 }
             }
-            GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
 
-            camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
-            camera.GetSelectedUnits()[0].currentHex.GetCity().SetCitySide("Blue");
-            camera.GetSelectedUnits()[0].currentHex.SetIsBuilded(true);
+            GameObject build = Instantiate (farm, new Vector3 (camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
+            Hexagon auxHex = camera.GetSelectedUnits()[0].currentHex;
+
+            camera.GetSelectedUnits()[0].currentHex.SetCity (build.GetComponent<City>());
+            camera.GetSelectedUnits()[0].currentHex.GetCity().SetCitySide ("Blue");
+
+            foreach (Hexagon hex in camera.GetSelectedUnits()[0].currentHex.neighbours)
+            {
+                if (hex.presentUnt == 0)
+                {
+                    camera.GetSelectedUnits()[0].FindPathTo (hex);
+
+                    break;
+                }
+            }
+
+            auxHex.SetIsBuilded (true);
 
             GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
             GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
@@ -138,7 +147,8 @@ public class ActionsMenu : MonoBehaviour
         }
     }
 
-    public void BuildTunnel()
+
+    public void BuildTunnel ()
     {
         for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
         {

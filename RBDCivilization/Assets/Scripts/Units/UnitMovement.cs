@@ -25,9 +25,11 @@ public class UnitMovement : MonoBehaviour
     private float offsetHexX, offsetHexZ;
     private Vector3[] offsets;
     //private List<UnitMovement> collided;
-    [SerializeField] private UnitMovement[] allies;
+    private UnitMovement[] allies;
     //private LayerMask unitsMsk;
     private bool visibleTarget = false;
+    [SerializeField] private int moveLmt;
+
 
     // Just some variable initialization.
     private void Start ()
@@ -46,8 +48,8 @@ public class UnitMovement : MonoBehaviour
         //target += offsets[startOft];
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
-
-        confirmationScript = interf.GetComponentInChildren<ConfirmationScript>();
+        confirmationScript = interf.GetComponentInChildren<ConfirmationScript> ();
+        moveLmt = (int) stats.speed + 1;
 
         path.Add (target);
     }
@@ -96,13 +98,13 @@ public class UnitMovement : MonoBehaviour
                 }
                 else 
                 {
-                    if (targetHex!= null && Vector3.Distance(path[0], targetHex.transform.position)<0.5f)
+                    if (targetHex != null && Vector3.Distance(path[0], targetHex.transform.position)<0.5f)
                     {
                         UnitMovement[] units = targetHex.UnitsPlaced();
                         if (units != null) {
                             for (int i = 0; i < units.Length;i++)
                             {
-                                if(units[i]!=null && units[i].tag == "Enemy")
+                                if(units[i] != null && units[i].tag == "Enemy")
                                 {
                                     foreach (UnitMovement al in allies)
                                     {
@@ -145,14 +147,16 @@ public class UnitMovement : MonoBehaviour
                     }
                     this.target = path[0];
                 }
-                }
             }
         }
-
-    public void LookForCombat()
-    {
-        this.SendMessage("Fight", targetHex);
     }
+
+
+    public void LookForCombat ()
+    {
+        this.SendMessage ("Fight", targetHex);
+    }
+
 
     // If we reach a new hexagon, we update the new and previous hexagons, we make sure the current one is visible. Also if this was the last hexagon of the path, we regroup the units accordingly if there were more awaiting at the destination; or 
     //we just make sure they keep the same structure if that was not the case, we also update the units the current hexagon has assigned either way.
@@ -163,6 +167,7 @@ public class UnitMovement : MonoBehaviour
             //print("Hey");
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
+            moveLmt -= 1;
 
             for(int i = 0; i < currentHex.neighbours.Length; i++)
             {
@@ -260,28 +265,40 @@ public class UnitMovement : MonoBehaviour
     public void FindPathTo (Hexagon hex) 
     {
         path = currentHex.GetPath (hex);
-        visibleTarget = hex.GetVisible();
-        for (int u = 0; u < allies.Length; u += 1) 
+        if (moveLmt >= path.Count) 
         {
-            if (u != 0)
+            visibleTarget = hex.GetVisible ();
+
+            for (int u = 0; u < allies.Length; u += 1)
             {
-                Vector3 offset = offsets[u];
-                List<Vector3> pathAux = new List<Vector3> ();
-
-                for (int p = 0; p < path.Count; p += 1) 
+                if (u != 0)
                 {
-                    pathAux.Add (path[p] + offset);
-                }
+                    Vector3 offset = offsets[u];
+                    List<Vector3> pathAux = new List<Vector3> ();
 
-                allies[u].path = pathAux;
+                    for (int p = 0; p < path.Count; p += 1)
+                    {
+                        pathAux.Add(path[p] + offset);
+                    }
+
+                    allies[u].path = pathAux;
+                }
+                allies[u].target = allies[u].path[0];
+                allies[u].reachedTrg = false;
             }
-            allies[u].target = allies[u].path[0];
-            allies[u].reachedTrg = false;
         }
     }
+
 
     public UnitMovement[] GetAllies()
     {
         return allies;
+    }
+
+
+    //
+    public void ResetMovement () 
+    {
+        moveLmt = (int) stats.speed;
     }
 }
