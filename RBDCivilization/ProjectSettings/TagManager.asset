@@ -10,6 +10,9 @@ TagManager:
   - Undefined
   - Ally
   - Enemy
+  - Farm
+  - Settlement
+  - Tunnel
   layers:
   - Default
   - TransparentFX

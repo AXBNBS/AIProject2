@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: City1
   m_EditorClassIdentifier: 
   level: 1
-  neededMinerals: 200
-  neededWood: 500
+  neededMinerals: 0
+  neededWood: 0
   defense: 5
   cityType: City

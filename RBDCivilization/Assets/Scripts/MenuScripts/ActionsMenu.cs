@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
+
 
 public class ActionsMenu : MonoBehaviour
 {
@@ -12,15 +15,18 @@ public class ActionsMenu : MonoBehaviour
 
     public CameraController camera;
 
-    public GameObject settlement;
-    public GameObject farm;
+    public GameObject settlement, farm, tunnel;
     private BuildingMenu buildingMenu;
     private GameObject GameManager;
+    private ResourcesHolder resourcesHld;
+
+
     // Start is called before the first frame update
     void Start()
     {
         buildingMenu=this.GetComponent<BuildingMenu>();
         GameManager = GameObject.FindGameObjectWithTag("GameController");
+        resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
     }
 
     // Update is called once per frame
@@ -72,16 +78,25 @@ public class ActionsMenu : MonoBehaviour
 
     public void BuildSettlement ()
     {
-        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
+        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded ())
         {
             for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
             {
-                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i]!=null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded())
+                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded () == true)
                 {
                     return;
                 }
             }
-            GameObject build = Instantiate(settlement, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
+
+            if (resourcesHld.GetBlueWood () >= settlement.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= settlement.GetComponent<City>().GetNeededMinerals ()) 
+            {
+                GameManager.GetComponent<ResourcesHolder>().changeWood ("Blue", settlement.GetComponent<City>().GetNeededWood (), false);
+                GameManager.GetComponent<ResourcesHolder>().changeMineral ("Blue", settlement.GetComponent<City>().GetNeededMinerals (), false);
+                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (settlement);
+                camera.SetNullSelectedUnit ();
+            }
+
+            /*GameObject build = Instantiate (settlement, new Vector3 (camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
 
             camera.GetSelectedUnits()[0].currentHex.SetCity(build.GetComponent<City>());
             camera.GetSelectedUnits()[0].currentHex.GetCity().SetCitySide("Blue");
@@ -100,29 +115,31 @@ public class ActionsMenu : MonoBehaviour
                 }
             }
 
-            auxHex.SetIsBuilded (true);
-
-            camera.SetNullSelectedUnit();
-
-            GameManager.GetComponent<ResourcesHolder>().changeWood("Blue",50, false);
-            GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", 50, false);
+            auxHex.SetIsBuilded (true);*/
         }
     }
 
 
     public void BuildFarm ()
     {
-        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded())
+        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded ())
         {
             for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
             {
-                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded())
+                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded () == true)
                 {
                     return;
                 }
             }
+            if (resourcesHld.GetBlueWood () >= farm.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= farm.GetComponent<City>().GetNeededMinerals ()) 
+            {
+                GameManager.GetComponent<ResourcesHolder>().changeWood ("Blue", farm.GetComponent<City>().GetNeededWood (), false);
+                GameManager.GetComponent<ResourcesHolder>().changeMineral ("Blue", farm.GetComponent<City>().GetNeededMinerals (), false);
+                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (farm);
+                camera.SetNullSelectedUnit ();
+            }
 
-            GameObject build = Instantiate (farm, new Vector3 (camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
+            /*GameObject build = Instantiate (farm, new Vector3 (camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
             Hexagon auxHex = camera.GetSelectedUnits()[0].currentHex;
 
             camera.GetSelectedUnits()[0].currentHex.SetCity (build.GetComponent<City>());
@@ -138,12 +155,7 @@ public class ActionsMenu : MonoBehaviour
                 }
             }
 
-            auxHex.SetIsBuilded (true);
-
-            GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
-            GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
-
-            camera.SetNullSelectedUnit();
+            auxHex.SetIsBuilded (true);*/
         }
     }
 
@@ -152,16 +164,20 @@ public class ActionsMenu : MonoBehaviour
     {
         for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
         {
-            if (camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType()==-1)
+            if (camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType() == -1)
             {
                 //GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
-
-                camera.GetSelectedUnits()[0].currentHex.neighbours[i].SetHexagonType(1);
-
+                //camera.GetSelectedUnits()[0].currentHex.neighbours[i].SetHexagonType(1);
                 //GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
                 //GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
+                if (resourcesHld.GetBlueWood () >= tunnel.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= tunnel.GetComponent<City>().GetNeededMinerals ())
+                {
+                    GameManager.GetComponent<ResourcesHolder>().changeWood ("Blue", tunnel.GetComponent<City>().GetNeededWood (), false);
+                    GameManager.GetComponent<ResourcesHolder>().changeMineral ("Blue", tunnel.GetComponent<City>().GetNeededMinerals (), false);
+                    camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel);
+                    camera.SetNullSelectedUnit ();
+                }
 
-                camera.SetNullSelectedUnit();
                 break;
             }
         }

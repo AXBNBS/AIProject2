@@ -400,9 +400,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1121645242459816599}
   - component: {fileID: 9188561405810042262}
+  - component: {fileID: 4156335867542262105}
   m_Layer: 0
   m_Name: GRANJA
-  m_TagString: Untagged
+  m_TagString: Farm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -439,10 +440,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cityType: 
+  side: 
   settings: {fileID: 11400000, guid: e97096506c8b145489ac32b86169bd12, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 0}
+--- !u!114 &4156335867542262105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4164628710240415876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7418d589a5fb61c41aea44ea3fb651f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
 --- !u!1 &7517576413201595316
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,3 +17,4 @@ MonoBehaviour:
   neededWood: 50
   defense: 1
   cityType: Farm
+  turns: 3

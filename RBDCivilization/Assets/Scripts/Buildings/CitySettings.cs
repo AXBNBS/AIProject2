@@ -10,4 +10,5 @@ public class CitySettings : ScriptableObject
     public int neededWood;
     public float defense;
     public string cityType;
+    public int turns;
 }

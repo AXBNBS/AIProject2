@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: City2
   m_EditorClassIdentifier: 
   level: 2
-  neededMinerals: 400
-  neededWood: 1000
+  neededMinerals: 200
+  neededWood: 500
   defense: 10
   cityType: City
+  turns: 5

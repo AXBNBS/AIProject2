@@ -17,3 +17,4 @@ MonoBehaviour:
   neededWood: 400
   defense: 5
   cityType: Settlement
+  turns: 4

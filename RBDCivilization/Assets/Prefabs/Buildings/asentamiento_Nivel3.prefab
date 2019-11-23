@@ -5628,7 +5628,7 @@ GameObject:
   - component: {fileID: 5243723547671663037}
   m_Layer: 0
   m_Name: asentamiento_Nivel3
-  m_TagString: Untagged
+  m_TagString: Settlement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5732,8 +5732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 
-  humans: 0
-  craftsmen: 0
   settings: {fileID: 11400000, guid: 7e30c76dae188db4ba9150a5c923d98a, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 4067970023479589664, guid: 8c2d6e469e47060419c511ec3fd8636b,

@@ -28,7 +28,7 @@ public class UnitMovement : MonoBehaviour
     private UnitMovement[] allies;
     //private LayerMask unitsMsk;
     private bool visibleTarget = false;
-    [SerializeField] private int moveLmt;
+    private int moveLmt;
 
 
     // Just some variable initialization.
@@ -278,13 +278,17 @@ public class UnitMovement : MonoBehaviour
 
                     for (int p = 0; p < path.Count; p += 1)
                     {
-                        pathAux.Add(path[p] + offset);
+                        pathAux.Add (path[p] + offset);
                     }
 
                     allies[u].path = pathAux;
                 }
                 allies[u].target = allies[u].path[0];
                 allies[u].reachedTrg = false;
+            }
+            if (stats.occupation == "Worker") 
+            {
+                this.GetComponent<Builder>().working = false;
             }
         }
     }
