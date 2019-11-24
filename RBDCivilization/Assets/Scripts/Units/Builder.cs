@@ -54,7 +54,7 @@ public class Builder : MonoBehaviour
         {
             for (int n = 0; n < hex.neighbours.Length; n += 1) 
             {
-                if (hex.neighbours[n].GetMountain () == true && hex.neighbours[n].GetHexagonType () == -1)
+                if (hex.neighbours[n] != null && hex.neighbours[n].GetMountain () == true && hex.neighbours[n].GetHexagonType () == -1)
                 {
                     hex.neighbours[n].environment = Instantiate (construction, hex.neighbours[n].CentroHexagono.position, Quaternion.identity);
 
@@ -79,7 +79,7 @@ public class Builder : MonoBehaviour
 
             foreach (Hexagon h in hex.neighbours)
             {
-                if (h.presentUnt == 0)
+                if (h != null && h.presentUnt == 0)
                 {
                     unitMvm.FindPathTo (h);
 
@@ -100,6 +100,24 @@ public class Builder : MonoBehaviour
                     GameManager.instance.playerFrm.Add (construction.GetComponent<Farm> ());
                 }
             }
+        }
+    }
+
+
+    // The builder stops working to move somewhere else, the resources that it had previously spent on the building will be recovered.
+    public void StopBuilding () 
+    {
+        working = false;
+
+        if (this.tag == "Enemy")
+        {
+            resourcesHld.changeWood ("red", constructionDat.GetNeededWood (), true);
+            resourcesHld.changeMineral ("red", constructionDat.GetNeededMinerals (), true);
+        }
+        else 
+        {
+            resourcesHld.changeWood ("blue", constructionDat.GetNeededWood (), true);
+            resourcesHld.changeMineral ("blue", constructionDat.GetNeededMinerals (), true);
         }
     }
 }

@@ -288,7 +288,12 @@ public class UnitMovement : MonoBehaviour
             }
             if (stats.occupation == "Worker") 
             {
-                this.GetComponent<Builder>().working = false;
+                Builder builder = this.GetComponent<Builder> ();
+
+                if (builder.working == true) 
+                {
+                    builder.StopBuilding ();
+                }
             }
         }
     }

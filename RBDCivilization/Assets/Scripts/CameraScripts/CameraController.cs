@@ -44,8 +44,8 @@ public class CameraController : MonoBehaviour
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
         terrainMsk = LayerMask.GetMask ("Terrain");
-        limitX = grid.gridWth / 2 * 0.9f;
-        limitZ = grid.gridHgt / 2 * 0.9f;
+        limitX = grid.gridWth / 2;
+        limitZ = grid.gridHgt / 2;
         selectedUnt = null;
     }
 

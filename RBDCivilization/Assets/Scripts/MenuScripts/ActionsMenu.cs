@@ -17,22 +17,21 @@ public class ActionsMenu : MonoBehaviour
 
     public GameObject settlement, farm, tunnel;
     private BuildingMenu buildingMenu;
-    private GameObject GameManager;
     private ResourcesHolder resourcesHld;
 
 
-    // Start is called before the first frame update
-    void Start()
+    // Start is called before the first frame update.
+    private void Start ()
     {
-        buildingMenu=this.GetComponent<BuildingMenu>();
-        GameManager = GameObject.FindGameObjectWithTag("GameController");
+        buildingMenu = this.GetComponent<BuildingMenu> ();
         resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    // Update is called once per frame.
+    private void Update ()
     {
-        if (camera.GetSelectedUnits() != null)
+        if (camera.GetSelectedUnits () != null)
         {
             if (camera.GetSelectedUnits()[0].stats.occupation == "Worker")
             {
@@ -48,7 +47,8 @@ public class ActionsMenu : MonoBehaviour
         }
     }
 
-    public void Action1()
+
+    public void Action1 ()
     {
         if (actionOneUI.GetComponentInChildren<TextMeshProUGUI>().text == "Settlement")
         {
@@ -57,7 +57,8 @@ public class ActionsMenu : MonoBehaviour
         buildingMenu.GetComponent<UnityMenu>().CloseWindow();
     }
 
-    public void Action2()
+
+    public void Action2 ()
     {
         if (actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text == "Farm")
         {
@@ -66,7 +67,8 @@ public class ActionsMenu : MonoBehaviour
         buildingMenu.GetComponent<UnityMenu>().CloseWindow();
     }
 
-    public void Action3()
+
+    public void Action3 ()
     {
         if (actionThreeUI.GetComponentInChildren<TextMeshProUGUI>().text == "Tunnel")
         {
@@ -90,8 +92,8 @@ public class ActionsMenu : MonoBehaviour
 
             if (resourcesHld.GetBlueWood () >= settlement.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= settlement.GetComponent<City>().GetNeededMinerals ()) 
             {
-                GameManager.GetComponent<ResourcesHolder>().changeWood ("Blue", settlement.GetComponent<City>().GetNeededWood (), false);
-                GameManager.GetComponent<ResourcesHolder>().changeMineral ("Blue", settlement.GetComponent<City>().GetNeededMinerals (), false);
+                resourcesHld.changeWood ("Blue", settlement.GetComponent<City>().GetNeededWood (), false);
+                resourcesHld.changeMineral ("Blue", settlement.GetComponent<City>().GetNeededMinerals (), false);
                 camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (settlement);
                 camera.SetNullSelectedUnit ();
             }
@@ -133,8 +135,8 @@ public class ActionsMenu : MonoBehaviour
             }
             if (resourcesHld.GetBlueWood () >= farm.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= farm.GetComponent<City>().GetNeededMinerals ()) 
             {
-                GameManager.GetComponent<ResourcesHolder>().changeWood ("Blue", farm.GetComponent<City>().GetNeededWood (), false);
-                GameManager.GetComponent<ResourcesHolder>().changeMineral ("Blue", farm.GetComponent<City>().GetNeededMinerals (), false);
+                resourcesHld.changeWood ("Blue", farm.GetComponent<City>().GetNeededWood (), false);
+                resourcesHld.changeMineral ("Blue", farm.GetComponent<City>().GetNeededMinerals (), false);
                 camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (farm);
                 camera.SetNullSelectedUnit ();
             }
@@ -164,7 +166,7 @@ public class ActionsMenu : MonoBehaviour
     {
         for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
         {
-            if (camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType() == -1)
+            if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType() == -1)
             {
                 //GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
                 //camera.GetSelectedUnits()[0].currentHex.neighbours[i].SetHexagonType(1);
@@ -172,8 +174,8 @@ public class ActionsMenu : MonoBehaviour
                 //GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
                 if (resourcesHld.GetBlueWood () >= tunnel.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= tunnel.GetComponent<City>().GetNeededMinerals ())
                 {
-                    GameManager.GetComponent<ResourcesHolder>().changeWood ("Blue", tunnel.GetComponent<City>().GetNeededWood (), false);
-                    GameManager.GetComponent<ResourcesHolder>().changeMineral ("Blue", tunnel.GetComponent<City>().GetNeededMinerals (), false);
+                    resourcesHld.changeWood ("Blue", tunnel.GetComponent<City>().GetNeededWood (), false);
+                    resourcesHld.changeMineral ("Blue", tunnel.GetComponent<City>().GetNeededMinerals (), false);
                     camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel);
                     camera.SetNullSelectedUnit ();
                 }
