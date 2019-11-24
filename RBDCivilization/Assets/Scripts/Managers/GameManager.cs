@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
         foreach (UnitMovement u in units) 
         {
+            //print(u.name);
             if (u.tag == "Ally")
             {
                 playerUnt.Add (u);
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         }
         foreach (Builder b in builders) 
         {
+            //print(b.name);
             if (b.tag == "Ally")
             {
                 playerBld.Add (b);

@@ -15,6 +15,7 @@ public class Grid : MonoBehaviour
     [SerializeField] private float gap, hexagonScl;
     private Vector3 startPos;
     private int hexagonsX, hexagonsY;
+    private Transform ground;
 
     public GameObject Capital; //Generar las dos capitales
 
@@ -26,6 +27,8 @@ public class Grid : MonoBehaviour
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
+        ground = this.transform.GetChild (0);
+        ground.localScale = new Vector3 (gridWth  / 2, 1, gridHgt / 2);
         
         AddGap ();
         StartPosition ();

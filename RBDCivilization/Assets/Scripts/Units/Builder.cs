@@ -56,7 +56,7 @@ public class Builder : MonoBehaviour
             {
                 if (hex.neighbours[n] != null && hex.neighbours[n].GetMountain () == true && hex.neighbours[n].GetHexagonType () == -1)
                 {
-                    hex.neighbours[n].environment = Instantiate (construction, hex.neighbours[n].CentroHexagono.position, Quaternion.identity);
+                    hex.neighbours[n].environment = Instantiate (construction, hex.neighbours[n].transform.position, Quaternion.identity);
 
                     hex.neighbours[n].SetHexagonType (1);
 
@@ -66,7 +66,7 @@ public class Builder : MonoBehaviour
         }
         else 
         {
-            hex.environment = Instantiate (construction, hex.CentroHexagono.position, Quaternion.identity);
+            hex.environment = Instantiate (construction, hex.transform.position, Quaternion.identity);
 
             hex.SetCity (constructionDat);
             hex.GetCity().SetCitySide (side);

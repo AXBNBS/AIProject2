@@ -52,6 +52,15 @@ public class Hexagon : MonoBehaviour
     }
 
 
+    /*
+    private void OnDrawGizmosSelected ()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere (this.transform.position, sphereCol.radius);
+    }*/
+
+
     // To add a new unit to the hexagon's array of units. 
     public void AddUnit (UnitMovement unit, int position) 
     {
