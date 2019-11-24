@@ -18,17 +18,24 @@ public class BuildingMenu : MonoBehaviour
     private GameObject GameManager;
 
     public GameObject humanPrefab;
+    public UnitSettings humanSettings;
     public GameObject catPrefab;
+    public UnitSettings catSettings;
     public GameObject elfPrefab;
+    public UnitSettings elfSettings;
     public GameObject dwarfPrefab;
+    public UnitSettings dwarfSettings;
     public GameObject twiiPrefab;
+    public UnitSettings twiiSettings;
     public GameObject hazelnutPrefab;
+    public UnitSettings hazelnutSettings;
     public GameObject nougatPrefab;
+    public UnitSettings nougatSettings;
 
     [HideInInspector]
     public Hexagon hex;
 
-    void Start()
+    void Awake()
     {
         GameManager = GameObject.FindGameObjectWithTag("GameController");
     }
@@ -58,7 +65,7 @@ public class BuildingMenu : MonoBehaviour
 
     public void LevelUpButton()
     {
-        if ((hex.GetCity().GetCityType() == "Settlement" && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType()=="City"))
+        if ((hex.GetCity().GetCityType() == "Settlement" && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType()=="Capital"))
         {
             firstPanelUI.SetActive(false);
             levelInfoText.text = "It will cost:" + System.Environment.NewLine + "Wood: " + hex.GetCity().GetNeededWood() + System.Environment.NewLine + "Mineral: " + hex.GetCity().GetNeededMinerals();
@@ -109,6 +116,7 @@ public class BuildingMenu : MonoBehaviour
             GameObject build = Instantiate(nextLevel, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
 
             hex.SetCity(build.GetComponent<City>());
+            hex.GetCity().SetCityType("Capital");
             hex.GetCity().SetCitySide("Blue");
 
             hex.GetCity().AddUnits("Human", humans, humans);
@@ -118,8 +126,6 @@ public class BuildingMenu : MonoBehaviour
             hex.GetCity().AddUnits("Twii", twiis, twiis*2);
             hex.GetCity().AddUnits("Craftsman", craftsmen, craftsmen*0.5f);
             hex.GetCity().AddUnits("Turroncito", turroncitos, turroncitos);
-
-            Debug.Log(hex.GetCity().GetDefense());
         }
     }
 
@@ -154,6 +160,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(humanPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", humanSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -179,6 +186,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(catPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", catSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -204,6 +212,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(elfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", elfSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -229,6 +238,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(dwarfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", dwarfSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -254,6 +264,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(twiiPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", twiiSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -279,6 +290,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(hazelnutPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", hazelnutSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -304,6 +316,7 @@ public class BuildingMenu : MonoBehaviour
             {
                 GameObject train = Instantiate(nougatPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
+                GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", nougatSettings.stores, false);
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);

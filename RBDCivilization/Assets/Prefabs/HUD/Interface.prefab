@@ -3984,18 +3984,25 @@ MonoBehaviour:
   levelInfoText: {fileID: 5502659003721419284}
   humanPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  humanSettings: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
   catPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  catSettings: {fileID: 11400000, guid: 7864a1d2eff31b54e9349fd26cb0b153, type: 2}
   elfPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  elfSettings: {fileID: 11400000, guid: f3d98c363ee294f4492fa8f15581eeea, type: 2}
   dwarfPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  dwarfSettings: {fileID: 11400000, guid: 3bb07bcd697c2694cb7d5132663f97a9, type: 2}
   twiiPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  twiiSettings: {fileID: 11400000, guid: 95d104a0353739d4288635219d405497, type: 2}
   hazelnutPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  hazelnutSettings: {fileID: 11400000, guid: ad55c66b2da10be4183865246dc2a579, type: 2}
   nougatPrefab: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
     type: 3}
+  nougatSettings: {fileID: 11400000, guid: 619da49a70e6739498c912bae0263d84, type: 2}
   hex: {fileID: 0}
 --- !u!114 &3262623180522793088
 MonoBehaviour:
@@ -4047,6 +4054,7 @@ MonoBehaviour:
   settlement: {fileID: 1273044046940879464, guid: f691fabbb5b3b7e4b94b86711c6331b5,
     type: 3}
   farm: {fileID: 4164628710240415876, guid: 38d1ed77733516144b439ad279fa2699, type: 3}
+  tunnel: {fileID: 0}
 --- !u!1 &5502659003273230651
 GameObject:
   m_ObjectHideFlags: 0

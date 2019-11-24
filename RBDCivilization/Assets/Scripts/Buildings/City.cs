@@ -9,7 +9,7 @@ public class City : MonoBehaviour
     private int neededWood;
     private float defense;
     private string cityType;
-    public string side;
+    private string side;
 
     private int humans;
     private int cats;
