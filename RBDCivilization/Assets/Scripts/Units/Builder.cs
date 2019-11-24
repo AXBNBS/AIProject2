@@ -16,6 +16,7 @@ public class Builder : MonoBehaviour
     private UnitMovement unitMvm;
     private City constructionDat;
     private ResourcesHolder resourcesHld;
+    private int spentMin, spentWod;
 
 
     // Start is called before the first frame update.
@@ -37,12 +38,14 @@ public class Builder : MonoBehaviour
 
 
     // The unit starts working of the construction of its assingned building.
-    public void BeginConstruction (GameObject building) 
+    public void BeginConstruction (GameObject building, int mineral, int wood) 
     {
         working = true;
         constructionDat = building.GetComponent<City> ();
         remainingTrn = constructionDat.settings.turns;
         construction = building;
+        spentMin = mineral;
+        spentWod = wood;
     }
 
 
@@ -111,13 +114,13 @@ public class Builder : MonoBehaviour
 
         if (this.tag == "Enemy")
         {
-            resourcesHld.changeWood ("red", constructionDat.GetNeededWood (), true);
-            resourcesHld.changeMineral ("red", constructionDat.GetNeededMinerals (), true);
+            resourcesHld.changeWood ("red", spentWod, true);
+            resourcesHld.changeMineral ("red", spentMin, true);
         }
         else 
         {
-            resourcesHld.changeWood ("blue", constructionDat.GetNeededWood (), true);
-            resourcesHld.changeMineral ("blue", constructionDat.GetNeededMinerals (), true);
+            resourcesHld.changeWood ("blue", spentWod, true);
+            resourcesHld.changeMineral ("blue", spentMin, true);
         }
     }
 }

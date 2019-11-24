@@ -12,10 +12,10 @@ public class ActionsMenu : MonoBehaviour
     public GameObject actionOneUI;
     public GameObject actionTwoUI;
     public GameObject actionThreeUI;
-
     public CameraController camera;
-
     public GameObject settlement, farm, tunnel;
+
+    [SerializeField] private int settlementMin, settlementWod, farmMin, farmWod, tunnelMin, tunnelWod;
     private BuildingMenu buildingMenu;
     private ResourcesHolder resourcesHld;
 
@@ -90,11 +90,11 @@ public class ActionsMenu : MonoBehaviour
                 }
             }
 
-            if (resourcesHld.GetBlueWood () >= settlement.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= settlement.GetComponent<City>().GetNeededMinerals ()) 
+            if (resourcesHld.GetBlueWood () >= settlementWod && resourcesHld.GetBlueMineral () >= settlementMin) 
             {
-                resourcesHld.changeWood ("Blue", settlement.GetComponent<City>().GetNeededWood (), false);
-                resourcesHld.changeMineral ("Blue", settlement.GetComponent<City>().GetNeededMinerals (), false);
-                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (settlement);
+                resourcesHld.changeWood ("Blue", settlementWod, false);
+                resourcesHld.changeMineral ("Blue", settlementMin, false);
+                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (settlement, settlementMin, settlementWod);
                 camera.SetNullSelectedUnit ();
             }
 
@@ -133,11 +133,11 @@ public class ActionsMenu : MonoBehaviour
                     return;
                 }
             }
-            if (resourcesHld.GetBlueWood () >= farm.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= farm.GetComponent<City>().GetNeededMinerals ()) 
+            if (resourcesHld.GetBlueWood () >= farmWod && resourcesHld.GetBlueMineral () >= farmMin) 
             {
-                resourcesHld.changeWood ("Blue", farm.GetComponent<City>().GetNeededWood (), false);
-                resourcesHld.changeMineral ("Blue", farm.GetComponent<City>().GetNeededMinerals (), false);
-                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (farm);
+                resourcesHld.changeWood ("Blue", farmWod, false);
+                resourcesHld.changeMineral ("Blue", farmMin, false);
+                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (farm, farmMin, farmWod);
                 camera.SetNullSelectedUnit ();
             }
 
@@ -172,11 +172,11 @@ public class ActionsMenu : MonoBehaviour
                 //camera.GetSelectedUnits()[0].currentHex.neighbours[i].SetHexagonType(1);
                 //GameManager.GetComponent<ResourcesHolder>().changeWood("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededWood(), false);
                 //GameManager.GetComponent<ResourcesHolder>().changeMineral("Blue", camera.GetSelectedUnits()[0].currentHex.GetCity().GetNeededMinerals(), false);
-                if (resourcesHld.GetBlueWood () >= tunnel.GetComponent<City>().GetNeededWood () && resourcesHld.GetBlueMineral () >= tunnel.GetComponent<City>().GetNeededMinerals ())
+                if (resourcesHld.GetBlueWood () >= tunnelWod && resourcesHld.GetBlueMineral () >= tunnelMin)
                 {
-                    resourcesHld.changeWood ("Blue", tunnel.GetComponent<City>().GetNeededWood (), false);
-                    resourcesHld.changeMineral ("Blue", tunnel.GetComponent<City>().GetNeededMinerals (), false);
-                    camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel);
+                    resourcesHld.changeWood ("Blue", tunnelWod, false);
+                    resourcesHld.changeMineral ("Blue", tunnelMin, false);
+                    camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel, tunnelMin, tunnelWod);
                     camera.SetNullSelectedUnit ();
                 }
 

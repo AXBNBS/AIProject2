@@ -118,11 +118,10 @@ MonoBehaviour:
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
   targetHex: {fileID: 0}
-  stats: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51, type: 2}
+  stats: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
   interf: {fileID: 5370942851254565301, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
   moveSpd: 15
   startHex: 0
-  allies: []
 --- !u!114 &5432449560844516339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fada6aa490fee44298da2ba8a26f386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51, type: 2}
+  settings: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
   totalPower: 0
 --- !u!1 &5625878655977805449
 GameObject:

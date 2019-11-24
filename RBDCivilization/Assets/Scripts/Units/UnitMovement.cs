@@ -305,9 +305,23 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-    //
+    // After each turn, the movement limit of the character is reset.
     public void ResetMovement () 
     {
         moveLmt = (int) stats.speed;
+    }
+
+
+    // Returns the value of the movement limit variable or 0, if the value is negative.
+    public int GetMovementLimit () 
+    {
+        if (moveLmt < 0)
+        {
+            return 0;
+        }
+        else 
+        {
+            return moveLmt;
+        }
     }
 }
