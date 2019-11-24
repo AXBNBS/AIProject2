@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Settlement1
   m_EditorClassIdentifier: 
   level: 1
-  neededMinerals: 150
-  neededWood: 400
+  neededMinerals: 300
+  neededWood: 800
   defense: 5
   cityType: Settlement
   turns: 4

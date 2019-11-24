@@ -27,12 +27,13 @@ public class Grid : MonoBehaviour
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
-        ground = this.transform.GetChild (0);
-        ground.localScale = new Vector3 (gridWth  / 2, 1, gridHgt / 2);
-        
+                
         AddGap ();
         StartPosition ();
         CreateGrid ();
+
+        //ground = this.transform.GetChild(0);
+        //ground.localScale = new Vector3(gridWth / 2, 1, gridHgt / 2);
     }
 
 
@@ -115,6 +116,7 @@ public class Grid : MonoBehaviour
         GameObject build = Instantiate(Capital, new Vector3(hexagons[28, 0].CentroHexagono.position.x, hexagons[28, 0].CentroHexagono.position.y, hexagons[28, 0].CentroHexagono.position.z), Quaternion.identity);
         hexagons[28, 0].SetCity(build.GetComponent<City>());
         hexagons[28, 0].GetCity().SetCityType("Capital");
+        hexagons[28, 0].GetCity().SetCitySide("Blue");
 
         hexagons[28, 1].SetVisible(true);
         hexagons[27, 0].SetVisible(true);
@@ -127,6 +129,7 @@ public class Grid : MonoBehaviour
         GameObject build2 = Instantiate(Capital, new Vector3(hexagons[28, 50].CentroHexagono.position.x, hexagons[28, 50].CentroHexagono.position.y, hexagons[28, 50].CentroHexagono.position.z), Quaternion.identity);
         hexagons[28, 50].SetCity(build.GetComponent<City>());
         hexagons[28, 50].GetCity().SetCityType("Capital");
+        hexagons[28, 50].GetCity().SetCitySide("Red");
 
         hexagons[28, 49].SetVisible(true);
         hexagons[27, 50].SetVisible(true);

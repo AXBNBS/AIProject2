@@ -12,14 +12,14 @@ public class Unit : MonoBehaviour
     private int stores;
 
     public UnitSettings settings;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     private UnitMovement movement;
     private GameObject GameManager;
 
     public float totalPower;
 
-    void Start()
+    void Awake()
     {
         attack = settings.attack;
         speed = settings.speed;
@@ -27,6 +27,7 @@ public class Unit : MonoBehaviour
         race = settings.race;
         occupation = settings.occupation;
         stores = settings.stores;
+        Debug.Log("Stores:" + stores);
         movement = this.GetComponent<UnitMovement>();
         totalPower = 0;
 
@@ -218,6 +219,7 @@ public class Unit : MonoBehaviour
 
     public int GetStores()
     {
+        Debug.Log(stores);
         return stores;
     }
 }

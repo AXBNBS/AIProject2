@@ -304,6 +304,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: gridWth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: gridHgt
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
 --- !u!1001 &178534695
@@ -846,6 +856,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUnt: []
   AIUnt: []
+  playerFrm: []
+  AIFrm: []
+  playerBld: []
+  AIBld: []
 --- !u!4 &882185319
 Transform:
   m_ObjectHideFlags: 0
@@ -1993,21 +2007,16 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1561769426}
-    - target: {fileID: 5502659003898291293, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 882185318}
-    - target: {fileID: 5502659003898291293, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndTurn
-      objectReference: {fileID: 0}
     - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1561769426}
+    - target: {fileID: 5502659003898291293, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 882185318}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
 --- !u!1001 &5432449560277151607

@@ -25,7 +25,7 @@ public class ResourcesHolder : MonoBehaviour
     public TextMeshProUGUI storesText;
     public TextMeshProUGUI populationText;
 
-    void Start()
+    void Awake()
     {
         blueWood = 10000;
         blueMineral = 10000;
@@ -54,7 +54,7 @@ public class ResourcesHolder : MonoBehaviour
                 blueWood += n;
             else
                 blueWood -= n;
-
+            
             woodText.text = blueWood.ToString();
         } else if (team == "Red" || team == "red")
         {
@@ -95,7 +95,7 @@ public class ResourcesHolder : MonoBehaviour
                 blueStores += n;
             else
                 blueStores -= n;
-
+            
             storesText.text = blueStores.ToString();
         }
         else if (team == "Red" || team == "red")
