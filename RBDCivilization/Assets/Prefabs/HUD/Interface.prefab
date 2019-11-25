@@ -4899,10 +4899,10 @@ MonoBehaviour:
   m_Texture: {fileID: 8400000, guid: 43bdc8dc4ec07eb488d4ec74ce1e599f, type: 2}
   m_UVRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.02
+    y: 0.118
+    width: 0.979
+    height: 0.746
 --- !u!1 &5502659003618062538
 GameObject:
   m_ObjectHideFlags: 0

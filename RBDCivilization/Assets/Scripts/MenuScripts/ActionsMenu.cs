@@ -12,7 +12,7 @@ public class ActionsMenu : MonoBehaviour
     public GameObject actionOneUI;
     public GameObject actionTwoUI;
     public GameObject actionThreeUI;
-    public CameraController camera;
+    public CameraController cam;
     public GameObject settlement, farm, tunnel;
 
     [SerializeField] private int settlementMin, settlementWod, farmMin, farmWod, tunnelMin, tunnelWod;
@@ -23,6 +23,7 @@ public class ActionsMenu : MonoBehaviour
     // Start is called before the first frame update.
     private void Start ()
     {
+        cam = GameObject.FindObjectOfType<CameraController> ();
         buildingMenu = this.GetComponent<BuildingMenu> ();
         resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
     }
@@ -31,9 +32,9 @@ public class ActionsMenu : MonoBehaviour
     // Update is called once per frame.
     private void Update ()
     {
-        if (camera.GetSelectedUnits () != null)
+        if (cam.GetSelectedUnits () != null)
         {
-            if (camera.GetSelectedUnits()[0].stats.occupation == "Worker")
+            if (cam.GetSelectedUnits()[0].stats.occupation == "Worker")
             {
                 leftBottomHUD.SetActive(true);
                 actionOneUI.GetComponentInChildren<TextMeshProUGUI>().text = "Settlement";
@@ -80,11 +81,11 @@ public class ActionsMenu : MonoBehaviour
 
     public void BuildSettlement ()
     {
-        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded ())
+        if (!cam.GetSelectedUnits()[0].currentHex.GetIsBuilded ())
         {
-            for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+            for (int i = 0; i < cam.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
             {
-                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded () == true)
+                if (cam.GetSelectedUnits()[0].currentHex.neighbours[i] != null && cam.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded () == true)
                 {
                     return;
                 }
@@ -94,8 +95,8 @@ public class ActionsMenu : MonoBehaviour
             {
                 resourcesHld.changeWood ("Blue", settlementWod, false);
                 resourcesHld.changeMineral ("Blue", settlementMin, false);
-                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (settlement, settlementMin, settlementWod);
-                camera.SetNullSelectedUnit ();
+                cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (settlement, settlementMin, settlementWod);
+                cam.SetNullSelectedUnit ();
             }
 
             /*GameObject build = Instantiate (settlement, new Vector3 (camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
@@ -124,11 +125,11 @@ public class ActionsMenu : MonoBehaviour
 
     public void BuildFarm ()
     {
-        if (!camera.GetSelectedUnits()[0].currentHex.GetIsBuilded ())
+        if (!cam.GetSelectedUnits()[0].currentHex.GetIsBuilded ())
         {
-            for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+            for (int i = 0; i < cam.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
             {
-                if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded () == true)
+                if (cam.GetSelectedUnits()[0].currentHex.neighbours[i] != null && cam.GetSelectedUnits()[0].currentHex.neighbours[i].GetIsBuilded () == true)
                 {
                     return;
                 }
@@ -137,8 +138,8 @@ public class ActionsMenu : MonoBehaviour
             {
                 resourcesHld.changeWood ("Blue", farmWod, false);
                 resourcesHld.changeMineral ("Blue", farmMin, false);
-                camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (farm, farmMin, farmWod);
-                camera.SetNullSelectedUnit ();
+                cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (farm, farmMin, farmWod);
+                cam.SetNullSelectedUnit ();
             }
 
             /*GameObject build = Instantiate (farm, new Vector3 (camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
@@ -164,9 +165,9 @@ public class ActionsMenu : MonoBehaviour
 
     public void BuildTunnel ()
     {
-        for (int i = 0; i < camera.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
+        for (int i = 0; i < cam.GetSelectedUnits()[0].currentHex.neighbours.Length; i++)
         {
-            if (camera.GetSelectedUnits()[0].currentHex.neighbours[i] != null && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && camera.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType() == -1)
+            if (cam.GetSelectedUnits()[0].currentHex.neighbours[i] != null && cam.GetSelectedUnits()[0].currentHex.neighbours[i].GetMountain() == true && cam.GetSelectedUnits()[0].currentHex.neighbours[i].GetHexagonType() == -1)
             {
                 //GameObject build = Instantiate(farm, new Vector3(camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.x, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.y, camera.GetSelectedUnits()[0].currentHex.CentroHexagono.position.z), Quaternion.identity);
                 //camera.GetSelectedUnits()[0].currentHex.neighbours[i].SetHexagonType(1);
@@ -176,8 +177,8 @@ public class ActionsMenu : MonoBehaviour
                 {
                     resourcesHld.changeWood ("Blue", tunnelWod, false);
                     resourcesHld.changeMineral ("Blue", tunnelMin, false);
-                    camera.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel, tunnelMin, tunnelWod);
-                    camera.SetNullSelectedUnit ();
+                    cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel, tunnelMin, tunnelWod);
+                    cam.SetNullSelectedUnit ();
                 }
 
                 break;

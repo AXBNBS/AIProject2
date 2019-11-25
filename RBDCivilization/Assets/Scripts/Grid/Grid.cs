@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public float hexagonWth, hexagonHgt;
+    public float hexagonWth, hexagonHgt, limitX1, limitX2, limitZ1, limitZ2;
     public int gridWth, gridHgt;
 
     [SerializeField] private Transform hexagonPfb;
@@ -32,8 +32,8 @@ public class Grid : MonoBehaviour
         StartPosition ();
         CreateGrid ();
 
-        //ground = this.transform.GetChild(0);
-        //ground.localScale = new Vector3(gridWth / 2, 1, gridHgt / 2);
+        ground = this.transform.GetChild (0);
+        ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
     }
 
 
@@ -68,6 +68,8 @@ public class Grid : MonoBehaviour
         //float z = +hexagonHgt * 0.75f * (gridHgt / 2);
 
         startPos = new Vector3 (x, 0.1f, z);
+        limitX1 = startPos.x - hexagonWth / 2;
+        limitZ1 = startPos.z + hexagonHgt / 2;
     }
 
 
@@ -106,6 +108,11 @@ public class Grid : MonoBehaviour
                 hexagon.name = "Hexagon" + hexagonCnt;
                 hexagonCnt += 1;
                 hexagons[x, y] = hexagon.GetComponent<Hexagon> ();
+                if (x == hexagonsX && y == hexagonsY) 
+                {
+                    limitX2 = hexagon.position.x + hexagonWth / 2;
+                    limitZ2 = hexagon.position.z - hexagonHgt / 2;
+                }
             }
         }
         

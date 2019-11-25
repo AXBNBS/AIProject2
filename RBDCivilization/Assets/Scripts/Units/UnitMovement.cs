@@ -49,6 +49,7 @@ public class UnitMovement : MonoBehaviour
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
         confirmationScript = interf.GetComponentInChildren<ConfirmationScript> ();
+        allies = new UnitMovement[5];
         moveLmt = (int) stats.speed + 1;
 
         path.Add (target);

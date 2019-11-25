@@ -31,27 +31,28 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private UnitMovement[] selectedUnt;
     private LayerMask terrainMsk;
-    private float limitX, limitZ;
+    private float xLim, zLim;
 
     public GameObject buildingMenu;
 
+
     // Start is called before the first frame update.
-    void Start ()
+    private void Start ()
     {
         Grid grid = GameObject.FindObjectOfType<Grid> ();
-        
+
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
         terrainMsk = LayerMask.GetMask ("Terrain");
-        limitX = grid.gridWth / 2;
-        limitZ = grid.gridHgt / 2;
+        xLim = grid.gridWth / 2 * 1.05f;
+        zLim = grid.gridHgt / 2 * 0.8f;
         selectedUnt = null;
     }
 
 
     // Update is called once per frame.
-    void Update ()
+    private void Update ()
     {
         HandleMouseInput ();
         HandleMovementInput ();
@@ -87,11 +88,10 @@ public class CameraController : MonoBehaviour
                 dragStartPosition = ray.GetPoint(entry);
             }
         }
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton (2))
         {
             Plane plane = new Plane(Vector3.up, Vector3.zero);
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
             float entry;
 
@@ -213,9 +213,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private bool IsMouseOverUI()
+
+    private bool IsMouseOverUI ()
     {
-        return EventSystem.current.IsPointerOverGameObject();
+        return EventSystem.current.IsPointerOverGameObject ();
     }
 
 
@@ -273,23 +274,27 @@ public class CameraController : MonoBehaviour
                 newZoom.z = -1000;
             }
         }
+
         if (Input.GetKeyDown (KeyCode.Tab) == true) 
         {
-            buildingMenu.GetComponent<UnityMenu>().CloseWindow();
+            buildingMenu.GetComponent<UnityMenu>().CloseWindow ();
+
             selectedUnt = null;
         }
         this.transform.position = Vector3.Lerp (transform.position, newPosition, Time.deltaTime * movementTime);
-        this.transform.position = new Vector3 (Mathf.Clamp (this.transform.position.x, -limitX, +limitX), this.transform.position.y, Mathf.Clamp (this.transform.position.z, -limitZ, +limitZ));
+        this.transform.position = new Vector3 (Mathf.Clamp (this.transform.position.x, -xLim, +xLim), this.transform.position.y, Mathf.Clamp (this.transform.position.z, -zLim, +zLim));
         this.transform.rotation = Quaternion.Lerp (transform.rotation, newRotation, Time.deltaTime * movementTime);
         cameraTransform.localPosition = Vector3.Lerp (cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
     }
 
-    public void SetNullSelectedUnit()
+
+    public void SetNullSelectedUnit ()
     {
         selectedUnt = null;
     }
 
-    public UnitMovement[] GetSelectedUnits()
+
+    public UnitMovement[] GetSelectedUnits ()
     {
         if (selectedUnt == null)
         {
