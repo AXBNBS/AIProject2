@@ -42,6 +42,7 @@ public class UnitMovement : MonoBehaviour
         feet = this.transform.GetChild (0);
         path = new List<Vector3> ();
         target = GameObject.FindGameObjectsWithTag("Hexagon")[startHex].transform.position;
+        interf = GameObject.FindGameObjectWithTag ("Interface");
         offsetHexX = grid.hexagonWth / 5;
         offsetHexZ = grid.hexagonHgt / 5;
         offsets = new Vector3[] {Vector3.zero, new Vector3 (+offsetHexX, 0, offsetHexZ), new Vector3 (-offsetHexX, 0, +offsetHexZ), new Vector3 (+offsetHexX, 0, -offsetHexZ), new Vector3 (-offsetHexX, 0, -offsetHexZ)};
@@ -287,13 +288,21 @@ public class UnitMovement : MonoBehaviour
                 allies[u].target = allies[u].path[0];
                 allies[u].reachedTrg = false;
             }
-            if (stats.occupation == "Worker") 
-            {
-                Builder builder = this.GetComponent<Builder> ();
 
-                if (builder.working == true) 
+            if (stats.occupation == "Worker" || stats.occupation == "Collector") 
+            {
+                if (stats.occupation == "Worker")
                 {
-                    builder.StopBuilding ();
+                    Builder builder = this.GetComponent<Builder>();
+
+                    if (builder.working == true)
+                    {
+                        builder.StopBuilding ();
+                    }
+                }
+                else 
+                {
+                    this.GetComponent<Collector>().working = false;
                 }
             }
         }

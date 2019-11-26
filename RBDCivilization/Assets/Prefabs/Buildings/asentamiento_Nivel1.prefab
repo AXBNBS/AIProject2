@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 3531531651499647892}
   m_Layer: 0
   m_Name: asentamiento_Nivel1
-  m_TagString: Settlement
+  m_TagString: BlueSettlement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,7 +460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  side: 
   settings: {fileID: 11400000, guid: f36b8d3503080e94c87efacca0c60e14, type: 2}
   nextLevel: {fileID: 4067970023479589664, guid: 8c2d6e469e47060419c511ec3fd8636b,
     type: 3}

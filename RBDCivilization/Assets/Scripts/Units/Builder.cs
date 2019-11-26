@@ -73,9 +73,27 @@ public class Builder : MonoBehaviour
 
             hex.SetCity (constructionDat);
             hex.GetCity().SetCitySide (side);
-            if (construction.tag == "Settlement")
+            if (construction.tag.Contains ("Settlement") == true)
             {
                 resourcesHld.changeTotalPopulation (side, 3, true);
+
+                if (this.tag == "Enemy") 
+                {
+                    construction.tag = "RedSettlement";
+                }
+            }
+            else 
+            {
+                if (this.tag == "Enemy")
+                { 
+                    GameManager.instance.AIFrm.Add (construction.GetComponent<Farm> ());
+
+                    construction.tag = "RedFarm";
+                }
+                else
+                {
+                    GameManager.instance.playerFrm.Add (construction.GetComponent<Farm> ());
+                }
             }
 
             Hexagon auxHex = hex;
@@ -91,18 +109,6 @@ public class Builder : MonoBehaviour
             }
 
             auxHex.SetIsBuilded (true);
-
-            if (construction.tag == "Farm")
-            {
-                if (side == "red" || side == "Red")
-                {
-                    GameManager.instance.AIFrm.Add (construction.GetComponent<Farm> ());
-                }
-                else
-                {
-                    GameManager.instance.playerFrm.Add (construction.GetComponent<Farm> ());
-                }
-            }
         }
     }
 

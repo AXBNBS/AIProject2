@@ -43,8 +43,10 @@ GameObject:
   - component: {fileID: 7938264708775335949}
   - component: {fileID: 7938264708775335950}
   - component: {fileID: 7938264708775335937}
+  - component: {fileID: 4711769673049060401}
+  - component: {fileID: 6091313275980364893}
   m_Layer: 10
-  m_Name: ExampleEnemyUnit
+  m_Name: Puppet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +148,38 @@ MonoBehaviour:
   regroup: 0
   currentHex: {fileID: 0}
   previousHex: {fileID: 0}
-  stats: {fileID: 11400000, guid: 9a60473a14d0db144bc87ad649d393bd, type: 2}
+  targetHex: {fileID: 0}
+  stats: {fileID: 11400000, guid: de47ed9e83c76ab418c696fc825666d2, type: 2}
+  interf: {fileID: 0}
   moveSpd: 15
   startHex: 0
-  allies: []
+--- !u!114 &4711769673049060401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7938264708775335946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fada6aa490fee44298da2ba8a26f386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: de47ed9e83c76ab418c696fc825666d2, type: 2}
+  totalPower: 0
+--- !u!114 &6091313275980364893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7938264708775335946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b49452931f6d6246bd8baa4d775598f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  working: 0
+  remainingTrn: 0
+  construction: {fileID: 0}
+  hex: {fileID: 0}

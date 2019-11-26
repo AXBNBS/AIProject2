@@ -13,6 +13,16 @@ public class Farm : MonoBehaviour
     // Variable initialization.
     private void Start ()
     {
-        active = false;
+        active = true;
     }
+
+
+    /* Every active farm will produce stores after each turn.
+    public void GenerateStores (string side, int stores) 
+    {
+        if (active == true) 
+        {
+            resourcesHld.changeStores (side, stores, true);
+        }
+    }*/
 }

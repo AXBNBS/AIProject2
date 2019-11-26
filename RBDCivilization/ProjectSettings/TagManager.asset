@@ -10,11 +10,14 @@ TagManager:
   - Undefined
   - Ally
   - Enemy
-  - Farm
-  - Settlement
-  - Tunnel
   - BlueCapital
   - RedCapital
+  - Tunnel
+  - BlueFarm
+  - RedFarm
+  - BlueSettlement
+  - RedSettlement
+  - Interface
   layers:
   - Default
   - TransparentFX

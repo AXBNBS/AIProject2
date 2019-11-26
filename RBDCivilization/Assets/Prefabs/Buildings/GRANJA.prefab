@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 4156335867542262105}
   m_Layer: 0
   m_Name: GRANJA
-  m_TagString: Farm
+  m_TagString: BlueFarm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -440,7 +440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  side: 
   settings: {fileID: 11400000, guid: e97096506c8b145489ac32b86169bd12, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 0}
