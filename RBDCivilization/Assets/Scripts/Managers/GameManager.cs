@@ -10,83 +10,137 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public List<UnitMovement> playerUnt, AIUnt;
     public List<Farm> playerFrm, AIFrm;
-    //public List<Collector> collectors;
     public List<Builder> playerBld, AIBld;
-    /*public List<Farm> farms;
+    public List<Collector> playerCll, AICll;
 
-    private ResourcesHolder resourceMng;*/
+    [SerializeField] private int storesPerTrn;
+    private ResourcesHolder resourcesHld;
 
 
-    // Start is called before the first frame update.
+    // We get every present unit, farm, builder and collector (independently of their faction) at the start of the game, and add them to their corresponding lists.
     private void Start ()
     {
-        instance = this;
-
         UnitMovement[] units = GameObject.FindObjectsOfType<UnitMovement> ();
+        Farm[] farms = GameObject.FindObjectsOfType<Farm> ();
         Builder[] builders = GameObject.FindObjectsOfType<Builder> ();
+        Collector[] collectors = GameObject.FindObjectsOfType<Collector> ();
 
+        instance = this;
         playerUnt = new List<UnitMovement> ();
         AIUnt = new List<UnitMovement> ();
+        playerFrm = new List<Farm> ();
+        AIFrm = new List<Farm> ();
         playerBld = new List<Builder> ();
         AIBld = new List<Builder> ();
+        playerCll = new List<Collector> ();
+        AICll = new List<Collector> ();
+        resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
 
         foreach (UnitMovement u in units) 
         {
             //print(u.name);
-            if (u.tag == "Ally")
+            if (u.tag == "Enemy")
             {
-                playerUnt.Add (u);
+                AIUnt.Add (u);
             }
             else 
             {
-                AIUnt.Add (u);
+                playerUnt.Add (u);
+            }
+        }
+        foreach (Farm f in farms)
+        {
+            if (f.tag == "EnemyFarm")
+            {
+                AIFrm.Add (f);
+            }
+            else 
+            {
+                playerFrm.Add (f);
             }
         }
         foreach (Builder b in builders) 
         {
             //print(b.name);
-            if (b.tag == "Ally")
-            {
-                playerBld.Add (b);
-            }
-            else
+            if (b.tag == "Enemy")
             {
                 AIBld.Add (b);
             }
+            else
+            {
+                playerBld.Add (b);
+            }
         }
-        /*collectors = new List<Collector> ();
-        builders = new List<Builder> ();
-        farms = new List<Farm> ();
-        resourceMng = this.GetComponent<ResourcesHolder> ();*/
+        foreach (Collector c in collectors) 
+        {
+            if (c.tag == "Enemy")
+            {
+                AICll.Add (c);
+            }
+            else 
+            {
+                playerCll.Add (c);
+            }
+        }
     }
 
 
-    // The AI does its actions and, after that, resources are given to each faction if the collectors have completed their tasks, buildings are built or upgraded if builders are done, and every active farm awards 10 stores to its corresponding 
-    //faction.
-    public void EndTurn () 
+    // Every enemy unit gets its movement limit reset, buildings are finished (if enough turns have passed), resources are collected (if enough turns have passed) and farms produce new stores if active.
+    public void EndPlayerTurn () 
     {
-        foreach (UnitMovement u in playerUnt) 
+        List<Hexagon> doneJob = new List<Hexagon> ();
+
+        foreach (UnitMovement u in AIUnt) 
         {
             u.ResetMovement ();
         }
-        foreach (Builder b in playerBld) 
+
+        foreach (Builder b in AIBld) 
         {
-            if (b.working == true) 
+            if (b.working == true)
             {
                 b.remainingTrn -= 1;
-
-                if (b.remainingTrn == 0) 
+                if (b.remainingTrn == 0)
                 {
                     b.working = false;
 
-                    if (b.hex.environment != null) 
+                    if (doneJob.Contains (b.hex) == false) 
                     {
-                        Destroy (b.hex.environment);
+                        if (b.hex.environment != null)
+                        {
+                            Destroy (b.hex.environment);
+                        }
+                        b.EndConstruction ("red");
+                        doneJob.Add (b.hex);
                     }
-                    b.EndConstruction ("blue");
                 }
             }
         }
+        foreach (Collector c in AICll) 
+        {
+            if (c.working == true) 
+            {
+                c.remainingTrn -= 1;
+                if (c.remainingTrn == 0) 
+                {
+                    c.working = false;
+
+                    if (doneJob.Contains (c.hex) == false) 
+                    {
+                        c.CollectResources ("red");
+                        doneJob.Add (c.hex);
+                    }
+                }
+            }
+        }
+        foreach (Farm f in AIFrm) 
+        {
+            if (f.active == true) 
+            {
+                resourcesHld.changeStores ("red", storesPerTrn, true);
+            }
+        }
+
         /*foreach (Builder b in builders)
         {
             if (b.building == true)
@@ -206,5 +260,12 @@ public class GameManager : MonoBehaviour
                 }
             }
         }*/
+    }
+
+
+    //
+    public void StartPlayerTurn () 
+    {
+
     }
 }

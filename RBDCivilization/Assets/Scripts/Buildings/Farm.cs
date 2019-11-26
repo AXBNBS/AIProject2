@@ -10,7 +10,7 @@ public class Farm : MonoBehaviour
     public bool active;
 
 
-    // Start is called before the first frame update.
+    // Variable initialization.
     private void Start ()
     {
         active = false;

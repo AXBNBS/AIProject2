@@ -11,14 +11,14 @@ public class Hexagon : MonoBehaviour
     public Hexagon[] neighbours;
     public int presentUnt;
     public GameObject environment;
-
     public UnitMovement[] units;
+
     private SphereCollider sphereCol;
 
     public Material MaterialVisible;
     public Material MaterialNoVisible;
-
     public int hexagonType; //-1 rio o montaña sin perforar, 1 pradera o montaña perforada, 2 bosque
+
     private bool isBuilded = false; //Si hay construccion en el hexagono
     private bool visible = false; //Si esta visible o no
     private City building = null; //Tipo de edificio pudiendo ser "capital", "farm", "sawmill" o "mina"
@@ -26,6 +26,7 @@ public class Hexagon : MonoBehaviour
     public Transform CentroHexagono; //Para cuando generes edificios
 
     private bool mountain;
+
 
     // Variable initialization.
     private void Awake ()
@@ -45,8 +46,7 @@ public class Hexagon : MonoBehaviour
         {
             if (units.Contains (other.GetComponent<UnitMovement> ()) == true) 
             {
-                units = new UnitMovement[5];
-                presentUnt = 0;
+                EmptyHexagon ();
             }
         }
     }
@@ -198,18 +198,28 @@ public class Hexagon : MonoBehaviour
         return (Vector3.Distance (this.transform.position, target) <= sphereCol.radius * this.transform.localScale.x);
     }
 
+
     public UnitMovement[] GetUnits()
     {
         return units;
     }
 
-    public bool GetMountain()
+
+    public bool GetMountain ()
     {
         return mountain;
     }
 
-    public void SetMountain(bool n)
+
+    public void SetMountain (bool n)
     {
         mountain = n;
+    }
+
+
+    public void EmptyHexagon () 
+    {
+        presentUnt = 0;
+        units = new UnitMovement[5];
     }
 }

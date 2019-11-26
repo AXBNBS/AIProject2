@@ -189,6 +189,7 @@ MonoBehaviour:
   terrainMsk:
     serializedVersion: 2
     m_Bits: 256
+  height: 100
 --- !u!1 &5706654713213507334
 GameObject:
   m_ObjectHideFlags: 0

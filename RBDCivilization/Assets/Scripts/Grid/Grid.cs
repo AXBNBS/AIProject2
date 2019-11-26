@@ -118,30 +118,42 @@ public class Grid : MonoBehaviour
         
         //Creación del mapa, es en esta función pq no se puede pasar por referencia un Hexagons[,]
         //Capital azul, falta la linea que indique que es del jugador
-        hexagons[28, 0].SetVisible(true);
-        hexagons[28, 0].SetIsBuilded(true);
-        GameObject build = Instantiate(Capital, new Vector3(hexagons[28, 0].CentroHexagono.position.x, hexagons[28, 0].CentroHexagono.position.y, hexagons[28, 0].CentroHexagono.position.z), Quaternion.identity);
-        hexagons[28, 0].SetCity(build.GetComponent<City>());
-        hexagons[28, 0].GetCity().SetCityType("Capital");
-        hexagons[28, 0].GetCity().SetCitySide("Blue");
+        hexagons[28, 0].SetVisible (true);
+        hexagons[28, 0].SetIsBuilded (true);
 
-        hexagons[28, 1].SetVisible(true);
-        hexagons[27, 0].SetVisible(true);
-        hexagons[27, 1].SetVisible(true);
-        hexagons[29, 0].SetVisible(true);
+        GameObject build1 = Instantiate (Capital, new Vector3 (hexagons[28, 0].CentroHexagono.position.x, hexagons[28, 0].CentroHexagono.position.y, hexagons[28, 0].CentroHexagono.position.z), Quaternion.identity);
+
+        hexagons[28, 0].environment = build1;
+
+        hexagons[28, 0].SetCity (build1.GetComponent<City> ());
+        hexagons[28, 0].GetCity().SetCityType ("Capital");
+        hexagons[28, 0].GetCity().SetCitySide ("Blue");
+
+        hexagons[28, 0].environment.tag = "Blue capital";
+
+        hexagons[28, 1].SetVisible (true);
+        hexagons[27, 0].SetVisible (true);
+        hexagons[27, 1].SetVisible (true);
+        hexagons[29, 0].SetVisible (true);
 
         //Capital roja
-        hexagons[28, 50].SetVisible(true);
-        hexagons[28, 50].SetIsBuilded(true);
-        GameObject build2 = Instantiate(Capital, new Vector3(hexagons[28, 50].CentroHexagono.position.x, hexagons[28, 50].CentroHexagono.position.y, hexagons[28, 50].CentroHexagono.position.z), Quaternion.identity);
-        hexagons[28, 50].SetCity(build.GetComponent<City>());
-        hexagons[28, 50].GetCity().SetCityType("Capital");
-        hexagons[28, 50].GetCity().SetCitySide("Red");
+        hexagons[28, 50].SetVisible (true);
+        hexagons[28, 50].SetIsBuilded (true);
 
-        hexagons[28, 49].SetVisible(true);
-        hexagons[27, 50].SetVisible(true);
-        hexagons[27, 49].SetVisible(true);
-        hexagons[29, 50].SetVisible(true);
+        GameObject build2 = Instantiate (Capital, new Vector3 (hexagons[28, 50].CentroHexagono.position.x, hexagons[28, 50].CentroHexagono.position.y, hexagons[28, 50].CentroHexagono.position.z), Quaternion.identity);
+
+        hexagons[28, 50].environment = build2;
+
+        hexagons[28, 50].SetCity (build2.GetComponent<City> ());
+        hexagons[28, 50].GetCity().SetCityType ("Capital");
+        hexagons[28, 50].GetCity().SetCitySide ("Red");
+
+        hexagons[28, 50].environment.tag = "Red capital";
+
+        hexagons[28, 49].SetVisible (true);
+        hexagons[27, 50].SetVisible (true);
+        hexagons[27, 49].SetVisible (true);
+        hexagons[29, 50].SetVisible (true);
 
         //Generación de rio
         for (int i = 0; i < 58; i++)

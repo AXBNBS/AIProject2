@@ -19,7 +19,7 @@ public class Builder : MonoBehaviour
     private int spentMin, spentWod;
 
 
-    // Start is called before the first frame update.
+    // Variable initialization.
     private void Start ()
     {
         working = false;
@@ -30,7 +30,7 @@ public class Builder : MonoBehaviour
     }
 
 
-    // Update is called once per frame.
+    // We update the info about the hexagon this unit is in constantly.
     private void Update ()
     {
         hex = unitMvm.currentHex;
