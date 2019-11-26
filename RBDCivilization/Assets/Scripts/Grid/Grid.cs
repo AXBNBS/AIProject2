@@ -129,7 +129,7 @@ public class Grid : MonoBehaviour
         hexagons[28, 0].GetCity().SetCityType ("Capital");
         hexagons[28, 0].GetCity().SetCitySide ("Blue");
 
-        hexagons[28, 0].environment.tag = "Blue capital";
+        hexagons[28, 0].environment.tag = "BlueCapital";
 
         hexagons[28, 1].SetVisible (true);
         hexagons[27, 0].SetVisible (true);
@@ -148,7 +148,7 @@ public class Grid : MonoBehaviour
         hexagons[28, 50].GetCity().SetCityType ("Capital");
         hexagons[28, 50].GetCity().SetCitySide ("Red");
 
-        hexagons[28, 50].environment.tag = "Red capital";
+        hexagons[28, 50].environment.tag = "RedCapital";
 
         hexagons[28, 49].SetVisible (true);
         hexagons[27, 50].SetVisible (true);
