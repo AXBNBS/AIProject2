@@ -11,13 +11,13 @@ public class City : MonoBehaviour
     private string cityType;
     private string side;
 
-    private int humans;
+    public int humans;
     private int cats;
     private int elves;
     private int dwarfs;
     private int twiis;
     private int craftsmen;
-    private int turroncitos;
+    public int turroncitos;
 
     private int orcs;
     private int panecillos;
@@ -41,6 +41,21 @@ public class City : MonoBehaviour
         neededMinerals = settings.neededMinerals;
         neededWood = settings.neededWood;
         cityType = settings.cityType;
+
+        humans = 0;
+        cats = 0;
+        elves = 0;
+        dwarfs = 0;
+        twiis = 0;
+        craftsmen = 0;
+        turroncitos = 0;
+        orcs = 0;
+        panecillos = 0;
+        goblins = 0;
+        trolls = 0;
+        cuctañas = 0;
+        puppets = 0;
+        witchers = 0;
     }
     
     public void SetCityType(string n)
@@ -221,5 +236,13 @@ public class City : MonoBehaviour
     public int GetWitchers()
     {
         return witchers;
+    }
+
+    public void SetSettings()
+    {
+        defense = settings.defense;
+        level = settings.level;
+        neededMinerals = settings.neededMinerals;
+        neededWood = settings.neededWood;
     }
 }

@@ -15,6 +15,6 @@ MonoBehaviour:
   attack: 0
   speed: 4
   defense: 1.5
-  race: Roll
+  race: Panecillo
   occupation: Explorer
   stores: 20

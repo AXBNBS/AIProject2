@@ -37,9 +37,18 @@ public class ActionsMenu : MonoBehaviour
             if (cam.GetSelectedUnits()[0].stats.occupation == "Worker")
             {
                 leftBottomHUD.SetActive(true);
+                actionOneUI.SetActive(true);
                 actionOneUI.GetComponentInChildren<TextMeshProUGUI>().text = "Settlement";
                 actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text = "Farm";
+                actionThreeUI.SetActive(true);
                 actionThreeUI.GetComponentInChildren<TextMeshProUGUI>().text = "Tunnel";
+            }
+            else if (cam.GetSelectedUnits()[0].stats.occupation == "Collector")
+            {
+                leftBottomHUD.SetActive(true);
+                actionOneUI.SetActive(false);
+                actionThreeUI.SetActive(false);
+                actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text = "Collect";
             }
         }
         else
@@ -64,6 +73,10 @@ public class ActionsMenu : MonoBehaviour
         if (actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text == "Farm")
         {
             BuildFarm();
+        }
+        else if (actionTwoUI.GetComponentInChildren<TextMeshProUGUI>().text == "Collect")
+        {
+            Collect();
         }
         buildingMenu.GetComponent<UnityMenu>().CloseWindow();
     }
@@ -183,6 +196,14 @@ public class ActionsMenu : MonoBehaviour
 
                 break;
             }
+        }
+    }
+
+    public void Collect()
+    {
+        if (cam.GetSelectedUnits()[0].currentHex.GetRemainingTurnsToCollect() <= 0)
+        {
+            cam.GetSelectedUnits()[0].GetComponent<Collector>().BeginCollect();
         }
     }
 }

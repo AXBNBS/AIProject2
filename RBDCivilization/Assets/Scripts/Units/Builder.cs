@@ -18,7 +18,6 @@ public class Builder : MonoBehaviour
     private ResourcesHolder resourcesHld;
     private int spentMin, spentWod;
 
-
     // Variable initialization.
     private void Start ()
     {
@@ -71,28 +70,31 @@ public class Builder : MonoBehaviour
         {
             hex.environment = Instantiate (construction, hex.transform.position, Quaternion.identity);
 
-            hex.SetCity (constructionDat);
+            hex.SetCity (hex.environment.GetComponent<City>());
             hex.GetCity().SetCitySide (side);
+            hex.GetCity().SetSettings();
             if (construction.tag.Contains ("Settlement") == true)
             {
                 resourcesHld.changeTotalPopulation (side, 3, true);
+                hex.GetCity().SetCityType("Settlement");
 
                 if (this.tag == "Enemy") 
                 {
-                    construction.tag = "RedSettlement";
+                    hex.environment.tag = "RedSettlement";
                 }
             }
             else 
             {
+                hex.GetCity().SetCityType("Farm");
                 if (this.tag == "Enemy")
                 { 
-                    GameManager.instance.AIFrm.Add (construction.GetComponent<Farm> ());
+                    GameManager.instance.AIFrm.Add (hex.environment.GetComponent<Farm> ());
 
                     construction.tag = "RedFarm";
                 }
                 else
                 {
-                    GameManager.instance.playerFrm.Add (construction.GetComponent<Farm> ());
+                    GameManager.instance.playerFrm.Add (hex.environment.GetComponent<Farm> ());
                 }
             }
 

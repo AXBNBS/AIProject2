@@ -440,6 +440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  humans: 0
+  turroncitos: 0
   settings: {fileID: 11400000, guid: e97096506c8b145489ac32b86169bd12, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 0}
@@ -455,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7418d589a5fb61c41aea44ea3fb651f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
 --- !u!1 &7517576413201595316
 GameObject:
   m_ObjectHideFlags: 0

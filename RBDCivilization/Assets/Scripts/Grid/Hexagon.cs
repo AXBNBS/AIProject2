@@ -26,7 +26,7 @@ public class Hexagon : MonoBehaviour
     public Transform CentroHexagono; //Para cuando generes edificios
 
     private bool mountain;
-
+    private int remainingTurnsToCollect;
 
     // Variable initialization.
     private void Awake ()
@@ -36,6 +36,7 @@ public class Hexagon : MonoBehaviour
         units = new UnitMovement[5];
         sphereCol = this.gameObject.GetComponent<SphereCollider> ();
         mountain = false;
+        remainingTurnsToCollect = 0;
     }
 
 
@@ -221,5 +222,15 @@ public class Hexagon : MonoBehaviour
     {
         presentUnt = 0;
         units = new UnitMovement[5];
+    }
+
+    public int GetRemainingTurnsToCollect()
+    {
+        return remainingTurnsToCollect;
+    }
+
+    public void SetRemainingTurnsToCollect(int turns)
+    {
+        remainingTurnsToCollect += turns;
     }
 }

@@ -13,7 +13,7 @@ public class Collector : MonoBehaviour
 
     private UnitMovement unitMvm;
     private ResourcesHolder resourcesHld;
-
+    private GameManager gameManager;
 
     // Variable initialization.
     private void Start ()
@@ -22,6 +22,7 @@ public class Collector : MonoBehaviour
         remainingTrn = 0;
         unitMvm = this.GetComponent<UnitMovement> ();
         resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
 
@@ -31,6 +32,11 @@ public class Collector : MonoBehaviour
         hex = unitMvm.currentHex;
     }
 
+    public void BeginCollect()
+    {
+        working = true;
+        remainingTrn = 2;
+    }
 
     // When the recollection has finished, the corresponding resources will be added to the team the collector belongs to.
     public void CollectResources (string side) 
@@ -39,9 +45,15 @@ public class Collector : MonoBehaviour
         {
             resourcesHld.changeMineral (side, Random.Range (100, 201), true);
         }
-        else 
+        else if(hex.GetHexagonType()==2)
         {
             resourcesHld.changeWood (side, Random.Range (100, 201), true);
         }
+        else
+        {
+            resourcesHld.changeStores (side, Random.Range(10, 31), true);
+        }
+        this.unitMvm.currentHex.SetRemainingTurnsToCollect(3);
+        gameManager.restoringHexagons.Add(this.unitMvm.currentHex);
     }
 }

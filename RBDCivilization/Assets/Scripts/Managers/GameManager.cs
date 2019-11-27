@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<Farm> playerFrm, AIFrm;
     public List<Builder> playerBld, AIBld;
     public List<Collector> playerCll, AICll;
+    public List<Hexagon> restoringHexagons;
 
     [SerializeField] private int storesPerFrm;
     private ResourcesHolder resourcesHld;
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
         Farm[] farms = GameObject.FindObjectsOfType<Farm> ();
         Builder[] builders = GameObject.FindObjectsOfType<Builder> ();
         Collector[] collectors = GameObject.FindObjectsOfType<Collector> ();
+
+        restoringHexagons = new List<Hexagon>();
+        storesPerFrm = 30;//ESTO ES DE EJEMPLO
 
         instance = this;
         playerUnt = new List<UnitMovement> ();
@@ -136,6 +140,15 @@ public class GameManager : MonoBehaviour
         }
         foreach (Farm f in AIFrm) 
         {
+            if (f.GetComponent<City>().GetWitchers() > 0)
+            {
+                f.active = true;
+            }
+            else
+            {
+                f.active = false;
+            }
+
             if (f.active == true) 
             {
                 resourcesHld.changeStores ("red", storesPerFrm, true);
@@ -155,6 +168,19 @@ public class GameManager : MonoBehaviour
         foreach (UnitMovement u in playerUnt)
         {
             u.ResetMovement ();
+        }
+
+        foreach(Hexagon h in restoringHexagons)
+        {
+            h.SetRemainingTurnsToCollect(-1);
+        }
+
+        for (int i = restoringHexagons.Count - 1; i >= 0; i--)
+        {
+            if (restoringHexagons[i].GetRemainingTurnsToCollect() == 0)
+            {
+                restoringHexagons.RemoveAt(i);
+            }
         }
 
         foreach (Builder b in playerBld)
@@ -198,6 +224,14 @@ public class GameManager : MonoBehaviour
         }
         foreach (Farm f in playerFrm)
         {
+            if (f.GetComponent<City>().GetTurroncitos() > 0)
+            {
+                f.active = true;
+            }
+            else
+            {
+                f.active = false;
+            }
             if (f.active == true)
             {
                 resourcesHld.changeStores ("blue", storesPerFrm, true);

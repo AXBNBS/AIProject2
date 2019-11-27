@@ -13,7 +13,7 @@ public class Farm : MonoBehaviour
     // Variable initialization.
     private void Start ()
     {
-        active = true;
+        active = false;
     }
 
 
