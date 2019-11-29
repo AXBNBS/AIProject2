@@ -123,4 +123,57 @@ public class EnemyFunctions : MonoBehaviour
             return true;
         }
     }
+
+    public int levelUp (Hexagon hex)
+    {
+        if ((hex.GetCity().GetCityType() == "Settlement" && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType() == "Capital"))
+        {
+            resourcesHolder.changeWood("Red", hex.GetCity().GetNeededWood(), false);
+            resourcesHolder.changeMineral("Red", hex.GetCity().GetNeededMinerals(), false);
+            if (hex.GetCity().GetCityType() == "Sawmill" || hex.GetCity().GetCityType() == "Farm" || hex.GetCity().GetCityType() == "Mina" || hex.GetCity().GetCityType() == "Settlement")
+            {
+                resourcesHolder.changeTotalPopulation("Red", 3, true);
+            }
+            else
+            {
+                resourcesHolder.changeTotalPopulation("Red", 5, true);
+            }
+
+            int humans = hex.GetCity().GetHumans();
+            int cats = hex.GetCity().GetCats();
+            int elves = hex.GetCity().GetElves();
+            int dwarfs = hex.GetCity().GetDwarfs();
+            int twiis = hex.GetCity().GetTwiis();
+            int craftsmen = hex.GetCity().GetCraftsmen();
+            int turroncitos = hex.GetCity().GetTurroncitos();
+
+            string type = hex.GetCity().GetCityType();
+
+            GameObject nextLevel = hex.GetCity().nextLevel;
+
+            Destroy(hex.environment);
+
+            hex.environment = Instantiate(nextLevel, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
+
+            hex.SetCity(hex.environment.GetComponent<City>());
+            hex.GetCity().SetCityType(type);
+            hex.GetCity().SetCitySide("Red");
+
+            hex.GetCity().AddUnits("Human", humans, humans);
+            hex.GetCity().AddUnits("Cat", cats, cats * 1.5f);
+            hex.GetCity().AddUnits("Elf", elves, elves);
+            hex.GetCity().AddUnits("Dwarf", dwarfs, dwarfs);
+            hex.GetCity().AddUnits("Twii", twiis, twiis * 2);
+            hex.GetCity().AddUnits("Craftsman", craftsmen, craftsmen * 0.5f);
+            hex.GetCity().AddUnits("Turroncito", turroncitos, turroncitos);
+
+            if (hex.GetCity().GetCityType() == "Capital")
+                capital = hex.GetCity();
+
+            return 1; //Se puede aumentar de nivel
+        } else
+        {
+            return 0; //Ya tiene el nivel maximo
+        }
+    }
 }
