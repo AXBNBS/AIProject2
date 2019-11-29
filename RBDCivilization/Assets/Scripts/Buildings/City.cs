@@ -16,7 +16,7 @@ public class City : MonoBehaviour
     private int elves;
     private int dwarfs;
     private int twiis;
-    private int craftsmen;
+    public int craftsmen;
     public int turroncitos;
 
     private int orcs;

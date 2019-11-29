@@ -321,6 +321,11 @@ public class UnitMovement : MonoBehaviour
         moveLmt = (int) stats.speed;
     }
 
+    public void SetMovement(int m)
+    {
+        moveLmt = m;
+    }
+
 
     // Returns the value of the movement limit variable or 0, if the value is negative.
     public int GetMovementLimit () 

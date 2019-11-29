@@ -100,13 +100,39 @@ public class Builder : MonoBehaviour
 
             Hexagon auxHex = hex;
 
+            bool keepSearch = true;
+
             foreach (Hexagon h in hex.neighbours)
             {
                 if (h != null && h.presentUnt == 0)
                 {
                     unitMvm.FindPathTo (h);
-
+                    keepSearch = false;
                     break;
+                }
+            }
+
+            if (keepSearch)
+            {
+                foreach (Hexagon h in hex.neighbours)
+                {
+                    if (h != null)
+                    {
+                        foreach (Hexagon h1 in h.neighbours)
+                        {
+                            if (h1 != null && h1.presentUnt == 0 && h1.GetIsBuilded()==false)
+                            {
+                                unitMvm.SetMovement(int.MaxValue);
+                                unitMvm.FindPathTo(h1);
+                                unitMvm.ResetMovement();
+                                print(h1);
+                                keepSearch = false;
+                                break;
+                            }
+                        }
+                        if (!keepSearch)
+                            break;
+                    }
                 }
             }
 
