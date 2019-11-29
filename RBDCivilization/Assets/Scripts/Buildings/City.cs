@@ -223,7 +223,7 @@ public class City : MonoBehaviour
         return trolls;
     }
 
-    public int GetCuctañas()
+    public int GetCuctanyas()
     {
         return cuctañas;
     }

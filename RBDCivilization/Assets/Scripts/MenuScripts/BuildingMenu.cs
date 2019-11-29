@@ -330,8 +330,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetHumans() != 0)
         {
-            hex.GetCity().AddUnits(humanSettings.race, -1, -humanSettings.defense);
-            Hexagon generate = null;
+                        Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
                 if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
@@ -343,6 +342,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(humanSettings.race, -1, -humanSettings.defense);
                 GameObject train = Instantiate(humanPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
@@ -355,7 +355,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetCats() != 0)
         {
-            hex.GetCity().AddUnits(catSettings.race, -1, -catSettings.defense);
+            
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
@@ -368,6 +368,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(catSettings.race, -1, -catSettings.defense);
                 GameObject train = Instantiate(catPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
@@ -380,7 +381,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetElves() != 0)
         {
-            hex.GetCity().AddUnits(elfSettings.race, -1, -elfSettings.defense);
+            
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
@@ -393,6 +394,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(elfSettings.race, -1, -elfSettings.defense);
                 GameObject train = Instantiate(elfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
@@ -405,7 +407,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetDwarfs() != 0)
         {
-            hex.GetCity().AddUnits(dwarfSettings.race, -1, -dwarfSettings.defense);
+            
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
@@ -418,6 +420,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(dwarfSettings.race, -1, -dwarfSettings.defense);
                 GameObject train = Instantiate(dwarfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
@@ -430,7 +433,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetTwiis() != 0)
         {
-            hex.GetCity().AddUnits(twiiSettings.race, -1, -twiiSettings.defense);
+            
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
@@ -443,6 +446,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(twiiSettings.race, -1, -twiiSettings.defense);
                 GameObject train = Instantiate(twiiPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
@@ -455,7 +459,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetCraftsmen() != 0)
         {
-            hex.GetCity().AddUnits(hazelnutSettings.race, -1, -hazelnutSettings.defense);
+            
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
@@ -468,6 +472,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(hazelnutSettings.race, -1, -hazelnutSettings.defense);
                 GameObject train = Instantiate(hazelnutPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
@@ -480,7 +485,7 @@ public class BuildingMenu : MonoBehaviour
     {
         if (hex.GetCity().GetTurroncitos() != 0)
         {
-            hex.GetCity().AddUnits(nougatSettings.race, -1, -nougatSettings.defense);
+            
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
             {
@@ -493,6 +498,7 @@ public class BuildingMenu : MonoBehaviour
 
             if (generate != null)
             {
+                hex.GetCity().AddUnits(nougatSettings.race, -1, -nougatSettings.defense);
                 GameObject train = Instantiate(nougatPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
 
                 firstPanelUI.SetActive(true);
