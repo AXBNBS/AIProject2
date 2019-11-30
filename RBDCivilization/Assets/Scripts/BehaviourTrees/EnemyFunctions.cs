@@ -22,11 +22,16 @@ public class EnemyFunctions : MonoBehaviour
     private ResourcesHolder resourcesHolder;
     private City capital;
 
+    public GameObject settlement, farm, tunnel;
+    [SerializeField] private int settlementMin, settlementWod, farmMin, farmWod, tunnelMin, tunnelWod;
+
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         resourcesHolder = GameObject.FindObjectOfType<ResourcesHolder>();
         capital = GameObject.FindGameObjectWithTag("RedCapital").GetComponent<City>();
+        gameManager = gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     public bool checkWood(int n = 0)
@@ -261,25 +266,25 @@ public class EnemyFunctions : MonoBehaviour
     public bool checkMoveUnits(int type, Hexagon hex)
     {
         City c = hex.GetCity();
-        if (c.GetHumans() != 0 && type == 1)
+        if (c.GetOrcs() != 0 && type == 1)
         {
             return true;
-        } else if (c.GetElves() != 0 && type == 2)
+        } else if (c.GetPanecillos() != 0 && type == 2)
         {
             return true;
-        } else if (c.GetDwarfs() != 0 && type == 3)
+        } else if (c.GetGoblins() != 0 && type == 3)
         {
             return true;
-        } else if (c.GetCats() != 0 && type == 4)
+        } else if (c.GetTrolls() != 0 && type == 4)
         {
             return true;
-        } else if (c.GetTwiis() != 0 && type == 5)
+        } else if (c.GetCuctanyas() != 0 && type == 5)
         {
             return true;
-        } else if (c.GetTurroncitos() != 0 && type == 6)
+        } else if (c.GetPuppets() != 0 && type == 6)
         {
             return true;
-        } else if (c.GetCraftsmen() != 0 && type == 7)
+        } else if (c.GetWitchers() != 0 && type == 7)
         {
             return true;
         } else
@@ -316,31 +321,31 @@ public class EnemyFunctions : MonoBehaviour
             }
             else if (type == 3)
             {
-                hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
+                hex.GetCity().AddUnits(goblinSettings.race, -1, -goblinSettings.defense);
                 GameObject train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 return true; //Va bien
             }
             else if (type == 4)
             {
-                hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
+                hex.GetCity().AddUnits(trollSettings.race, -1, -trollSettings.defense);
                 GameObject train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 return true; //Va bien
             }
             else if (type == 5)
             {
-                hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
+                hex.GetCity().AddUnits(cuctanyaSettings.race, -1, -cuctanyaSettings.defense);
                 GameObject train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 return true; //Va bien
             }
             else if (type == 6)
             {
-                hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
+                hex.GetCity().AddUnits(puppetSettings.race, -1, -puppetSettings.defense);
                 GameObject train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 return true; //Va bien
             }
             else if (type == 7)
             {
-                hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
+                hex.GetCity().AddUnits(witcherSettings.race, -1, -witcherSettings.defense);
                 GameObject train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 return true; //Va bien
             }
@@ -351,6 +356,213 @@ public class EnemyFunctions : MonoBehaviour
         } else
         {
             return false; //Si no hay hueco para generar
+        }
+    }
+
+    public bool buildSettlement(Unit unit)
+    {
+        if (unit.GetOccupation() == "Worker" && unit.movement.currentHex.GetIsBuilded()==false)
+        {
+            foreach(Hexagon h in unit.movement.currentHex.neighbours)
+            {
+                if(h!=null && h.GetIsBuilded())
+                {
+                    return false; //No se puede construir (depende como busque la IA donde moverse esto puede no ser necesario)
+                }
+            }
+            if (resourcesHolder.GetRedWood() >= settlementWod && resourcesHolder.GetRedMineral() >= settlementMin)
+            {
+                resourcesHolder.changeWood("Red", settlementWod, false);
+                resourcesHolder.changeMineral("Red", settlementMin, false);
+                unit.GetComponent<Builder>().BeginConstruction(settlement, settlementMin, settlementWod);
+                return true; //Ha empezado a construir
+            }
+        }
+        return false;//La unidad no era un constructor
+    }
+
+    public bool buildFarm(Unit unit)
+    {
+        if (unit.GetOccupation() == "Worker" && unit.movement.currentHex.GetIsBuilded() == false)
+        {
+            foreach (Hexagon h in unit.movement.currentHex.neighbours)
+            {
+                if (h != null && h.GetIsBuilded())
+                {
+                    return false; //No se puede construir (depende como busque la IA donde moverse esto puede no ser necesario)
+                }
+            }
+            if (resourcesHolder.GetRedWood() >= farmWod && resourcesHolder.GetRedMineral() >= farmMin)
+            {
+                resourcesHolder.changeWood("Red", farmWod, false);
+                resourcesHolder.changeMineral("Red", farmMin, false);
+                unit.GetComponent<Builder>().BeginConstruction(farm, farmMin, farmWod);
+                return true; //Ha empezado a construir
+            }
+        }
+        return false;//La unidad no era un constructor
+    }
+
+    public bool buildTunnel(Unit unit)
+    {
+        if (unit.GetOccupation() == "Worker")
+        {
+            for (int i = 0; i < unit.movement.currentHex.neighbours.Length; i++)
+            {
+                if (unit.movement.currentHex.neighbours[i] != null && unit.movement.currentHex.neighbours[i].GetMountain() == true && unit.movement.currentHex.neighbours[i].GetHexagonType() == -1)
+                {
+                    if (resourcesHolder.GetRedWood() >= tunnelWod && resourcesHolder.GetRedMineral() >= tunnelMin)
+                    {
+                        resourcesHolder.changeWood("Red", tunnelWod, false);
+                        resourcesHolder.changeMineral("Red", tunnelMin, false);
+                        unit.GetComponent<Builder>().BeginConstruction(tunnel, tunnelMin, tunnelWod);
+                        return true;//Empieza a crear el tunel
+                    }
+                }
+            }
+        }
+        return false;//No se podia construir
+    }
+
+    public bool Collect(Unit unit)
+    {
+        if (unit.GetOccupation()=="Collector" && unit.movement.currentHex.GetRemainingTurnsToCollect() <= 0)
+        {
+            unit.GetComponent<Collector>().BeginCollect();
+            return true;//Puede recolectar
+        }
+        return false;//No puede recolectar
+    }
+
+    public bool checkActiveFarms()
+    {
+        foreach(Farm f in gameManager.AIFrm)
+        {
+            if (!f.active)
+                return true;
+        }
+        return false;
+    }
+
+    public bool attack(Unit unit)
+    {
+        int range = Mathf.RoundToInt(unit.GetSpeed());
+        Hexagon originHex = unit.movement.currentHex;
+        bool canWin = false;
+        Hexagon destinyHex=null;
+        Queue<Hexagon> q = new Queue<Hexagon>();
+        q.Enqueue(originHex);
+
+        while (q.Count > 0)
+        {
+            Hexagon element = q.Dequeue();
+            if(element!=null && element.presentUnt!=0 && element.UnitsPlaced()[0].tag == "Ally")
+            {
+                canWin = checkVictory(element, unit);
+                destinyHex = element;
+                break;
+            }
+
+            if (element.neighbours.Length > 0)
+            {
+                foreach (Hexagon h in element.neighbours)
+                {
+                    if (!q.Contains(h))
+                        q.Enqueue(h);
+                }
+            }
+        }
+
+        if (canWin)
+        {
+            //movemos las unidades al hexagono objetivo y destruimos las unidades azules 
+            unit.movement.targetHex = destinyHex;
+            foreach(Hexagon h in unit.movement.currentHex.neighbours)
+            {
+                if (h != null && h == destinyHex)
+                {
+                    unit.SendMessage("Fight", unit.movement.targetHex);
+                    unit.movement.FindPathTo(destinyHex);
+                    return true;
+                }
+            }
+            unit.movement.FindPathTo(destinyHex);
+            return true;
+        }
+        return false;
+    }
+
+    private bool checkVictory(Hexagon hex, Unit unit)
+    {
+        if (hex.UnitsPlaced() == null)
+        {
+            return false;
+        }
+        float alliesPower = 0;
+        float enemiesPower = 0;
+        bool addCurrentHexagon = true;
+        for (int i = 0; i < hex.neighbours.Length; i++)
+        {
+            if (hex.neighbours[i] != null)
+            {
+                UnitMovement[] units = hex.neighbours[i].UnitsPlaced();
+                if (units != null && units.Length != 0)
+                {
+                    for (int j = 0; j < units.Length; j++)
+                    {
+                        if (units[j].tag == "Enemy")
+                        {
+                            enemiesPower += units[j].stats.attack;
+                        }
+                        else if (units[j].tag == "Ally")
+                        {
+                            alliesPower += units[j].stats.attack;
+                        }
+                    }
+                }
+            }
+            if (hex.neighbours[i] == unit.movement.currentHex)
+            {
+                addCurrentHexagon = false;
+            }
+        }
+        UnitMovement[] localUnits = hex.UnitsPlaced();
+        if (localUnits != null && localUnits.Length != 0)
+        {
+            for (int j = 0; j < localUnits.Length; j++)
+            {
+                if (localUnits[j].tag == "Enemy")
+                {
+                    enemiesPower += localUnits[j].stats.attack;
+                }
+                else if (localUnits[j].tag == "Ally")
+                {
+                    alliesPower += localUnits[j].stats.attack;
+                }
+            }
+        }
+        UnitMovement[] allies = unit.movement.GetAllies();
+        if (addCurrentHexagon)
+        {
+            for (int j = 0; j < allies.Length; j++)
+            {
+                if (allies[j].tag == "Enemy")
+                {
+                    enemiesPower += allies[j].stats.attack;
+                }
+                else if (allies[j].tag == "Ally")
+                {
+                    alliesPower += allies[j].stats.attack;
+                }
+            }
+        }
+        if (alliesPower > enemiesPower)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }

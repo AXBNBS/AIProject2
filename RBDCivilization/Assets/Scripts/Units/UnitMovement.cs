@@ -147,6 +147,31 @@ public class UnitMovement : MonoBehaviour
                             }
                         }
                     }
+                    //Este if es cuando la unidad que se mueve es enemiga
+                    if (targetHex != null && Vector3.Distance(path[0], targetHex.transform.position) < 0.5f)
+                    {
+                        UnitMovement[] units = targetHex.UnitsPlaced();
+                        if (units != null)
+                        {
+                            for (int i = 0; i < units.Length; i++)
+                            {
+                                if (units[i] != null && units[i].tag == "Ally")
+                                {
+                                    foreach (UnitMovement al in allies)
+                                    {
+                                        al.reachedTrg = true;
+                                    }
+                                    for (int x = 0; x < allies.Length; x++)
+                                    {
+                                        if (allies[x] != null)
+                                            currentHex.AddUnit(allies[x], currentHex.presentUnt);
+                                    }
+                                    this.SendMessage("Fight", targetHex);
+                                    break;
+                                }
+                            }
+                        }
+                    }
                     this.target = path[0];
                 }
             }

@@ -133,7 +133,7 @@ public class CameraController : MonoBehaviour
 
                 if (hex != null) 
                 {
-                    if (selectedUnt == null && hex.GetIsBuilded())
+                    if (selectedUnt == null && hex.GetIsBuilded() && hex.GetCity().GetCitySide()=="Blue")
                     {
                         buildingMenu.GetComponent<BuildingMenu>().readHexagonBuilding(hex);
                     }
@@ -142,9 +142,13 @@ public class CameraController : MonoBehaviour
                     {
                         selectedUnt = hex.UnitsPlaced ();
                         //print(selectedUnt[0].name);
-                        if (!hex.GetIsBuilded() && selectedUnt != null)
+                        if (!hex.GetIsBuilded() && selectedUnt != null && selectedUnt[0].tag !="Enemy")
                         {
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
+                        }
+                        else if(selectedUnt!= null && selectedUnt[0].tag == "Enemy")
+                        {
+                            selectedUnt = null;
                         }
                     }
                     else if(!IsMouseOverUI())

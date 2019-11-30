@@ -1211,6 +1211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1266,6 +1271,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2686838796494821114, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51,
+        type: 2}
+    - target: {fileID: 5432449560844516339, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ebb85bf84325746a1de09ecc930f05, type: 3}
 --- !u!1001 &1212141234
@@ -2057,6 +2074,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2686838796494821105, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2117,6 +2139,18 @@ PrefabInstance:
       propertyPath: mapObj
       value: 
       objectReference: {fileID: 1240455894}
+    - target: {fileID: 2686838796494821114, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51,
+        type: 2}
+    - target: {fileID: 5432449560844516339, guid: 43ebb85bf84325746a1de09ecc930f05,
+        type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ebb85bf84325746a1de09ecc930f05, type: 3}
 --- !u!114 &7593202723477036185 stripped

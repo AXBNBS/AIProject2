@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     public UnitSettings settings;
     private GameManager gameManager;
 
-    private UnitMovement movement;
+    public UnitMovement movement;
     private GameObject GameManager;
 
     public float totalPower;
@@ -77,6 +77,17 @@ public class Unit : MonoBehaviour
         {
             if (movement.currentHex.GetCity().GetLevel() == 1)
             {
+                if (movement.currentHex.GetCity().GetCityType() == "Farm")
+                {
+                    if (movement.currentHex.GetCity().tag == "RedFarm")
+                    {
+                        gameManager.AIFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
+                    }
+                    else
+                    {
+                        gameManager.playerFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
+                    }
+                }
                 Destroy(movement.currentHex.GetCity().gameObject);
                 movement.currentHex.SetIsBuilded(false);
             }
@@ -115,20 +126,20 @@ public class Unit : MonoBehaviour
         float alliesPower = 0;
         float enemiesPower = 0;
         bool addCurrentHexagon = true;
-        for(int i =0; i < hex.neighbours.Length; i++)
+        for (int i = 0; i < hex.neighbours.Length; i++)
         {
             if (hex.neighbours[i] != null)
             {
                 UnitMovement[] units = hex.neighbours[i].UnitsPlaced();
-                if (units!= null && units.Length != 0)
+                if (units != null && units.Length != 0)
                 {
-                    for(int j=0; j < units.Length; j++)
+                    for (int j = 0; j < units.Length; j++)
                     {
                         if (units[j].tag == "Enemy")
                         {
                             enemiesPower += units[j].stats.attack;
                         }
-                        else if(units[j].tag=="Ally")
+                        else if (units[j].tag == "Ally")
                         {
                             alliesPower += units[j].stats.attack;
                         }
@@ -170,24 +181,90 @@ public class Unit : MonoBehaviour
                 }
             }
         }
-        if (alliesPower > enemiesPower)
+        if (this.tag == "Ally")
         {
-            for (int i = 0; i < hex.presentUnt; i++)
+            if (alliesPower > enemiesPower)
             {
-                if(localUnits[i].tag=="Enemy")
-                  Destroy(localUnits[i].gameObject);
+                for (int i = 0; i < hex.presentUnt; i++)
+                {
+                    if (localUnits[i].tag == "Enemy")
+                    {
+                        if (localUnits[i].stats.occupation == "Worker")
+                        {
+                            gameManager.AIBld.Remove(localUnits[i].GetComponent<Builder>());
+                        }
+                        else if (localUnits[i].stats.occupation == "Collector")
+                        {
+                            gameManager.AICll.Remove(localUnits[i].GetComponent<Collector>());
+                        }
+                        Destroy(localUnits[i].gameObject);
+                    }
+                }
+                hex.presentUnt = 0;
+                movement.FindPathTo(hex);
             }
-            hex.presentUnt = 0;
-            movement.FindPathTo(hex);
-        }
-        else
-        {
-            movement.currentHex.presentUnt = 0;
-            movement.currentHex.units = new UnitMovement[5];
-            for (int i = 0; i < allies.Length; i++)
+            else
             {
-                if(allies[i].tag=="Ally")
-                  Destroy(allies[i].gameObject);
+                movement.currentHex.presentUnt = 0;
+                movement.currentHex.units = new UnitMovement[5];
+                for (int i = 0; i < allies.Length; i++)
+                {
+                    if (allies[i].tag == "Ally")
+                    {
+                        if (allies[i].stats.occupation == "Worker")
+                        {
+                            gameManager.playerBld.Remove(allies[i].GetComponent<Builder>());
+                        }
+                        else if (allies[i].stats.occupation == "Collector")
+                        {
+                            gameManager.playerCll.Remove(allies[i].GetComponent<Collector>());
+                        }
+                        Destroy(allies[i].gameObject);
+                    }
+                }
+            }
+        }
+        else if (this.tag == "Enemy")
+        {
+            if (enemiesPower > alliesPower)
+            {
+                for (int i = 0; i < hex.presentUnt; i++)
+                {
+                    if (localUnits[i].tag == "Ally")
+                    {
+                        if (localUnits[i].stats.occupation == "Worker")
+                        {
+                            gameManager.playerBld.Remove(localUnits[i].GetComponent<Builder>());
+                        }
+                        else if (localUnits[i].stats.occupation == "Collector")
+                        {
+                            gameManager.playerCll.Remove(localUnits[i].GetComponent<Collector>());
+                        }
+                        Destroy(localUnits[i].gameObject);
+                    }
+                }
+                hex.presentUnt = 0;
+                movement.FindPathTo(hex);
+            }
+            else
+            {
+                movement.currentHex.presentUnt = 0;
+                movement.currentHex.units = new UnitMovement[5];
+                for (int i = 0; i < allies.Length; i++)
+                {
+                    if (allies[i].tag == "Enemy")
+                    {
+                        if (allies[i].stats.occupation == "Worker")
+                        {
+                            gameManager.AIBld.Remove(allies[i].GetComponent<Builder>());
+                        }
+                        else if (allies[i].stats.occupation == "Collector")
+                        {
+                            gameManager.AICll.Remove(allies[i].GetComponent<Collector>());
+                        }
+                        Destroy(allies[i].gameObject);
+                    }
+                }
             }
         }
     }
