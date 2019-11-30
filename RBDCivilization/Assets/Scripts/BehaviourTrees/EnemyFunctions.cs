@@ -25,6 +25,8 @@ public class EnemyFunctions : MonoBehaviour
     public GameObject settlement, farm, tunnel;
     [SerializeField] private int settlementMin, settlementWod, farmMin, farmWod, tunnelMin, tunnelWod;
 
+    public Grid grid;
+
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
@@ -563,6 +565,32 @@ public class EnemyFunctions : MonoBehaviour
         else
         {
             return true;
+        }
+    }
+
+    public bool underAttack() //Cuando este el número de mapa correcto se pondra el hexagono correcto de entonces
+    {
+        int total = 0;
+        for (int i = 27; i < 50; i++)
+        {
+            for (int j = 0; j < 57; j++)
+            {
+                if (grid.hexagons[i, j].presentUnt != 0 && grid.hexagons[i, j].units[0].tag == "Ally" && grid.hexagons[i, j].units[0].stats.occupation == "Soldier")
+                {
+                    for (int x = 0; x < grid.hexagons[i, j].presentUnt; x++)
+                    {
+                        total++;
+                    }
+                }
+            }
+        }
+
+        if (total > 5)
+        {
+            return true; //Esta bajo ataque
+        } else
+        {
+            return false; //No esta bajo ataque
         }
     }
 }

@@ -17,7 +17,7 @@ public class Grid : MonoBehaviour
     private int hexagonsX, hexagonsY;
     private Transform ground;
 
-    private Hexagon[,] hexagons;
+    public Hexagon[,] hexagons;
 
     public GameObject Capital; //Generar las dos capitales
 
