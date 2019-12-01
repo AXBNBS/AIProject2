@@ -14,7 +14,7 @@ public class Grid : MonoBehaviour
     //[SerializeField] private int gridWth, gridHgt;
     [SerializeField] private float gap, hexagonScl;
     private Vector3 startPos;
-    private int hexagonsX, hexagonsY;
+    public int hexagonsX, hexagonsY;
     private Transform ground;
 
     public Hexagon[,] hexagons;
@@ -29,13 +29,13 @@ public class Grid : MonoBehaviour
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
-                
+        ground = this.transform.GetChild (0);
+        ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
+
         AddGap ();
         StartPosition ();
         CreateGrid ();
-
-        ground = this.transform.GetChild (0);
-        ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
+        AssignNeighbours ();
     }
 
 
@@ -120,77 +120,121 @@ public class Grid : MonoBehaviour
         
         //Creación del mapa, es en esta función pq no se puede pasar por referencia un Hexagons[,]
         //Capital azul, falta la linea que indique que es del jugador
-        hexagons[28, 0].SetVisible (true);
-        hexagons[28, 0].SetIsBuilded (true);
+        hexagons[14, 0].SetVisible (true);
+        hexagons[14, 0].SetIsBuilded (true);
 
-        GameObject build1 = Instantiate (Capital, new Vector3 (hexagons[28, 0].CentroHexagono.position.x, hexagons[28, 0].CentroHexagono.position.y, hexagons[28, 0].CentroHexagono.position.z), Quaternion.identity);
+        GameObject build1 = Instantiate (Capital, new Vector3 (hexagons[14, 0].CentroHexagono.position.x, hexagons[14, 0].CentroHexagono.position.y, hexagons[14, 0].CentroHexagono.position.z), Quaternion.identity);
 
-        hexagons[28, 0].environment = build1;
+        hexagons[14, 0].environment = build1;
 
-        hexagons[28, 0].SetCity (build1.GetComponent<City> ());
-        hexagons[28, 0].GetCity().SetCityType ("Capital");
-        hexagons[28, 0].GetCity().SetCitySide ("Blue");
+        hexagons[14, 0].SetCity (build1.GetComponent<City> ());
+        hexagons[14, 0].GetCity().SetCityType ("Capital");
+        hexagons[14, 0].GetCity().SetCitySide ("Blue");
 
-        hexagons[28, 0].environment.tag = "BlueCapital";
+        hexagons[14, 0].environment.tag = "BlueCapital";
 
-        hexagons[28, 1].SetVisible (true);
-        hexagons[27, 0].SetVisible (true);
-        hexagons[27, 1].SetVisible (true);
-        hexagons[29, 0].SetVisible (true);
+        hexagons[14, 1].SetVisible (true);
+        hexagons[13, 0].SetVisible (true);
+        hexagons[13, 1].SetVisible (true);
+        hexagons[15, 0].SetVisible (true);
 
         //Capital roja
-        hexagons[28, 50].SetVisible (true);
-        hexagons[28, 50].SetIsBuilded (true);
+        hexagons[14, 48].SetVisible (true);
+        hexagons[14, 48].SetIsBuilded (true);
 
-        GameObject build2 = Instantiate (Capital, new Vector3 (hexagons[28, 50].CentroHexagono.position.x, hexagons[28, 50].CentroHexagono.position.y, hexagons[28, 50].CentroHexagono.position.z), Quaternion.identity);
+        GameObject build2 = Instantiate (Capital, new Vector3 (hexagons[14, 48].CentroHexagono.position.x, hexagons[14, 48].CentroHexagono.position.y, hexagons[14, 48].CentroHexagono.position.z), Quaternion.identity);
 
-        hexagons[28, 50].environment = build2;
+        hexagons[14, 48].environment = build2;
 
-        hexagons[28, 50].SetCity (build2.GetComponent<City> ());
-        hexagons[28, 50].GetCity().SetCityType ("Capital");
-        hexagons[28, 50].GetCity().SetCitySide ("Red");
+        hexagons[14, 48].SetCity (build2.GetComponent<City> ());
+        hexagons[14, 48].GetCity().SetCityType ("Capital");
+        hexagons[14, 48].GetCity().SetCitySide ("Red");
 
-        hexagons[28, 50].environment.tag = "RedCapital";
+        hexagons[14, 48].environment.tag = "RedCapital";
 
-        hexagons[28, 49].SetVisible (true);
-        hexagons[27, 50].SetVisible (true);
-        hexagons[27, 49].SetVisible (true);
-        hexagons[29, 50].SetVisible (true);
+        hexagons[13, 47].SetVisible (true);
+        hexagons[13, 48].SetVisible (true);
+        hexagons[15, 48].SetVisible (true);
+        hexagons[14, 47].SetVisible (true);
 
         //Generación de rio
-        for (int i = 0; i < 58; i++)
+        for (int i = 0; i <= hexagonsX; i += 1)
         {
-            hexagons[i, 26].SetHexagonType(-2);
-            hexagons[i, 26].SetVisible(true);
+            hexagons[i, 24].SetHexagonType (-2);
+            hexagons[i, 24].SetVisible (true);
         }
 
         //Generación de puentes
-        hexagons[11, 26].SetHexagonType(1);
-        hexagons[23, 26].SetHexagonType(1);
-        hexagons[34, 26].SetHexagonType(1);
-        hexagons[46, 26].SetHexagonType(1);
-        hexagons[11, 26].SetVisible(false);
-        hexagons[23, 26].SetVisible(false);
-        hexagons[34, 26].SetVisible(false);
-        hexagons[46, 26].SetVisible(false);
+        hexagons[4, 24].SetHexagonType (+1);
+        hexagons[11, 24].SetHexagonType (+1);
+        hexagons[18, 24].SetHexagonType (+1);
+        hexagons[25, 24].SetHexagonType (+1);
+        hexagons[4, 24].SetVisible (false);
+        hexagons[11, 24].SetVisible (false);
+        hexagons[18, 24].SetVisible (false);
+        hexagons[25, 24].SetVisible (false);
 
         //Generación de montañas
-        hexagons[5, 10].SetHexagonType(-1);
-        hexagons[5, 40].SetHexagonType(-1);
-        hexagons[5, 10].SetVisible(true);
-        hexagons[5, 40].SetVisible(true);
-        hexagons[5, 10].SetMountain(true);
-        hexagons[5, 40].SetMountain(true);
+        hexagons[9, 0].SetHexagonType (-1);
+        hexagons[8, 1].SetHexagonType (-1);
+        hexagons[0, 2].SetHexagonType (-1);
+        hexagons[0, 3].SetHexagonType (-1);
+        hexagons[1, 3].SetHexagonType (-1);
+        hexagons[2, 4].SetHexagonType (-1);
+        hexagons[14, 4].SetHexagonType (-1);
+        hexagons[18, 4].SetHexagonType (-1);
+        hexagons[19, 4].SetHexagonType (-1);
+        hexagons[20, 4].SetHexagonType (-1);
+        hexagons[21, 4].SetHexagonType (-1);
 
-        //Generación de bosques
+        hexagons[2, 5].SetHexagonType (-1);
+        hexagons[18, 5].SetHexagonType (-1);
+        hexagons[19, 5].SetHexagonType (-1);
+        hexagons[24, 5].SetHexagonType (-1);
+        hexagons[25, 5].SetHexagonType (-1);
+
+
+        hexagons[9, 0].SetVisible (true);
+        hexagons[9, 0].SetMountain (true);
+        hexagons[8, 1].SetVisible (true);
+        hexagons[8, 1].SetMountain (true);
+        hexagons[0, 2].SetVisible (true);
+        hexagons[0, 2].SetMountain (true);
+        hexagons[0, 3].SetVisible (true);
+        hexagons[0, 3].SetMountain (true);
+        hexagons[1, 3].SetVisible (true);
+        hexagons[1, 3].SetMountain (true);
+        hexagons[2, 4].SetVisible (true);
+        hexagons[2, 4].SetMountain (true);
+        hexagons[14, 4].SetVisible (true);
+        hexagons[14, 4].SetMountain (true);
+        hexagons[18, 4].SetVisible (true);
+        hexagons[18, 4].SetMountain (true);
+        hexagons[19, 4].SetVisible (true);
+        hexagons[19, 4].SetMountain (true);
+        hexagons[20, 4].SetVisible (true);
+        hexagons[20, 4].SetMountain (true);
+        hexagons[21, 4].SetVisible (true);
+        hexagons[21, 4].SetMountain (true);
+        hexagons[2, 5].SetVisible (true);
+        hexagons[2, 5].SetMountain (true);
+        hexagons[18, 5].SetVisible (true);
+        hexagons[18, 5].SetMountain (true);
+        hexagons[19, 5].SetVisible (true);
+        hexagons[19, 5].SetMountain (true);
+        hexagons[24, 5].SetVisible (true);
+        hexagons[24, 5].SetMountain (true);
+        hexagons[25, 5].SetVisible (true);
+        hexagons[25, 5].SetMountain (true);
+
+        /*Generación de bosques
         hexagons[50, 10].SetHexagonType(2);
-        hexagons[50, 40].SetHexagonType(2);
-
-        AssignNeighbours (hexagons);
+        hexagons[50, 40].SetHexagonType(2);*/
     }
 
+
     // We check every hexagon of the grid and assign its neighbours.
-    private void AssignNeighbours (Hexagon[,] hexagons)
+    private void AssignNeighbours ()
     {
         for (int x = 0; x <= hexagonsX; x += 1) 
         {

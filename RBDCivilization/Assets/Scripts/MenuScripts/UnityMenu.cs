@@ -35,7 +35,7 @@ public class UnityMenu : MonoBehaviour
             descriptionText.text = units[0].stats.race;
             if (length == 1)
             {
-                firstStr = "There is " + length + " " + units[0].stats.occupation.ToLower () + " in this cell.";
+                firstStr = "There is 1 " + units[0].stats.occupation.ToLower () + " in this cell.";
             }
             infoText.text = firstStr + System.Environment.NewLine +
                 "Movement: " + units[0].GetMovementLimit () + "/" + units[0].stats.speed + "." + System.Environment.NewLine + "Total attack power: " + units[0].stats.attack * length + "." +

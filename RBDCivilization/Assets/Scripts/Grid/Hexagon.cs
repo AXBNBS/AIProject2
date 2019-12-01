@@ -17,7 +17,7 @@ public class Hexagon : MonoBehaviour
 
     public Material MaterialVisible;
     public Material MaterialNoVisible;
-    public int hexagonType; //-1 rio o montaña sin perforar, 1 pradera o montaña perforada, 2 bosque
+    public int hexagonType; // -1 rio o montaña sin perforar/+1 pradera o montaña perforada/+2 bosque/0 lago
 
     private bool isBuilded = false; //Si hay construccion en el hexagono
     private bool visible = false; //Si esta visible o no
@@ -82,7 +82,7 @@ public class Hexagon : MonoBehaviour
     {
         if (presentUnt == 0)
         {
-            return null;
+            return new UnitMovement[0];
         }
         else 
         {

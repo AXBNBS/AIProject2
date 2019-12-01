@@ -118,7 +118,7 @@ public class CameraController : MonoBehaviour
             newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
         }
 
-        if (Input.GetMouseButtonDown (0) == true) 
+        if (Input.GetMouseButtonDown (0) == true && IsMouseOverUI () == false) 
         {
             //Plane plane = new Plane (Vector3.up, Vector3.zero);
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -153,7 +153,7 @@ public class CameraController : MonoBehaviour
                     }
                     else if(!IsMouseOverUI())
                     {
-                        if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length && ((hex.UnitsPlaced () == null) || (hex.UnitsPlaced()[0].stats.race == selectedUnt[0].stats.race))) 
+                        if (selectedUnt[0].currentHex != hex && hex.GetCapacity () >= selectedUnt.Length && ((hex.UnitsPlaced().Length == 0) || (hex.UnitsPlaced()[0].stats.race == selectedUnt[0].stats.race))) 
                         {
                             foreach (Hexagon neighbour in hex.neighbours)
                             {
