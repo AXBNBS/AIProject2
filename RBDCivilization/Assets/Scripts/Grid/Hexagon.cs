@@ -170,11 +170,14 @@ public class Hexagon : MonoBehaviour
     public void SetVisible (bool n)
     {
         visible = n;
-        var renderer = GetComponent<Renderer>();
+
+        var renderer = GetComponent<Renderer> ();
+
         if (n == true)
         {
             renderer.material = MaterialVisible;
-        } else
+        } 
+        else
         {
             renderer.material = MaterialNoVisible;
         }
@@ -200,7 +203,7 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    public UnitMovement[] GetUnits()
+    public UnitMovement[] GetUnits ()
     {
         return units;
     }
@@ -215,6 +218,8 @@ public class Hexagon : MonoBehaviour
     public void SetMountain (bool n)
     {
         mountain = n;
+
+        SetHexagonType (-1);
     }
 
 
@@ -224,12 +229,14 @@ public class Hexagon : MonoBehaviour
         units = new UnitMovement[5];
     }
 
-    public int GetRemainingTurnsToCollect()
+
+    public int GetRemainingTurnsToCollect ()
     {
         return remainingTurnsToCollect;
     }
 
-    public void SetRemainingTurnsToCollect(int turns)
+
+    public void SetRemainingTurnsToCollect (int turns)
     {
         remainingTurnsToCollect += turns;
     }
