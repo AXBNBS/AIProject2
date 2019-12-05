@@ -18,6 +18,7 @@ public class Unit : MonoBehaviour
     private GameObject GameManager;
 
     public float totalPower;
+    private FinishScript finishScript;
 
     void Awake()
     {
@@ -32,6 +33,7 @@ public class Unit : MonoBehaviour
         totalPower = 0;
 
         GameManager = GameObject.FindGameObjectWithTag("GameController");
+        finishScript = GameObject.FindGameObjectWithTag("Interface").GetComponentInChildren<FinishScript>();
     }
 
     void Update()
@@ -72,8 +74,9 @@ public class Unit : MonoBehaviour
     private void Assault()
     {
         //Habra que mirar de obtener todas las unidades de un mismo bando que esten en un hexagono para crear bien las probabilidades
+        bool finish = false;
 
-        if (Random.Range(0, 10) > 11)
+        if (Random.Range(0, 10) > 3)
         {
             if (movement.currentHex.GetCity().GetLevel() == 1)
             {
@@ -90,6 +93,7 @@ public class Unit : MonoBehaviour
                 }
                 Destroy(movement.currentHex.GetCity().gameObject);
                 movement.currentHex.SetIsBuilded(false);
+                finish = true;
             }
             else
             {
@@ -97,18 +101,39 @@ public class Unit : MonoBehaviour
 
                 Object.Destroy(movement.currentHex.GetCity().gameObject);
 
-                GameObject build = Instantiate(previousLevel, new Vector3(movement.currentHex.CentroHexagono.position.x, movement.currentHex.CentroHexagono.position.y, movement.currentHex.CentroHexagono.position.z), Quaternion.identity);
+                movement.currentHex.environment = Instantiate(previousLevel, new Vector3(movement.currentHex.CentroHexagono.position.x, movement.currentHex.CentroHexagono.position.y, movement.currentHex.CentroHexagono.position.z), Quaternion.identity);
 
-                movement.currentHex.SetCity(build.GetComponent<City>());
+                movement.currentHex.SetCity(movement.currentHex.environment.GetComponent<City>());
                 movement.FindPathTo(movement.previousHex);
             }
 
-            if (movement.currentHex.GetCity().GetCityType() == "Capital")
+            if (movement.currentHex.GetCity().gameObject.tag == "BlueCapital")
             {
-                GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 5, false);
+                if (movement.currentHex.GetCity().GetCityType() == "Capital")
+                {
+                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 5, false);
+                    if (finish)
+                        finishScript.finishMatch("Blue");
+                }
+                else
+                {
+                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, false);
+                }
             } else
             {
-                GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, false);
+                if (movement.currentHex.GetCity().GetCityType() == "Capital")
+                {
+                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Red", 5, false);
+                    if (finish)
+                    {
+                        finishScript.finishMatch("Red");
+                        
+                    }
+                }
+                else
+                {
+                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Red", 3, false);
+                }
             }
         }
         else
