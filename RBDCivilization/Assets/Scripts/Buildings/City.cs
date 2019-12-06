@@ -30,6 +30,7 @@ public class City : MonoBehaviour
     public CitySettings settings;
     public GameObject nextLevel;
     public GameObject previousLevel;
+    public Hexagon currentHex;
 
     private int capacity = 35;
 

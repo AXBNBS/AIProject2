@@ -41,6 +41,7 @@ public class BehaviourTreeScript : MonoBehaviour
     public event TreeExecuted onTreeExecuted;
 
     public delegate void NodePassed(string trigger);
+    
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,7 @@ public class BehaviourTreeScript : MonoBehaviour
     {
         Debug.Log("The IA is doing things");
         Hexagon hexCapital = grid.hexagons[14, 48];
+        Hexagon hexPlayerCapital = grid.hexagons[14, 0];
         yield return null;
 
         if (underAttack() == NodeStates.SUCCESS)
@@ -128,6 +130,94 @@ public class BehaviourTreeScript : MonoBehaviour
             if (checkTotalUnits() == NodeStates.SUCCESS)
             {
                 Debug.Log("IA tiene ejercito");
+                GameObject[] cities = GameObject.FindGameObjectsWithTag("BlueSettlement");
+
+                if (cities.Length < 3)
+                {
+                    print("IA ha detectado pocos asentamientos del jugador.");
+                    GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int u = 0; u < units.Length; u += 1)
+                    {
+                        if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Soldier")
+                        {
+                            if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, hexPlayerCapital) == NodeStates.SUCCESS)
+                            {
+                                print("IA ataca capital del jugador.");
+                                attack(0, null, null, units[u].GetComponent<Unit>());
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    print("IA decide atacar asentamiento.");
+                    GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int u = 0; u < units.Length; u += 1)
+                    {
+                        if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Soldier")
+                        {
+                            if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, cities[0].GetComponent<City>().currentHex) == NodeStates.SUCCESS)
+                            {
+                                print("IA ataca asentamiento del jugador.");
+                                attack(0, null, null, units[u].GetComponent<Unit>());
+                            }
+                        }
+                    }
+                }
+            }
+            else 
+            {
+                print("IA no tiene ejército.");
+                if (checkPopulation () == NodeStates.SUCCESS) 
+                {
+                    print("IA tiene población de sobra.");
+                    if (checkStores(5) == NodeStates.SUCCESS)
+                    {
+                        print("IA tiene víveres.");
+                        if (reclutUnits(1, hexCapital) == NodeStates.SUCCESS)
+                        {
+                            print("IA produce tropas.");
+                        }
+                    }
+                    else 
+                    {
+                        print("IA no tiene víveres.");
+                        if (checkActiveFarms() == NodeStates.SUCCESS)
+                        {
+                            print("IA tiene granjas inactivas.");
+                            GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                            bool participa = false;
+                            for (int u = 0; u < units.Length; u += 1)
+                            {
+                                if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Farmer")
+                                {
+                                    foreach (Farm f in GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().AIFrm)
+                                    {
+                                        if (!f.active)
+                                        {
+                                            if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, f.GetComponent<City>().currentHex) == NodeStates.SUCCESS)
+                                            {
+                                                print("IA activa granja.");
+                                                saveUnits(0, f.GetComponent<City>().currentHex);
+                                                participa = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (!participa)
+                            {
+                                print("IA recluta granjeros.");
+                                reclutUnits (7, hexCapital);
+                            }
+                        }
+                        else 
+                        {
+
+                        }
+                    }
+                }
             }
         }
     }

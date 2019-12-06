@@ -77,6 +77,7 @@ public class Builder : MonoBehaviour
             {
                 resourcesHld.changeTotalPopulation (side, 3, true);
                 hex.GetCity().SetCityType("Settlement");
+                hex.GetCity().currentHex = hex;
 
                 if (this.tag == "Enemy") 
                 {
