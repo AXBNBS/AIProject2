@@ -571,9 +571,9 @@ public class EnemyFunctions : MonoBehaviour
     public bool underAttack() //Cuando este el número de mapa correcto se pondra el hexagono correcto de entonces
     {
         int total = 0;
-        for (int i = 27; i < 50; i++)
+        for (int i = 0; i < 50; i++)
         {
-            for (int j = 0; j < 57; j++)
+            for (int j = 24; j < 57; j++)
             {
                 if (grid.hexagons[i, j].presentUnt != 0 && grid.hexagons[i, j].units[0].tag == "Ally" && grid.hexagons[i, j].units[0].stats.occupation == "Soldier")
                 {
