@@ -140,15 +140,18 @@ public class CameraController : MonoBehaviour
 
                     if (selectedUnt == null)
                     {
-                        selectedUnt = hex.UnitsPlaced ();
-                        //print(selectedUnt[0].name);
-                        if (!hex.GetIsBuilded() && selectedUnt != null && selectedUnt[0].tag !="Enemy")
+                        if (hex.UnitsPlaced().Length != 0)
                         {
-                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
-                        }
-                        else if(selectedUnt!= null && selectedUnt[0].tag == "Enemy")
-                        {
-                            selectedUnt = null;
+                            selectedUnt = hex.UnitsPlaced();
+                            //print(selectedUnt[0].name);
+                            if (!hex.GetIsBuilded() && selectedUnt != null && selectedUnt[0].tag != "Enemy")
+                            {
+                                buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
+                            }
+                            else if (selectedUnt != null && selectedUnt[0].tag == "Enemy")
+                            {
+                                selectedUnt = null;
+                            }
                         }
                     }
                     else if(!IsMouseOverUI())

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BehaviourTreeScript : MonoBehaviour
 {
-    public EnemyFunction enemyFunction;
+    public EnemyFunctions enemyFunction;
 
     private int capitalLevel = 1;
     private int orcs = 0;
@@ -54,7 +54,6 @@ public class BehaviourTreeScript : MonoBehaviour
         Collect = new ActionNode(collect);
         CheckActiveFarms = new ActionNode(checkActiveFarms);
         Attack = new ActionNode(attack);
-        CheckVictory = new ActionNode(checkVictory);
         UnderAttack = new ActionNode(underAttack);
     }
 
@@ -66,11 +65,12 @@ public class BehaviourTreeScript : MonoBehaviour
     private IEnumerator Execute()
     {
         Debug.Log("The IA is doing things");
+        yield return null;
     }
 
     private NodeStates checkWood()
     {
-        if (enemyFunction.checkWood)
+        if (enemyFunction.checkWood())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -78,7 +78,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates checkMineral()
     {
-        if (enemyFunction.checkMineral)
+        if (enemyFunction.checkMineral())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -86,7 +86,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates checkStores()
     {
-        if (enemyFunction.checkStores)
+        if (enemyFunction.checkStores())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -94,7 +94,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates checkPopulation()
     {
-        if (enemyFunction.checPopulation)
+        if (enemyFunction.checkPopulation())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -102,7 +102,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates levelUp()
     {
-        if (enemyFunction.levelUp == 1)
+        if (enemyFunction.levelUp(null) == 1)
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -110,7 +110,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates reclutUnits()
     {
-        if (enemyFunction.reclutUnits == 1)
+        if (enemyFunction.reclutUnits(0,null) == 1)
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -118,7 +118,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates checkMoveUnits()
     {
-        if (enemyFunction.checkMoveUnits)
+        if (enemyFunction.checkMoveUnits(0,null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -126,7 +126,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates moveUnits()
     {
-        if (enemyFunction.moveUnits)
+        if (enemyFunction.moveUnits(0,null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -134,7 +134,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates buildSettlement()
     {
-        if (enemyFunction.buildSettlement)
+        if (enemyFunction.buildSettlement(null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -142,7 +142,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates buildFarm()
     {
-        if (enemyFunction.buildFarm)
+        if (enemyFunction.buildFarm(null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -150,7 +150,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates buildTunnel()
     {
-        if (enemyFunction.buildTunnel)
+        if (enemyFunction.buildTunnel(null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -158,7 +158,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates collect()
     {
-        if (enemyFunction.collect)
+        if (enemyFunction.Collect(null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -166,7 +166,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates checkActiveFarms()
     {
-        if (enemyFunction.checkActiveFarms)
+        if (enemyFunction.checkActiveFarms())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -174,15 +174,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates attack()
     {
-        if (enemyFunction.attack)
-            return NodeStates.SUCCESS;
-        else
-            return NodeStates.FAILURE;
-    }
-
-    private NodeStates checkVictory()
-    {
-        if (enemyFunction.checkVictory)
+        if (enemyFunction.attack(null))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -190,7 +182,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates underAttack()
     {
-        if (enemyFunction.underAttack)
+        if (enemyFunction.underAttack())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
