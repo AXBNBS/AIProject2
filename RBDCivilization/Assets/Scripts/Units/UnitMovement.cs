@@ -21,8 +21,8 @@ public class UnitMovement : MonoBehaviour
     [SerializeField] private int moveSpd, startHex;
     private CharacterController characterCtr;
     private Transform feet;
-    private List<Vector3> path;
     private float offsetHexX, offsetHexZ;
+    private List<Vector3> path;
     private Vector3[] offsets;
     //private List<UnitMovement> collided;
     private UnitMovement[] allies;
@@ -289,9 +289,10 @@ public class UnitMovement : MonoBehaviour
 
 
     // We get the path to the indicated hexagon. We also make sure that our current allies keep the same alignment while the path is being traversed.
-    public void FindPathTo (Hexagon hex) 
+    public int FindPathTo (Hexagon hex) 
     {
-        path = currentHex.GetPath (hex);
+        int cost = currentHex.GetPath (hex);
+
         if (moveLmt >= path.Count) 
         {
             visibleTarget = hex.GetVisible ();
@@ -318,7 +319,7 @@ public class UnitMovement : MonoBehaviour
             {
                 if (stats.occupation == "Worker")
                 {
-                    Builder builder = this.GetComponent<Builder>();
+                    Builder builder = this.GetComponent<Builder> ();
 
                     if (builder.working == true)
                     {
@@ -331,6 +332,8 @@ public class UnitMovement : MonoBehaviour
                 }
             }
         }
+
+        return (moveLmt - cost);
     }
 
 
@@ -363,5 +366,12 @@ public class UnitMovement : MonoBehaviour
         {
             return moveLmt;
         }
+    }
+
+
+    // Sets a new path for the unit.
+    public void SetPath (List<Vector3> p) 
+    {
+        path = p;
     }
 }

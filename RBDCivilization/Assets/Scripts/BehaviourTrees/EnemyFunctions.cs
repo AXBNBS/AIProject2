@@ -46,7 +46,7 @@ public class EnemyFunctions : MonoBehaviour
         {
             enoughWood = 600;
         }
-        else if(capital.GetLevel() == 3)
+        else if (capital.GetLevel() == 3)
         {
             enoughWood = 800;
         } else if (capital.GetLevel() == 4)
@@ -146,7 +146,7 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-    public int levelUp (Hexagon hex)
+    public int levelUp(Hexagon hex)
     {
         if ((hex.GetCity().GetCityType() == "Settlement" && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType() == "Capital"))
         {
@@ -199,7 +199,7 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-    public int reclutUnits (int type, Hexagon hex)
+    public int reclutUnits(int type, Hexagon hex)
     {
         Hexagon generate = null;
         for (int i = 0; i < hex.neighbours.Length; i++)
@@ -295,7 +295,7 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-    public bool moveUnits (int type, Hexagon hex)
+    public bool moveUnits(int type, Hexagon hex)
     {
         Hexagon generate = null;
         for (int i = 0; i < hex.neighbours.Length; i++)
@@ -363,11 +363,11 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool buildSettlement(Unit unit)
     {
-        if (unit.GetOccupation() == "Worker" && unit.movement.currentHex.GetIsBuilded()==false)
+        if (unit.GetOccupation() == "Worker" && unit.movement.currentHex.GetIsBuilded() == false)
         {
-            foreach(Hexagon h in unit.movement.currentHex.neighbours)
+            foreach (Hexagon h in unit.movement.currentHex.neighbours)
             {
-                if(h!=null && h.GetIsBuilded())
+                if (h != null && h.GetIsBuilded())
                 {
                     return false; //No se puede construir (depende como busque la IA donde moverse esto puede no ser necesario)
                 }
@@ -428,7 +428,7 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool Collect(Unit unit)
     {
-        if (unit.GetOccupation()=="Collector" && unit.movement.currentHex.GetRemainingTurnsToCollect() <= 0)
+        if (unit.GetOccupation() == "Collector" && unit.movement.currentHex.GetRemainingTurnsToCollect() <= 0)
         {
             unit.GetComponent<Collector>().BeginCollect();
             return true;//Puede recolectar
@@ -438,7 +438,7 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool checkActiveFarms()
     {
-        foreach(Farm f in gameManager.AIFrm)
+        foreach (Farm f in gameManager.AIFrm)
         {
             if (!f.active)
                 return true;
@@ -451,14 +451,14 @@ public class EnemyFunctions : MonoBehaviour
         int range = Mathf.RoundToInt(unit.GetSpeed());
         Hexagon originHex = unit.movement.currentHex;
         bool canWin = false;
-        Hexagon destinyHex=null;
+        Hexagon destinyHex = null;
         Queue<Hexagon> q = new Queue<Hexagon>();
         q.Enqueue(originHex);
 
         while (q.Count > 0)
         {
             Hexagon element = q.Dequeue();
-            if(element!=null && element.presentUnt!=0 && element.UnitsPlaced()[0].tag == "Ally")
+            if (element != null && element.presentUnt != 0 && element.UnitsPlaced()[0].tag == "Ally")
             {
                 canWin = checkVictory(element, unit);
                 destinyHex = element;
@@ -479,7 +479,7 @@ public class EnemyFunctions : MonoBehaviour
         {
             //movemos las unidades al hexagono objetivo y destruimos las unidades azules 
             unit.movement.targetHex = destinyHex;
-            foreach(Hexagon h in unit.movement.currentHex.neighbours)
+            foreach (Hexagon h in unit.movement.currentHex.neighbours)
             {
                 if (h != null && h == destinyHex)
                 {
@@ -591,6 +591,51 @@ public class EnemyFunctions : MonoBehaviour
         } else
         {
             return false; //No esta bajo ataque
+        }
+    }
+
+
+    // Returns -1 the unit hasn't moved, 0 if it has moved but still hasn't reached its target or +1 if it's arrived to its target.
+    public int MovementUnits(Hexagon startHex, Hexagon finalHex)
+    {
+        UnitMovement[] units = startHex.UnitsPlaced();
+        int result = units[0].FindPathTo(finalHex);
+
+        if (result == units[0].GetMovementLimit())
+        {
+            return -1;
+        }
+        else
+        {
+            if (result >= 0)
+            {
+                return +1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+
+    // Returs true if units can be saved at the city, otherwise returns false.
+    public bool SaveUnits (UnitMovement[] units, City city)
+    {
+        if (city.GetCapacity () >= units.Length)
+        {
+            city.AddUnits (units[0].stats.race, units.Length, units[0].stats.defense * units.Length);
+            units[0].currentHex.EmptyHexagon ();
+            for (int u = 0; u < units.Length; u += 1) 
+            {
+                Destroy (units[u].gameObject);
+            }
+
+            return true;
+        }
+        else 
+        {
+            return false;
         }
     }
 }
