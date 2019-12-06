@@ -594,9 +594,8 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-
     // Returns -1 the unit hasn't moved, 0 if it has moved but still hasn't reached its target or +1 if it's arrived to its target.
-    public int MovementUnits(Hexagon startHex, Hexagon finalHex)
+    public int movementUnits(Hexagon startHex, Hexagon finalHex)
     {
         UnitMovement[] units = startHex.UnitsPlaced();
         int result = units[0].FindPathTo(finalHex);
@@ -618,13 +617,13 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-
     // Returs true if units can be saved at the city, otherwise returns false.
-    public bool SaveUnits (UnitMovement[] units, City city)
+    public bool saveUnits (Hexagon hex)
     {
-        if (city.GetCapacity () >= units.Length)
+        UnitMovement[] units = hex.UnitsPlaced();
+        if (hex.GetCity().GetCapacity () >= units.Length)
         {
-            city.AddUnits (units[0].stats.race, units.Length, units[0].stats.defense * units.Length);
+            hex.GetCity().AddUnits (units[0].stats.race, units.Length, units[0].stats.defense * units.Length);
             units[0].currentHex.EmptyHexagon ();
             for (int u = 0; u < units.Length; u += 1) 
             {
@@ -635,7 +634,57 @@ public class EnemyFunctions : MonoBehaviour
         }
         else 
         {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            GameObject train;
+
+            for (int i = 0; i < units.Length; i++)
+            {
+                if (units[i].stats.race == "Orc")
+                    train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                else if (units[i].stats.race == "Roll")
+                    train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                else if (units[i].stats.race == "Goblin")
+                    train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                else if (units[i].stats.race == "Troll")
+                    train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                else if (units[i].stats.race == "Cuctanya")
+                    train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                else if (units[i].stats.race == "Puppet")
+                    train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                else if (units[i].stats.race == "Witcher")
+                    train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+            }
+
+            units[0].currentHex.EmptyHexagon();
+            for (int u = 0; u < units.Length; u += 1)
+            {
+                Destroy(units[u].gameObject);
+            }
+
             return false;
         }
+    }
+
+    public bool attackBuilding()
+    {
+        return true;
+    }
+
+    public bool checkTotalUnits()
+    {
+        GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+        if (units.Length > 18)
+            return true;
+        else
+            return false;
     }
 }

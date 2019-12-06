@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BehaviourTreeScript : MonoBehaviour
 {
+    public Grid grid;
     public EnemyFunctions enemyFunction;
 
     private int capitalLevel = 1;
@@ -31,6 +32,10 @@ public class BehaviourTreeScript : MonoBehaviour
     public ActionNode Attack;
     public ActionNode CheckVictory;
     public ActionNode UnderAttack;
+    public ActionNode MovementUnits;
+    public ActionNode SaveUnits;
+    public ActionNode AttackBuilding;
+    public ActionNode CheckTotalUnits;
 
     public delegate void TreeExecuted();
     public event TreeExecuted onTreeExecuted;
@@ -55,6 +60,10 @@ public class BehaviourTreeScript : MonoBehaviour
         CheckActiveFarms = new ActionNode(checkActiveFarms);
         Attack = new ActionNode(attack);
         UnderAttack = new ActionNode(underAttack);
+        MovementUnits = new ActionNode(movementUnits);
+        SaveUnits = new ActionNode(saveUnits);
+        AttackBuilding = new ActionNode(attackBuilding);
+        CheckTotalUnits = new ActionNode(checkTotalUnits);
     }
 
     public void Evaluate()
@@ -65,10 +74,65 @@ public class BehaviourTreeScript : MonoBehaviour
     private IEnumerator Execute()
     {
         Debug.Log("The IA is doing things");
+        Hexagon hexCapital = grid.hexagons[14, 48];
         yield return null;
+
+        if (underAttack() == NodeStates.SUCCESS)
+        {
+            Debug.Log("IA bajo ataque");
+            if (checkTotalUnits() == NodeStates.SUCCESS)
+            {
+                Debug.Log("IA tiene ejercito");
+                GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                for (int i = 0; i < units.Length; i++)
+                {
+                    if (units[i] != null && movementUnits(units[i].GetComponent<Unit>().movement.currentHex, hexCapital) == NodeStates.SUCCESS)
+                    {
+                        Debug.Log("IA almacena unidades");
+                        saveUnits(hexCapital);                        
+                    }
+                }
+            } else
+            {
+                Debug.Log("IA no tiene ejército");
+                if (checkPopulation() == NodeStates.SUCCESS && checkStores(5) == NodeStates.SUCCESS)
+                {
+                    Debug.Log("IA tiene poblacion libre y suficientes viveres");
+                    reclutUnits(1, hexCapital);
+                    GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int i = 0; i < units.Length; i++)
+                    {
+                        if (units[i] != null && movementUnits(units[i].GetComponent<Unit>().movement.currentHex, hexCapital) == NodeStates.SUCCESS)
+                        {
+                            Debug.Log("IA almacena unidades");
+                            saveUnits(hexCapital);
+                        }
+                    }
+                } else
+                {
+                    ("IA no puede producir tropas");                    
+                    GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int i = 0; i < units.Length; i++)
+                    {
+                        if (units[i] != null && movementUnits(units[i].GetComponent<Unit>().movement.currentHex, hexCapital) == NodeStates.SUCCESS)
+                        {
+                            Debug.Log("IA almacena unidades");
+                            saveUnits(hexCapital);
+                        }
+                    }
+                }
+            }
+        } else
+        {
+            Debug.Log("IA segura");
+            if (checkTotalUnits() == NodeStates.SUCCESS)
+            {
+                Debug.Log("IA tiene ejercito");
+            }
+        }
     }
 
-    private NodeStates checkWood()
+    private NodeStates checkWood(int n = 0)
     {
         if (enemyFunction.checkWood())
             return NodeStates.SUCCESS;
@@ -76,7 +140,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkMineral()
+    private NodeStates checkMineral(int n = 0)
     {
         if (enemyFunction.checkMineral())
             return NodeStates.SUCCESS;
@@ -84,7 +148,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkStores()
+    private NodeStates checkStores(int n = 0)
     {
         if (enemyFunction.checkStores())
             return NodeStates.SUCCESS;
@@ -100,65 +164,65 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates levelUp()
+    private NodeStates levelUp(Hexagon hex)
     {
-        if (enemyFunction.levelUp(null) == 1)
+        if (enemyFunction.levelUp(hex) == 1)
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates reclutUnits()
+    private NodeStates reclutUnits(int type, Hexagon hex)
     {
-        if (enemyFunction.reclutUnits(0,null) == 1)
+        if (enemyFunction.reclutUnits(type, hex) == 1)
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkMoveUnits()
+    private NodeStates checkMoveUnits(int type, Hexagon hex)
     {
-        if (enemyFunction.checkMoveUnits(0,null))
+        if (enemyFunction.checkMoveUnits(type, hex))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates moveUnits()
+    private NodeStates moveUnits(int type, Hexagon hex)
     {
-        if (enemyFunction.moveUnits(0,null))
+        if (enemyFunction.moveUnits(type, hex))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates buildSettlement()
+    private NodeStates buildSettlement(Unit unit)
     {
-        if (enemyFunction.buildSettlement(null))
+        if (enemyFunction.buildSettlement(unit))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates buildFarm()
+    private NodeStates buildFarm(Unit unit)
     {
-        if (enemyFunction.buildFarm(null))
+        if (enemyFunction.buildFarm(unit))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates buildTunnel()
+    private NodeStates buildTunnel(Unit unit)
     {
-        if (enemyFunction.buildTunnel(null))
+        if (enemyFunction.buildTunnel(unit))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
     }
 
-    private NodeStates collect()
+    private NodeStates collect(Unit unit)
     {
-        if (enemyFunction.Collect(null))
+        if (enemyFunction.Collect(unit))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -172,9 +236,9 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates attack()
+    private NodeStates attack(Unit unit)
     {
-        if (enemyFunction.attack(null))
+        if (enemyFunction.attack(unit))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
@@ -183,6 +247,40 @@ public class BehaviourTreeScript : MonoBehaviour
     private NodeStates underAttack()
     {
         if (enemyFunction.underAttack())
+            return NodeStates.SUCCESS;
+        else
+            return NodeStates.FAILURE;
+    }
+
+    private NodeStates movementUnits(Hexagon startHex, Hexagon finalHex)
+    {
+        if (enemyFunction.movementUnits(startHex, finalHex) == 1)
+            return NodeStates.SUCCESS;
+        else if (enemyFunction.movementUnits(startHex, finalHex) == -1)
+            return NodeStates.FAILURE;
+        else
+            return NodeStates.RUNNING;
+    }
+
+    private NodeStates saveUnits(Hexagon hex)
+    {
+        if (enemyFunction.saveUnits(hex))
+            return NodeStates.SUCCESS;
+        else
+            return NodeStates.FAILURE;
+    }
+
+    private NodeStates attackBuilding()
+    {
+        if (enemyFunction.attackBuilding())
+            return NodeStates.SUCCESS;
+        else
+            return NodeStates.FAILURE;
+    }
+
+    private NodeStates checkTotalUnits()
+    {
+        if (enemyFunction.checkTotalUnits())
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
