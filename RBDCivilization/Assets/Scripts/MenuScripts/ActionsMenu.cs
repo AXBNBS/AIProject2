@@ -32,9 +32,8 @@ public class ActionsMenu : MonoBehaviour
     // Update is called once per frame.
     private void Update ()
     {
-        if (cam.GetSelectedUnits() != null && cam.GetSelectedUnits().Length != 0)
+        if (cam.GetSelectedUnits() != null)
         {
-            print(cam.GetSelectedUnits()[0]);
             if (cam.GetSelectedUnits()[0].stats.occupation == "Worker")
             {
                 leftBottomHUD.SetActive(true);
