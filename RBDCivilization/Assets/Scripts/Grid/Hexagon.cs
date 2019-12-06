@@ -20,7 +20,7 @@ public class Hexagon : MonoBehaviour
     public int hexagonType; // -1 rio o montaña sin perforar/+1 pradera o montaña perforada/+2 bosque/0 lago
 
     private bool isBuilded = false; //Si hay construccion en el hexagono
-    private bool visible = false; //Si esta visible o no
+    public bool visible = false; //Si esta visible o no
     private City building = null; //Tipo de edificio pudiendo ser "capital", "farm", "sawmill" o "mina"
     
     public Transform CentroHexagono; //Para cuando generes edificios
@@ -37,6 +37,31 @@ public class Hexagon : MonoBehaviour
         sphereCol = this.gameObject.GetComponent<SphereCollider> ();
         mountain = false;
         remainingTurnsToCollect = 0;
+
+        InvokeRepeating("CheckVisibility", 0, 0.5f);
+    }
+
+    public void CheckVisibility()
+    {
+        if (this.environment != null)
+        {
+            if (this.visible == false)
+            {
+                this.environment.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else
+            {
+                this.environment.transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+
+        if (this.visible==false && presentUnt != 0)
+        {
+            for(int i=0; i < presentUnt; i++)
+            {
+                units[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
     }
 
 
