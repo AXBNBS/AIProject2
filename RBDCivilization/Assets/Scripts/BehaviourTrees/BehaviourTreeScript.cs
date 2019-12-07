@@ -585,7 +585,6 @@ public class BehaviourTreeScript : MonoBehaviour
                                         if (checkActiveFarms() == NodeStates.SUCCESS)
                                         {
                                             print("IA tiene granjas inactivas.");
-                                            GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
                                             bool participa = false;
                                             for (int u = 0; u < units.Length; u += 1)
                                             {
