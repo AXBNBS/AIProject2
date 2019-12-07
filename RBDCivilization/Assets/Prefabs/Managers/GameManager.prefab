@@ -52,7 +52,9 @@ MonoBehaviour:
   AIBld: []
   playerCll: []
   AICll: []
-  storesPerTrn: 10
+  restoringHexagons: []
+  behaviourTree: {fileID: 0}
+  storesPerFrm: 0
 --- !u!114 &4363778776442751078
 MonoBehaviour:
   m_ObjectHideFlags: 0

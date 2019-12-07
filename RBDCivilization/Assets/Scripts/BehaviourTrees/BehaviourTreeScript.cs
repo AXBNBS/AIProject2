@@ -9,26 +9,26 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private int capitalLevel = 1;
 
-    public ActionNode CheckWood;
-    public ActionNode CheckMineral;
-    public ActionNode CheckStores;
-    public ActionNode CheckPopulation;
-    public ActionNode LevelUp;
-    public ActionNode ReclutUnits;
-    public ActionNode CheckMoveUnits;
-    public ActionNode MoveUnits;
-    public ActionNode BuildSettlement;
-    public ActionNode BuildFarm;
-    public ActionNode BuildTunnel;
-    public ActionNode Collect;
-    public ActionNode CheckActiveFarms;
-    public ActionNode Attack;
-    public ActionNode CheckVictory;
-    public ActionNode UnderAttack;
-    public ActionNode MovementUnits;
-    public ActionNode SaveUnits;
-    public ActionNode AttackBuilding;
-    public ActionNode CheckTotalUnits;
+    [HideInInspector] public ActionNode CheckWood;
+    [HideInInspector] public ActionNode CheckMineral;
+    [HideInInspector] public ActionNode CheckStores;
+    [HideInInspector] public ActionNode CheckPopulation;
+    [HideInInspector] public ActionNode LevelUp;
+    [HideInInspector] public ActionNode ReclutUnits;
+    [HideInInspector] public ActionNode CheckMoveUnits;
+    [HideInInspector] public ActionNode MoveUnits;
+    [HideInInspector] public ActionNode BuildSettlement;
+    [HideInInspector] public ActionNode BuildFarm;
+    [HideInInspector] public ActionNode BuildTunnel;
+    [HideInInspector] public ActionNode Collect;
+    [HideInInspector] public ActionNode CheckActiveFarms;
+    [HideInInspector] public ActionNode Attack;
+    [HideInInspector] public ActionNode CheckVictory;
+    [HideInInspector] public ActionNode UnderAttack;
+    [HideInInspector] public ActionNode MovementUnits;
+    [HideInInspector] public ActionNode SaveUnits;
+    [HideInInspector] public ActionNode AttackBuilding;
+    [HideInInspector] public ActionNode CheckTotalUnits;
 
     public delegate void TreeExecuted();
     public event TreeExecuted onTreeExecuted;

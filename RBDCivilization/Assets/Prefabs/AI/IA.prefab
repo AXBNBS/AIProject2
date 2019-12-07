@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4251342607064131179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4251342607064131172}
+  - component: {fileID: 4251342607064131173}
+  - component: {fileID: 4251342607064131178}
+  m_Layer: 0
+  m_Name: IA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4251342607064131172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251342607064131179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4251342607064131173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251342607064131179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcad80240994a114999f35034b2174f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  enemyFunction: {fileID: 4251342607064131178}
+  CheckWood: {fileID: 0}
+  CheckMineral: {fileID: 0}
+  CheckStores: {fileID: 0}
+  CheckPopulation: {fileID: 0}
+  LevelUp: {fileID: 0}
+  ReclutUnits: {fileID: 0}
+  CheckMoveUnits: {fileID: 0}
+  MoveUnits: {fileID: 0}
+  BuildSettlement: {fileID: 0}
+  BuildFarm: {fileID: 0}
+  BuildTunnel: {fileID: 0}
+  Collect: {fileID: 0}
+  CheckActiveFarms: {fileID: 0}
+  Attack: {fileID: 0}
+  CheckVictory: {fileID: 0}
+  UnderAttack: {fileID: 0}
+  MovementUnits: {fileID: 0}
+  SaveUnits: {fileID: 0}
+  AttackBuilding: {fileID: 0}
+  CheckTotalUnits: {fileID: 0}
+--- !u!114 &4251342607064131178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251342607064131179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a856c7cc443fec478c231ac493f5325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orcPrefab: {fileID: 7938264708775335946, guid: 2d19553be45c061458616c85a659bd68,
+    type: 3}
+  orcSettings: {fileID: 11400000, guid: 81a47a665d3634743bf061d1b5165f51, type: 2}
+  rollPrefab: {fileID: 7938264708775335946, guid: c06ddf720824cc449be5c22840d2d46f,
+    type: 3}
+  rollSettings: {fileID: 11400000, guid: 9a60473a14d0db144bc87ad649d393bd, type: 2}
+  goblinPrefab: {fileID: 7938264708775335946, guid: 4bee2ed2edffd234594f604522304ef6,
+    type: 3}
+  goblinSettings: {fileID: 11400000, guid: 94e3345f3302d2d448d4ad19c638e92e, type: 2}
+  trollPrefab: {fileID: 7938264708775335946, guid: 0cbdea241a082714f8f34a4b640a973b,
+    type: 3}
+  trollSettings: {fileID: 11400000, guid: 03e19b1630e33b7449b64dd6902c5230, type: 2}
+  cuctanyaPrefab: {fileID: 7938264708775335946, guid: b2c0797217dce3b429a961ea96c8b11c,
+    type: 3}
+  cuctanyaSettings: {fileID: 11400000, guid: 020bfc38e8bc10c4082a3dd680e0d75a, type: 2}
+  puppetPrefab: {fileID: 7938264708775335946, guid: 0f54f2784e776644bbfe3134799f929f,
+    type: 3}
+  puppetSettings: {fileID: 11400000, guid: de47ed9e83c76ab418c696fc825666d2, type: 2}
+  witcherPrefab: {fileID: 7938264708775335946, guid: 4601309956c681c4e847871d6018403c,
+    type: 3}
+  witcherSettings: {fileID: 11400000, guid: 8a56ea2e662b3764d93322aafb363748, type: 2}
+  settlement: {fileID: 1273044046940879464, guid: f691fabbb5b3b7e4b94b86711c6331b5,
+    type: 3}
+  farm: {fileID: 4164628710240415876, guid: 38d1ed77733516144b439ad279fa2699, type: 3}
+  tunnel: {fileID: 6101138444282063262, guid: b2f21d431e23cea4e80a67349c6ea4a2, type: 3}
+  settlementMin: 0
+  settlementWod: 0
+  farmMin: 0
+  farmWod: 0
+  tunnelMin: 0
+  tunnelWod: 0
+  grid: {fileID: 0}
