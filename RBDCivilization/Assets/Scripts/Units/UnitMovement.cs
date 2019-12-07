@@ -291,7 +291,7 @@ public class UnitMovement : MonoBehaviour
     // We get the path to the indicated hexagon. We also make sure that our current allies keep the same alignment while the path is being traversed.
     public int FindPathTo (Hexagon hex) 
     {
-        int cost = currentHex.GetPath (hex);
+        int cost = currentHex.GetPath (moveLmt, hex);
 
         if (moveLmt >= path.Count) 
         {

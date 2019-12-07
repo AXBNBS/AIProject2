@@ -124,9 +124,12 @@ public class Hexagon : MonoBehaviour
 
 
     // To get the shortest path from the current hexagon to another one that serves as destination.
-    public int GetPath (Hexagon hex) 
+    public int GetPath (int limit, Hexagon hex) 
     {
-        float checkedDst;
+        return 0;
+
+
+        /*float checkedDst;
 
         int bestChoice = 0, cost = 0;
         float bestDst = Vector3.Distance (this.transform.position, hex.transform.position);
@@ -165,7 +168,7 @@ public class Hexagon : MonoBehaviour
 
         UnitsPlaced()[0].SetPath (result);
 
-        return cost;
+        return cost;*/
     }
 
 
