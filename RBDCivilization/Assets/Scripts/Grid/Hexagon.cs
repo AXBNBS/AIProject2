@@ -337,4 +337,14 @@ public class Hexagon : MonoBehaviour
     {
         remainingTurnsToCollect += turns;
     }
+
+    public void SetMaterialVisible(Material m)
+    {
+        MaterialVisible = m;
+    }
+
+    public void GetMaterialVisible()
+    {
+        return MaterialVisible;
+    }
 }
