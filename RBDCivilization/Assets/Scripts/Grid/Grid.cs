@@ -236,7 +236,7 @@ public class Grid : MonoBehaviour
 
         for (int j = 9; j < 12; j++)
         {
-            for (int i = 17; i < 29; j++)
+            for (int i = 17; i < 29; i++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
@@ -245,7 +245,7 @@ public class Grid : MonoBehaviour
 
         for (int j = 12; j < 14; j++)
         {
-            for (int i = 16; i < 29; j++)
+            for (int i = 16; i < 29; i++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
@@ -254,7 +254,7 @@ public class Grid : MonoBehaviour
 
         for (int j = 14; j < 16; j++)
         {
-            for (int i = 15; i < 29; j++)
+            for (int i = 15; i < 29; i++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
