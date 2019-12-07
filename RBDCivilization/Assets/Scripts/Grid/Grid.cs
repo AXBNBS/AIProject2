@@ -15,6 +15,11 @@ public class Grid : MonoBehaviour
     public Hexagon[] forestsArray, unwalkable;
     public GameObject Capital; //Generar las dos capitales
 
+    public Material materialPradera1;
+    public Material materialPradera2;
+    public Material materialPradera3;
+    public Material materialPradera4;
+
     [SerializeField] private Transform hexagonPfb;
     //[SerializeField] private int gridWth, gridHgt;
     [SerializeField] private float gap, hexagonScl;
