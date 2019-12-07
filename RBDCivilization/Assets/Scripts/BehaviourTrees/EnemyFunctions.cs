@@ -426,7 +426,7 @@ public class EnemyFunctions : MonoBehaviour
         return false;//No se podia construir
     }
 
-    public bool Collect(Unit unit)
+    public bool collect(Unit unit)
     {
         if (unit.GetOccupation() == "Collector" && unit.movement.currentHex.GetRemainingTurnsToCollect() <= 0)
         {

@@ -8,13 +8,6 @@ public class BehaviourTreeScript : MonoBehaviour
     public EnemyFunctions enemyFunction;
 
     private int capitalLevel = 1;
-    private int orcs = 0;
-    private int rolls = 0;
-    private int goblins = 0;
-    private int trolls = 0;
-    private int cuctanyas = 0;
-    private int puppets = 0;
-    private int witchers = 0;
     
     public ActionNode CheckWood;
     public ActionNode CheckMineral;
@@ -214,8 +207,84 @@ public class BehaviourTreeScript : MonoBehaviour
                         }
                         else 
                         {
+                            Debug.Log("IA no tiene granjas inactivas");
+                            GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                            bool prepare = false;
+                            for (int u = 0; u < units.Length; u += 1)
+                            {
+                                if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Worker")
+                                {
+                                    prepare = true;
+                                    Debug.Log("IA tiene constructor");
+                                    if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
+                                    {
+                                        Debug.Log("IA tiene recursos para construir");
+                                        buildFarm(0, null, null, units[u].GetComponent<units>());
+                                    } else
+                                    {
+                                        Debug.Log("IA no tiene recursos");
+                                        GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+                                        bool haveCollectors = false;
+                                        for (int i = 0; i < units.Length; i += 1)
+                                        {
+                                            if (units[i] != null && units[i].GetComponent<Unit>().settings.occupation == "Collector")
+                                            {
+                                                Debug.Log("IA tiene recolector");
+                                                haveCollectors = true;
+                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
+                                                {
+                                                    Debug.Log("IA ha llevado un recolector a un bosque");
+                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                } else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().currentHex, grid.hexagons[21, 35].neighbours[0]))
+                                                {
+                                                    Debug.Log("IA ha llevado a un constructor a la montaña");
+                                                    if (checkWood(100) == NodeStates.SUCCESS)
+                                                    {
+                                                        Debug.Log("IA puede construir tunel");
+                                                        buildTunnel(0, null, null, units[u].GetComponent<Unit>());
+                                                    } else if (movementUnits(0, units[i].GetComponent<Unit>().currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                    {
+                                                        Debug.Log("IA lleva recolector al bosque");
+                                                        collect(0, null, null, units[u].GetComponent<Unit>());
+                                                    }
+                                                } else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().currentHex, grid.hexagons[21, 35]))
+                                                {
+                                                    Debug.Log("IA ha llevado recolector a la montaña");
+                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                }
+                                            }
+                                        }
+                                        if (!haveCollectors)
+                                        {
+                                            Debug.Log("IA no tiene recolectores");
+                                            if (checkStores(10) == NodeStates.SUCCESS)
+                                            {
+                                                Debug.Log("IA tiene viveres");
+                                                reclutUnits(5, hexCapital);
+                                                Debug.Log("IA recluta a un recolector");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
 
+                            if (!prepare)
+                            {
+                                Debug.Log("IA no tiene constructores");
+                                if (checkStores(15) == NodeStates.SUCCESS)
+                                {
+                                    Debug.Log("IA puede crear constructores");
+                                    reclutUnits(6, hexCapital);
+                                }
+                            }
                         }
+                    }
+                } else
+                {
+                    Debug.Log("IA no tiene hueco para poblacion");
+                    if (checkWood(hexCapital.GetCity().GetNeededWood()) == NodeStates.SUCCESS && checkWood(hexCapital.GetCity().GetNeededMineral()) == NodeStates.SUCCESS)
+                    {
+
                     }
                 }
             }
@@ -312,7 +381,7 @@ public class BehaviourTreeScript : MonoBehaviour
 
     private NodeStates collect(int n, Hexagon hex, Hexagon hex2, Unit unit)
     {
-        if (enemyFunction.Collect(unit))
+        if (enemyFunction.collect(unit))
             return NodeStates.SUCCESS;
         else
             return NodeStates.FAILURE;
