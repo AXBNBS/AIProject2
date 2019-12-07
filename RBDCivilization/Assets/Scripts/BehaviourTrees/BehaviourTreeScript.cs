@@ -70,8 +70,6 @@ public class BehaviourTreeScript : MonoBehaviour
         Debug.Log("The IA is doing things");
         Hexagon hexCapital = grid.hexagons[14, 48];
         Hexagon hexPlayerCapital = grid.hexagons[14, 0];
-        yield return null;
-
         if (underAttack() == NodeStates.SUCCESS)
         {
             Debug.Log("IA bajo ataque");
@@ -830,6 +828,9 @@ public class BehaviourTreeScript : MonoBehaviour
                 }
             }
         }
+
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().StartPlayerTurn();
+        yield return null;
     }
 
     private NodeStates checkWood(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
