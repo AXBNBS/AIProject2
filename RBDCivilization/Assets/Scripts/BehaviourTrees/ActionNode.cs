@@ -6,7 +6,7 @@ using UnityEngine;
 public class ActionNode : Node
 {
     //Metodo para la accion
-    public delegate NodeStates ActionNodeDelegate();
+    public delegate NodeStates ActionNodeDelegate(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null);
 
     //El delegador que es llamado para evaluar este nodo
     private ActionNodeDelegate m_action;

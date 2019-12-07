@@ -34,8 +34,25 @@ public class Collector : MonoBehaviour
 
     public void BeginCollect()
     {
-        working = true;
-        remainingTrn = 2;
+        int allies = unitMvm.GetAllies().Length;
+        int x = 0;
+        for(int i=0; i<allies; i++)
+        {
+            if (unitMvm.GetAllies()[i] != null)
+            {
+                x++;
+            }
+        }
+        if (x >= 3)
+        {
+            working = true;
+            remainingTrn = 1;
+        }
+        else
+        {
+            working = true;
+            remainingTrn = 2;
+        }
     }
 
     // When the recollection has finished, the corresponding resources will be added to the team the collector belongs to.

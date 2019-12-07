@@ -11,6 +11,7 @@ public class Grid : MonoBehaviour
     public float hexagonWth, hexagonHgt, limitX1, limitX2, limitZ1, limitZ2;
     public int gridWth, gridHgt;
     public Hexagon[,] hexagons;
+    public Hexagon[] forestsArray;
     public GameObject Capital; //Generar las dos capitales
 
     [SerializeField] private Transform hexagonPfb;
@@ -36,6 +37,7 @@ public class Grid : MonoBehaviour
         forestHex2 = new int[] {1393, 1364, 1132, 1104, 988, 1337, 1163, 1134, 989, 844, 1396, 874, 845, 1397, 1310, 1281, 1282, 818, 789, 1051, 1022, 1052, 1256, 1228, 880, 851, 1345, 1316, 1085, 1056, 1145, 1175, 972, 973, 1322, 1352, 1323, 1149, 
             1179, 1384, 1123, 1385, 1356, 1269, 1124, 979, 1241, 980, 951, 835, 806, 1041, 1012};
         forests = (int) (forestHex1.Length / 2);
+        forestsArray = new Hexagon[forests*2];
 
         AddGap ();
         StartPosition ();
@@ -372,49 +374,8 @@ public class Grid : MonoBehaviour
     // Forests can appear in some cells, we decide randomly wich of these cells will contain a forest in the end. We also make sure each faction has a minimum number of forests on their side of the map.
     private void GenerateForests () 
     {
-        int index = 0, activeFrs = 0;
+        int index = 0, activeFrs = 0, arrayIndex = 0;
 
-        /*foreach (Hexagon h in hexagons)
-        {
-            if (h.name == forestHex1[index].ToString ()) 
-            {
-                h.SetVisible (true);
-                h.SetHexagonType (+2);
-
-                index += 1;
-
-                if (index == forestHex1.Length)
-                {
-                    break;
-                }
-            }
-        }
-
-        index = 0;
-
-        for (int x = 0; x <= hexagonsX; x += 1) 
-        {
-            for (int y = hexagonsY; y >= hexagonsY / 2; y -= 1) 
-            {
-                if (hexagons[x, y].name == forestHex2[index].ToString ()) 
-                {
-                    hexagons[x, y].SetVisible (true);
-                    hexagons[x, y].SetHexagonType (+2);
-
-                    index += 1;
-
-                    if (index == forestHex2.Length) 
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if (index == forestHex2.Length)
-            {
-                break;
-            }
-        }*/
         while (activeFrs != forests) 
         {
             for (int x = 0; x <= hexagonsX; x += 1) 
@@ -426,6 +387,8 @@ public class Grid : MonoBehaviour
                         if (Random.Range (0, 2) == 1)
                         {
                             hexagons[x, y].SetHexagonType (+2);
+                            forestsArray[arrayIndex] = hexagons[x, y];
+                            arrayIndex++;
 
                             activeFrs += 1;
 
@@ -465,6 +428,8 @@ public class Grid : MonoBehaviour
                         if (Random.Range (0, 2) == 1)
                         {
                             hexagons[x, y].SetHexagonType (+2);
+                            forestsArray[arrayIndex] = hexagons[x, y];
+                            arrayIndex++;
 
                             activeFrs += 1;
 

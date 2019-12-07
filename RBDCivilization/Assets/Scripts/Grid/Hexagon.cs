@@ -124,11 +124,14 @@ public class Hexagon : MonoBehaviour
 
 
     // To get the shortest path from the current hexagon to another one that serves as destination.
-    public List<Vector3> GetPath (Hexagon hex) 
+    public int GetPath (int limit, Hexagon hex) 
     {
-        float checkedDst;
+        return 0;
 
-        int bestChoice = 0;
+
+        /*float checkedDst;
+
+        int bestChoice = 0, cost = 0;
         float bestDst = Vector3.Distance (this.transform.position, hex.transform.position);
         List<Vector3> result = new List<Vector3> ();
         Hexagon currentHex = this;
@@ -155,10 +158,17 @@ public class Hexagon : MonoBehaviour
 
             result.Add (currentHex.neighbours[bestChoice].transform.position);
 
+            cost += currentHex.neighbours[bestChoice].GetHexagonType ();
+            if (currentHex.neighbours[bestChoice].GetHexagonType () == 0 && currentHex.UnitsPlaced()[0].GetMovementLimit () > cost) 
+            {
+                cost = 0;
+            }
             currentHex = currentHex.neighbours[bestChoice];
         }
 
-        return result;
+        UnitsPlaced()[0].SetPath (result);
+
+        return cost;*/
     }
 
 

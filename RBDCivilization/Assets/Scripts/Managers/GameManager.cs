@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<Builder> playerBld, AIBld;
     public List<Collector> playerCll, AICll;
     public List<Hexagon> restoringHexagons;
+    public BehaviourTreeScript behaviourTree;
 
     [SerializeField] private int storesPerFrm;
     private ResourcesHolder resourcesHld;
@@ -159,8 +160,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // QUITAR LUEGO
-        StartPlayerTurn ();
+        behaviourTree.Evaluate();        
     }
 
 

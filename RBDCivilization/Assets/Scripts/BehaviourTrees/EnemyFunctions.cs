@@ -27,13 +27,13 @@ public class EnemyFunctions : MonoBehaviour
 
     public Grid grid;
 
-    private GameManager gameManager;
+    private GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
         resourcesHolder = GameObject.FindObjectOfType<ResourcesHolder>();
         capital = GameObject.FindGameObjectWithTag("RedCapital").GetComponent<City>();
-        gameManager = gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
     }
 
     public bool checkWood(int n = 0)
@@ -46,7 +46,7 @@ public class EnemyFunctions : MonoBehaviour
         {
             enoughWood = 600;
         }
-        else if(capital.GetLevel() == 3)
+        else if (capital.GetLevel() == 3)
         {
             enoughWood = 800;
         } else if (capital.GetLevel() == 4)
@@ -146,7 +146,7 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-    public int levelUp (Hexagon hex)
+    public int levelUp(Hexagon hex)
     {
         if ((hex.GetCity().GetCityType() == "Settlement" && hex.GetCity().GetLevel() < 3) || (hex.GetCity().GetLevel() < 5 && hex.GetCity().GetCityType() == "Capital"))
         {
@@ -199,7 +199,7 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-    public int reclutUnits (int type, Hexagon hex)
+    public int reclutUnits(int type, Hexagon hex)
     {
         Hexagon generate = null;
         for (int i = 0; i < hex.neighbours.Length; i++)
@@ -295,7 +295,7 @@ public class EnemyFunctions : MonoBehaviour
         }
     }
 
-    public bool moveUnits (int type, Hexagon hex)
+    public bool moveUnits(int type, Hexagon hex)
     {
         Hexagon generate = null;
         for (int i = 0; i < hex.neighbours.Length; i++)
@@ -363,11 +363,11 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool buildSettlement(Unit unit)
     {
-        if (unit.GetOccupation() == "Worker" && unit.movement.currentHex.GetIsBuilded()==false)
+        if (unit.GetOccupation() == "Worker" && unit.movement.currentHex.GetIsBuilded() == false)
         {
-            foreach(Hexagon h in unit.movement.currentHex.neighbours)
+            foreach (Hexagon h in unit.movement.currentHex.neighbours)
             {
-                if(h!=null && h.GetIsBuilded())
+                if (h != null && h.GetIsBuilded())
                 {
                     return false; //No se puede construir (depende como busque la IA donde moverse esto puede no ser necesario)
                 }
@@ -426,9 +426,9 @@ public class EnemyFunctions : MonoBehaviour
         return false;//No se podia construir
     }
 
-    public bool Collect(Unit unit)
+    public bool collect(Unit unit)
     {
-        if (unit.GetOccupation()=="Collector" && unit.movement.currentHex.GetRemainingTurnsToCollect() <= 0)
+        if (unit.GetOccupation() == "Collector" && unit.movement.currentHex.GetRemainingTurnsToCollect() <= 0)
         {
             unit.GetComponent<Collector>().BeginCollect();
             return true;//Puede recolectar
@@ -438,7 +438,7 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool checkActiveFarms()
     {
-        foreach(Farm f in gameManager.AIFrm)
+        foreach (Farm f in gameManager.GetComponent<GameManager>().AIFrm)
         {
             if (!f.active)
                 return true;
@@ -451,14 +451,14 @@ public class EnemyFunctions : MonoBehaviour
         int range = Mathf.RoundToInt(unit.GetSpeed());
         Hexagon originHex = unit.movement.currentHex;
         bool canWin = false;
-        Hexagon destinyHex=null;
+        Hexagon destinyHex = null;
         Queue<Hexagon> q = new Queue<Hexagon>();
         q.Enqueue(originHex);
 
         while (q.Count > 0)
         {
             Hexagon element = q.Dequeue();
-            if(element!=null && element.presentUnt!=0 && element.UnitsPlaced()[0].tag == "Ally")
+            if (element != null && element.presentUnt != 0 && element.UnitsPlaced()[0].tag == "Ally")
             {
                 canWin = checkVictory(element, unit);
                 destinyHex = element;
@@ -479,7 +479,7 @@ public class EnemyFunctions : MonoBehaviour
         {
             //movemos las unidades al hexagono objetivo y destruimos las unidades azules 
             unit.movement.targetHex = destinyHex;
-            foreach(Hexagon h in unit.movement.currentHex.neighbours)
+            foreach (Hexagon h in unit.movement.currentHex.neighbours)
             {
                 if (h != null && h == destinyHex)
                 {
@@ -558,7 +558,7 @@ public class EnemyFunctions : MonoBehaviour
                 }
             }
         }
-        if (alliesPower > enemiesPower)
+        if (Random.Range(0, 10) >= 5 + alliesPower - enemiesPower)
         {
             return false;
         }
@@ -571,13 +571,13 @@ public class EnemyFunctions : MonoBehaviour
     public bool underAttack() //Cuando este el número de mapa correcto se pondra el hexagono correcto de entonces
     {
         int total = 0;
-        for (int i = 0; i < 50; i++)
+        for (int i = 25; i < 49; i++)
         {
-            for (int j = 24; j < 57; j++)
+            for (int j = 0; j < 29; j++)
             {
-                if (grid.hexagons[i, j].presentUnt != 0 && grid.hexagons[i, j].units[0].tag == "Ally" && grid.hexagons[i, j].units[0].stats.occupation == "Soldier")
+                if (grid.hexagons[j, i].units[0] != null && grid.hexagons[j, i].presentUnt != 0 && grid.hexagons[j, i].units[0].tag == "Ally" && grid.hexagons[j, i].units[0].stats.occupation == "Soldier")
                 {
-                    for (int x = 0; x < grid.hexagons[i, j].presentUnt; x++)
+                    for (int x = 0; x < grid.hexagons[j, i].presentUnt; x++)
                     {
                         total++;
                     }
@@ -592,5 +592,194 @@ public class EnemyFunctions : MonoBehaviour
         {
             return false; //No esta bajo ataque
         }
+    }
+
+    // Returns -1 the unit hasn't moved, 0 if it has moved but still hasn't reached its target or +1 if it's arrived to its target.
+    public int movementUnits(Hexagon startHex, Hexagon finalHex)
+    {
+        UnitMovement[] units = startHex.UnitsPlaced();
+        int result = units[0].FindPathTo(finalHex);
+
+        if (result == units[0].GetMovementLimit())
+        {
+            return -1;
+        }
+        else
+        {
+            if (result >= 0)
+            {
+                return +1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    // Returs true if units can be saved at the city, otherwise returns false.
+    public bool saveUnits (Hexagon hex)
+    {
+        UnitMovement[] units = hex.UnitsPlaced();
+        if (hex.GetCity().GetCapacity () >= units.Length)
+        {
+            hex.GetCity().AddUnits (units[0].stats.race, units.Length, units[0].stats.defense * units.Length);
+            units[0].currentHex.EmptyHexagon ();
+            for (int u = 0; u < units.Length; u += 1) 
+            {
+                if (units[u].stats.occupation == "Worker")
+                {
+                    gameManager.GetComponent<GameManager>().AIBld.Remove(units[u].GetComponent<Builder>());
+                }
+                else if(units[u].stats.occupation == "Collector")
+                {
+                    gameManager.GetComponent<GameManager>().AICll.Remove(units[u].GetComponent<Collector>());
+                }
+                gameManager.GetComponent<GameManager>().AIUnt.Remove(units[u]);
+                Destroy (units[u].gameObject);
+            }
+
+            return true;
+        }
+        else 
+        {
+            Hexagon generate = null;
+            for (int i = 0; i < hex.neighbours.Length; i++)
+            {
+                if (hex.neighbours[i] != null && hex.neighbours[i].presentUnt == 0)
+                {
+                    generate = hex.neighbours[i];
+                    break;
+                }
+            }
+
+            GameObject train;
+
+            for (int i = 0; i < units.Length; i++)
+            {
+                if (units[i].stats.race == "Orc")
+                {
+                    train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+                else if (units[i].stats.race == "Roll")
+                {
+                    train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+                else if (units[i].stats.race == "Goblin")
+                {
+                    train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+                else if (units[i].stats.race == "Troll")
+                {
+                    train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+                else if (units[i].stats.race == "Cuctanya")
+                {
+                    train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+                else if (units[i].stats.race == "Puppet")
+                {
+                    train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+                else if (units[i].stats.race == "Witcher")
+                {
+                    train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                    if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                    {
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
+                    }
+                    else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                    {
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
+                    }
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
+                }
+            }
+
+            units[0].currentHex.EmptyHexagon();
+            for (int u = 0; u < units.Length; u += 1)
+            {
+                if (units[u].stats.occupation == "Worker")
+                {
+                    gameManager.GetComponent<GameManager>().AIBld.Remove(units[u].GetComponent<Builder>());
+                }
+                else if (units[u].stats.occupation == "Collector")
+                {
+                    gameManager.GetComponent<GameManager>().AICll.Remove(units[u].GetComponent<Collector>());
+                }
+                gameManager.GetComponent<GameManager>().AIUnt.Remove(units[u]);
+                Destroy(units[u].gameObject);
+            }
+
+            return false;
+        }
+    }
+
+    public bool attackBuilding()
+    {
+        return true;
+    }
+
+    public bool checkTotalUnits()
+    {
+        GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
+        if (units.Length > 18)
+            return true;
+        else
+            return false;
     }
 }
