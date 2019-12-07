@@ -27,13 +27,13 @@ public class EnemyFunctions : MonoBehaviour
 
     public Grid grid;
 
-    private GameManager gameManager;
+    private GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
         resourcesHolder = GameObject.FindObjectOfType<ResourcesHolder>();
         capital = GameObject.FindGameObjectWithTag("RedCapital").GetComponent<City>();
-        gameManager = gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
     }
 
     public bool checkWood(int n = 0)
@@ -438,7 +438,7 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool checkActiveFarms()
     {
-        foreach (Farm f in gameManager.AIFrm)
+        foreach (Farm f in gameManager.GetComponent<GameManager>().AIFrm)
         {
             if (!f.active)
                 return true;
@@ -629,13 +629,13 @@ public class EnemyFunctions : MonoBehaviour
             {
                 if (units[u].stats.occupation == "Worker")
                 {
-                    gameManager.AIBld.Remove(units[u].GetComponent<Builder>());
+                    gameManager.GetComponent<GameManager>().AIBld.Remove(units[u].GetComponent<Builder>());
                 }
                 else if(units[u].stats.occupation == "Collector")
                 {
-                    gameManager.AICll.Remove(units[u].GetComponent<Collector>());
+                    gameManager.GetComponent<GameManager>().AICll.Remove(units[u].GetComponent<Collector>());
                 }
-                gameManager.AIUnt.Remove(units[u]);
+                gameManager.GetComponent<GameManager>().AIUnt.Remove(units[u]);
                 Destroy (units[u].gameObject);
             }
 
@@ -662,91 +662,91 @@ public class EnemyFunctions : MonoBehaviour
                     train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
                 else if (units[i].stats.race == "Roll")
                 {
                     train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
                 else if (units[i].stats.race == "Goblin")
                 {
                     train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
                 else if (units[i].stats.race == "Troll")
                 {
                     train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
                 else if (units[i].stats.race == "Cuctanya")
                 {
                     train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
                 else if (units[i].stats.race == "Puppet")
                 {
                     train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
                 else if (units[i].stats.race == "Witcher")
                 {
                     train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                     if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                     {
-                        gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                        gameManager.GetComponent<GameManager>().AIBld.Remove(train.GetComponent<Builder>());
                     }
                     else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
                     {
-                        gameManager.AICll.Remove(train.GetComponent<Collector>());
+                        gameManager.GetComponent<GameManager>().AICll.Remove(train.GetComponent<Collector>());
                     }
-                    gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
+                    gameManager.GetComponent<GameManager>().AIUnt.Remove(train.GetComponent<UnitMovement>());
                 }
             }
 
@@ -755,13 +755,13 @@ public class EnemyFunctions : MonoBehaviour
             {
                 if (units[u].stats.occupation == "Worker")
                 {
-                    gameManager.AIBld.Remove(units[u].GetComponent<Builder>());
+                    gameManager.GetComponent<GameManager>().AIBld.Remove(units[u].GetComponent<Builder>());
                 }
                 else if (units[u].stats.occupation == "Collector")
                 {
-                    gameManager.AICll.Remove(units[u].GetComponent<Collector>());
+                    gameManager.GetComponent<GameManager>().AICll.Remove(units[u].GetComponent<Collector>());
                 }
-                gameManager.AIUnt.Remove(units[u]);
+                gameManager.GetComponent<GameManager>().AIUnt.Remove(units[u]);
                 Destroy(units[u].gameObject);
             }
 
