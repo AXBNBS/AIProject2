@@ -41,7 +41,27 @@ public class Builder : MonoBehaviour
     {
         working = true;
         constructionDat = building.GetComponent<City> ();
-        remainingTrn = constructionDat.settings.turns;
+        int allies = unitMvm.GetAllies().Length;
+        int x = 0;
+        for (int i = 0; i < allies; i++)
+        {
+            if (unitMvm.GetAllies()[i] != null)
+            {
+                x++;
+            }
+        }
+        if (x <= 2)
+        {
+            remainingTrn = constructionDat.settings.turns;
+        }
+        else if(x<=4)
+        {
+            remainingTrn = constructionDat.settings.turns-1;
+        }
+        else
+        {
+            remainingTrn = constructionDat.settings.turns - 2;
+        }
         construction = building;
         spentMin = mineral;
         spentWod = wood;

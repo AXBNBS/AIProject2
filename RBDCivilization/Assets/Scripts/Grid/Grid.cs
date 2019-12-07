@@ -8,11 +8,17 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
+    public static Grid instance;
     public float hexagonWth, hexagonHgt, limitX1, limitX2, limitZ1, limitZ2;
     public int gridWth, gridHgt;
     public Hexagon[,] hexagons;
-    public Hexagon[] forestsArray;
+    public Hexagon[] forestsArray, unwalkable;
     public GameObject Capital; //Generar las dos capitales
+
+    public Material materialPradera1;
+    public Material materialPradera2;
+    public Material materialPradera3;
+    public Material materialMontana;
 
     [SerializeField] private Transform hexagonPfb;
     //[SerializeField] private int gridWth, gridHgt;
@@ -26,10 +32,12 @@ public class Grid : MonoBehaviour
     // We initialize some variables and add the gap to the hexagons's with and height, we calculate the starting position of the grid, and we finally create it.
     private void Awake ()
     {
+        instance = this;
         hexagonWth *= hexagonScl;
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
+        unwalkable = new Hexagon[hexagonsX - 3];
         ground = this.transform.GetChild (0);
         ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
         forestHex1 = new int[] {1, 30, 262, 292, 408, 61, 235, 264, 409, 554, 4, 526, 555, 5, 92, 121, 122, 586, 615, 355, 384, 356, 154, 184, 532, 561, 69, 98, 331, 360, 275, 247, 450, 451, 104, 76, 105, 279, 251, 50, 311, 51, 80, 167, 312, 457, 
@@ -37,7 +45,7 @@ public class Grid : MonoBehaviour
         forestHex2 = new int[] {1393, 1364, 1132, 1104, 988, 1337, 1163, 1134, 989, 844, 1396, 874, 845, 1397, 1310, 1281, 1282, 818, 789, 1051, 1022, 1052, 1256, 1228, 880, 851, 1345, 1316, 1085, 1056, 1145, 1175, 972, 973, 1322, 1352, 1323, 1149, 
             1179, 1384, 1123, 1385, 1356, 1269, 1124, 979, 1241, 980, 951, 835, 806, 1041, 1012};
         forests = (int) (forestHex1.Length / 2);
-        forestsArray = new Hexagon[forests*2];
+        forestsArray = new Hexagon[forests * 2];
 
         AddGap ();
         StartPosition ();
@@ -102,7 +110,7 @@ public class Grid : MonoBehaviour
     // We instantiate every hexagon and put it in its corresponding position on the grid.
     private void CreateGrid () 
     {
-        int hexagonCnt = 1;
+        int hexagonCnt = 1, riverIdx = 0;
         hexagons = new Hexagon[hexagonsX + 1, hexagonsY + 1];
 
         for (int y = 0; y <= hexagonsY; y += 1) 
@@ -119,6 +127,7 @@ public class Grid : MonoBehaviour
                 hexagonCnt += 1;
                 hexagons[x, y] = hexagon.GetComponent<Hexagon> ();
                 hexagons[x, y].SetHexagonType (+1);
+                hexagons[x, y].SetMaterialVisible(materialPradera1);
                 if (x == hexagonsX && y == hexagonsY) 
                 {
                     limitX2 = hexagon.position.x + hexagonWth / 2;
@@ -169,131 +178,301 @@ public class Grid : MonoBehaviour
         // Generación de rio
         for (int i = 0; i <= hexagonsX; i += 1)
         {
-            hexagons[i, 24].SetHexagonType (-2);
-            hexagons[i, 24].SetVisible (true);
+            if (i == 4 || i == 11 || i == 18 || i == 25)
+            {
+                hexagons[i, 24].SetHexagonType (+1);
+                hexagons[i, 24].SetVisible (false);
+            }
+            else 
+            {
+                hexagons[i, 24].SetHexagonType (-2);
+                hexagons[i, 24].SetVisible (true);
+
+                unwalkable[riverIdx] = hexagons[i, 24];
+                riverIdx += 1;
+            }
         }
 
-        // Generación de puentes
-        hexagons[4, 24].SetHexagonType (+1);
-        hexagons[11, 24].SetHexagonType (+1);
-        hexagons[18, 24].SetHexagonType (+1);
-        hexagons[25, 24].SetHexagonType (+1);
-        hexagons[4, 24].SetVisible (false);
-        hexagons[11, 24].SetVisible (false);
-        hexagons[18, 24].SetVisible (false);
-        hexagons[25, 24].SetVisible (false);
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera2);
+            }
+        }
+
+        for (int i = 22; i < 29; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera2);
+            }
+        }
+
+        for (int i = 13; i < 18; i++)
+        {
+            for (int j = 10; j < 17; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int i = 8; i < 11; i++)
+        {
+            for (int j = 10; j < 17; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        hexagons[11, 15].SetMaterialVisible(materialPradera3);
+        hexagons[12, 15].SetMaterialVisible(materialPradera3);
+
+        for (int j = 9; j < 12; j++)
+        {
+            for (int i = 17; i < 29; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int j = 12; j < 14; j++)
+        {
+            for (int i = 16; i < 29; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int j = 14; j < 16; j++)
+        {
+            for (int i = 15; i < 29; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
 
         // Generación de montañas
         hexagons[9, 0].SetMountain (true);
+        hexagons[9, 0].SetMaterialVisible(materialMontana);
         hexagons[8, 1].SetMountain (true);
+        hexagons[8, 1].SetMaterialVisible(materialMontana);
         hexagons[0, 2].SetMountain (true);
+        hexagons[0, 2].SetMaterialVisible(materialMontana);
         hexagons[0, 3].SetMountain (true);
+        hexagons[0, 3].SetMaterialVisible(materialMontana);
         hexagons[1, 3].SetMountain (true);
+        hexagons[1, 3].SetMaterialVisible(materialMontana);
         hexagons[2, 4].SetMountain (true);
+        hexagons[2, 4].SetMaterialVisible(materialMontana);
         hexagons[14, 4].SetMountain (true);
+        hexagons[14, 4].SetMaterialVisible(materialMontana);
         hexagons[18, 4].SetMountain (true);
+        hexagons[18, 4].SetMaterialVisible(materialMontana);
         hexagons[19, 4].SetMountain (true);
+        hexagons[19, 4].SetMaterialVisible(materialMontana);
         hexagons[20, 4].SetMountain (true);
+        hexagons[20, 4].SetMaterialVisible(materialMontana);
         hexagons[21, 4].SetMountain (true);
+        hexagons[21, 4].SetMaterialVisible(materialMontana);
         hexagons[2, 5].SetMountain (true);
+        hexagons[2, 5].SetMaterialVisible(materialMontana);
         hexagons[18, 5].SetMountain (true);
+        hexagons[18, 5].SetMaterialVisible(materialMontana);
         hexagons[19, 5].SetMountain (true);
+        hexagons[19, 5].SetMaterialVisible(materialMontana);
         hexagons[24, 5].SetMountain (true);
+        hexagons[24, 5].SetMaterialVisible(materialMontana);
         hexagons[25, 5].SetMountain (true);
+        hexagons[25, 5].SetMaterialVisible(materialMontana);
         hexagons[2, 6].SetMountain (true);
+        hexagons[2, 6].SetMaterialVisible(materialMontana);
         hexagons[25, 6].SetMountain (true);
+        hexagons[25, 6].SetMaterialVisible(materialMontana);
         hexagons[26, 6].SetMountain (true);
+        hexagons[26, 6].SetMaterialVisible(materialMontana);
         hexagons[1, 7].SetMountain (true);
+        hexagons[1, 7].SetMaterialVisible(materialMontana);
         hexagons[2, 7].SetMountain (true);
+        hexagons[2, 7].SetMaterialVisible(materialMontana);
         hexagons[25, 7].SetMountain (true);
+        hexagons[25, 7].SetMaterialVisible(materialMontana);
         hexagons[25, 8].SetMountain (true);
+        hexagons[25, 8].SetMaterialVisible(materialMontana);
         hexagons[26, 8].SetMountain (true);
+        hexagons[26, 8].SetMaterialVisible(materialMontana);
         hexagons[23, 9].SetMountain (true);
+        hexagons[23, 9].SetMaterialVisible(materialMontana);
         hexagons[24, 9].SetMountain (true);
+        hexagons[24, 9].SetMaterialVisible(materialMontana);
         hexagons[20, 12].SetMountain (true);
+        hexagons[20, 12].SetMaterialVisible(materialMontana);
         hexagons[22, 12].SetMountain (true);
+        hexagons[22, 12].SetMaterialVisible(materialMontana);
         hexagons[19, 13].SetMountain (true);
+        hexagons[19, 13].SetMaterialVisible(materialMontana);
         hexagons[20, 13].SetMountain (true);
+        hexagons[20, 13].SetMaterialVisible(materialMontana);
         hexagons[21, 13].SetMountain (true);
+        hexagons[21, 13].SetMaterialVisible(materialMontana);
         hexagons[16, 14].SetMountain (true);
+        hexagons[16, 14].SetMaterialVisible(materialMontana);
         hexagons[9, 15].SetMountain (true);
+        hexagons[9, 15].SetMaterialVisible(materialMontana);
         hexagons[15, 15].SetMountain (true);
+        hexagons[15, 15].SetMaterialVisible(materialMontana);
         hexagons[16, 15].SetMountain (true);
+        hexagons[16, 15].SetMaterialVisible(materialMontana);
         hexagons[9, 16].SetMountain (true);
+        hexagons[9, 16].SetMaterialVisible(materialMontana);
         hexagons[10, 16].SetMountain (true);
+        hexagons[10, 16].SetMaterialVisible(materialMontana);
         hexagons[11, 16].SetMountain (true);
+        hexagons[11, 16].SetMaterialVisible(materialMontana);
         hexagons[12, 16].SetMountain (true);
+        hexagons[12, 16].SetMaterialVisible(materialMontana);
         hexagons[13, 16].SetMountain (true);
+        hexagons[13, 16].SetMaterialVisible(materialMontana);
         hexagons[15, 16].SetMountain (true);
+        hexagons[15, 16].SetMaterialVisible(materialMontana);
         hexagons[11, 17].SetMountain (true);
+        hexagons[11, 17].SetMaterialVisible(materialMontana);
         hexagons[13, 17].SetMountain (true);
+        hexagons[13, 17].SetMaterialVisible(materialMontana);
         hexagons[14, 17].SetMountain (true);
+        hexagons[14, 17].SetMaterialVisible(materialMontana);
         hexagons[20, 17].SetMountain (true);
+        hexagons[20, 17].SetMaterialVisible(materialMontana);
         hexagons[21, 17].SetMountain (true);
+        hexagons[21, 17].SetMaterialVisible(materialMontana);
         hexagons[22, 17].SetMountain (true);
+        hexagons[22, 17].SetMaterialVisible(materialMontana);
         hexagons[23, 17].SetMountain (true);
+        hexagons[23, 17].SetMaterialVisible(materialMontana);
         hexagons[18, 18].SetMountain (true);
+        hexagons[18, 18].SetMaterialVisible(materialMontana);
         hexagons[22, 18].SetMountain (true);
+        hexagons[22, 18].SetMaterialVisible(materialMontana);
         hexagons[6, 21].SetMountain (true);
+        hexagons[6, 21].SetMaterialVisible(materialMontana);
         hexagons[15, 21].SetMountain (true);
+        hexagons[15, 21].SetMaterialVisible(materialMontana);
         hexagons[5, 22].SetMountain (true);
+        hexagons[5, 22].SetMaterialVisible(materialMontana);
         hexagons[6, 22].SetMountain (true);
+        hexagons[6, 22].SetMaterialVisible(materialMontana);
         hexagons[4, 23].SetMountain (true);
+        hexagons[4, 23].SetMaterialVisible(materialMontana);
         hexagons[4, 25].SetMountain (true);
+        hexagons[4, 25].SetMaterialVisible(materialMontana);
         hexagons[5, 26].SetMountain (true);
+        hexagons[5, 26].SetMaterialVisible(materialMontana);
         hexagons[6, 26].SetMountain (true);
+        hexagons[6, 26].SetMaterialVisible(materialMontana);
         hexagons[6, 27].SetMountain (true);
+        hexagons[6, 27].SetMaterialVisible(materialMontana);
         hexagons[15, 27].SetMountain (true);
+        hexagons[15, 27].SetMaterialVisible(materialMontana);
         hexagons[18, 30].SetMountain (true);
+        hexagons[18, 30].SetMaterialVisible(materialMontana);
         hexagons[22, 30].SetMountain (true);
+        hexagons[22, 30].SetMaterialVisible(materialMontana);
         hexagons[11, 31].SetMountain (true);
+        hexagons[11, 31].SetMaterialVisible(materialMontana);
         hexagons[13, 31].SetMountain (true);
+        hexagons[13, 31].SetMaterialVisible(materialMontana);
         hexagons[14, 31].SetMountain (true);
+        hexagons[14, 31].SetMaterialVisible(materialMontana);
         hexagons[20, 31].SetMountain (true);
+        hexagons[20, 31].SetMaterialVisible(materialMontana);
         hexagons[21, 31].SetMountain (true);
+        hexagons[21, 31].SetMaterialVisible(materialMontana);
         hexagons[22, 31].SetMountain (true);
+        hexagons[22, 31].SetMaterialVisible(materialMontana);
         hexagons[23, 31].SetMountain (true);
+        hexagons[23, 31].SetMaterialVisible(materialMontana);
         hexagons[9, 32].SetMountain (true);
+        hexagons[9, 32].SetMaterialVisible(materialMontana);
         hexagons[10, 32].SetMountain (true);
+        hexagons[10, 32].SetMaterialVisible(materialMontana);
         hexagons[11, 32].SetMountain (true);
+        hexagons[11, 32].SetMaterialVisible(materialMontana);
         hexagons[12, 32].SetMountain (true);
+        hexagons[12, 32].SetMaterialVisible(materialMontana);
         hexagons[13, 32].SetMountain (true);
+        hexagons[13, 32].SetMaterialVisible(materialMontana);
         hexagons[15, 32].SetMountain (true);
+        hexagons[15, 32].SetMaterialVisible(materialMontana);
         hexagons[9, 33].SetMountain (true);
+        hexagons[9, 33].SetMaterialVisible(materialMontana);
         hexagons[15, 33].SetMountain (true);
+        hexagons[15, 33].SetMaterialVisible(materialMontana);
         hexagons[16, 33].SetMountain (true);
+        hexagons[16, 33].SetMaterialVisible(materialMontana);
         hexagons[16, 34].SetMountain (true);
+        hexagons[16, 34].SetMaterialVisible(materialMontana);
         hexagons[19, 35].SetMountain (true);
+        hexagons[19, 35].SetMaterialVisible(materialMontana);
         hexagons[20, 35].SetMountain (true);
+        hexagons[20, 35].SetMaterialVisible(materialMontana);
         hexagons[21, 35].SetMountain (true);
+        hexagons[21, 35].SetMaterialVisible(materialMontana);
         hexagons[20, 36].SetMountain (true);
+        hexagons[20, 36].SetMaterialVisible(materialMontana);
         hexagons[22, 36].SetMountain (true);
+        hexagons[22, 36].SetMaterialVisible(materialMontana);
         hexagons[23, 39].SetMountain (true);
+        hexagons[23, 39].SetMaterialVisible(materialMontana);
         hexagons[24, 39].SetMountain (true);
+        hexagons[24, 39].SetMaterialVisible(materialMontana);
         hexagons[25, 40].SetMountain (true);
+        hexagons[25, 40].SetMaterialVisible(materialMontana);
         hexagons[26, 40].SetMountain (true);
+        hexagons[26, 40].SetMaterialVisible(materialMontana);
         hexagons[1, 41].SetMountain (true);
+        hexagons[1, 41].SetMaterialVisible(materialMontana);
         hexagons[2, 41].SetMountain (true);
+        hexagons[2, 41].SetMaterialVisible(materialMontana);
         hexagons[25, 41].SetMountain (true);
+        hexagons[25, 41].SetMaterialVisible(materialMontana);
         hexagons[2, 42].SetMountain (true);
+        hexagons[2, 42].SetMaterialVisible(materialMontana);
         hexagons[25, 42].SetMountain (true);
+        hexagons[25, 42].SetMaterialVisible(materialMontana);
         hexagons[26, 42].SetMountain (true);
+        hexagons[26, 42].SetMaterialVisible(materialMontana);
         hexagons[2, 43].SetMountain (true);
+        hexagons[2, 43].SetMaterialVisible(materialMontana);
         hexagons[18, 43].SetMountain (true);
+        hexagons[18, 43].SetMaterialVisible(materialMontana);
         hexagons[19, 43].SetMountain (true);
+        hexagons[19, 43].SetMaterialVisible(materialMontana);
         hexagons[24, 43].SetMountain (true);
+        hexagons[24, 43].SetMaterialVisible(materialMontana);
         hexagons[25, 43].SetMountain (true);
+        hexagons[25, 43].SetMaterialVisible(materialMontana);
         hexagons[2, 44].SetMountain (true);
+        hexagons[2, 44].SetMaterialVisible(materialMontana);
         hexagons[14, 44].SetMountain (true);
+        hexagons[14, 44].SetMaterialVisible(materialMontana);
         hexagons[18, 44].SetMountain (true);
+        hexagons[18, 44].SetMaterialVisible(materialMontana);
         hexagons[19, 44].SetMountain (true);
+        hexagons[19, 44].SetMaterialVisible(materialMontana);
         hexagons[20, 44].SetMountain (true);
+        hexagons[20, 44].SetMaterialVisible(materialMontana);
         hexagons[21, 44].SetMountain (true);
+        hexagons[21, 44].SetMaterialVisible(materialMontana);
         hexagons[0, 45].SetMountain (true);
+        hexagons[0, 45].SetMaterialVisible(materialMontana);
         hexagons[1, 45].SetMountain (true);
+        hexagons[1, 45].SetMaterialVisible(materialMontana);
         hexagons[0, 46].SetMountain (true);
+        hexagons[0, 46].SetMaterialVisible(materialMontana);
         hexagons[8, 47].SetMountain (true);
+        hexagons[8, 47].SetMaterialVisible(materialMontana);
         hexagons[9, 48].SetMountain (true);
+        hexagons[9, 48].SetMaterialVisible(materialMontana);
 
         //Lake generation
         hexagons[1, 1].SetHexagonType (0);
@@ -302,8 +481,8 @@ public class Grid : MonoBehaviour
         hexagons[4, 36].SetHexagonType (0);
         hexagons[12, 6].SetHexagonType (0);
         hexagons[12, 42].SetHexagonType (0);
-        hexagons[12, 22].SetHexagonType (0);
-        hexagons[12, 26].SetHexagonType (0);
+        hexagons[12, 21].SetHexagonType (0);
+        hexagons[12, 27].SetHexagonType (0);
         hexagons[16, 13].SetHexagonType (0);
         hexagons[16, 35].SetHexagonType (0);
         hexagons[20, 6].SetHexagonType (0);

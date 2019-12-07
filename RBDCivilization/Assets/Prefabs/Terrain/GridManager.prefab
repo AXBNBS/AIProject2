@@ -95,10 +95,19 @@ MonoBehaviour:
   limitX2: 0
   limitZ1: 0
   limitZ2: 0
-  gridWth: 500
-  gridHgt: 500
+  gridWth: 250
+  gridHgt: 480
+  forestsArray: []
+  unwalkable: []
+  Capital: {fileID: 2393157883664804536, guid: 98c71b32c91036b4f9b3c9fe5e4fbdd3, type: 3}
+  materialPradera1: {fileID: 2100000, guid: bac49cc5b5b389043abc80b25588ebc3, type: 2}
+  materialPradera2: {fileID: 2100000, guid: cbc126f86542eba40ab84eac3de2ed8d, type: 2}
+  materialPradera3: {fileID: 2100000, guid: 18c6364d1fd7f5844818419cbf5c6d4b, type: 2}
+  materialMontana: {fileID: 2100000, guid: 5a5f1d92e23bfdc4c86d98ee94b05423, type: 2}
   hexagonPfb: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
     type: 3}
   gap: 0.025
   hexagonScl: 5
-  Capital: {fileID: 2393157883664804536, guid: 98c71b32c91036b4f9b3c9fe5e4fbdd3, type: 3}
+  hexagonsX: 0
+  hexagonsY: 0
+  forests: 0

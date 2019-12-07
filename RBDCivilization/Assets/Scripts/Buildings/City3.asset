@@ -15,6 +15,6 @@ MonoBehaviour:
   level: 3
   neededMinerals: 600
   neededWood: 1500
-  defense: 15
+  defense: 9
   cityType: City
   turns: 6

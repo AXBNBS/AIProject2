@@ -43,8 +43,8 @@ public class UnitMovement : MonoBehaviour
         path = new List<Vector3> ();
         target = GameObject.FindGameObjectsWithTag("Hexagon")[startHex].transform.position;
         interf = GameObject.FindGameObjectWithTag ("Interface");
-        offsetHexX = grid.hexagonWth / 5;
-        offsetHexZ = grid.hexagonHgt / 5;
+        offsetHexX = grid.hexagonWth / 6;
+        offsetHexZ = grid.hexagonHgt / 6;
         offsets = new Vector3[] {Vector3.zero, new Vector3 (+offsetHexX, 0, offsetHexZ), new Vector3 (-offsetHexX, 0, +offsetHexZ), new Vector3 (+offsetHexX, 0, -offsetHexZ), new Vector3 (-offsetHexX, 0, -offsetHexZ)};
         //target += offsets[startOft];
         //collided = new List<CharacterController> ();
@@ -82,7 +82,7 @@ public class UnitMovement : MonoBehaviour
             {
                 path.RemoveAt (0);
 
-                if (path.Count == 0)
+                if (path.Count == 0 || moveLmt <= 0)
                 {
                     reachedTrg = true;
                     /*for (int c = 0; c < this.collided.Count; c += 1) 
@@ -194,7 +194,7 @@ public class UnitMovement : MonoBehaviour
             //print("Hey");
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
-            moveLmt -= 1;
+            moveLmt -= currentHex.hexagonType;
 
             for(int i = 0; i < currentHex.neighbours.Length; i++)
             {
@@ -215,7 +215,32 @@ public class UnitMovement : MonoBehaviour
             }
             currentHex.SetVisible (true);
 
-            if (path.Count == 1) 
+            if (path.Count == 1 || moveLmt <= 0) 
+            {
+                if (currentHex.presentUnt != 0)
+                {
+                    target = currentHex.transform.position + offsets[currentHex.presentUnt];
+
+                    currentHex.AddUnit (this, currentHex.presentUnt);
+                }
+                else 
+                {
+                    int position = 0;
+
+                    for (int a = 0; a < allies.Length; a += 1) 
+                    {
+                        if (allies[a] == this) 
+                        {
+                            position = a;
+
+                            break;
+                        }
+                    }
+
+                    currentHex.AddUnit (this, position);
+                }
+            }
+            /*if (path.Count == 1) 
             {
                 //print("hey");
                 if (regroup == true)
@@ -243,7 +268,7 @@ public class UnitMovement : MonoBehaviour
                 }
                 //currentHex.AddUnit (this);
                 //currentHex.SetVisible (true);
-            }
+            }*/
             //unitsInHex = currentHex.presentUnt;
         }
     }
@@ -291,45 +316,42 @@ public class UnitMovement : MonoBehaviour
     // We get the path to the indicated hexagon. We also make sure that our current allies keep the same alignment while the path is being traversed.
     public int FindPathTo (Hexagon hex) 
     {
-        int cost = currentHex.GetPath (hex);
+        int cost = currentHex.GetPath ((int) stats.speed, hex);
 
-        if (moveLmt >= path.Count) 
+        visibleTarget = hex.GetVisible ();
+
+        for (int u = 0; u < allies.Length; u += 1)
         {
-            visibleTarget = hex.GetVisible ();
-
-            for (int u = 0; u < allies.Length; u += 1)
+            if (u != 0)
             {
-                if (u != 0)
+                Vector3 offset = offsets[u];
+                List<Vector3> pathAux = new List<Vector3> ();
+
+                for (int p = 0; p < path.Count; p += 1)
                 {
-                    Vector3 offset = offsets[u];
-                    List<Vector3> pathAux = new List<Vector3> ();
-
-                    for (int p = 0; p < path.Count; p += 1)
-                    {
-                        pathAux.Add (path[p] + offset);
-                    }
-
-                    allies[u].path = pathAux;
+                    pathAux.Add (path[p] + offset);
                 }
-                allies[u].target = allies[u].path[0];
-                allies[u].reachedTrg = false;
+
+                allies[u].path = pathAux;
             }
+            allies[u].target = allies[u].path[0];
+            allies[u].reachedTrg = false;
+        }
 
-            if (stats.occupation == "Worker" || stats.occupation == "Collector") 
+        if (stats.occupation == "Worker" || stats.occupation == "Collector") 
+        {
+            if (stats.occupation == "Worker")
             {
-                if (stats.occupation == "Worker")
-                {
-                    Builder builder = this.GetComponent<Builder> ();
+                Builder builder = this.GetComponent<Builder> ();
 
-                    if (builder.working == true)
-                    {
-                        builder.StopBuilding ();
-                    }
-                }
-                else 
+                if (builder.working == true)
                 {
-                    this.GetComponent<Collector>().working = false;
+                    builder.StopBuilding ();
                 }
+            }
+            else 
+            {
+                this.GetComponent<Collector>().working = false;
             }
         }
 

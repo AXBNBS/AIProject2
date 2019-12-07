@@ -13,15 +13,19 @@ public class GameManager : MonoBehaviour
     public List<Builder> playerBld, AIBld;
     public List<Collector> playerCll, AICll;
     public List<Hexagon> restoringHexagons;
+    public BehaviourTreeScript behaviourTree;
 
     [SerializeField] private int storesPerFrm;
     private ResourcesHolder resourcesHld;
     private CameraController cameraCtr;
 
+    private BuildingMenu buildingMenu;
+
 
     // We get every present unit, farm, builder and collector (independently of their faction) at the start of the game, and add them to their corresponding lists.
     private void Start ()
     {
+        buildingMenu = GameObject.FindObjectOfType<BuildingMenu>();
         UnitMovement[] units = GameObject.FindObjectsOfType<UnitMovement> ();
         Farm[] farms = GameObject.FindObjectsOfType<Farm> ();
         Builder[] builders = GameObject.FindObjectsOfType<Builder> ();
@@ -159,8 +163,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // QUITAR LUEGO
-        StartPlayerTurn ();
+        behaviourTree.Evaluate();
     }
 
 
@@ -240,6 +243,15 @@ public class GameManager : MonoBehaviour
             {
                 resourcesHld.changeStores ("blue", storesPerFrm, true);
             }
+        }
+
+        if (buildingMenu.remainingTurnsToUpgrade == 0 && buildingMenu.upgrading==true)
+        {
+            buildingMenu.Upgrade();
+        }
+        else if(buildingMenu.remainingTurnsToUpgrade>0)
+        {
+            buildingMenu.remainingTurnsToUpgrade--;
         }
     }
 }
