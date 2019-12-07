@@ -343,7 +343,7 @@ public class Hexagon : MonoBehaviour
         MaterialVisible = m;
     }
 
-    public void GetMaterialVisible()
+    public Material GetMaterialVisible()
     {
         return MaterialVisible;
     }
