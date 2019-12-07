@@ -12,10 +12,9 @@ public class Unit : MonoBehaviour
     private int stores;
 
     public UnitSettings settings;
-    private GameManager gameManager;
+    private GameObject gameManager;
 
     public UnitMovement movement;
-    private GameObject GameManager;
 
     public float totalPower;
     private FinishScript finishScript;
@@ -32,7 +31,7 @@ public class Unit : MonoBehaviour
         movement = this.GetComponent<UnitMovement>();
         totalPower = 0;
 
-        GameManager = GameObject.FindGameObjectWithTag("GameController");
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
         finishScript = GameObject.FindGameObjectWithTag("Interface").GetComponentInChildren<FinishScript>();
     }
 
@@ -66,7 +65,10 @@ public class Unit : MonoBehaviour
         for (int i = 0; i < allies.Length; i++)
         {
             if (allies[i].tag == "Ally")
+            {
+                gameManager.GetComponent<GameManager>().playerUnt.Remove(allies[i].GetComponent<UnitMovement>());
                 Destroy(allies[i].gameObject);
+            }
         }
         movement.currentHex.GetCity().AddUnits(movement.GetAllies()[0].stats.race, movement.GetAllies().Length, defense);
     }
@@ -84,11 +86,11 @@ public class Unit : MonoBehaviour
                 {
                     if (movement.currentHex.GetCity().tag == "RedFarm")
                     {
-                        gameManager.AIFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
+                        gameManager.GetComponent<GameManager>().AIFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
                     }
                     else
                     {
-                        gameManager.playerFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
+                        gameManager.GetComponent<GameManager>().playerFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
                     }
                 }
                 Destroy(movement.currentHex.GetCity().gameObject);
@@ -111,19 +113,19 @@ public class Unit : MonoBehaviour
             {
                 if (movement.currentHex.GetCity().GetCityType() == "Capital")
                 {
-                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 5, false);
+                    gameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 5, false);
                     if (finish)
                         finishScript.finishMatch("Blue");
                 }
                 else
                 {
-                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, false);
+                    gameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Blue", 3, false);
                 }
             } else
             {
                 if (movement.currentHex.GetCity().GetCityType() == "Capital")
                 {
-                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Red", 5, false);
+                    gameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Red", 5, false);
                     if (finish)
                     {
                         finishScript.finishMatch("Red");
@@ -132,7 +134,7 @@ public class Unit : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Red", 3, false);
+                    gameManager.GetComponent<ResourcesHolder>().changeTotalPopulation("Red", 3, false);
                 }
             }
         }
@@ -216,12 +218,13 @@ public class Unit : MonoBehaviour
                     {
                         if (localUnits[i].stats.occupation == "Worker")
                         {
-                            gameManager.AIBld.Remove(localUnits[i].GetComponent<Builder>());
+                            gameManager.GetComponent<GameManager>().AIBld.Remove(localUnits[i].GetComponent<Builder>());
                         }
                         else if (localUnits[i].stats.occupation == "Collector")
                         {
-                            gameManager.AICll.Remove(localUnits[i].GetComponent<Collector>());
+                            gameManager.GetComponent<GameManager>().AICll.Remove(localUnits[i].GetComponent<Collector>());
                         }
+                        gameManager.GetComponent<GameManager>().AIUnt.Remove(localUnits[i].GetComponent<UnitMovement>());
                         Destroy(localUnits[i].gameObject);
                     }
                 }
@@ -238,12 +241,13 @@ public class Unit : MonoBehaviour
                     {
                         if (allies[i].stats.occupation == "Worker")
                         {
-                            gameManager.playerBld.Remove(allies[i].GetComponent<Builder>());
+                            gameManager.GetComponent<GameManager>().playerBld.Remove(allies[i].GetComponent<Builder>());
                         }
                         else if (allies[i].stats.occupation == "Collector")
                         {
-                            gameManager.playerCll.Remove(allies[i].GetComponent<Collector>());
+                            gameManager.GetComponent<GameManager>().playerCll.Remove(allies[i].GetComponent<Collector>());
                         }
+                        gameManager.GetComponent<GameManager>().playerUnt.Remove(allies[i].GetComponent<UnitMovement>());
                         Destroy(allies[i].gameObject);
                     }
                 }
@@ -259,12 +263,13 @@ public class Unit : MonoBehaviour
                     {
                         if (localUnits[i].stats.occupation == "Worker")
                         {
-                            gameManager.playerBld.Remove(localUnits[i].GetComponent<Builder>());
+                            gameManager.GetComponent<GameManager>().playerBld.Remove(localUnits[i].GetComponent<Builder>());
                         }
                         else if (localUnits[i].stats.occupation == "Collector")
                         {
-                            gameManager.playerCll.Remove(localUnits[i].GetComponent<Collector>());
+                            gameManager.GetComponent<GameManager>().playerCll.Remove(localUnits[i].GetComponent<Collector>());
                         }
+                        gameManager.GetComponent<GameManager>().playerUnt.Remove(localUnits[i].GetComponent<UnitMovement>());
                         Destroy(localUnits[i].gameObject);
                     }
                 }
@@ -281,12 +286,13 @@ public class Unit : MonoBehaviour
                     {
                         if (allies[i].stats.occupation == "Worker")
                         {
-                            gameManager.AIBld.Remove(allies[i].GetComponent<Builder>());
+                            gameManager.GetComponent<GameManager>().AIBld.Remove(allies[i].GetComponent<Builder>());
                         }
                         else if (allies[i].stats.occupation == "Collector")
                         {
-                            gameManager.AICll.Remove(allies[i].GetComponent<Collector>());
+                            gameManager.GetComponent<GameManager>().AICll.Remove(allies[i].GetComponent<Collector>());
                         }
+                        gameManager.GetComponent<GameManager>().AIUnt.Remove(allies[i].GetComponent<UnitMovement>());
                         Destroy(allies[i].gameObject);
                     }
                 }

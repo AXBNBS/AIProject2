@@ -15,7 +15,7 @@ public class BuildingMenu : MonoBehaviour
     public TextMeshProUGUI infoText;
     public TextMeshProUGUI levelInfoText;
 
-    private GameObject GameManager;
+    private GameManager GameManager;
 
     public GameObject humanPrefab;
     public UnitSettings humanSettings;
@@ -34,10 +34,11 @@ public class BuildingMenu : MonoBehaviour
 
     [HideInInspector]
     public Hexagon hex;
+    private GameManager gameManager;
 
     void Awake()
     {
-        GameManager = GameObject.FindGameObjectWithTag("GameController");
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     public void readHexagonBuilding(Hexagon n)
@@ -161,6 +162,15 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(humanPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
+                {
+                    gameManager.AIBld.Remove(train.GetComponent<Builder>());
+                }
+                else if (train.GetComponent<UnitMovement>().stats.occupation == "Collector")
+                {
+                    gameManager.AICll.Remove(train.GetComponent<Collector>());
+                }
+                gameManager.AIUnt.Remove(train.GetComponent<UnitMovement>());
                 GameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
                 GameManager.GetComponent<ResourcesHolder>().changeStores("Blue", humanSettings.stores, false);
 
