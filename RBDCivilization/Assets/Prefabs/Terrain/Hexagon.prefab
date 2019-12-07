@@ -90,7 +90,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 18c6364d1fd7f5844818419cbf5c6d4b, type: 2}
+  - {fileID: 2100000, guid: 237923e5a1e284d4a937127b7559942f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   presentUnt: 0
   environment: {fileID: 0}
   units: []
-  MaterialVisible: {fileID: 2100000, guid: cbc126f86542eba40ab84eac3de2ed8d, type: 2}
-  MaterialNoVisible: {fileID: 2100000, guid: cbc126f86542eba40ab84eac3de2ed8d, type: 2}
+  MaterialVisible: {fileID: 2100000, guid: 237923e5a1e284d4a937127b7559942f, type: 2}
+  MaterialNoVisible: {fileID: 2100000, guid: 237923e5a1e284d4a937127b7559942f, type: 2}
   hexagonType: 0
   visible: 0
   CentroHexagono: {fileID: 3110203289479002843}
