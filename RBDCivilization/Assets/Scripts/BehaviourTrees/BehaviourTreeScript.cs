@@ -230,23 +230,23 @@ public class BehaviourTreeScript : MonoBehaviour
                                             {
                                                 Debug.Log("IA tiene recolector");
                                                 haveCollectors = true;
-                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
+                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA ha llevado un recolector a un bosque");
                                                     collect(0, null, null, units[i].GetComponent<Unit>());
-                                                } else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().currentHex, grid.hexagons[21, 35].neighbours[0]))
+                                                } else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]))
                                                 {
                                                     Debug.Log("IA ha llevado a un constructor a la montaña");
                                                     if (checkWood(100) == NodeStates.SUCCESS)
                                                     {
                                                         Debug.Log("IA puede construir tunel");
                                                         buildTunnel(0, null, null, units[u].GetComponent<Unit>());
-                                                    } else if (movementUnits(0, units[i].GetComponent<Unit>().currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                    } else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
                                                     {
                                                         Debug.Log("IA lleva recolector al bosque");
                                                         collect(0, null, null, units[u].GetComponent<Unit>());
                                                     }
-                                                } else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().currentHex, grid.hexagons[21, 35]))
+                                                } else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]))
                                                 {
                                                     Debug.Log("IA ha llevado recolector a la montaña");
                                                     collect(0, null, null, units[i].GetComponent<Unit>());
@@ -281,7 +281,7 @@ public class BehaviourTreeScript : MonoBehaviour
                 } else
                 {
                     Debug.Log("IA no tiene hueco para poblacion");
-                    if (checkWood(hexCapital.GetCity().GetNeededWood()) == NodeStates.SUCCESS && checkWood(hexCapital.GetCity().GetNeededMineral()) == NodeStates.SUCCESS)
+                    if (checkWood(hexCapital.GetCity().GetNeededWood()) == NodeStates.SUCCESS && checkWood(hexCapital.GetCity().GetNeededMinerals()) == NodeStates.SUCCESS)
                     {
 
                     }
