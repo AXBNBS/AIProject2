@@ -614,7 +614,6 @@ public class BehaviourTreeScript : MonoBehaviour
                                         else
                                         {
                                             Debug.Log("IA no tiene granjas inactivas");
-                                            GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
                                             bool prepare = false;
                                             for (int u = 0; u < units.Length; u += 1)
                                             {
@@ -700,7 +699,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                     {
                                         Debug.Log("IA tiene recolector");
                                         haveRecollectores = true;
-                                        if (movementUnits(0, units[j].GetComponent<Unit>().movement.currentHex(), grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
+                                        if (movementUnits(0, units[j].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
                                         {
                                             Debug.Log("IA ha llevado recolector a un bosque");
                                             collect(0, null, null, units[j].GetComponent<Unit>());
@@ -722,7 +721,6 @@ public class BehaviourTreeScript : MonoBehaviour
                                         if (checkActiveFarms() == NodeStates.SUCCESS)
                                         {
                                             print("IA tiene granjas inactivas.");
-                                            GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
                                             bool participa = false;
                                             for (int u = 0; u < units.Length; u += 1)
                                             {
@@ -752,7 +750,6 @@ public class BehaviourTreeScript : MonoBehaviour
                                         else
                                         {
                                             Debug.Log("IA no tiene granjas inactivas");
-                                            GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
                                             bool prepare = false;
                                             for (int u = 0; u < units.Length; u += 1)
                                             {
