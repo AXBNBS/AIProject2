@@ -558,7 +558,7 @@ public class EnemyFunctions : MonoBehaviour
                 }
             }
         }
-        if (alliesPower > enemiesPower)
+        if (Random.Range(0, 10) >= 5 + alliesPower - enemiesPower)
         {
             return false;
         }
