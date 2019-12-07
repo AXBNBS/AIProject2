@@ -95,7 +95,8 @@ public class UnitMovement : MonoBehaviour
                     allies = currentHex.UnitsPlaced ();
                     foreach (UnitMovement a in allies) 
                     {
-                        a.allies = allies;
+                        if (a != null)
+                            a.allies = allies;
                     }
                     if (currentHex.GetHexagonType() == 0)
                     {
