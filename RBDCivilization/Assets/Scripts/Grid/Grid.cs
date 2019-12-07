@@ -198,6 +198,7 @@ public class Grid : MonoBehaviour
             for (int j = 0; j < 6; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera2);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera2);
             }
         }
 
@@ -206,6 +207,7 @@ public class Grid : MonoBehaviour
             for (int j = 0; j < 6; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera2);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera2);
             }
         }
 
@@ -214,6 +216,7 @@ public class Grid : MonoBehaviour
             for (int j = 10; j < 17; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
             }
         }
 
@@ -222,17 +225,21 @@ public class Grid : MonoBehaviour
             for (int j = 10; j < 17; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
             }
         }
 
         hexagons[11, 15].SetMaterialVisible(materialPradera3);
         hexagons[12, 15].SetMaterialVisible(materialPradera3);
+        hexagons[11, 48 - 15].SetMaterialVisible(materialPradera3);
+        hexagons[12, 48 - 15].SetMaterialVisible(materialPradera3);
 
         for (int j = 9; j < 12; j++)
         {
             for (int i = 17; i < 29; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
             }
         }
 
@@ -241,6 +248,7 @@ public class Grid : MonoBehaviour
             for (int i = 16; i < 29; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
             }
         }
 
@@ -249,6 +257,7 @@ public class Grid : MonoBehaviour
             for (int i = 15; i < 29; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
             }
         }
 
