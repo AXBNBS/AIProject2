@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-
-
 public class Grid : MonoBehaviour
 {
     public static Grid instance;
@@ -255,6 +253,24 @@ public class Grid : MonoBehaviour
         for (int j = 14; j < 16; j++)
         {
             for (int i = 15; i < 29; i++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int i = 3; i < 10; i++)
+        {
+            for (int j = 16; j < 22; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+                hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int i = 23; i < 28; i++)
+        {
+            for (int j = 14; j < 21; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
