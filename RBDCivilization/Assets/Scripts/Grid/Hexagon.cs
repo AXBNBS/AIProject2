@@ -243,6 +243,10 @@ public class Hexagon : MonoBehaviour
     public void SetHexagonType (int n)
     {
         hexagonType = n;
+        if (n == 0)
+        {
+            SetVisible(true);
+        }
     }
 
 

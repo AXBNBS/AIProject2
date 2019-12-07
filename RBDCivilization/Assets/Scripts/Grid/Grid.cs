@@ -201,11 +201,54 @@ public class Grid : MonoBehaviour
             }
         }
 
-        for (int i = 22; i < 28; i++)
+        for (int i = 22; i < 29; i++)
         {
             for (int j = 0; j < 6; j++)
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera2);
+            }
+        }
+
+        for (int i = 13; i < 18; i++)
+        {
+            for (int j = 10; j < 17; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int i = 8; i < 11; i++)
+        {
+            for (int j = 10; j < 17; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        hexagons[11, 15].SetMaterialVisible(materialPradera3);
+        hexagons[12, 15].SetMaterialVisible(materialPradera3);
+
+        for (int j = 9; j < 12; j++)
+        {
+            for (int i = 17; i < 29; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int j = 12; j < 14; j++)
+        {
+            for (int i = 16; i < 29; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
+            }
+        }
+
+        for (int j = 14; j < 16; j++)
+        {
+            for (int i = 15; i < 29; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera3);
             }
         }
 
@@ -438,8 +481,8 @@ public class Grid : MonoBehaviour
         hexagons[4, 36].SetHexagonType (0);
         hexagons[12, 6].SetHexagonType (0);
         hexagons[12, 42].SetHexagonType (0);
-        hexagons[12, 22].SetHexagonType (0);
-        hexagons[12, 26].SetHexagonType (0);
+        hexagons[12, 21].SetHexagonType (0);
+        hexagons[12, 27].SetHexagonType (0);
         hexagons[16, 13].SetHexagonType (0);
         hexagons[16, 35].SetHexagonType (0);
         hexagons[20, 6].SetHexagonType (0);
