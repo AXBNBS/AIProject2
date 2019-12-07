@@ -219,11 +219,10 @@ public class BehaviourTreeScript : MonoBehaviour
                                     if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
                                     {
                                         Debug.Log("IA tiene recursos para construir");
-                                        buildFarm(0, null, null, units[u].GetComponent<units>());
+                                        buildFarm(0, null, null, units[u].GetComponent<Unit>());
                                     } else
                                     {
                                         Debug.Log("IA no tiene recursos");
-                                        GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
                                         bool haveCollectors = false;
                                         for (int i = 0; i < units.Length; i += 1)
                                         {
