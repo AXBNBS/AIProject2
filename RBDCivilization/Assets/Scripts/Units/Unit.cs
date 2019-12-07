@@ -126,7 +126,7 @@ public class Unit : MonoBehaviour
         }
         UnitMovement[] allies = movement.GetAllies();
 
-        if (Random.Range(0.0f, 9.0f) >= 5.0f)
+        if (this.tag=="Ally"? Random.Range(0.0f, 9.0f) >= 5.0f + enemiesPower-alliesPower : Random.Range(0.0f, 9.0f) >= 5.0f - enemiesPower + alliesPower)
         {
             if (movement.currentHex.GetCity().GetLevel() == 1)
             {
