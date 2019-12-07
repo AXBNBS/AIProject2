@@ -8,10 +8,11 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
+    public static Grid instance;
     public float hexagonWth, hexagonHgt, limitX1, limitX2, limitZ1, limitZ2;
     public int gridWth, gridHgt;
     public Hexagon[,] hexagons;
-    public Hexagon[] forestsArray;
+    public Hexagon[] forestsArray, unwalkable;
     public GameObject Capital; //Generar las dos capitales
 
     [SerializeField] private Transform hexagonPfb;
@@ -26,10 +27,12 @@ public class Grid : MonoBehaviour
     // We initialize some variables and add the gap to the hexagons's with and height, we calculate the starting position of the grid, and we finally create it.
     private void Awake ()
     {
+        instance = this;
         hexagonWth *= hexagonScl;
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
+        unwalkable = new Hexagon[hexagonsX - 3];
         ground = this.transform.GetChild (0);
         ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
         forestHex1 = new int[] {1, 30, 262, 292, 408, 61, 235, 264, 409, 554, 4, 526, 555, 5, 92, 121, 122, 586, 615, 355, 384, 356, 154, 184, 532, 561, 69, 98, 331, 360, 275, 247, 450, 451, 104, 76, 105, 279, 251, 50, 311, 51, 80, 167, 312, 457, 
@@ -37,7 +40,7 @@ public class Grid : MonoBehaviour
         forestHex2 = new int[] {1393, 1364, 1132, 1104, 988, 1337, 1163, 1134, 989, 844, 1396, 874, 845, 1397, 1310, 1281, 1282, 818, 789, 1051, 1022, 1052, 1256, 1228, 880, 851, 1345, 1316, 1085, 1056, 1145, 1175, 972, 973, 1322, 1352, 1323, 1149, 
             1179, 1384, 1123, 1385, 1356, 1269, 1124, 979, 1241, 980, 951, 835, 806, 1041, 1012};
         forests = (int) (forestHex1.Length / 2);
-        forestsArray = new Hexagon[forests*2];
+        forestsArray = new Hexagon[forests * 2];
 
         AddGap ();
         StartPosition ();
@@ -102,7 +105,7 @@ public class Grid : MonoBehaviour
     // We instantiate every hexagon and put it in its corresponding position on the grid.
     private void CreateGrid () 
     {
-        int hexagonCnt = 1;
+        int hexagonCnt = 1, riverIdx = 0;
         hexagons = new Hexagon[hexagonsX + 1, hexagonsY + 1];
 
         for (int y = 0; y <= hexagonsY; y += 1) 
@@ -169,19 +172,20 @@ public class Grid : MonoBehaviour
         // Generación de rio
         for (int i = 0; i <= hexagonsX; i += 1)
         {
-            hexagons[i, 24].SetHexagonType (-2);
-            hexagons[i, 24].SetVisible (true);
-        }
+            if (i == 4 || i == 11 || i == 18 || i == 25)
+            {
+                hexagons[i, 24].SetHexagonType (+1);
+                hexagons[i, 24].SetVisible (false);
+            }
+            else 
+            {
+                hexagons[i, 24].SetHexagonType (-2);
+                hexagons[i, 24].SetVisible (true);
 
-        // Generación de puentes
-        hexagons[4, 24].SetHexagonType (+1);
-        hexagons[11, 24].SetHexagonType (+1);
-        hexagons[18, 24].SetHexagonType (+1);
-        hexagons[25, 24].SetHexagonType (+1);
-        hexagons[4, 24].SetVisible (false);
-        hexagons[11, 24].SetVisible (false);
-        hexagons[18, 24].SetVisible (false);
-        hexagons[25, 24].SetVisible (false);
+                unwalkable[riverIdx] = hexagons[i, 24];
+                riverIdx += 1;
+            }
+        }
 
         // Generación de montañas
         hexagons[9, 0].SetMountain (true);

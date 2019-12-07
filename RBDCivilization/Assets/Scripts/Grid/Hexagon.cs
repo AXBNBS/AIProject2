@@ -124,10 +124,73 @@ public class Hexagon : MonoBehaviour
 
 
     // To get the shortest path from the current hexagon to another one that serves as destination.
-    public int GetPath (int limit, Hexagon hex) 
+    public int GetPath (int reach, Hexagon hex) 
     {
-        return 0;
+        IDictionary<Hexagon, int> distances = new Dictionary<Hexagon, int> ();
+        IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
+        List<Hexagon> unexplored = new List<Hexagon> ();
 
+        foreach (Hexagon h in Grid.instance.hexagons)
+        {
+            if (h.hexagonType >= 0)
+            {
+                distances.Add (new KeyValuePair<Hexagon, int> (h, int.MaxValue));
+                parents.Add (new KeyValuePair<Hexagon, Hexagon> (h, null));
+                unexplored.Add (h);
+            }
+        }
+
+        distances[this] = 0;
+
+        while (unexplored.Count > 0)
+        {
+            Hexagon current = distances.Where(x => unexplored.Contains (x.Key)).OrderBy(x => x.Value).First().Key;
+
+            if (current == hex) 
+            {
+                List<Vector3> path = new List<Vector3> ();
+                Hexagon check = hex;
+
+                while (check != this) 
+                {
+                    path.Add (check.transform.position);
+
+                    check = parents[check];
+                }
+
+                path.Reverse ();
+                UnitsPlaced()[0].SetPath (path);
+
+                return distances[hex];
+            }
+
+            unexplored.Remove (current);
+
+            foreach (Hexagon n in current.neighbours) 
+            {
+                if (n != null && n.hexagonType >= 0) 
+                {
+                    int distance;
+
+                    if (n.hexagonType != 0)
+                    {
+                        distance = distances[current] + n.hexagonType;
+                    }
+                    else 
+                    {
+                        distance = distances[current] - reach;
+                    }
+                    if (distance < distances[n]) 
+                    {
+                        distances[n] = distance;
+                        parents[n] = current;
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
 
         /*float checkedDst;
 
@@ -169,7 +232,6 @@ public class Hexagon : MonoBehaviour
         UnitsPlaced()[0].SetPath (result);
 
         return cost;*/
-    }
 
 
     public int GetHexagonType ()
