@@ -127,6 +127,7 @@ public class Grid : MonoBehaviour
                 hexagonCnt += 1;
                 hexagons[x, y] = hexagon.GetComponent<Hexagon> ();
                 hexagons[x, y].SetHexagonType (+1);
+                hexagons[x, y].SetMaterialVisible(materialPradera1);
                 if (x == hexagonsX && y == hexagonsY) 
                 {
                     limitX2 = hexagon.position.x + hexagonWth / 2;
@@ -189,6 +190,22 @@ public class Grid : MonoBehaviour
 
                 unwalkable[riverIdx] = hexagons[i, 24];
                 riverIdx += 1;
+            }
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera2);
+            }
+        }
+
+        for (int i = 22; i < 28; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                hexagons[i, j].SetMaterialVisible(materialPradera2);
             }
         }
 
