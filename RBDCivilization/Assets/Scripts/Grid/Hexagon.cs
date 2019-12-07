@@ -124,7 +124,7 @@ public class Hexagon : MonoBehaviour
 
 
     // To get the shortest path from the current hexagon to another one that serves as destination.
-    public int GetPath(int reach, Hexagon hex)
+    public List<Vector3> GetPath(Hexagon hex)
     {
         /*IDictionary<Hexagon, int> distances = new Dictionary<Hexagon, int> ();
         IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
@@ -192,7 +192,7 @@ public class Hexagon : MonoBehaviour
         return 0;
     }*/
 
-        float checkedDst;
+        /*float checkedDst;
 
         int bestChoice = 0, cost = 0;
         float bestDst = Vector3.Distance(this.transform.position, hex.transform.position);
@@ -231,7 +231,41 @@ public class Hexagon : MonoBehaviour
 
         UnitsPlaced()[0].SetPath(result);
 
-        return cost;
+        return cost;*/
+
+        float checkedDst;
+
+        int bestChoice = 0;
+        float bestDst = Vector3.Distance(this.transform.position, hex.transform.position);
+        List<Vector3> result = new List<Vector3>();
+        Hexagon currentHex = this;
+
+        while (bestDst != 0)
+        {
+            for (int i = 0; i < currentHex.neighbours.Length; i += 1)
+            {
+                if (currentHex.neighbours[i] != null && currentHex.neighbours[i].GetHexagonType()!=-1 && currentHex.neighbours[i].GetHexagonType()!= -2)
+                {
+                    checkedDst = Vector3.Distance(currentHex.neighbours[i].transform.position, hex.transform.position);
+                    if (checkedDst < bestDst)
+                    {
+                        bestChoice = i;
+                        bestDst = checkedDst;
+
+                        if (bestDst == 0)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            result.Add(currentHex.neighbours[bestChoice].transform.position);
+
+            currentHex = currentHex.neighbours[bestChoice];
+        }
+
+        return result;
     }
 
 

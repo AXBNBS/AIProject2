@@ -41,7 +41,7 @@ public class UnitMovement : MonoBehaviour
         characterCtr = this.GetComponent<CharacterController> ();
         feet = this.transform.GetChild (0);
         path = new List<Vector3> ();
-        target = GameObject.FindGameObjectsWithTag("Hexagon")[startHex].transform.position;
+        //target = GameObject.FindGameObjectsWithTag("Hexagon")[startHex].transform.position;
         interf = GameObject.FindGameObjectWithTag ("Interface");
         offsetHexX = grid.hexagonWth / 6;
         offsetHexZ = grid.hexagonHgt / 6;
@@ -96,6 +96,10 @@ public class UnitMovement : MonoBehaviour
                     foreach (UnitMovement a in allies) 
                     {
                         a.allies = allies;
+                    }
+                    if (currentHex.GetHexagonType() == 0)
+                    {
+                        this.moveLmt++;
                     }
                 }
                 else 
@@ -316,7 +320,7 @@ public class UnitMovement : MonoBehaviour
     // We get the path to the indicated hexagon. We also make sure that our current allies keep the same alignment while the path is being traversed.
     public int FindPathTo (Hexagon hex) 
     {
-        int cost = currentHex.GetPath ((int) stats.speed, hex);
+        /*int cost = currentHex.GetPath ((int) stats.speed, hex);
 
         visibleTarget = hex.GetVisible ();
 
@@ -355,7 +359,63 @@ public class UnitMovement : MonoBehaviour
             }
         }
 
-        return (moveLmt - cost);
+        return (moveLmt - cost);*/
+
+        path = currentHex.GetPath(hex);
+        int longitud = path.Count;
+        for(int i =longitud-1; i>=moveLmt; i--)
+        {
+            path.RemoveAt(i);
+        }
+
+        if (path.Count>0)
+        {
+            visibleTarget = hex.GetVisible();
+
+            for (int u = 0; u < allies.Length; u += 1)
+            {
+                if (u != 0)
+                {
+                    Vector3 offset = offsets[u];
+                    List<Vector3> pathAux = new List<Vector3>();
+
+                    for (int p = 0; p < path.Count; p += 1)
+                    {
+                        pathAux.Add(path[p] + offset);
+                    }
+
+                    allies[u].path = pathAux;
+                }
+                allies[u].target = allies[u].path[0];
+                allies[u].reachedTrg = false;
+            }
+
+            if (stats.occupation == "Worker" || stats.occupation == "Collector")
+            {
+                if (stats.occupation == "Worker")
+                {
+                    Builder builder = this.GetComponent<Builder>();
+
+                    if (builder.working == true)
+                    {
+                        builder.StopBuilding();
+                    }
+                }
+                else
+                {
+                    this.GetComponent<Collector>().working = false;
+                }
+            }
+
+            if (longitud <= moveLmt)
+                return 1;
+            else
+                return 0;
+        }
+        else
+        {
+            return -1;
+        }
     }
 
 
