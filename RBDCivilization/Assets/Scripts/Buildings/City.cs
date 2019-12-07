@@ -19,11 +19,11 @@ public class City : MonoBehaviour
     public int craftsmen;
     public int turroncitos;
 
-    private int orcs;
+    public int orcs;
     private int panecillos;
     private int goblins;
     private int trolls;
-    private int cuctañas;
+    public int cuctañas;
     private int puppets;
     private int witchers;
 

@@ -171,6 +171,28 @@ public class BehaviourTreeScript : MonoBehaviour
                         if (reclutUnits(1, hexCapital) == NodeStates.SUCCESS)
                         {
                             print("IA produce tropas.");
+                        } else
+                        {
+                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                            {
+                                Hexagon generate = null;
+                                if (hexCapital.neighbours[y] != null)
+                                {
+                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                    {
+                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                        {
+                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (generate != null)
+                                {
+                                    Debug.Log("IA mueve sus tropas");
+                                    movementUnits(0, hexCapital.neighbours[y], generate);
+                                }
+                            }
                         }
                     }
                     else
@@ -203,7 +225,29 @@ public class BehaviourTreeScript : MonoBehaviour
                             if (!participa)
                             {
                                 print("IA recluta granjeros.");
-                                reclutUnits(7, hexCapital);
+                                if (reclutUnits(7, hexCapital) != NodeStates.SUCCESS)
+                                {
+                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                    {
+                                        Hexagon generate = null;
+                                        if (hexCapital.neighbours[y] != null)
+                                        {
+                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                            {
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                {
+                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (generate != null)
+                                        {
+                                            Debug.Log("IA mueve sus tropas");
+                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                        }
+                                    }                                    
+                                }
                             }
                         }
                         else
@@ -264,8 +308,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                             if (checkStores(10) == NodeStates.SUCCESS)
                                             {
                                                 Debug.Log("IA tiene viveres");
-                                                reclutUnits(5, hexCapital);
-                                                Debug.Log("IA recluta a un recolector");
+                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                {
+                                                    Debug.Log("IA recluta a un recolector");
+                                                }
+                                                else
+                                                {
+                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                    {
+                                                        Hexagon generate = null;
+                                                        if (hexCapital.neighbours[y] != null)
+                                                        {
+                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                            {
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                {
+                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if (generate != null)
+                                                        {
+                                                            Debug.Log("IA mueve sus tropas");
+                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -278,7 +347,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                 if (checkStores(15) == NodeStates.SUCCESS)
                                 {
                                     Debug.Log("IA puede crear constructores");
-                                    reclutUnits(6, hexCapital);
+                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                    {
+                                        Debug.Log("IA crea constructores");
+                                    }
+                                    else
+                                    {
+                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                        {
+                                            Hexagon generate = null;
+                                            if (hexCapital.neighbours[y] != null)
+                                            {
+                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                {
+                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                    {
+                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (generate != null)
+                                            {
+                                                Debug.Log("IA mueve sus tropas");
+                                                movementUnits(0, hexCapital.neighbours[y], generate);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -299,6 +394,29 @@ public class BehaviourTreeScript : MonoBehaviour
                                 if (reclutUnits(1, hexCapital) == NodeStates.SUCCESS)
                                 {
                                     print("IA produce tropas.");
+                                }
+                                else
+                                {
+                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                    {
+                                        Hexagon generate = null;
+                                        if (hexCapital.neighbours[y] != null)
+                                        {
+                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                            {
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                {
+                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (generate != null)
+                                        {
+                                            Debug.Log("IA mueve sus tropas");
+                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                        }
+                                    }
                                 }
                             }
                             else
@@ -331,7 +449,29 @@ public class BehaviourTreeScript : MonoBehaviour
                                     if (!participa)
                                     {
                                         print("IA recluta granjeros.");
-                                        reclutUnits(7, hexCapital);
+                                        if (reclutUnits(7, hexCapital) == NodeStates.FAILURE)
+                                        {
+                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                            {
+                                                Hexagon generate = null;
+                                                if (hexCapital.neighbours[y] != null)
+                                                {
+                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                    {
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        {
+                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                if (generate != null)
+                                                {
+                                                    Debug.Log("IA mueve sus tropas");
+                                                    movementUnits(0, hexCapital.neighbours[y], generate);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                                 else
@@ -392,8 +532,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                     if (checkStores(10) == NodeStates.SUCCESS)
                                                     {
                                                         Debug.Log("IA tiene viveres");
-                                                        reclutUnits(5, hexCapital);
-                                                        Debug.Log("IA recluta a un recolector");
+                                                        if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                        {
+                                                            Debug.Log("IA recluta a un recolector");
+                                                        }
+                                                        else
+                                                        {
+                                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                            {
+                                                                Hexagon generate = null;
+                                                                if (hexCapital.neighbours[y] != null)
+                                                                {
+                                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                    {
+                                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                        {
+                                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if (generate != null)
+                                                                {
+                                                                    Debug.Log("IA mueve sus tropas");
+                                                                    movementUnits(0, hexCapital.neighbours[y], generate);
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -406,7 +571,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                         if (checkStores(15) == NodeStates.SUCCESS)
                                         {
                                             Debug.Log("IA puede crear constructores");
-                                            reclutUnits(6, hexCapital);
+                                            if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                            {
+                                                Debug.Log("IA recluta constructores");
+                                            }
+                                            else
+                                            {
+                                                for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                {
+                                                    Hexagon generate = null;
+                                                    if (hexCapital.neighbours[y] != null)
+                                                    {
+                                                        for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                        {
+                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                            {
+                                                                generate = hexCapital.neighbours[y].neighbours[z];
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    if (generate != null)
+                                                    {
+                                                        Debug.Log("IA mueve sus tropas");
+                                                        movementUnits(0, hexCapital.neighbours[y], generate);
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -433,6 +624,29 @@ public class BehaviourTreeScript : MonoBehaviour
                                         if (reclutUnits(1, hexCapital) == NodeStates.SUCCESS)
                                         {
                                             print("IA produce tropas.");
+                                        }
+                                        else
+                                        {
+                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                            {
+                                                Hexagon generate = null;
+                                                if (hexCapital.neighbours[y] != null)
+                                                {
+                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                    {
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        {
+                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                if (generate != null)
+                                                {
+                                                    Debug.Log("IA mueve sus tropas");
+                                                    movementUnits(0, hexCapital.neighbours[y], generate);
+                                                }
+                                            }
                                         }
                                     }
                                     else
@@ -464,8 +678,33 @@ public class BehaviourTreeScript : MonoBehaviour
 
                                             if (!participa)
                                             {
-                                                print("IA recluta granjeros.");
-                                                reclutUnits(7, hexCapital);
+                                                if (reclutUnits(7, hexCapital) == NodeStates.SUCCESS)
+                                                {
+                                                    Debug.Log("IA recluta granjeros");
+                                                }
+                                                else
+                                                {
+                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                    {
+                                                        Hexagon generate = null;
+                                                        if (hexCapital.neighbours[y] != null)
+                                                        {
+                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                            {
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                {
+                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if (generate != null)
+                                                        {
+                                                            Debug.Log("IA mueve sus tropas");
+                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                         else
@@ -526,8 +765,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             if (checkStores(10) == NodeStates.SUCCESS)
                                                             {
                                                                 Debug.Log("IA tiene viveres");
-                                                                reclutUnits(5, hexCapital);
-                                                                Debug.Log("IA recluta a un recolector");
+                                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                                {
+                                                                    Debug.Log("IA recluta a un recolector");
+                                                                }
+                                                                else
+                                                                {
+                                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                                    {
+                                                                        Hexagon generate = null;
+                                                                        if (hexCapital.neighbours[y] != null)
+                                                                        {
+                                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                            {
+                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                                {
+                                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if (generate != null)
+                                                                        {
+                                                                            Debug.Log("IA mueve sus tropas");
+                                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -540,7 +804,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 if (checkStores(15) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA puede crear constructores");
-                                                    reclutUnits(6, hexCapital);
+                                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                                    {
+                                                        Debug.Log("IA crea constructores");
+                                                    }
+                                                    else
+                                                    {
+                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                        {
+                                                            Hexagon generate = null;
+                                                            if (hexCapital.neighbours[y] != null)
+                                                            {
+                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                {
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                    {
+                                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (generate != null)
+                                                            {
+                                                                Debug.Log("IA mueve sus tropas");
+                                                                movementUnits(0, hexCapital.neighbours[y], generate);
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -575,8 +865,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                     if (checkStores(15) == NodeStates.SUCCESS)
                                     {
                                         Debug.Log("IA tiene suficentes viveres");
-                                        reclutUnits(6, hexCapital);
-                                        Debug.Log("IA ha reclutado un constructor");
+                                        if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                        {
+                                            Debug.Log("IA ha reclutado un constructor");
+                                        }
+                                        else
+                                        {
+                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                            {
+                                                Hexagon generate = null;
+                                                if (hexCapital.neighbours[y] != null)
+                                                {
+                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                    {
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        {
+                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                if (generate != null)
+                                                {
+                                                    Debug.Log("IA mueve sus tropas");
+                                                    movementUnits(0, hexCapital.neighbours[y], generate);
+                                                }
+                                            }
+                                        }
                                     } else
                                     {
                                         print("IA no tiene víveres.");
@@ -605,8 +920,33 @@ public class BehaviourTreeScript : MonoBehaviour
 
                                             if (!participa)
                                             {
-                                                print("IA recluta granjeros.");
-                                                reclutUnits(7, hexCapital);
+                                                if (reclutUnits(7, hexCapital) == NodeStates.SUCCESS)
+                                                {
+                                                    Debug.Log("IA recluta granjeros");
+                                                }
+                                                else
+                                                {
+                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                    {
+                                                        Hexagon generate = null;
+                                                        if (hexCapital.neighbours[y] != null)
+                                                        {
+                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                            {
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                {
+                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if (generate != null)
+                                                        {
+                                                            Debug.Log("IA mueve sus tropas");
+                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                         else
@@ -666,8 +1006,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             if (checkStores(10) == NodeStates.SUCCESS)
                                                             {
                                                                 Debug.Log("IA tiene viveres");
-                                                                reclutUnits(5, hexCapital);
-                                                                Debug.Log("IA recluta a un recolector");
+                                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                                {
+                                                                    Debug.Log("IA recluta a un recolector");
+                                                                }
+                                                                else
+                                                                {
+                                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                                    {
+                                                                        Hexagon generate = null;
+                                                                        if (hexCapital.neighbours[y] != null)
+                                                                        {
+                                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                            {
+                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                                {
+                                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if (generate != null)
+                                                                        {
+                                                                            Debug.Log("IA mueve sus tropas");
+                                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -680,7 +1045,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 if (checkStores(15) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA puede crear constructores");
-                                                    reclutUnits(6, hexCapital);
+                                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                                    {
+                                                        Debug.Log("IA recluta constructores");
+                                                    }
+                                                    else
+                                                    {
+                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                        {
+                                                            Hexagon generate = null;
+                                                            if (hexCapital.neighbours[y] != null)
+                                                            {
+                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                {
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                    {
+                                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (generate != null)
+                                                            {
+                                                                Debug.Log("IA mueve sus tropas");
+                                                                movementUnits(0, hexCapital.neighbours[y], generate);
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -711,8 +1102,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                     if (checkStores(10) == NodeStates.SUCCESS)
                                     {
                                         Debug.Log("IA puede obtener un recolector");
-                                        reclutUnits(5, hexCapital);
-                                        Debug.Log("IA recluta un recolector");
+                                        if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                        {
+                                            Debug.Log("IA recluta un recolector");
+                                        }
+                                        else
+                                        {
+                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                            {
+                                                Hexagon generate = null;
+                                                if (hexCapital.neighbours[y] != null)
+                                                {
+                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                    {
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        {
+                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                if (generate != null)
+                                                {
+                                                    Debug.Log("IA mueve sus tropas");
+                                                    movementUnits(0, hexCapital.neighbours[y], generate);
+                                                }
+                                            }
+                                        }
                                     } else
                                     {
                                         print("IA no tiene víveres.");
@@ -741,8 +1157,33 @@ public class BehaviourTreeScript : MonoBehaviour
 
                                             if (!participa)
                                             {
-                                                print("IA recluta granjeros.");
-                                                reclutUnits(7, hexCapital);
+                                                if (reclutUnits(7, hexCapital) == NodeStates.SUCCESS)
+                                                {
+                                                    Debug.Log("IA recluta granjeros");
+                                                }
+                                                else
+                                                {
+                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                    {
+                                                        Hexagon generate = null;
+                                                        if (hexCapital.neighbours[y] != null)
+                                                        {
+                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                            {
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                {
+                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if (generate != null)
+                                                        {
+                                                            Debug.Log("IA mueve sus tropas");
+                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                         else
@@ -802,8 +1243,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             if (checkStores(10) == NodeStates.SUCCESS)
                                                             {
                                                                 Debug.Log("IA tiene viveres");
-                                                                reclutUnits(5, hexCapital);
-                                                                Debug.Log("IA recluta a un recolector");
+                                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                                {
+                                                                    Debug.Log("IA recluta a un recolector");
+                                                                }
+                                                                else
+                                                                {
+                                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                                    {
+                                                                        Hexagon generate = null;
+                                                                        if (hexCapital.neighbours[y] != null)
+                                                                        {
+                                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                            {
+                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                                {
+                                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if (generate != null)
+                                                                        {
+                                                                            Debug.Log("IA mueve sus tropas");
+                                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -816,7 +1282,33 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 if (checkStores(15) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA puede crear constructores");
-                                                    reclutUnits(6, hexCapital);
+                                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                                    {
+                                                        Debug.Log("IA recluta constructores");
+                                                    }
+                                                    else
+                                                    {
+                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                        {
+                                                            Hexagon generate = null;
+                                                            if (hexCapital.neighbours[y] != null)
+                                                            {
+                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                {
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                    {
+                                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (generate != null)
+                                                            {
+                                                                Debug.Log("IA mueve sus tropas");
+                                                                movementUnits(0, hexCapital.neighbours[y], generate);
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }

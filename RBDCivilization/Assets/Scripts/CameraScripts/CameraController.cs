@@ -133,7 +133,7 @@ public class CameraController : MonoBehaviour
 
                 if (hex != null) 
                 {
-                    if (selectedUnt == null && hex.GetIsBuilded() && hex.GetCity().GetCitySide()=="Blue")
+                    if (selectedUnt == null && hex.GetIsBuilded() && (hex.GetCity().GetCitySide()=="Blue" || hex.GetCity().GetCitySide() == "blue"))
                     {
                         buildingMenu.GetComponent<BuildingMenu>().readHexagonBuilding(hex);
                     }

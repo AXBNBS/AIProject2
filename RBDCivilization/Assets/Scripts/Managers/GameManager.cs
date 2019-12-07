@@ -19,10 +19,13 @@ public class GameManager : MonoBehaviour
     private ResourcesHolder resourcesHld;
     private CameraController cameraCtr;
 
+    private BuildingMenu buildingMenu;
+
 
     // We get every present unit, farm, builder and collector (independently of their faction) at the start of the game, and add them to their corresponding lists.
     private void Start ()
     {
+        buildingMenu = GameObject.FindObjectOfType<BuildingMenu>();
         UnitMovement[] units = GameObject.FindObjectsOfType<UnitMovement> ();
         Farm[] farms = GameObject.FindObjectsOfType<Farm> ();
         Builder[] builders = GameObject.FindObjectsOfType<Builder> ();
@@ -160,7 +163,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        behaviourTree.Evaluate();        
+        behaviourTree.Evaluate();
     }
 
 
@@ -240,6 +243,15 @@ public class GameManager : MonoBehaviour
             {
                 resourcesHld.changeStores ("blue", storesPerFrm, true);
             }
+        }
+
+        if (buildingMenu.remainingTurnsToUpgrade == 0 && buildingMenu.upgrading==true)
+        {
+            buildingMenu.Upgrade();
+        }
+        else if(buildingMenu.remainingTurnsToUpgrade>0)
+        {
+            buildingMenu.remainingTurnsToUpgrade--;
         }
     }
 }

@@ -625,7 +625,7 @@ public class EnemyFunctions : MonoBehaviour
         {
             hex.GetCity().AddUnits (units[0].stats.race, units.Length, units[0].stats.defense * units.Length);
             units[0].currentHex.EmptyHexagon ();
-            for (int u = 0; u < units.Length; u += 1) 
+            for (int u = 0; u < units.Length; u += 1)
             {
                 if (units[u].stats.occupation == "Worker")
                 {
