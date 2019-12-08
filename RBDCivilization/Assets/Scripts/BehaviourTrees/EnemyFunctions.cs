@@ -612,7 +612,7 @@ public class EnemyFunctions : MonoBehaviour
     public int movementUnits(Hexagon startHex, Hexagon finalHex)
     {
         UnitMovement[] units = startHex.UnitsPlaced();
-        if (units[0] != null)
+        if (units.Length > 0 && units[0] != null)
         {
             int result = units[0].FindPathTo(finalHex);
             if (result == units[0].GetMovementLimit())
@@ -623,11 +623,11 @@ public class EnemyFunctions : MonoBehaviour
             {
                 if (result >= 0)
                 {
-                    return +1;
+                    return 0;
                 }
                 else
                 {
-                    return 0;
+                    return 1;
                 }
             }
         }

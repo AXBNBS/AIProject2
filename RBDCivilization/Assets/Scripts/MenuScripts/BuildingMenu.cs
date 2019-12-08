@@ -171,6 +171,7 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(humanPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -206,6 +207,8 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(catPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -241,6 +244,8 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(elfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -276,6 +281,8 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(dwarfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -311,6 +318,8 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(twiiPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -346,6 +355,8 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(hazelnutPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -381,6 +392,8 @@ public class BuildingMenu : MonoBehaviour
             if (generate != null)
             {
                 GameObject train = Instantiate(nougatPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -417,6 +430,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(humanSettings.race, -1, -humanSettings.defense);
                 GameObject train = Instantiate(humanPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -452,6 +467,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(catSettings.race, -1, -catSettings.defense);
                 GameObject train = Instantiate(catPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -487,6 +504,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(elfSettings.race, -1, -elfSettings.defense);
                 GameObject train = Instantiate(elfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -522,6 +541,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(dwarfSettings.race, -1, -dwarfSettings.defense);
                 GameObject train = Instantiate(dwarfPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -557,6 +578,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(twiiSettings.race, -1, -twiiSettings.defense);
                 GameObject train = Instantiate(twiiPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -592,6 +615,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(hazelnutSettings.race, -1, -hazelnutSettings.defense);
                 GameObject train = Instantiate(hazelnutPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());
@@ -627,6 +652,8 @@ public class BuildingMenu : MonoBehaviour
             {
                 hex.GetCity().AddUnits(nougatSettings.race, -1, -nougatSettings.defense);
                 GameObject train = Instantiate(nougatPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 if (train.GetComponent<UnitMovement>().stats.occupation == "Worker")
                 {
                     gameManager.GetComponent<GameManager>().playerBld.Add(train.GetComponent<Builder>());

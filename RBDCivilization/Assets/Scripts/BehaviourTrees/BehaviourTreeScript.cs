@@ -182,7 +182,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                 {
                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                     {
-                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                         {
                                             generate = hexCapital.neighbours[y].neighbours[z];
                                             break;
@@ -236,7 +236,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                         {
                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                             {
-                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                 {
                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                     break;
@@ -278,10 +278,13 @@ public class BehaviourTreeScript : MonoBehaviour
                                             {
                                                 Debug.Log("IA tiene recolector");
                                                 haveCollectors = true;
-                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA ha llevado un recolector a un bosque");
-                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                    if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                    {
+                                                        GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                    }
                                                 }
                                                 else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                 {
@@ -291,53 +294,56 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         Debug.Log("IA puede construir tunel");
                                                         buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                     }
-                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                     {
                                                         Debug.Log("IA lleva recolector al bosque");
-                                                        collect(0, null, null, units[u].GetComponent<Unit>());
+                                                        if (collect(0, null, null, units[u].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                        {
+                                                            GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                        }
                                                     }
                                                 }
                                                 else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA ha llevado recolector a la montaña");
-                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                    if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                    {
+                                                        GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeMineral("Red", 100, true);
+                                                    }
                                                 }
                                             }
                                         }
                                         if (!haveCollectors)
                                         {
                                             Debug.Log("IA no tiene recolectores");
-                                            if (checkStores(10) == NodeStates.SUCCESS)
+                                            Debug.Log("IA tiene viveres");
+                                            if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
                                             {
-                                                Debug.Log("IA tiene viveres");
-                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                Debug.Log("IA recluta a un recolector");
+                                            }
+                                            else
+                                            {
+                                                for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                 {
-                                                    Debug.Log("IA recluta a un recolector");
-                                                }
-                                                else
-                                                {
-                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                    Hexagon generate = null;
+                                                    if (hexCapital.neighbours[y] != null)
                                                     {
-                                                        Hexagon generate = null;
-                                                        if (hexCapital.neighbours[y] != null)
+                                                        for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                         {
-                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                {
-                                                                    generate = hexCapital.neighbours[y].neighbours[z];
-                                                                    break;
-                                                                }
+                                                                generate = hexCapital.neighbours[y].neighbours[z];
+                                                                break;
                                                             }
                                                         }
-                                                        if (generate != null)
-                                                        {
-                                                            Debug.Log("IA mueve sus tropas");
-                                                            movementUnits(0, hexCapital.neighbours[y], generate);
-                                                        }
+                                                    }
+                                                    if (generate != null)
+                                                    {
+                                                        Debug.Log("IA mueve sus tropas");
+                                                        movementUnits(0, hexCapital.neighbours[y], generate);
                                                     }
                                                 }
-                                            }
+                                            }                                            
                                         }
                                     }
                                 }
@@ -346,34 +352,31 @@ public class BehaviourTreeScript : MonoBehaviour
                             if (!prepare)
                             {
                                 Debug.Log("IA no tiene constructores");
-                                if (checkStores(15) == NodeStates.SUCCESS)
+                                Debug.Log("IA puede crear constructores");
+                                if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
                                 {
-                                    Debug.Log("IA puede crear constructores");
-                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                    Debug.Log("IA crea constructores");
+                                }
+                                else
+                                {
+                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                     {
-                                        Debug.Log("IA crea constructores");
-                                    }
-                                    else
-                                    {
-                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                        Hexagon generate = null;
+                                        if (hexCapital.neighbours[y] != null)
                                         {
-                                            Hexagon generate = null;
-                                            if (hexCapital.neighbours[y] != null)
+                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                             {
-                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                 {
-                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                    {
-                                                        generate = hexCapital.neighbours[y].neighbours[z];
-                                                        break;
-                                                    }
+                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                    break;
                                                 }
                                             }
-                                            if (generate != null)
-                                            {
-                                                Debug.Log("IA mueve sus tropas");
-                                                movementUnits(0, hexCapital.neighbours[y], generate);
-                                            }
+                                        }
+                                        if (generate != null)
+                                        {
+                                            Debug.Log("IA mueve sus tropas");
+                                            movementUnits(0, hexCapital.neighbours[y], generate);
                                         }
                                     }
                                 }
@@ -406,7 +409,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                         {
                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                             {
-                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                 {
                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                     break;
@@ -460,7 +463,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                             break;
@@ -502,10 +505,13 @@ public class BehaviourTreeScript : MonoBehaviour
                                                     {
                                                         Debug.Log("IA tiene recolector");
                                                         haveCollectors = true;
-                                                        if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                        if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                         {
                                                             Debug.Log("IA ha llevado un recolector a un bosque");
-                                                            collect(0, null, null, units[i].GetComponent<Unit>());
+                                                            if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                            {
+                                                                GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                            }
                                                         }
                                                         else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                         {
@@ -515,53 +521,56 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                 Debug.Log("IA puede construir tunel");
                                                                 buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                             }
-                                                            else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                            else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                             {
                                                                 Debug.Log("IA lleva recolector al bosque");
-                                                                collect(0, null, null, units[u].GetComponent<Unit>());
+                                                                if (collect(0, null, null, units[u].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                                {
+                                                                    GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                                }
                                                             }
                                                         }
                                                         else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
                                                         {
                                                             Debug.Log("IA ha llevado recolector a la montaña");
-                                                            collect(0, null, null, units[i].GetComponent<Unit>());
+                                                            if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                            {
+                                                                GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeMineral("Red", 100, true);
+                                                            }
                                                         }
                                                     }
                                                 }
                                                 if (!haveCollectors)
                                                 {
                                                     Debug.Log("IA no tiene recolectores");
-                                                    if (checkStores(10) == NodeStates.SUCCESS)
+                                                    Debug.Log("IA tiene viveres");
+                                                    if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
                                                     {
-                                                        Debug.Log("IA tiene viveres");
-                                                        if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                        Debug.Log("IA recluta a un recolector");
+                                                    }
+                                                    else
+                                                    {
+                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                         {
-                                                            Debug.Log("IA recluta a un recolector");
-                                                        }
-                                                        else
-                                                        {
-                                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                            Hexagon generate = null;
+                                                            if (hexCapital.neighbours[y] != null)
                                                             {
-                                                                Hexagon generate = null;
-                                                                if (hexCapital.neighbours[y] != null)
+                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                 {
-                                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                     {
-                                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                        {
-                                                                            generate = hexCapital.neighbours[y].neighbours[z];
-                                                                            break;
-                                                                        }
+                                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                                        break;
                                                                     }
                                                                 }
-                                                                if (generate != null)
-                                                                {
-                                                                    Debug.Log("IA mueve sus tropas");
-                                                                    movementUnits(0, hexCapital.neighbours[y], generate);
-                                                                }
+                                                            }
+                                                            if (generate != null)
+                                                            {
+                                                                Debug.Log("IA mueve sus tropas");
+                                                                movementUnits(0, hexCapital.neighbours[y], generate);
                                                             }
                                                         }
-                                                    }
+                                                    }                                                    
                                                 }
                                             }
                                         }
@@ -570,34 +579,31 @@ public class BehaviourTreeScript : MonoBehaviour
                                     if (!prepare)
                                     {
                                         Debug.Log("IA no tiene constructores");
-                                        if (checkStores(15) == NodeStates.SUCCESS)
+                                        Debug.Log("IA puede crear constructores");
+                                        if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
                                         {
-                                            Debug.Log("IA puede crear constructores");
-                                            if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                            Debug.Log("IA recluta constructores");
+                                        }
+                                        else
+                                        {
+                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                             {
-                                                Debug.Log("IA recluta constructores");
-                                            }
-                                            else
-                                            {
-                                                for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                Hexagon generate = null;
+                                                if (hexCapital.neighbours[y] != null)
                                                 {
-                                                    Hexagon generate = null;
-                                                    if (hexCapital.neighbours[y] != null)
+                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
-                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                            {
-                                                                generate = hexCapital.neighbours[y].neighbours[z];
-                                                                break;
-                                                            }
+                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                            break;
                                                         }
                                                     }
-                                                    if (generate != null)
-                                                    {
-                                                        Debug.Log("IA mueve sus tropas");
-                                                        movementUnits(0, hexCapital.neighbours[y], generate);
-                                                    }
+                                                }
+                                                if (generate != null)
+                                                {
+                                                    Debug.Log("IA mueve sus tropas");
+                                                    movementUnits(0, hexCapital.neighbours[y], generate);
                                                 }
                                             }
                                         }
@@ -636,7 +642,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                             break;
@@ -693,7 +699,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         {
                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                 {
                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                     break;
@@ -735,10 +741,13 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             {
                                                                 Debug.Log("IA tiene recolector");
                                                                 haveCollectors = true;
-                                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                                 {
                                                                     Debug.Log("IA ha llevado un recolector a un bosque");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                                    if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                                    {
+                                                                        GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                                    }
                                                                 }
                                                                 else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                                 {
@@ -748,50 +757,53 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                         Debug.Log("IA puede construir tunel");
                                                                         buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                                     }
-                                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                                     {
                                                                         Debug.Log("IA lleva recolector al bosque");
-                                                                        collect(0, null, null, units[u].GetComponent<Unit>());
+                                                                        if (collect(0, null, null, units[u].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                                        {
+                                                                            GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                                        }
                                                                     }
                                                                 }
                                                                 else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
                                                                 {
                                                                     Debug.Log("IA ha llevado recolector a la montaña");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                                    if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                                    {
+                                                                        GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeMineral("Red", 100, true);
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                         if (!haveCollectors)
                                                         {
                                                             Debug.Log("IA no tiene recolectores");
-                                                            if (checkStores(10) == NodeStates.SUCCESS)
+                                                            Debug.Log("IA tiene viveres");
+                                                            if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
                                                             {
-                                                                Debug.Log("IA tiene viveres");
-                                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                                Debug.Log("IA recluta a un recolector");
+                                                            }
+                                                            else
+                                                            {
+                                                                for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                                 {
-                                                                    Debug.Log("IA recluta a un recolector");
-                                                                }
-                                                                else
-                                                                {
-                                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                                    Hexagon generate = null;
+                                                                    if (hexCapital.neighbours[y] != null)
                                                                     {
-                                                                        Hexagon generate = null;
-                                                                        if (hexCapital.neighbours[y] != null)
+                                                                        for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                         {
-                                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                             {
-                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                                {
-                                                                                    generate = hexCapital.neighbours[y].neighbours[z];
-                                                                                    break;
-                                                                                }
+                                                                                generate = hexCapital.neighbours[y].neighbours[z];
+                                                                                break;
                                                                             }
                                                                         }
-                                                                        if (generate != null)
-                                                                        {
-                                                                            Debug.Log("IA mueve sus tropas");
-                                                                            movementUnits(0, hexCapital.neighbours[y], generate);
-                                                                        }
+                                                                    }
+                                                                    if (generate != null)
+                                                                    {
+                                                                        Debug.Log("IA mueve sus tropas");
+                                                                        movementUnits(0, hexCapital.neighbours[y], generate);
                                                                     }
                                                                 }
                                                             }
@@ -803,34 +815,31 @@ public class BehaviourTreeScript : MonoBehaviour
                                             if (!prepare)
                                             {
                                                 Debug.Log("IA no tiene constructores");
-                                                if (checkStores(15) == NodeStates.SUCCESS)
+                                                Debug.Log("IA puede crear constructores");
+                                                if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
                                                 {
-                                                    Debug.Log("IA puede crear constructores");
-                                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                                    Debug.Log("IA crea constructores");
+                                                }
+                                                else
+                                                {
+                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                     {
-                                                        Debug.Log("IA crea constructores");
-                                                    }
-                                                    else
-                                                    {
-                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                        Hexagon generate = null;
+                                                        if (hexCapital.neighbours[y] != null)
                                                         {
-                                                            Hexagon generate = null;
-                                                            if (hexCapital.neighbours[y] != null)
+                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                             {
-                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                 {
-                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                    {
-                                                                        generate = hexCapital.neighbours[y].neighbours[z];
-                                                                        break;
-                                                                    }
+                                                                    generate = hexCapital.neighbours[y].neighbours[z];
+                                                                    break;
                                                                 }
                                                             }
-                                                            if (generate != null)
-                                                            {
-                                                                Debug.Log("IA mueve sus tropas");
-                                                                movementUnits(0, hexCapital.neighbours[y], generate);
-                                                            }
+                                                        }
+                                                        if (generate != null)
+                                                        {
+                                                            Debug.Log("IA mueve sus tropas");
+                                                            movementUnits(0, hexCapital.neighbours[y], generate);
                                                         }
                                                     }
                                                 }
@@ -864,217 +873,31 @@ public class BehaviourTreeScript : MonoBehaviour
                                 if (!haveWorkers)
                                 {
                                     Debug.Log("IA no tiene constructores");
-                                    if (checkStores(15) == NodeStates.SUCCESS)
+                                    Debug.Log("IA tiene suficentes viveres");
+                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
                                     {
-                                        Debug.Log("IA tiene suficentes viveres");
-                                        if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
-                                        {
-                                            Debug.Log("IA ha reclutado un constructor");
-                                        }
-                                        else
-                                        {
-                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
-                                            {
-                                                Hexagon generate = null;
-                                                if (hexCapital.neighbours[y] != null)
-                                                {
-                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
-                                                    {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                        {
-                                                            generate = hexCapital.neighbours[y].neighbours[z];
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                                if (generate != null)
-                                                {
-                                                    Debug.Log("IA mueve sus tropas");
-                                                    movementUnits(0, hexCapital.neighbours[y], generate);
-                                                }
-                                            }
-                                        }
-                                    } else
+                                        Debug.Log("IA ha reclutado un constructor");
+                                    }
+                                    else
                                     {
-                                        print("IA no tiene víveres.");
-                                        if (checkActiveFarms() == NodeStates.SUCCESS)
+                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                         {
-                                            print("IA tiene granjas inactivas.");
-                                            bool participa = false;
-                                            for (int u = 0; u < units.Length; u += 1)
+                                            Hexagon generate = null;
+                                            if (hexCapital.neighbours[y] != null)
                                             {
-                                                if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Farmer")
+                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                 {
-                                                    foreach (Farm f in GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().AIFrm)
+                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                     {
-                                                        if (!f.active)
-                                                        {
-                                                            if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, f.GetComponent<City>().currentHex) == NodeStates.SUCCESS)
-                                                            {
-                                                                print("IA activa granja.");
-                                                                saveUnits(0, f.GetComponent<City>().currentHex);
-                                                                participa = true;
-                                                            }
-                                                        }
+                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                        break;
                                                     }
                                                 }
                                             }
-
-                                            if (!participa)
+                                            if (generate != null)
                                             {
-                                                if (reclutUnits(7, hexCapital) == NodeStates.SUCCESS)
-                                                {
-                                                    Debug.Log("IA recluta granjeros");
-                                                }
-                                                else
-                                                {
-                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
-                                                    {
-                                                        Hexagon generate = null;
-                                                        if (hexCapital.neighbours[y] != null)
-                                                        {
-                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
-                                                            {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                {
-                                                                    generate = hexCapital.neighbours[y].neighbours[z];
-                                                                    break;
-                                                                }
-                                                            }
-                                                        }
-                                                        if (generate != null)
-                                                        {
-                                                            Debug.Log("IA mueve sus tropas");
-                                                            movementUnits(0, hexCapital.neighbours[y], generate);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Debug.Log("IA no tiene granjas inactivas");
-                                            bool prepare = false;
-                                            for (int u = 0; u < units.Length; u += 1)
-                                            {
-                                                if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Worker")
-                                                {
-                                                    prepare = true;
-                                                    Debug.Log("IA tiene constructor");
-                                                    if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
-                                                    {
-                                                        Debug.Log("IA tiene recursos para construir");
-                                                        buildFarm(0, null, null, units[u].GetComponent<Unit>());
-                                                    }
-                                                    else
-                                                    {
-                                                        Debug.Log("IA no tiene recursos");
-                                                        bool haveCollectors = false;
-                                                        for (int i = 0; i < units.Length; i += 1)
-                                                        {
-                                                            if (units[i] != null && units[i].GetComponent<Unit>().settings.occupation == "Collector")
-                                                            {
-                                                                Debug.Log("IA tiene recolector");
-                                                                haveCollectors = true;
-                                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA ha llevado un recolector a un bosque");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
-                                                                }
-                                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA ha llevado a un constructor a la montaña");
-                                                                    if (checkWood(100) == NodeStates.SUCCESS)
-                                                                    {
-                                                                        Debug.Log("IA puede construir tunel");
-                                                                        buildTunnel(0, null, null, units[u].GetComponent<Unit>());
-                                                                    }
-                                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
-                                                                    {
-                                                                        Debug.Log("IA lleva recolector al bosque");
-                                                                        collect(0, null, null, units[u].GetComponent<Unit>());
-                                                                    }
-                                                                }
-                                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA ha llevado recolector a la montaña");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
-                                                                }
-                                                            }
-                                                        }
-                                                        if (!haveCollectors)
-                                                        {
-                                                            Debug.Log("IA no tiene recolectores");
-                                                            if (checkStores(10) == NodeStates.SUCCESS)
-                                                            {
-                                                                Debug.Log("IA tiene viveres");
-                                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA recluta a un recolector");
-                                                                }
-                                                                else
-                                                                {
-                                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
-                                                                    {
-                                                                        Hexagon generate = null;
-                                                                        if (hexCapital.neighbours[y] != null)
-                                                                        {
-                                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
-                                                                            {
-                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                                {
-                                                                                    generate = hexCapital.neighbours[y].neighbours[z];
-                                                                                    break;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                        if (generate != null)
-                                                                        {
-                                                                            Debug.Log("IA mueve sus tropas");
-                                                                            movementUnits(0, hexCapital.neighbours[y], generate);
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            if (!prepare)
-                                            {
-                                                Debug.Log("IA no tiene constructores");
-                                                if (checkStores(15) == NodeStates.SUCCESS)
-                                                {
-                                                    Debug.Log("IA puede crear constructores");
-                                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
-                                                    {
-                                                        Debug.Log("IA recluta constructores");
-                                                    }
-                                                    else
-                                                    {
-                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
-                                                        {
-                                                            Hexagon generate = null;
-                                                            if (hexCapital.neighbours[y] != null)
-                                                            {
-                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
-                                                                {
-                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                    {
-                                                                        generate = hexCapital.neighbours[y].neighbours[z];
-                                                                        break;
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (generate != null)
-                                                            {
-                                                                Debug.Log("IA mueve sus tropas");
-                                                                movementUnits(0, hexCapital.neighbours[y], generate);
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                                Debug.Log("IA mueve sus tropas");
+                                                movementUnits(0, hexCapital.neighbours[y], generate);
                                             }
                                         }
                                     }
@@ -1090,226 +913,229 @@ public class BehaviourTreeScript : MonoBehaviour
                                     {
                                         Debug.Log("IA tiene recolector");
                                         haveRecollectores = true;
-                                        if (movementUnits(0, units[j].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
+                                        if (movementUnits(0, units[j].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length/2]) == NodeStates.SUCCESS)
                                         {
                                             Debug.Log("IA ha llevado recolector a un bosque");
-                                            collect(0, null, null, units[j].GetComponent<Unit>());
+                                            if (collect(0, null, null, units[j].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                            {
+                                                GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                            }
                                         }
                                     }
                                 }
-
-                                if (!haveRecollectores)
+                                
+                                Debug.Log("IA no mantiene recolectores");
+                                if (checkStores(10) == NodeStates.SUCCESS)
                                 {
-                                    Debug.Log("IA no mantiene recolectores");
-                                    if (checkStores(10) == NodeStates.SUCCESS)
+                                    Debug.Log("IA puede obtener un recolector");
+                                    if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
                                     {
-                                        Debug.Log("IA puede obtener un recolector");
-                                        if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                        Debug.Log("IA recluta un recolector");
+                                    }
+                                    else
+                                    {
+                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                         {
-                                            Debug.Log("IA recluta un recolector");
-                                        }
-                                        else
-                                        {
-                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                            Hexagon generate = null;
+                                            if (hexCapital.neighbours[y] != null)
                                             {
-                                                Hexagon generate = null;
-                                                if (hexCapital.neighbours[y] != null)
+                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                 {
-                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        generate = hexCapital.neighbours[y].neighbours[z];
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (generate != null)
+                                            {
+                                                Debug.Log("IA mueve sus tropas");
+                                                movementUnits(0, hexCapital.neighbours[y], generate);
+                                            }
+                                        }
+                                    }
+                                } else
+                                {
+                                    print("IA no tiene víveres.");
+                                    if (checkActiveFarms() == NodeStates.SUCCESS)
+                                    {
+                                        print("IA tiene granjas inactivas.");
+                                        bool participa = false;
+                                        for (int u = 0; u < units.Length; u += 1)
+                                        {
+                                            if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Farmer")
+                                            {
+                                                foreach (Farm f in GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().AIFrm)
+                                                {
+                                                    if (!f.active)
+                                                    {
+                                                        if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, f.GetComponent<City>().currentHex) == NodeStates.SUCCESS)
                                                         {
-                                                            generate = hexCapital.neighbours[y].neighbours[z];
-                                                            break;
+                                                            print("IA activa granja.");
+                                                            saveUnits(0, f.GetComponent<City>().currentHex);
+                                                            participa = true;
                                                         }
                                                     }
                                                 }
-                                                if (generate != null)
-                                                {
-                                                    Debug.Log("IA mueve sus tropas");
-                                                    movementUnits(0, hexCapital.neighbours[y], generate);
-                                                }
                                             }
                                         }
-                                    } else
-                                    {
-                                        print("IA no tiene víveres.");
-                                        if (checkActiveFarms() == NodeStates.SUCCESS)
+
+                                        if (!participa)
                                         {
-                                            print("IA tiene granjas inactivas.");
-                                            bool participa = false;
-                                            for (int u = 0; u < units.Length; u += 1)
+                                            if (reclutUnits(7, hexCapital) == NodeStates.SUCCESS)
                                             {
-                                                if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Farmer")
+                                                Debug.Log("IA recluta granjeros");
+                                            }
+                                            else
+                                            {
+                                                for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                 {
-                                                    foreach (Farm f in GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().AIFrm)
+                                                    Hexagon generate = null;
+                                                    if (hexCapital.neighbours[y] != null)
                                                     {
-                                                        if (!f.active)
+                                                        for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                         {
-                                                            if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, f.GetComponent<City>().currentHex) == NodeStates.SUCCESS)
+                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                             {
-                                                                print("IA activa granja.");
-                                                                saveUnits(0, f.GetComponent<City>().currentHex);
-                                                                participa = true;
+                                                                generate = hexCapital.neighbours[y].neighbours[z];
+                                                                break;
                                                             }
                                                         }
                                                     }
+                                                    if (generate != null)
+                                                    {
+                                                        Debug.Log("IA mueve sus tropas");
+                                                        movementUnits(0, hexCapital.neighbours[y], generate);
+                                                    }
                                                 }
                                             }
-
-                                            if (!participa)
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("IA no tiene granjas inactivas");
+                                        bool prepare = false;
+                                        for (int u = 0; u < units.Length; u += 1)
+                                        {
+                                            if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Worker")
                                             {
-                                                if (reclutUnits(7, hexCapital) == NodeStates.SUCCESS)
+                                                prepare = true;
+                                                Debug.Log("IA tiene constructor");
+                                                if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
                                                 {
-                                                    Debug.Log("IA recluta granjeros");
+                                                    Debug.Log("IA tiene recursos para construir");
+                                                    buildFarm(0, null, null, units[u].GetComponent<Unit>());
                                                 }
                                                 else
                                                 {
-                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                    Debug.Log("IA no tiene recursos");
+                                                    bool haveCollectors = false;
+                                                    for (int i = 0; i < units.Length; i += 1)
                                                     {
-                                                        Hexagon generate = null;
-                                                        if (hexCapital.neighbours[y] != null)
+                                                        if (units[i] != null && units[i].GetComponent<Unit>().settings.occupation == "Collector")
                                                         {
-                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
+                                                            Debug.Log("IA tiene recolector");
+                                                            haveCollectors = true;
+                                                            if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                Debug.Log("IA ha llevado un recolector a un bosque");
+                                                                if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
                                                                 {
-                                                                    generate = hexCapital.neighbours[y].neighbours[z];
-                                                                    break;
+                                                                    GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                                }
+                                                            }
+                                                            else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
+                                                            {
+                                                                Debug.Log("IA ha llevado a un constructor a la montaña");
+                                                                if (checkWood(100) == NodeStates.SUCCESS)
+                                                                {
+                                                                    Debug.Log("IA puede construir tunel");
+                                                                    buildTunnel(0, null, null, units[u].GetComponent<Unit>());
+                                                                }
+                                                                else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
+                                                                {
+                                                                    Debug.Log("IA lleva recolector al bosque");
+                                                                    if (collect(0, null, null, units[u].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                                    {
+                                                                        GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeWood("Red", 100, true);
+                                                                    }
+                                                                }
+                                                            }
+                                                            else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
+                                                            {
+                                                                Debug.Log("IA ha llevado recolector a la montaña");
+                                                                if (collect(0, null, null, units[i].GetComponent<Unit>()) == NodeStates.SUCCESS)
+                                                                {
+                                                                    GameObject.FindGameObjectWithTag("GameController").GetComponent<ResourcesHolder>().changeMineral("Red", 100, true);
                                                                 }
                                                             }
                                                         }
-                                                        if (generate != null)
-                                                        {
-                                                            Debug.Log("IA mueve sus tropas");
-                                                            movementUnits(0, hexCapital.neighbours[y], generate);
-                                                        }
                                                     }
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Debug.Log("IA no tiene granjas inactivas");
-                                            bool prepare = false;
-                                            for (int u = 0; u < units.Length; u += 1)
-                                            {
-                                                if (units[u] != null && units[u].GetComponent<Unit>().settings.occupation == "Worker")
-                                                {
-                                                    prepare = true;
-                                                    Debug.Log("IA tiene constructor");
-                                                    if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
+                                                    Debug.Log("IA no tiene recolectores");
+                                                    if (checkStores(10) == NodeStates.SUCCESS)
                                                     {
-                                                        Debug.Log("IA tiene recursos para construir");
-                                                        buildFarm(0, null, null, units[u].GetComponent<Unit>());
-                                                    }
-                                                    else
-                                                    {
-                                                        Debug.Log("IA no tiene recursos");
-                                                        bool haveCollectors = false;
-                                                        for (int i = 0; i < units.Length; i += 1)
+                                                        Debug.Log("IA tiene viveres");
+                                                        if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
                                                         {
-                                                            if (units[i] != null && units[i].GetComponent<Unit>().settings.occupation == "Collector")
-                                                            {
-                                                                Debug.Log("IA tiene recolector");
-                                                                haveCollectors = true;
-                                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA ha llevado un recolector a un bosque");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
-                                                                }
-                                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA ha llevado a un constructor a la montaña");
-                                                                    if (checkWood(100) == NodeStates.SUCCESS)
-                                                                    {
-                                                                        Debug.Log("IA puede construir tunel");
-                                                                        buildTunnel(0, null, null, units[u].GetComponent<Unit>());
-                                                                    }
-                                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
-                                                                    {
-                                                                        Debug.Log("IA lleva recolector al bosque");
-                                                                        collect(0, null, null, units[u].GetComponent<Unit>());
-                                                                    }
-                                                                }
-                                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
-                                                                {
-                                                                    Debug.Log("IA ha llevado recolector a la montaña");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
-                                                                }
-                                                            }
+                                                            Debug.Log("IA recluta a un recolector");
                                                         }
-                                                        if (!haveCollectors)
+                                                        else
                                                         {
-                                                            Debug.Log("IA no tiene recolectores");
-                                                            if (checkStores(10) == NodeStates.SUCCESS)
+                                                            for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                             {
-                                                                Debug.Log("IA tiene viveres");
-                                                                if (reclutUnits(5, hexCapital) == NodeStates.SUCCESS)
+                                                                Hexagon generate = null;
+                                                                if (hexCapital.neighbours[y] != null)
                                                                 {
-                                                                    Debug.Log("IA recluta a un recolector");
-                                                                }
-                                                                else
-                                                                {
-                                                                    for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                                    for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                     {
-                                                                        Hexagon generate = null;
-                                                                        if (hexCapital.neighbours[y] != null)
+                                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                         {
-                                                                            for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
-                                                                            {
-                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                                {
-                                                                                    generate = hexCapital.neighbours[y].neighbours[z];
-                                                                                    break;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                        if (generate != null)
-                                                                        {
-                                                                            Debug.Log("IA mueve sus tropas");
-                                                                            movementUnits(0, hexCapital.neighbours[y], generate);
+                                                                            generate = hexCapital.neighbours[y].neighbours[z];
+                                                                            break;
                                                                         }
                                                                     }
+                                                                }
+                                                                if (generate != null)
+                                                                {
+                                                                    Debug.Log("IA mueve sus tropas");
+                                                                    movementUnits(0, hexCapital.neighbours[y], generate);
                                                                 }
                                                             }
                                                         }
                                                     }
                                                 }
                                             }
+                                        }
 
-                                            if (!prepare)
+                                        if (!prepare)
+                                        {
+                                            Debug.Log("IA no tiene constructores");
+                                            Debug.Log("IA puede crear constructores");
+                                            if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
                                             {
-                                                Debug.Log("IA no tiene constructores");
-                                                if (checkStores(15) == NodeStates.SUCCESS)
+                                                Debug.Log("IA recluta constructores");
+                                            }
+                                            else
+                                            {
+                                                for (int y = 0; y < hexCapital.neighbours.Length; y++)
                                                 {
-                                                    Debug.Log("IA puede crear constructores");
-                                                    if (reclutUnits(6, hexCapital) == NodeStates.SUCCESS)
+                                                    Hexagon generate = null;
+                                                    if (hexCapital.neighbours[y] != null)
                                                     {
-                                                        Debug.Log("IA recluta constructores");
-                                                    }
-                                                    else
-                                                    {
-                                                        for (int y = 0; y < hexCapital.neighbours.Length; y++)
+                                                        for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                         {
-                                                            Hexagon generate = null;
-                                                            if (hexCapital.neighbours[y] != null)
+                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                             {
-                                                                for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
-                                                                {
-                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
-                                                                    {
-                                                                        generate = hexCapital.neighbours[y].neighbours[z];
-                                                                        break;
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (generate != null)
-                                                            {
-                                                                Debug.Log("IA mueve sus tropas");
-                                                                movementUnits(0, hexCapital.neighbours[y], generate);
+                                                                generate = hexCapital.neighbours[y].neighbours[z];
+                                                                break;
                                                             }
                                                         }
+                                                    }
+                                                    if (generate != null)
+                                                    {
+                                                        Debug.Log("IA mueve sus tropas");
+                                                        movementUnits(0, hexCapital.neighbours[y], generate);
                                                     }
                                                 }
                                             }
