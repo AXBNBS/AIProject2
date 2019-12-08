@@ -71,10 +71,15 @@ public class BehaviourTreeScript : MonoBehaviour
         Hexagon hexCapital = grid.hexagons[14, 48];
         Hexagon hexPlayerCapital = grid.hexagons[14, 0];
 
-        Hexagon unitHex = grid.hexagons[11, 42];
-        Hexagon finalHex = grid.hexagons[13, 42];
+        Hexagon unitHex = grid.hexagons[13, 47];
+        Hexagon finalHex = grid.hexagons[13, 45];
 
-        movementUnits(0, unitHex, finalHex) == NodeStates.SUCCESS;        
+        if (reclutUnits(1, hexCapital) == NodeStates.SUCCESS)
+        {
+            Debug.Log("IA genera unidad");
+            Debug.Log(movementUnits(0, unitHex, finalHex));
+        }
+           
 
         /*if (underAttack() == NodeStates.SUCCESS)
         {
