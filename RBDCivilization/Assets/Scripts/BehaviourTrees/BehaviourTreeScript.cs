@@ -138,6 +138,7 @@ public class BehaviourTreeScript : MonoBehaviour
                             {
                                 print("IA ataca capital del jugador.");
                                 attack(0, null, null, units[u].GetComponent<Unit>());
+                                yield return new WaitForSeconds(1);
                             }
                         }
                     }
@@ -154,6 +155,7 @@ public class BehaviourTreeScript : MonoBehaviour
                             {
                                 print("IA ataca asentamiento del jugador.");
                                 attack(0, null, null, units[u].GetComponent<Unit>());
+                                yield return new WaitForSeconds(1);
                             }
                         }
                     }
