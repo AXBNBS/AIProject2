@@ -25,7 +25,7 @@ public class City : MonoBehaviour
     private int trolls;
     public int cuctañas;
     private int puppets;
-    private int witchers;
+    public int witchers;
 
     public CitySettings settings;
     public GameObject nextLevel;

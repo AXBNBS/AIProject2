@@ -104,7 +104,6 @@ public class GameManager : MonoBehaviour
 
         foreach (UnitMovement u in AIUnt) 
         {
-            Debug.Log(u);
             u.ResetMovement ();
         }
 
@@ -152,6 +151,7 @@ public class GameManager : MonoBehaviour
             if (f.GetComponent<City>().GetWitchers() > 0)
             {
                 f.active = true;
+                print("AAAAAA");
             }
             else
             {

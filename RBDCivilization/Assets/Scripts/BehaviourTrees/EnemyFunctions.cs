@@ -36,7 +36,7 @@ public class EnemyFunctions : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameController");
     }
 
-    public bool checkWood(int n = 0)
+    public bool checkWood(int n)
     {
         int enoughWood = 0;
         if (capital.GetLevel() == 1)
@@ -67,7 +67,7 @@ public class EnemyFunctions : MonoBehaviour
             return false;
     }
 
-    public bool checkMineral(int n = 0)
+    public bool checkMineral(int n)
     {
         int enoughMineral = 0;
         if (capital.GetLevel() == 1)
@@ -100,7 +100,7 @@ public class EnemyFunctions : MonoBehaviour
             return false;
     }
 
-    public bool checkStores(int n = 0)
+    public bool checkStores(int n)
     {
         int enoughStores = 0;
         if (capital.GetLevel() == 1)
@@ -606,14 +606,7 @@ public class EnemyFunctions : MonoBehaviour
         if (units.Length > 0 && units[0] != null)
         {
             int result = units[0].FindPathTo(finalHex);
-            if (result == units[0].GetMovementLimit())
-            {
-                return -1;
-            }
-            else
-            {
-                return result;
-            }
+            return result;
         }
         else
         {

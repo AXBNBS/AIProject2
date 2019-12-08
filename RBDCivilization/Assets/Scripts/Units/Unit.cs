@@ -63,17 +63,16 @@ public class Unit : MonoBehaviour
         UnitMovement[] allies = movement.GetAllies();
         movement.currentHex.presentUnt = 0;
         movement.currentHex.units = new UnitMovement[5];
+        if (movement.GetAllies().Length > 0)
+            movement.currentHex.GetCity().AddUnits(movement.GetAllies()[0].stats.race, movement.GetAllies().Length, defense);
         for (int i = 0; i < allies.Length; i++)
         {
-            if (allies[i] != null && allies[i].tag == "Ally")
+            if (allies[i] != null)
             {
                 gameManager.GetComponent<GameManager>().playerUnt.Remove(allies[i].GetComponent<UnitMovement>());
                 Destroy(allies[i].gameObject);
             }
         }
-
-        if (movement.GetAllies().Length > 0)
-            movement.currentHex.GetCity().AddUnits(movement.GetAllies()[0].stats.race, movement.GetAllies().Length, defense);
     }
 
     private void Assault()

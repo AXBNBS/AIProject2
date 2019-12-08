@@ -17,6 +17,7 @@ public class Builder : MonoBehaviour
     private City constructionDat;
     private ResourcesHolder resourcesHld;
     private int spentMin, spentWod;
+    private GameManager gameManager;
 
     // Variable initialization.
     private void Start ()
@@ -26,6 +27,7 @@ public class Builder : MonoBehaviour
         construction = null;
         unitMvm = this.GetComponent<UnitMovement> ();
         resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
 
@@ -57,6 +59,9 @@ public class Builder : MonoBehaviour
         working = true;
         constructionDat = building.GetComponent<City> ();
         int allies = unitMvm.GetAllies().Length;
+        construction = building;
+        spentMin = mineral;
+        spentWod = wood;
         if (this.tag == "Ally")
         {
             int x = 0;
@@ -87,11 +92,11 @@ public class Builder : MonoBehaviour
                 Destroy (hex.environment);
             }
             EndConstruction ("red");
+            gameManager.AIBld.Remove(this);
+            gameManager.AIUnt.Remove(this.GetComponent<UnitMovement>());
+            this.GetComponent<UnitMovement>().currentHex.EmptyHexagon();
+            Destroy(this.gameObject);
         }
-        
-        construction = building;
-        spentMin = mineral;
-        spentWod = wood;
     }
 
 
@@ -134,6 +139,7 @@ public class Builder : MonoBehaviour
             else 
             {
                 hex.GetCity().SetCityType("Farm");
+                hex.GetCity().currentHex = hex;
                 if (this.tag == "Enemy")
                 { 
                     GameManager.instance.AIFrm.Add (hex.environment.GetComponent<Farm> ());
