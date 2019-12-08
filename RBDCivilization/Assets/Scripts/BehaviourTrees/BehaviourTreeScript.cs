@@ -182,7 +182,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                 {
                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                     {
-                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                         {
                                             generate = hexCapital.neighbours[y].neighbours[z];
                                             break;
@@ -236,7 +236,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                         {
                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                             {
-                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                 {
                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                     break;
@@ -323,7 +323,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         {
                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                 {
                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                     break;
@@ -362,7 +362,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                             {
                                                 for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                 {
-                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                     {
                                                         generate = hexCapital.neighbours[y].neighbours[z];
                                                         break;
@@ -406,7 +406,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                         {
                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                             {
-                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                 {
                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                     break;
@@ -460,7 +460,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                             break;
@@ -547,7 +547,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                 {
                                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                     {
-                                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                         {
                                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                                             break;
@@ -586,7 +586,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                     {
                                                         for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                         {
-                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                            if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                             {
                                                                 generate = hexCapital.neighbours[y].neighbours[z];
                                                                 break;
@@ -636,7 +636,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                             break;
@@ -693,7 +693,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         {
                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                 {
                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                     break;
@@ -780,7 +780,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                         {
                                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                             {
-                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                                 {
                                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                                     break;
@@ -819,7 +819,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             {
                                                                 for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                 {
-                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                     {
                                                                         generate = hexCapital.neighbours[y].neighbours[z];
                                                                         break;
@@ -880,7 +880,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                             break;
@@ -935,7 +935,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         {
                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                 {
                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                     break;
@@ -1021,7 +1021,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                         {
                                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                             {
-                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                                 {
                                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                                     break;
@@ -1060,7 +1060,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             {
                                                                 for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                 {
-                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                     {
                                                                         generate = hexCapital.neighbours[y].neighbours[z];
                                                                         break;
@@ -1117,7 +1117,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                     {
-                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                        if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                         {
                                                             generate = hexCapital.neighbours[y].neighbours[z];
                                                             break;
@@ -1172,7 +1172,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         {
                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                             {
-                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                 {
                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                     break;
@@ -1258,7 +1258,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                         {
                                                                             for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                             {
-                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                                if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                                 {
                                                                                     generate = hexCapital.neighbours[y].neighbours[z];
                                                                                     break;
@@ -1297,7 +1297,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             {
                                                                 for (int z = 0; z < hexCapital.neighbours[y].neighbours.Length; z++)
                                                                 {
-                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital)
+                                                                    if (hexCapital.neighbours[y].neighbours[z] != null && hexCapital.neighbours[y].neighbours[z].presentUnt == 0 && hexCapital.neighbours[y].neighbours[z] != hexCapital && hexCapital.neighbours[y].neighbours[z].GetIsBuilded() == false)
                                                                     {
                                                                         generate = hexCapital.neighbours[y].neighbours[z];
                                                                         break;
