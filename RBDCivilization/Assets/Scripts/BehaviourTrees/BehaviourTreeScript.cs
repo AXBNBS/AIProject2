@@ -70,7 +70,13 @@ public class BehaviourTreeScript : MonoBehaviour
         Debug.Log("The IA is doing things");
         Hexagon hexCapital = grid.hexagons[14, 48];
         Hexagon hexPlayerCapital = grid.hexagons[14, 0];
-        if (underAttack() == NodeStates.SUCCESS)
+
+        Hexagon unitHex = grid.hexagons[11, 42];
+        Hexagon finalHex = grid.hexagons[13, 42];
+
+        movementUnits(0, unitHex, finalHex) == NodeStates.SUCCESS);        
+
+        /*if (underAttack() == NodeStates.SUCCESS)
         {
             Debug.Log("IA bajo ataque");
             if (checkTotalUnits() == NodeStates.SUCCESS)
@@ -1174,13 +1180,13 @@ public class BehaviourTreeScript : MonoBehaviour
                 if (exit)
                     break;
             }
-        }
+        }*/
 
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().StartPlayerTurn();
         yield return null;
     }
 
-    private NodeStates checkWood(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates checkWood(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.checkWood())
             return NodeStates.SUCCESS;
@@ -1188,7 +1194,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkMineral(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates checkMineral(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.checkMineral())
             return NodeStates.SUCCESS;
@@ -1196,7 +1202,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkStores(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates checkStores(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.checkStores())
             return NodeStates.SUCCESS;
@@ -1204,7 +1210,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkPopulation(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates checkPopulation(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.checkPopulation())
             return NodeStates.SUCCESS;
@@ -1212,7 +1218,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates levelUp(int n, Hexagon hex, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates levelUp(int n, Hexagon hex, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.levelUp(hex) == 1)
             return NodeStates.SUCCESS;
@@ -1220,7 +1226,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates reclutUnits(int type, Hexagon hex, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates reclutUnits(int type, Hexagon hex, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.reclutUnits(type, hex) == 1)
             return NodeStates.SUCCESS;
@@ -1276,7 +1282,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkActiveFarms(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates checkActiveFarms(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.checkActiveFarms())
             return NodeStates.SUCCESS;
@@ -1292,7 +1298,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates underAttack(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates underAttack(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.underAttack())
             return NodeStates.SUCCESS;
@@ -1326,7 +1332,7 @@ public class BehaviourTreeScript : MonoBehaviour
             return NodeStates.FAILURE;
     }
 
-    private NodeStates checkTotalUnits(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null)
+    private NodeStates checkTotalUnits(int n = 0, Hexagon hex = null, Hexagon hex2 = null, Unit unit = null) //Funciona
     {
         if (enemyFunction.checkTotalUnits())
             return NodeStates.SUCCESS;
