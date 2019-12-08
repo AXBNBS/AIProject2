@@ -187,7 +187,8 @@ public class CameraController : MonoBehaviour
 
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
                         }
-                        else if(selectedUnt[0].currentHex != hex && hex.UnitsPlaced()[0].gameObject.tag == "Enemy")
+
+                        else if(selectedUnt[0] != null && selectedUnt[0].currentHex != hex && hex.UnitsPlaced().Length >0 && hex.UnitsPlaced()[0].gameObject.tag == "Enemy")
                         {
                             selectedUnt[0].FindPathTo (hex);
                             if (selectedUnt[0].reachedTrg == false)

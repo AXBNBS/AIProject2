@@ -138,6 +138,7 @@ public class BehaviourTreeScript : MonoBehaviour
                             {
                                 print("IA ataca capital del jugador.");
                                 attack(0, null, null, units[u].GetComponent<Unit>());
+                                yield return new WaitForSeconds(1);
                             }
                         }
                     }
@@ -154,6 +155,7 @@ public class BehaviourTreeScript : MonoBehaviour
                             {
                                 print("IA ataca asentamiento del jugador.");
                                 attack(0, null, null, units[u].GetComponent<Unit>());
+                                yield return new WaitForSeconds(1);
                             }
                         }
                     }
@@ -1318,6 +1320,33 @@ public class BehaviourTreeScript : MonoBehaviour
                         }
                     }
                 }
+            }
+
+        }
+
+        yield return new WaitForSeconds(1);
+
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Enemy");
+        Hexagon actualHex;
+        bool exit = false;
+        for (int c = 0; c < characters.Length; c++)
+        {
+            actualHex = characters[c].GetComponent<Unit>().movement.currentHex;
+            if (actualHex != null)
+            {
+                for (int z = 0; z < actualHex.neighbours.Length; z++)
+                {
+                    if (actualHex.UnitsPlaced().Length < 5 && actualHex.neighbours[z] != null && actualHex.neighbours[z].UnitsPlaced().Length > 0 && actualHex.neighbours[z].UnitsPlaced().Length < 5 && characters[c].GetComponent<Unit>().movement.stats.occupation == actualHex.neighbours[z].UnitsPlaced()[actualHex.neighbours[z].UnitsPlaced().Length - 1].stats.occupation)
+                    {
+                        movementUnits(0, actualHex, actualHex.neighbours[z]);
+                        Debug.Log("IA agrupa tropas");
+                        exit = true;
+                        break;
+                    }
+                }
+
+                if (exit)
+                    break;
             }
         }
 
