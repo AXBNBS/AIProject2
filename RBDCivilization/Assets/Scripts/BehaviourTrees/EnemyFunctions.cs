@@ -218,42 +218,49 @@ public class EnemyFunctions : MonoBehaviour
                 GameObject train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", orcSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else if (type == 2)
             {
                 GameObject train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", rollSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else if (type == 3)
             {
                 GameObject train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", goblinSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else if (type == 4)
             {
                 GameObject train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", trollSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else if (type == 5)
             {
                 GameObject train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", cuctanyaSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else if (type == 6)
             {
                 GameObject train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", puppetSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else if (type == 7)
             {
                 GameObject train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", witcherSettings.stores, false);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return 1; //Va bien
             } else
             {
@@ -313,42 +320,49 @@ public class EnemyFunctions : MonoBehaviour
             {
                 hex.GetCity().AddUnits(orcSettings.race, -1, -orcSettings.defense);
                 GameObject train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else if (type == 2)
             {
                 hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
                 GameObject train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else if (type == 3)
             {
                 hex.GetCity().AddUnits(goblinSettings.race, -1, -goblinSettings.defense);
                 GameObject train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else if (type == 4)
             {
                 hex.GetCity().AddUnits(trollSettings.race, -1, -trollSettings.defense);
                 GameObject train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else if (type == 5)
             {
                 hex.GetCity().AddUnits(cuctanyaSettings.race, -1, -cuctanyaSettings.defense);
                 GameObject train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else if (type == 6)
             {
                 hex.GetCity().AddUnits(puppetSettings.race, -1, -puppetSettings.defense);
                 GameObject train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else if (type == 7)
             {
                 hex.GetCity().AddUnits(witcherSettings.race, -1, -witcherSettings.defense);
                 GameObject train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
                 return true; //Va bien
             }
             else
@@ -598,22 +612,28 @@ public class EnemyFunctions : MonoBehaviour
     public int movementUnits(Hexagon startHex, Hexagon finalHex)
     {
         UnitMovement[] units = startHex.UnitsPlaced();
-        int result = units[0].FindPathTo(finalHex);
-
-        if (result == units[0].GetMovementLimit())
+        if (units[0] != null)
         {
-            return -1;
-        }
-        else
-        {
-            if (result >= 0)
+            int result = units[0].FindPathTo(finalHex);
+            if (result == units[0].GetMovementLimit())
             {
-                return +1;
+                return -1;
             }
             else
             {
-                return 0;
+                if (result >= 0)
+                {
+                    return +1;
+                }
+                else
+                {
+                    return 0;
+                }
             }
+        }
+        else
+        {
+            return -1;
         }
     }
 
