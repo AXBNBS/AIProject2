@@ -213,53 +213,53 @@ public class EnemyFunctions : MonoBehaviour
 
         if (generate != null)
         {
+            GameObject train;
             if (type == 1)
             {
-                GameObject train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", orcSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
             } else if (type == 2)
             {
-                GameObject train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", rollSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
             } else if (type == 3)
             {
-                GameObject train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", goblinSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
             } else if (type == 4)
             {
-                GameObject train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", trollSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
             } else if (type == 5)
             {
-                GameObject train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", cuctanyaSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
+                gameManager.GetComponent<GameManager>().AICll.Add(train.GetComponent<Collector>());
             } else if (type == 6)
             {
-                GameObject train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", puppetSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
+                gameManager.GetComponent<GameManager>().AIBld.Add(train.GetComponent<Builder>());
             } else
             {
-                GameObject train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", witcherSettings.stores, false);
-                train.GetComponent<UnitMovement>().target = generate.transform.position;
-                
+                train.GetComponent<UnitMovement>().target = generate.transform.position;         
             }
-            gameManager.
+            gameManager.GetComponent<GameManager>().AIUnt.Add(train.GetComponent<UnitMovement>());
             return 1; //Va bien
         } else
         {
@@ -311,59 +311,53 @@ public class EnemyFunctions : MonoBehaviour
 
         if (generate != null)
         {
+            GameObject train;
             if (type == 1)
             {
                 hex.GetCity().AddUnits(orcSettings.race, -1, -orcSettings.defense);
-                GameObject train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(orcPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
             }
             else if (type == 2)
             {
                 hex.GetCity().AddUnits(rollSettings.race, -1, -rollSettings.defense);
-                GameObject train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(rollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
             }
             else if (type == 3)
             {
                 hex.GetCity().AddUnits(goblinSettings.race, -1, -goblinSettings.defense);
-                GameObject train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(goblinPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
             }
             else if (type == 4)
             {
                 hex.GetCity().AddUnits(trollSettings.race, -1, -trollSettings.defense);
-                GameObject train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
             }
             else if (type == 5)
             {
                 hex.GetCity().AddUnits(cuctanyaSettings.race, -1, -cuctanyaSettings.defense);
-                GameObject train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
+                gameManager.GetComponent<GameManager>().AICll.Add(train.GetComponent<Collector>());
             }
             else if (type == 6)
             {
                 hex.GetCity().AddUnits(puppetSettings.race, -1, -puppetSettings.defense);
-                GameObject train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
-            }
-            else if (type == 7)
-            {
-                hex.GetCity().AddUnits(witcherSettings.race, -1, -witcherSettings.defense);
-                GameObject train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
-                train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return true; //Va bien
+                gameManager.GetComponent<GameManager>().AIBld.Add(train.GetComponent<Builder>());
             }
             else
             {
-                return false; //Por si acaso ponemos un valor raro
+                hex.GetCity().AddUnits(witcherSettings.race, -1, -witcherSettings.defense);
+                train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
+                train.GetComponent<UnitMovement>().target = generate.transform.position;
             }
+            gameManager.GetComponent<GameManager>().AIUnt.Add(train.GetComponent<UnitMovement>());
+            return true;//Va bien
         } else
         {
             return false; //Si no hay hueco para generar
