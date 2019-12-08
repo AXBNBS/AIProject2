@@ -220,7 +220,7 @@ public class UnitMovement : MonoBehaviour
             }
             currentHex.SetVisible (true);
 
-            if (path.Count == 1 || moveLmt <= 0) 
+            if (path.Count == 1) 
             {
                 if (currentHex.presentUnt != 0)
                 {
