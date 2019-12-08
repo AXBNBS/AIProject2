@@ -278,10 +278,10 @@ public class BehaviourTreeScript : MonoBehaviour
                                             {
                                                 Debug.Log("IA tiene recolector");
                                                 haveCollectors = true;
-                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                 {
                                                     Debug.Log("IA ha llevado un recolector a un bosque");
-                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                    Debug.Log(collect(0, null, null, units[i].GetComponent<Unit>()));
                                                 }
                                                 else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                 {
@@ -291,13 +291,13 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         Debug.Log("IA puede construir tunel");
                                                         buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                     }
-                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[u].GetComponent<Collector>().working)
                                                     {
                                                         Debug.Log("IA lleva recolector al bosque");
                                                         collect(0, null, null, units[u].GetComponent<Unit>());
                                                     }
                                                 }
-                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
+                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                 {
                                                     Debug.Log("IA ha llevado recolector a la montaña");
                                                     collect(0, null, null, units[i].GetComponent<Unit>());
@@ -496,10 +496,10 @@ public class BehaviourTreeScript : MonoBehaviour
                                                     {
                                                         Debug.Log("IA tiene recolector");
                                                         haveCollectors = true;
-                                                        if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                        if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                         {
                                                             Debug.Log("IA ha llevado un recolector a un bosque");
-                                                            collect(0, null, null, units[i].GetComponent<Unit>());
+                                                            Debug.Log(collect(0, null, null, units[i].GetComponent<Unit>()));
                                                         }
                                                         else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                         {
@@ -509,13 +509,13 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                 Debug.Log("IA puede construir tunel");
                                                                 buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                             }
-                                                            else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                            else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[u].GetComponent<Collector>().working)
                                                             {
                                                                 Debug.Log("IA lleva recolector al bosque");
                                                                 collect(0, null, null, units[u].GetComponent<Unit>());
                                                             }
                                                         }
-                                                        else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
+                                                        else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                         {
                                                             Debug.Log("IA ha llevado recolector a la montaña");
                                                             collect(0, null, null, units[i].GetComponent<Unit>());
@@ -708,7 +708,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 {
                                                     prepare = true;
                                                     Debug.Log("IA tiene constructor");
-                                                    if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
+                                                    if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS && !units[u].GetComponent<Builder>().working)
                                                     {
                                                         Debug.Log("IA tiene recursos para construir");
                                                         buildFarm(0, null, null, units[u].GetComponent<Unit>());
@@ -723,26 +723,26 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             {
                                                                 Debug.Log("IA tiene recolector");
                                                                 haveCollectors = true;
-                                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                                if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                                 {
                                                                     Debug.Log("IA ha llevado un recolector a un bosque");
-                                                                    collect(0, null, null, units[i].GetComponent<Unit>());
+                                                                    Debug.Log(collect(0, null, null, units[i].GetComponent<Unit>()));
                                                                 }
                                                                 else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                                 {
                                                                     Debug.Log("IA ha llevado a un constructor a la montaña");
-                                                                    if (checkWood(100) == NodeStates.SUCCESS)
+                                                                    if (checkWood(100) == NodeStates.SUCCESS && !units[u].GetComponent<Builder>().working)
                                                                     {
                                                                         Debug.Log("IA puede construir tunel");
                                                                         buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                                     }
-                                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                                    else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[u].GetComponent<Collector>().working)
                                                                     {
                                                                         Debug.Log("IA lleva recolector al bosque");
                                                                         collect(0, null, null, units[u].GetComponent<Unit>());
                                                                     }
                                                                 }
-                                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
+                                                                else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                                 {
                                                                     Debug.Log("IA ha llevado recolector a la montaña");
                                                                     collect(0, null, null, units[i].GetComponent<Unit>());
@@ -833,7 +833,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                 GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
                                 for (int j = 0; j < units.Length; j++) 
                                 {
-                                    if (units[j].GetComponent<Unit>().settings.occupation == "Worker")
+                                    if (units[j].GetComponent<Unit>().settings.occupation == "Worker" && !units[j].GetComponent<Builder>().working)
                                     {
                                         Debug.Log("IA tiene constructores");
                                         haveWorkers = true;
@@ -886,7 +886,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                     {
                                         Debug.Log("IA tiene recolector");
                                         haveRecollectores = true;
-                                        if (movementUnits(0, units[j].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS)
+                                        if (movementUnits(0, units[j].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length/2 + 2]) == NodeStates.SUCCESS && !units[j].GetComponent<Collector>().working)
                                         {
                                             Debug.Log("IA ha llevado recolector a un bosque");
                                             collect(0, null, null, units[j].GetComponent<Unit>());
@@ -992,7 +992,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                             {
                                                 prepare = true;
                                                 Debug.Log("IA tiene constructor");
-                                                if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS)
+                                                if (checkWood(50) == NodeStates.SUCCESS && checkMineral(50) == NodeStates.SUCCESS && !units[u].GetComponent<Builder>().working)
                                                 {
                                                     Debug.Log("IA tiene recursos para construir");
                                                     buildFarm(0, null, null, units[u].GetComponent<Unit>());
@@ -1007,7 +1007,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         {
                                                             Debug.Log("IA tiene recolector");
                                                             haveCollectors = true;
-                                                            if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                            if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                             {
                                                                 Debug.Log("IA ha llevado un recolector a un bosque");
                                                                 collect(0, null, null, units[i].GetComponent<Unit>());
@@ -1015,18 +1015,18 @@ public class BehaviourTreeScript : MonoBehaviour
                                                             else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == -1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35].neighbours[0]) == NodeStates.SUCCESS)
                                                             {
                                                                 Debug.Log("IA ha llevado a un constructor a la montaña");
-                                                                if (checkWood(100) == NodeStates.SUCCESS)
+                                                                if (checkWood(100) == NodeStates.SUCCESS && !units[u].GetComponent<Builder>().working)
                                                                 {
                                                                     Debug.Log("IA puede construir tunel");
                                                                     buildTunnel(0, null, null, units[u].GetComponent<Unit>());
                                                                 }
-                                                                else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS)
+                                                                else if (movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2 + 2]) == NodeStates.SUCCESS && !units[u].GetComponent<Collector>().working)
                                                                 {
                                                                     Debug.Log("IA lleva recolector al bosque");
                                                                     collect(0, null, null, units[u].GetComponent<Unit>());
                                                                 }
                                                             }
-                                                            else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS)
+                                                            else if (checkMineral(50) == NodeStates.FAILURE && grid.hexagons[21, 35].GetHexagonType() == 1 && grid.hexagons[21, 35].GetMountain() == true && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.hexagons[21, 35]) == NodeStates.SUCCESS && !units[i].GetComponent<Collector>().working)
                                                             {
                                                                 Debug.Log("IA ha llevado recolector a la montaña");
                                                                 collect(0, null, null, units[i].GetComponent<Unit>());
