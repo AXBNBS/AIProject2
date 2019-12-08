@@ -223,15 +223,16 @@ public class UnitMovement : MonoBehaviour
 
             if (path.Count == 1) 
             {
-                if (currentHex.presentUnt != 0)
-                {
+                //if (currentHex.presentUnt != 0)
+                //{
+                    print(currentHex.presentUnt);
                     target = currentHex.transform.position + offsets[currentHex.presentUnt];
 
                     currentHex.AddUnit (this, currentHex.presentUnt);
-                }
-                else 
-                {
-                    int position = 0;
+               // }
+               // else 
+               // {
+                    /*int position = 0;
 
                     for (int a = 0; a < allies.Length; a += 1) 
                     {
@@ -242,9 +243,10 @@ public class UnitMovement : MonoBehaviour
                             break;
                         }
                     }
+                    print(position);
 
-                    currentHex.AddUnit (this, position);
-                }
+                    currentHex.AddUnit (this, position);*/
+               // }
             }
             /*if (path.Count == 1) 
             {
