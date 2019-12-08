@@ -74,7 +74,7 @@ public class BehaviourTreeScript : MonoBehaviour
         Hexagon unitHex = grid.hexagons[11, 42];
         Hexagon finalHex = grid.hexagons[13, 42];
 
-        movementUnits(0, unitHex, finalHex) == NodeStates.SUCCESS);        
+        movementUnits(0, unitHex, finalHex) == NodeStates.SUCCESS;        
 
         /*if (underAttack() == NodeStates.SUCCESS)
         {
