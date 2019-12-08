@@ -190,7 +190,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                 if (generate != null)
                                 {
                                     Debug.Log("IA mueve sus tropas");
-                                    Debug.Log(movementUnits(0, hexCapital.neighbours[y], generate));
+                                    movementUnits(0, hexCapital.neighbours[y], generate);
                                 }
                             }
                         }
@@ -1322,6 +1322,8 @@ public class BehaviourTreeScript : MonoBehaviour
 
         }
 
+        yield return new WaitForSeconds(1);
+
         GameObject[] characters = GameObject.FindGameObjectsWithTag("Enemy");
         Hexagon actualHex;
         bool exit = false;
@@ -1332,7 +1334,7 @@ public class BehaviourTreeScript : MonoBehaviour
             {
                 for (int z = 0; z < actualHex.neighbours.Length; z++)
                 {
-                    if (actualHex.UnitsPlaced().Length < 5 && actualHex.neighbours[z].UnitsPlaced().Length > 0 && actualHex.neighbours[z].UnitsPlaced().Length < 5 && characters[c].GetComponent<Unit>().movement.stats.occupation == actualHex.neighbours[z].UnitsPlaced()[actualHex.neighbours[z].UnitsPlaced().Length - 1].stats.occupation)
+                    if (actualHex.UnitsPlaced().Length < 5 && actualHex.neighbours[z] != null && actualHex.neighbours[z].UnitsPlaced().Length > 0 && actualHex.neighbours[z].UnitsPlaced().Length < 5 && characters[c].GetComponent<Unit>().movement.stats.occupation == actualHex.neighbours[z].UnitsPlaced()[actualHex.neighbours[z].UnitsPlaced().Length - 1].stats.occupation)
                     {
                         movementUnits(0, actualHex, actualHex.neighbours[z]);
                         Debug.Log("IA agrupa tropas");
