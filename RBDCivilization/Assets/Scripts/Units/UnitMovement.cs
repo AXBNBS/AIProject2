@@ -42,6 +42,7 @@ public class UnitMovement : MonoBehaviour
         feet = this.transform.GetChild (0);
         path = new List<Vector3> ();
         //target = GameObject.FindGameObjectsWithTag("Hexagon")[startHex].transform.position;
+        //target = currentHex.transform.position;
         interf = GameObject.FindGameObjectWithTag ("Interface");
         offsetHexX = grid.hexagonWth / 6;
         offsetHexZ = grid.hexagonHgt / 6;
@@ -50,7 +51,7 @@ public class UnitMovement : MonoBehaviour
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
         confirmationScript = interf.GetComponentInChildren<ConfirmationScript> ();
-        allies = new UnitMovement[5];
+        allies = new UnitMovement[1];
         moveLmt = (int) stats.speed + 1;
 
         path.Add (target);
@@ -373,7 +374,7 @@ public class UnitMovement : MonoBehaviour
         {
             visibleTarget = hex.GetVisible();
 
-            for (int u = 0; u < allies.Length; u += 1)
+            for (int u = 0; u<allies.Length && allies[u] != null; u += 1)
             {
                 if (u != 0)
                 {
@@ -408,10 +409,10 @@ public class UnitMovement : MonoBehaviour
                 }
             }
 
-            if (longitud <= moveLmt)
-                return 1;
-            else
+            if (path[path.Count-1]!=hex.transform.position)
                 return 0;
+            else
+                return 1;
         }
         else
         {

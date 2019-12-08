@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
 
         foreach (UnitMovement u in AIUnt) 
         {
+            Debug.Log(u);
             u.ResetMovement ();
         }
 

@@ -71,17 +71,17 @@ public class BehaviourTreeScript : MonoBehaviour
         Hexagon hexCapital = grid.hexagons[14, 48];
         Hexagon hexPlayerCapital = grid.hexagons[14, 0];
 
-        Hexagon unitHex = grid.hexagons[13, 47];
-        Hexagon finalHex = grid.hexagons[13, 45];
+        /*Hexagon unitHex = grid.hexagons[13, 47];
+        Hexagon finalHex = grid.hexagons[13, 43];
 
         if (reclutUnits(1, hexCapital) == NodeStates.SUCCESS)
         {
             Debug.Log("IA genera unidad");
             Debug.Log(movementUnits(0, unitHex, finalHex));
-        }
+        }*/
            
 
-        /*if (underAttack() == NodeStates.SUCCESS)
+        if (underAttack() == NodeStates.SUCCESS)
         {
             Debug.Log("IA bajo ataque");
             if (checkTotalUnits() == NodeStates.SUCCESS)
@@ -289,6 +289,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                             {
                                                 Debug.Log("IA tiene recolector");
                                                 haveCollectors = true;
+                                                Debug.Log(movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]));
                                                 if (checkWood(50) == NodeStates.FAILURE && movementUnits(0, units[i].GetComponent<Unit>().movement.currentHex, grid.forestsArray[grid.forestsArray.Length / 2]) == NodeStates.SUCCESS)
                                                 {
                                                     Debug.Log("IA ha llevado un recolector a un bosque");
@@ -1185,7 +1186,7 @@ public class BehaviourTreeScript : MonoBehaviour
                 if (exit)
                     break;
             }
-        }*/
+        }
 
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().StartPlayerTurn();
         yield return null;

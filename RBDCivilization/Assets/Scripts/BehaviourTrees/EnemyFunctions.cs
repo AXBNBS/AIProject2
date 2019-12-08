@@ -233,39 +233,34 @@ public class EnemyFunctions : MonoBehaviour
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", goblinSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
             } else if (type == 4)
             {
                 GameObject train = Instantiate(trollPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", trollSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
             } else if (type == 5)
             {
                 GameObject train = Instantiate(cuctanyaPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", cuctanyaSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
             } else if (type == 6)
             {
                 GameObject train = Instantiate(puppetPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", puppetSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
-            } else if (type == 7)
+            } else
             {
                 GameObject train = Instantiate(witcherPrefab, new Vector3(generate.CentroHexagono.position.x, generate.CentroHexagono.position.y, generate.CentroHexagono.position.z), Quaternion.identity);
                 resourcesHolder.changeCurrentPopulation("Red", 1, true);
                 resourcesHolder.changeStores("Red", witcherSettings.stores, false);
                 train.GetComponent<UnitMovement>().target = generate.transform.position;
-                return 1; //Va bien
-            } else
-            {
-                return 0; //Por si acaso ponemos un valor raro
+                
             }
+            gameManager.
+            return 1; //Va bien
         } else
         {
             return 0; //No tiene espacio para moverse
@@ -611,6 +606,8 @@ public class EnemyFunctions : MonoBehaviour
     // Returns -1 the unit hasn't moved, 0 if it has moved but still hasn't reached its target or +1 if it's arrived to its target.
     public int movementUnits(Hexagon startHex, Hexagon finalHex)
     {
+
+        //StartCoroutine("waitToReturn");
         UnitMovement[] units = startHex.UnitsPlaced();
         if (units.Length > 0 && units[0] != null)
         {
@@ -621,14 +618,7 @@ public class EnemyFunctions : MonoBehaviour
             }
             else
             {
-                if (result >= 0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
+                return result;
             }
         }
         else
