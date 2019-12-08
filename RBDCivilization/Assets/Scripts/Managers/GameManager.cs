@@ -107,12 +107,12 @@ public class GameManager : MonoBehaviour
             u.ResetMovement ();
         }
 
-        foreach (Builder b in AIBld) 
+        /*foreach (Builder b in AIBld) 
         {
             if (b.working == true)
             {
                 b.remainingTrn -= 1;
-                if (b.remainingTrn == 0)
+                if (b.remainingTrn <= 0)
                 {
                     b.working = false;
 
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
             if (c.working == true) 
             {
                 c.remainingTrn -= 1;
-                if (c.remainingTrn == 0) 
+                if (c.remainingTrn <= 0) 
                 {
                     c.working = false;
 
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
         foreach (Farm f in AIFrm) 
         {
             if (f.GetComponent<City>().GetWitchers() > 0)

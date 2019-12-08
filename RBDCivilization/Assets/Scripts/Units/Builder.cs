@@ -39,29 +39,56 @@ public class Builder : MonoBehaviour
     // The unit starts working of the construction of its assingned building.
     public void BeginConstruction (GameObject building, int mineral, int wood) 
     {
+        /*b.remainingTrn -= 1;
+        if (b.remainingTrn <= 0)
+        {
+            b.working = false;
+
+            if (doneJob.Contains(b.hex) == false)
+            {
+                if (b.hex.environment != null)
+                {
+                    Destroy(b.hex.environment);
+                }
+                b.EndConstruction("red");
+                doneJob.Add(b.hex);
+            }
+        }*/
         working = true;
         constructionDat = building.GetComponent<City> ();
         int allies = unitMvm.GetAllies().Length;
-        int x = 0;
-        for (int i = 0; i < allies; i++)
+        if (this.tag == "Ally")
         {
-            if (unitMvm.GetAllies()[i] != null)
+            int x = 0;
+            for (int i = 0; i < allies; i++)
             {
-                x++;
+                if (unitMvm.GetAllies()[i] != null)
+                {
+                    x++;
+                }
+            }
+            if (x <= 2)
+            {
+                remainingTrn = constructionDat.settings.turns;
+            }
+            else if (x <= 4)
+            {
+                remainingTrn = constructionDat.settings.turns - 1;
+            }
+            else
+            {
+                remainingTrn = constructionDat.settings.turns - 2;
             }
         }
-        if (x <= 2)
+        else 
         {
-            remainingTrn = constructionDat.settings.turns;
+            if (hex.environment != null)
+            {
+                Destroy (hex.environment);
+            }
+            EndConstruction ("red");
         }
-        else if(x<=4)
-        {
-            remainingTrn = constructionDat.settings.turns-1;
-        }
-        else
-        {
-            remainingTrn = constructionDat.settings.turns - 2;
-        }
+        
         construction = building;
         spentMin = mineral;
         spentWod = wood;

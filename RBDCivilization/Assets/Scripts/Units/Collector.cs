@@ -32,28 +32,37 @@ public class Collector : MonoBehaviour
         hex = unitMvm.currentHex;
     }
 
-    public void BeginCollect()
+
+    public void BeginCollect ()
     {
         int allies = unitMvm.GetAllies().Length;
         int x = 0;
-        for(int i=0; i<allies; i++)
+        if (this.tag == "Ally")
         {
-            if (unitMvm.GetAllies()[i] != null)
+            for (int i = 0; i < allies; i++)
             {
-                x++;
+                if (unitMvm.GetAllies()[i] != null)
+                {
+                    x++;
+                }
+            }
+            if (x >= 3)
+            {
+                working = true;
+                remainingTrn = 1;
+            }
+            else
+            {
+                working = true;
+                remainingTrn = 2;
             }
         }
-        if (x >= 3)
+        else 
         {
-            working = true;
-            remainingTrn = 1;
-        }
-        else
-        {
-            working = true;
-            remainingTrn = 2;
+            CollectResources ("Red");
         }
     }
+
 
     // When the recollection has finished, the corresponding resources will be added to the team the collector belongs to.
     public void CollectResources (string side) 
@@ -62,7 +71,7 @@ public class Collector : MonoBehaviour
         {
             resourcesHld.changeMineral (side, Random.Range (100, 201), true);
         }
-        else if(hex.GetHexagonType()==2)
+        else if(hex.GetHexagonType() == 2)
         {
             resourcesHld.changeWood (side, Random.Range (100, 201), true);
         }
