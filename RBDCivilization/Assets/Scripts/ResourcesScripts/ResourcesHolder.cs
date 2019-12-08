@@ -33,9 +33,9 @@ public class ResourcesHolder : MonoBehaviour
         blueTotalPopulation = 5;
         redCurrentPopulation = 0; //Esto se deberá de cambiar cuando sepamos con que unidades se empieza en cada bando
 
-        redWood = 10000;
-        redMineral = 10000;
-        redStores = 1000;
+        redWood = 1000;
+        redMineral = 1000;
+        redStores = 50;
         redTotalPopulation = 5;
         redCurrentPopulation = 0; //Esto se deberá de cambiar cuando sepamos con que unidades se empieza en cada bando
 
