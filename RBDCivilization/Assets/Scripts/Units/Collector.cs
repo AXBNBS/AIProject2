@@ -59,7 +59,7 @@ public class Collector : MonoBehaviour
         }
         else 
         {
-            CollectResources ("red");
+            CollectResources ("Red");
         }
     }
 
