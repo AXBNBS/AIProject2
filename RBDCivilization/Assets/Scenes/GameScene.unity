@@ -572,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &286407433
 Transform:
   m_ObjectHideFlags: 0
@@ -2226,6 +2226,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IA
       objectReference: {fileID: 0}
+    - target: {fileID: 4251342607064131173, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 2072230108}
     - target: {fileID: 4251342607064131172, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2281,11 +2286,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4251342607064131173, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
-        type: 3}
-      propertyPath: grid
-      value: 
-      objectReference: {fileID: 2072230108}
     - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
         type: 3}
       propertyPath: grid

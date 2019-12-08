@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 4156335867542262105}
   m_Layer: 0
   m_Name: GRANJA
-  m_TagString: BlueFarm
+  m_TagString: RedFarm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -438,9 +438,13 @@ MonoBehaviour:
   humans: 0
   craftsmen: 0
   turroncitos: 0
+  orcs: 0
+  "cucta\xF1as": 0
+  witchers: 0
   settings: {fileID: 11400000, guid: e97096506c8b145489ac32b86169bd12, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 0}
+  currentHex: {fileID: 0}
 --- !u!114 &4156335867542262105
 MonoBehaviour:
   m_ObjectHideFlags: 0
