@@ -468,7 +468,7 @@ public class EnemyFunctions : MonoBehaviour
                 break;
             }
 
-            if (element.neighbours.Length > 0)
+            if (element != null && element.neighbours.Length > 0)
             {
                 foreach (Hexagon h in element.neighbours)
                 {

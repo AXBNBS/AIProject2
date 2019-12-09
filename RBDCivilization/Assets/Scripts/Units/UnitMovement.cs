@@ -22,10 +22,10 @@ public class UnitMovement : MonoBehaviour
     private CharacterController characterCtr;
     private Transform feet;
     private float offsetHexX, offsetHexZ;
-    private List<Vector3> path;
+    public List<Vector3> path;
     private Vector3[] offsets;
     //private List<UnitMovement> collided;
-    public UnitMovement[] allies;
+    private UnitMovement[] allies;
     //private LayerMask unitsMsk;
     private bool visibleTarget = false;
     private int moveLmt;
