@@ -199,7 +199,7 @@ public class UnitMovement : MonoBehaviour
         {
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
-            moveLmt -= currentHex.hexagonType;
+            moveLmt --;
 
             for(int i = 0; i < currentHex.neighbours.Length; i++)
             {
@@ -219,15 +219,13 @@ public class UnitMovement : MonoBehaviour
                 }
             }
             currentHex.SetVisible (true);
-            
+
             if (path.Count <= 1) 
             {
                 //if (currentHex.presentUnt != 0)
                 //{
-                    target = currentHex.transform.position + offsets[currentHex.presentUnt];
+                target = currentHex.transform.position + offsets[currentHex.presentUnt];
                 currentHex.AddUnit(this, currentHex.presentUnt);
-
-                //currentHex.AddUnit (this, currentHex.presentUnt);
                 // }
                 // else 
                 // {

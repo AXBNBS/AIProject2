@@ -451,6 +451,7 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool attack(Unit unit)
     {
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         int range = Mathf.RoundToInt(unit.GetSpeed());
         Hexagon originHex = unit.movement.currentHex;
         bool canWin = false;
@@ -475,6 +476,10 @@ public class EnemyFunctions : MonoBehaviour
                     if (!q.Contains(h))
                         q.Enqueue(h);
                 }
+            }
+             if(element == null)
+            {
+                break;
             }
         }
 
@@ -600,7 +605,6 @@ public class EnemyFunctions : MonoBehaviour
     // Returns -1 the unit hasn't moved, 0 if it has moved but still hasn't reached its target or +1 if it's arrived to its target.
     public int movementUnits(Hexagon startHex, Hexagon finalHex)
     {
-
         //StartCoroutine("waitToReturn");
         UnitMovement[] units = startHex.UnitsPlaced();
         if (units.Length > 0 && units[0] != null)
@@ -774,7 +778,7 @@ public class EnemyFunctions : MonoBehaviour
     public bool checkTotalUnits()
     {
         GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
-        if (units.Length > 4)
+        if (units.Length > 18)
             return true;
         else
             return false;

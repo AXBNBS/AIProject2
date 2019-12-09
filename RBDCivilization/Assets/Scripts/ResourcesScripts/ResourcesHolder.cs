@@ -27,9 +27,9 @@ public class ResourcesHolder : MonoBehaviour
 
     void Awake()
     {
-        blueWood = 10000;
-        blueMineral = 10000;
-        blueStores = 500;
+        blueWood = 1000;
+        blueMineral = 1000;
+        blueStores = 50;
         blueTotalPopulation = 5;
         redCurrentPopulation = 0; //Esto se deberá de cambiar cuando sepamos con que unidades se empieza en cada bando
 
