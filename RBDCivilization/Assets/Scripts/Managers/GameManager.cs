@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private CameraController cameraCtr;
 
     private BuildingMenu buildingMenu;
+    public GameObject endTurnButton;
 
 
     // We get every present unit, farm, builder and collector (independently of their faction) at the start of the game, and add them to their corresponding lists.
@@ -164,6 +165,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        endTurnButton.SetActive(false);
         behaviourTree.Evaluate();
     }
 
@@ -171,6 +173,7 @@ public class GameManager : MonoBehaviour
     // Every player unit gets its movement limit reset, buildings are finished (if enough turns have passed), resources are collected (if enough turns have passed) and farms produce new stores if active.
     public void StartPlayerTurn () 
     {
+        endTurnButton.SetActive(true);
         List<Hexagon> doneJob = new List<Hexagon> ();
 
         foreach (UnitMovement u in playerUnt)

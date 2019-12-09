@@ -774,7 +774,7 @@ public class EnemyFunctions : MonoBehaviour
     public bool checkTotalUnits()
     {
         GameObject[] units = GameObject.FindGameObjectsWithTag("Enemy");
-        if (units.Length > 18)
+        if (units.Length > 4)
             return true;
         else
             return false;

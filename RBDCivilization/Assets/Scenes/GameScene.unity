@@ -1607,6 +1607,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1749884133}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1354975554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5502659003898291295, guid: 55961fe0920c67d4fb91d6719993f572,
+    type: 3}
+  m_PrefabInstance: {fileID: 2683343354763190386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1390393388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2686838796494821108, guid: 43ebb85bf84325746a1de09ecc930f05,
@@ -2474,6 +2480,11 @@ PrefabInstance:
       propertyPath: behaviourTree
       value: 
       objectReference: {fileID: 919066293}
+    - target: {fileID: 4363778776442751077, guid: 2ca99fb96044c5e45a2c8ce7e9a6881a,
+        type: 3}
+      propertyPath: endTurnButton
+      value: 
+      objectReference: {fileID: 1354975554}
     - target: {fileID: 4363778776442751076, guid: 2ca99fb96044c5e45a2c8ce7e9a6881a,
         type: 3}
       propertyPath: m_LocalPosition.x

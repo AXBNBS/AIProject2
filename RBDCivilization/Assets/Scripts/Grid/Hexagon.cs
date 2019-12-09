@@ -244,7 +244,7 @@ public class Hexagon : MonoBehaviour
         {
             for (int i = 0; i < currentHex.neighbours.Length; i += 1)
             {
-                if (currentHex.neighbours[i] != null && currentHex.neighbours[i].GetHexagonType()!=-1 && currentHex.neighbours[i].GetHexagonType()!= -2)
+                if (currentHex.neighbours[i] != null/* && currentHex.neighbours[i].GetHexagonType()!=-1 && currentHex.neighbours[i].GetHexagonType()!= -2*/)
                 {
                     checkedDst = Vector3.Distance(currentHex.neighbours[i].transform.position, hex.transform.position);
                     if (checkedDst < bestDst)

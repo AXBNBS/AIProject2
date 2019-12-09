@@ -25,7 +25,7 @@ public class UnitMovement : MonoBehaviour
     private List<Vector3> path;
     private Vector3[] offsets;
     //private List<UnitMovement> collided;
-    private UnitMovement[] allies;
+    public UnitMovement[] allies;
     //private LayerMask unitsMsk;
     private bool visibleTarget = false;
     private int moveLmt;
@@ -197,7 +197,6 @@ public class UnitMovement : MonoBehaviour
     {
         if (other.tag == "Hexagon")
         {
-            //print("Hey");
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
             moveLmt -= currentHex.hexagonType;
@@ -220,33 +219,33 @@ public class UnitMovement : MonoBehaviour
                 }
             }
             currentHex.SetVisible (true);
-
-            if (path.Count == 1) 
+            
+            if (path.Count <= 1) 
             {
                 //if (currentHex.presentUnt != 0)
                 //{
-                    print(currentHex.presentUnt);
                     target = currentHex.transform.position + offsets[currentHex.presentUnt];
+                currentHex.AddUnit(this, currentHex.presentUnt);
 
-                    currentHex.AddUnit (this, currentHex.presentUnt);
-               // }
-               // else 
-               // {
-                    /*int position = 0;
+                //currentHex.AddUnit (this, currentHex.presentUnt);
+                // }
+                // else 
+                // {
+                /*int position = 0;
 
-                    for (int a = 0; a < allies.Length; a += 1) 
+                for (int a = 0; a < allies.Length; a += 1) 
+                {
+                    if (allies[a] == this) 
                     {
-                        if (allies[a] == this) 
-                        {
-                            position = a;
+                        position = a;
 
-                            break;
-                        }
+                        break;
                     }
-                    print(position);
+                }
+                print(position);
 
-                    currentHex.AddUnit (this, position);*/
-               // }
+                currentHex.AddUnit (this, position);*/
+                // }
             }
             /*if (path.Count == 1) 
             {

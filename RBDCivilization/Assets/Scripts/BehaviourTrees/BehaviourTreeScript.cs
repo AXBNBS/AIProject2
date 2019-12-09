@@ -611,6 +611,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                     fin = true;
                                                                     Debug.Log("IA se ha movido para poder construir");
                                                                     buildFarm(0, null, null, units[u].GetComponent<Unit>());
+                                                                    break;
                                                                 }
                                                             }
                                                         }
@@ -918,6 +919,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                             fin = true;
                                                                             Debug.Log("IA se ha movido para poder construir");
                                                                             buildFarm(0, null, null, units[u].GetComponent<Unit>());
+                                                                            break;
                                                                         }
                                                                     }
                                                                 }
@@ -1113,7 +1115,6 @@ public class BehaviourTreeScript : MonoBehaviour
                                                         }
                                                         else if (units[j].GetComponent<Unit>().movement.currentHex.neighbours[t].neighbours[p] != null && units[j].GetComponent<Unit>().movement.currentHex.neighbours[t].neighbours[p].GetIsBuilded() == true)
                                                         {
-                                                            print("JJAAJAJAJAJ");
                                                             construct = false;
                                                             break;
                                                         }
@@ -1144,7 +1145,6 @@ public class BehaviourTreeScript : MonoBehaviour
                                                 }
                                             }
                                         }
-                                        Debug.Log("IA ha construido asentamiento");
                                         break;
                                     }
                                 }
@@ -1332,6 +1332,7 @@ public class BehaviourTreeScript : MonoBehaviour
                                                                         fin = true;
                                                                         Debug.Log("IA se ha movido para poder construir");
                                                                         buildFarm(0, null, null, units[u].GetComponent<Unit>());
+                                                                        break;
                                                                     }
                                                                 }
                                                             }
