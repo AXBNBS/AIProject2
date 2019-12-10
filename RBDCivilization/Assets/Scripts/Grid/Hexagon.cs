@@ -124,7 +124,7 @@ public class Hexagon : MonoBehaviour
 
 
     // To get the shortest path from the current hexagon to another one that serves as destination.
-    public List<Vector3> GetPath(Hexagon hex)
+    public List<Vector3> GetPath (Hexagon hex)
     {
         /*IDictionary<Hexagon, int> distances = new Dictionary<Hexagon, int> ();
         IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
@@ -233,37 +233,85 @@ public class Hexagon : MonoBehaviour
 
         return cost;*/
 
-        float checkedDst;
+        /*float checkedDst;
+        bool roundStr;
 
         int bestChoice = 0;
-        float bestDst = Vector3.Distance(this.transform.position, hex.transform.position);
-        List<Vector3> result = new List<Vector3>();
+        float bestDst = float.MaxValue;
+        List<Vector3> result = new List<Vector3> ();
         Hexagon currentHex = this;
 
         while (bestDst != 0)
         {
+            roundStr = true;
             for (int i = 0; i < currentHex.neighbours.Length; i += 1)
             {
-                if (currentHex.neighbours[i] != null/* && currentHex.neighbours[i].GetHexagonType()!=-1 && currentHex.neighbours[i].GetHexagonType()!= -2*/)
+                if (currentHex.neighbours[i] != null && currentHex.neighbours[i].GetHexagonType () >= 0 && result.Contains (currentHex.neighbours[i].transform.position) == false)
                 {
-                    checkedDst = Vector3.Distance(currentHex.neighbours[i].transform.position, hex.transform.position);
-                    if (checkedDst < bestDst)
+                    if (roundStr == true)
                     {
                         bestChoice = i;
-                        bestDst = checkedDst;
-
-                        if (bestDst == 0)
+                        bestDst = Vector3.Distance (currentHex.neighbours[i].transform.position, hex.transform.position);
+                        roundStr = false;
+                    }
+                    else 
+                    {
+                        checkedDst = Vector3.Distance (currentHex.neighbours[i].transform.position, hex.transform.position);
+                        if (checkedDst < bestDst) 
                         {
-                            break;
+                            bestChoice = i;
+                            bestDst = checkedDst;
                         }
+                    }
+
+                    if (bestDst == 0) 
+                    {
+                        break;
                     }
                 }
             }
 
-            result.Add(currentHex.neighbours[bestChoice].transform.position);
+            result.Add (currentHex.neighbours[bestChoice].transform.position);
+            print ("Chosen: " + currentHex.neighbours[bestChoice].name);
 
             currentHex = currentHex.neighbours[bestChoice];
         }
+
+        return result;*/
+        Hexagon current;
+
+        Queue<Hexagon> queue = new Queue<Hexagon> ();
+        HashSet<Hexagon> explored = new HashSet<Hexagon> ();
+        List<Vector3> result = new List<Vector3> ();
+        IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
+
+        queue.Enqueue (this);
+
+        while (queue.Count != 0) 
+        {
+            current = queue.Dequeue ();
+
+            if (current == hex) 
+            {
+                break;
+            }
+
+            foreach (Hexagon n in current.neighbours) 
+            {
+                if (n != null && n.hexagonType >= 0 && explored.Contains (n) == false) 
+                {
+                    explored.Add (n);
+                    parents.Add (n, current);
+                    queue.Enqueue (n);
+                }
+            }
+        }
+
+        for (Hexagon h = hex; h != this; h = parents[h]) 
+        {
+            result.Add (h.transform.position);
+        }
+        result.Reverse ();
 
         return result;
     }
@@ -382,4 +430,44 @@ public class Hexagon : MonoBehaviour
     {
         return MaterialVisible;
     }
+
+
+    /*public Hexagon FindClosestAvailableHex (bool join = false, string race = "", int number = 0) 
+    {
+        Hexagon available = null;
+        Queue<Hexagon> check = new Queue<Hexagon> ();
+
+        check.Enqueue (this);
+
+        while (available == null && check.Count > 0) 
+        {
+            Hexagon chosen = check.Dequeue ();
+
+            foreach (Hexagon n in chosen.neighbours) 
+            {
+                if (join == false)
+                {
+                    if (n.hexagonType >= 0 && n.presentUnt == 0)
+                    {
+                        available = n;
+
+                        break;
+                    }
+                    else
+                    {
+                        if (n.presentUnt != 0 && check.Contains (n) == false)
+                        {
+                            check.Enqueue (n);
+                        }
+                    }
+                }
+                else 
+                {
+
+                }
+            }
+        }
+
+        return available;
+    }*/
 }

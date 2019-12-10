@@ -18,7 +18,7 @@ public class UnitMovement : MonoBehaviour
 
     private ConfirmationScript confirmationScript;
 
-    [SerializeField] private int moveSpd, startHex;
+    [SerializeField] private int moveSpd;
     private CharacterController characterCtr;
     private Transform feet;
     private float offsetHexX, offsetHexZ;
@@ -37,7 +37,7 @@ public class UnitMovement : MonoBehaviour
         Grid grid = GameObject.FindObjectOfType<Grid> ();
 
         reachedTrg = false;
-        regroup = true;
+        regroup = false;
         characterCtr = this.GetComponent<CharacterController> ();
         feet = this.transform.GetChild (0);
         path = new List<Vector3> ();
@@ -46,12 +46,13 @@ public class UnitMovement : MonoBehaviour
         interf = GameObject.FindGameObjectWithTag ("Interface");
         offsetHexX = grid.hexagonWth / 6;
         offsetHexZ = grid.hexagonHgt / 6;
-        offsets = new Vector3[] {Vector3.zero, new Vector3 (+offsetHexX, 0, offsetHexZ), new Vector3 (-offsetHexX, 0, +offsetHexZ), new Vector3 (+offsetHexX, 0, -offsetHexZ), new Vector3 (-offsetHexX, 0, -offsetHexZ)};
+        offsets = new Vector3[] {Vector3.zero, new Vector3 (+offsetHexX, 0, +offsetHexZ), new Vector3 (-offsetHexX, 0, +offsetHexZ), new Vector3 (+offsetHexX, 0, -offsetHexZ), new Vector3 (-offsetHexX, 0, -offsetHexZ)};
         //target += offsets[startOft];
         //collided = new List<CharacterController> ();
         //unitsMsk = LayerMask.GetMask ("Units");
         confirmationScript = interf.GetComponentInChildren<ConfirmationScript> ();
         allies = new UnitMovement[1];
+        allies[0] = this;
         moveLmt = (int) stats.speed + 1;
 
         path.Add (target);
@@ -83,8 +84,10 @@ public class UnitMovement : MonoBehaviour
             {
                 path.RemoveAt (0);
 
-                if (path.Count == 0 || moveLmt <= 0)
+                if (path.Count == 0)
                 {
+                    int moveLmtMin = 5;
+
                     reachedTrg = true;
                     /*for (int c = 0; c < this.collided.Count; c += 1) 
                     {
@@ -96,23 +99,37 @@ public class UnitMovement : MonoBehaviour
                     allies = currentHex.UnitsPlaced ();
                     foreach (UnitMovement a in allies) 
                     {
-                        if (a != null)
+                        if (a != null) 
+                        {
                             a.allies = allies;
+                            if (a.GetMovementLimit () < moveLmtMin) 
+                            {
+                                moveLmtMin = a.GetMovementLimit ();
+                            }
+                        } 
                     }
-                    if (currentHex.GetHexagonType() == 0)
+
+                    foreach (UnitMovement a in allies) 
                     {
-                        this.moveLmt++;
+                        a.SetMovement (moveLmtMin);
+                    }
+
+                    if (currentHex.GetHexagonType () == 0)
+                    {
+                        moveLmt += 1;
                     }
                 }
                 else 
                 {
-                    if (targetHex != null && Vector3.Distance(path[0], targetHex.transform.position)<0.5f)
+                    if (targetHex != null && Vector3.Distance (path[0], targetHex.transform.position) < 0.5f)
                     {
-                        UnitMovement[] units = targetHex.UnitsPlaced();
-                        if (units != null) {
-                            for (int i = 0; i < units.Length;i++)
+                        UnitMovement[] units = targetHex.UnitsPlaced ();
+
+                        if (units != null) 
+                        {
+                            for (int i = 0; i < units.Length; i++)
                             {
-                                if(units[i] != null && units[i].tag == "Enemy")
+                                if (units[i] != null && units[i].tag == "Enemy")
                                 {
                                     foreach (UnitMovement al in allies)
                                     {
@@ -132,6 +149,7 @@ public class UnitMovement : MonoBehaviour
                                     {
                                         confirmationScript.askCombat(this);
                                     }
+
                                     break;
                                 }
                             }
@@ -139,8 +157,7 @@ public class UnitMovement : MonoBehaviour
                     }
                     if (targetHex != null && Vector3.Distance(path[0], targetHex.transform.position) < 0.5f)
                     {
-                        
-                        if (targetHex.GetHexagonType() == -1 || targetHex.GetHexagonType() == -2)
+                        if (targetHex.GetHexagonType () == -1 || targetHex.GetHexagonType () == -2)
                         {
                             foreach (UnitMovement al in allies)
                             {
@@ -154,7 +171,7 @@ public class UnitMovement : MonoBehaviour
                         }
                     }
                     //Este if es cuando la unidad que se mueve es enemiga
-                    if (targetHex != null && Vector3.Distance(path[0], targetHex.transform.position) < 0.5f)
+                    if (this.tag == "Enemy" && targetHex != null && Vector3.Distance(path[0], targetHex.transform.position) < 0.5f)
                     {
                         UnitMovement[] units = targetHex.UnitsPlaced();
                         if (units != null)
@@ -199,20 +216,20 @@ public class UnitMovement : MonoBehaviour
         {
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
-            moveLmt --;
+            moveLmt -= 1;
 
-            for(int i = 0; i < currentHex.neighbours.Length; i++)
+            for (int i = 0; i < currentHex.neighbours.Length; i += 1)
             {
                 if (currentHex.neighbours[i] != null)
                 {
-                    currentHex.neighbours[i].SetVisible(true);
+                    currentHex.neighbours[i].SetVisible (true);
                     if (stats.occupation == "Explorer")
                     {
-                        for(int j=0; j < currentHex.neighbours[i].neighbours.Length; j++)
+                        for (int j = 0; j < currentHex.neighbours[i].neighbours.Length; j += 1)
                         {
                             if (currentHex.neighbours[i].neighbours[j] != null)
                             {
-                                currentHex.neighbours[i].neighbours[j].SetVisible(true);
+                                currentHex.neighbours[i].neighbours[j].SetVisible (true);
                             }
                         }
                     }
@@ -220,12 +237,12 @@ public class UnitMovement : MonoBehaviour
             }
             currentHex.SetVisible (true);
 
-            if (path.Count <= 1) 
+            if (path.Count == 1) 
             {
                 //if (currentHex.presentUnt != 0)
                 //{
                 target = currentHex.transform.position + offsets[currentHex.presentUnt];
-                currentHex.AddUnit(this, currentHex.presentUnt);
+                currentHex.AddUnit (this, currentHex.presentUnt);
                 // }
                 // else 
                 // {
@@ -362,27 +379,36 @@ public class UnitMovement : MonoBehaviour
 
         return (moveLmt - cost);*/
 
-        path = currentHex.GetPath(hex);
-        int longitud = path.Count;
-        for(int i =longitud-1; i>=moveLmt; i--)
+        if (moveLmt < 1)
         {
-            path.RemoveAt(i);
+            path = new List<Vector3> ();
+        }
+        else 
+        {
+            path = currentHex.GetPath (hex);
+
+            int longitud = path.Count;
+
+            for (int i = longitud - 1; i >= moveLmt; i -= 1)
+            {
+                path.RemoveAt (i);
+            }
         }
 
-        if (path.Count>0)
+        if (path.Count > 0)
         {
-            visibleTarget = hex.GetVisible();
+            visibleTarget = hex.GetVisible ();
 
             for (int u = 0; u<allies.Length && allies[u] != null; u += 1)
             {
                 if (u != 0)
                 {
                     Vector3 offset = offsets[u];
-                    List<Vector3> pathAux = new List<Vector3>();
+                    List<Vector3> pathAux = new List<Vector3> ();
 
                     for (int p = 0; p < path.Count; p += 1)
                     {
-                        pathAux.Add(path[p] + offset);
+                        pathAux.Add (path[p] + offset);
                     }
 
                     allies[u].path = pathAux;
@@ -395,11 +421,11 @@ public class UnitMovement : MonoBehaviour
             {
                 if (stats.occupation == "Worker")
                 {
-                    Builder builder = this.GetComponent<Builder>();
+                    Builder builder = this.GetComponent<Builder> ();
 
                     if (builder.working == true)
                     {
-                        builder.StopBuilding();
+                        builder.StopBuilding ();
                     }
                 }
                 else
@@ -408,10 +434,14 @@ public class UnitMovement : MonoBehaviour
                 }
             }
 
-            if (path[path.Count-1]!=hex.transform.position)
+            if (path[path.Count - 1] != hex.transform.position)
+            {
                 return 0;
-            else
+            }
+            else 
+            {
                 return 1;
+            }
         }
         else
         {
@@ -420,7 +450,8 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-    public UnitMovement[] GetAllies()
+    // Returns all units that have become allies with the current one (including itself).
+    public UnitMovement[] GetAllies ()
     {
         return allies;
     }
@@ -432,7 +463,9 @@ public class UnitMovement : MonoBehaviour
         moveLmt = (int) stats.speed;
     }
 
-    public void SetMovement(int m)
+
+    // We set the movement limit to a determined value.
+    public void SetMovement (int m)
     {
         moveLmt = m;
     }

@@ -10,9 +10,8 @@ public class Grid : MonoBehaviour
     public float hexagonWth, hexagonHgt, limitX1, limitX2, limitZ1, limitZ2;
     public int gridWth, gridHgt;
     public Hexagon[,] hexagons;
-    public Hexagon[] forestsArray, unwalkable;
+    public Hexagon[] forestsArray;
     public GameObject Capital; //Generar las dos capitales
-
     public Material materialPradera1;
     public Material materialPradera2;
     public Material materialPradera3;
@@ -35,7 +34,6 @@ public class Grid : MonoBehaviour
         hexagonHgt *= hexagonScl;
         hexagonsX = (int) (gridWth / hexagonWth);
         hexagonsY = (int) (gridHgt / hexagonHgt);
-        unwalkable = new Hexagon[hexagonsX - 3];
         ground = this.transform.GetChild (0);
         ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
         forestHex1 = new int[] {1, 30, 262, 292, 408, 61, 235, 264, 409, 554, 4, 526, 555, 5, 92, 121, 122, 586, 615, 355, 384, 356, 154, 184, 532, 561, 69, 98, 331, 360, 275, 247, 450, 451, 104, 76, 105, 279, 251, 50, 311, 51, 80, 167, 312, 457, 
@@ -108,7 +106,7 @@ public class Grid : MonoBehaviour
     // We instantiate every hexagon and put it in its corresponding position on the grid.
     private void CreateGrid () 
     {
-        int hexagonCnt = 1, riverIdx = 0;
+        int hexagonCnt = 1;
         hexagons = new Hexagon[hexagonsX + 1, hexagonsY + 1];
 
         for (int y = 0; y <= hexagonsY; y += 1) 
@@ -185,9 +183,6 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, 24].SetHexagonType (-2);
                 hexagons[i, 24].SetVisible (true);
-
-                unwalkable[riverIdx] = hexagons[i, 24];
-                riverIdx += 1;
             }
         }
 

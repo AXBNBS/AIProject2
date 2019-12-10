@@ -154,9 +154,9 @@ public class BuildingMenu : MonoBehaviour
         movePanelUI.SetActive(false);
     }
 
-    public void TrainHuman()
+    public void TrainHuman ()
     {
-        if (humanPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (humanSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -190,9 +190,9 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void TrainCat()
+    public void TrainCat ()
     {
-        if (catPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (catSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -220,6 +220,8 @@ public class BuildingMenu : MonoBehaviour
                 gameManager.GetComponent<GameManager>().playerUnt.Add(train.GetComponent<UnitMovement>());
                 gameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
                 gameManager.GetComponent<ResourcesHolder>().changeStores("Blue", catSettings.stores, false);
+                print(catSettings.stores);
+                print(gameManager.GetComponent<ResourcesHolder>().GetBlueStores());
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);
@@ -227,9 +229,9 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void TrainElf()
+    public void TrainElf ()
     {
-        if (elfPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (elfSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -264,9 +266,9 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void TrainDwarf()
+    public void TrainDwarf ()
     {
-        if (dwarfPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (dwarfSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -301,9 +303,9 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void TrainTwii()
+    public void TrainTwii ()
     {
-        if (twiiPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (twiiSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -338,9 +340,9 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void TrainHazelnut()
+    public void TrainHazelnut ()
     {
-        if (hazelnutPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (hazelnutSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -375,9 +377,9 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void TrainNougat()
+    public void TrainNougat ()
     {
-        if (nougatPrefab.GetComponent<Unit>().GetStores() <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores())
+        if (nougatSettings.stores <= gameManager.GetComponent<ResourcesHolder>().GetBlueStores ())
         {
             Hexagon generate = null;
             for (int i = 0; i < hex.neighbours.Length; i++)
@@ -412,7 +414,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveHuman()
+    public void MoveHuman ()
     {
         if (hex.GetCity().GetHumans() != 0)
         {
@@ -448,7 +450,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveCat()
+    public void MoveCat ()
     {
         if (hex.GetCity().GetCats() != 0)
         {
@@ -485,7 +487,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveElf()
+    public void MoveElf ()
     {
         if (hex.GetCity().GetElves() != 0)
         {
@@ -522,7 +524,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveDwarf()
+    public void MoveDwarf ()
     {
         if (hex.GetCity().GetDwarfs() != 0)
         {
@@ -559,7 +561,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveTwii()
+    public void MoveTwii ()
     {
         if (hex.GetCity().GetTwiis() != 0)
         {
@@ -596,7 +598,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveHazelnut()
+    public void MoveHazelnut ()
     {
         if (hex.GetCity().GetCraftsmen() != 0)
         {
@@ -633,7 +635,7 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    public void MoveNougat()
+    public void MoveNougat ()
     {
         if (hex.GetCity().GetTurroncitos() != 0)
         {
