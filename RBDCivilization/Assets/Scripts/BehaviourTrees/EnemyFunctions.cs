@@ -451,7 +451,6 @@ public class EnemyFunctions : MonoBehaviour
 
     public bool attack(Unit unit)
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         int range = Mathf.RoundToInt(unit.GetSpeed());
         Hexagon originHex = unit.movement.currentHex;
         bool canWin = false;

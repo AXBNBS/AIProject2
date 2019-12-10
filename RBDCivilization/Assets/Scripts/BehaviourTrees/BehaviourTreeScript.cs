@@ -151,8 +151,7 @@ public class BehaviourTreeScript : MonoBehaviour
                             if (movementUnits(0, units[u].GetComponent<Unit>().movement.currentHex, hexPlayerCapital) == NodeStates.SUCCESS)
                             {
                                 print("IA ataca capital del jugador.");
-                                attack(0, null, null, units[u].GetComponent<Unit>());
-                                break;
+                                //attack(0, null, null, units[u].GetComponent<Unit>());
                             }
                         }
                     }
@@ -169,7 +168,6 @@ public class BehaviourTreeScript : MonoBehaviour
                             {
                                 print("IA ataca asentamiento del jugador.");
                                 attack(0, null, null, units[u].GetComponent<Unit>());
-                                break;
                             }
                         }
                     }
@@ -1541,7 +1539,7 @@ public class BehaviourTreeScript : MonoBehaviour
                 actualHex = characters[m].GetComponent<Unit>().movement.currentHex;
                 for (int n = 0; n < actualHex.neighbours.Length; n++)
                 {
-                    if (actualHex.neighbours[n] != null && actualHex.neighbours[n].GetIsBuilded() == false && actualHex.neighbours[n].UnitsPlaced().Length == 0)
+                    if (actualHex.neighbours[n] != null && actualHex.neighbours[n].GetIsBuilded() == false && actualHex.neighbours[n].UnitsPlaced().Length == 0 && actualHex.neighbours[n].GetHexagonType() >= 0)
                     {
                         Debug.Log("IA explora");
                         movementUnits(0, actualHex, actualHex.neighbours[n]);
@@ -1550,6 +1548,7 @@ public class BehaviourTreeScript : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(0.25f);
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().StartPlayerTurn();
         yield return null;
     }
