@@ -16,6 +16,7 @@ public class Grid : MonoBehaviour
     public Material materialPradera2;
     public Material materialPradera3;
     public Material materialMontana;
+    public Material materialRio;
 
     [SerializeField] private Transform hexagonPfb;
     //[SerializeField] private int gridWth, gridHgt;
@@ -183,6 +184,7 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, 24].SetHexagonType (-2);
                 hexagons[i, 24].SetVisible (true);
+                hexagons[i, 24].SetMaterialVisible(materialRio);
             }
         }
 
@@ -606,19 +608,33 @@ public class Grid : MonoBehaviour
 
         //Lake generation
         hexagons[1, 1].SetHexagonType (0);
+        hexagons[1, 1].SetMaterialVisible(materialRio);
         hexagons[1, 47].SetHexagonType (0);
+        hexagons[1, 47].SetMaterialVisible(materialRio);
         hexagons[4, 12].SetHexagonType (0);
+        hexagons[4, 12].SetMaterialVisible(materialRio);
         hexagons[4, 36].SetHexagonType (0);
+        hexagons[4, 36].SetMaterialVisible(materialRio);
         hexagons[12, 6].SetHexagonType (0);
+        hexagons[12, 6].SetMaterialVisible(materialRio);
         hexagons[12, 42].SetHexagonType (0);
+        hexagons[12, 42].SetMaterialVisible(materialRio);
         hexagons[12, 21].SetHexagonType (0);
+        hexagons[12, 21].SetMaterialVisible(materialRio);
         hexagons[12, 27].SetHexagonType (0);
+        hexagons[12, 27].SetMaterialVisible(materialRio);
         hexagons[16, 13].SetHexagonType (0);
+        hexagons[16, 13].SetMaterialVisible(materialRio);
         hexagons[16, 35].SetHexagonType (0);
+        hexagons[16, 13].SetMaterialVisible(materialRio);
         hexagons[20, 6].SetHexagonType (0);
+        hexagons[20, 6].SetMaterialVisible(materialRio);
         hexagons[20, 42].SetHexagonType (0);
+        hexagons[20, 42].SetMaterialVisible(materialRio);
         hexagons[27, 14].SetHexagonType (0);
+        hexagons[27, 14].SetMaterialVisible(materialRio);
         hexagons[27, 34].SetHexagonType (0);
+        hexagons[27, 34].SetMaterialVisible(materialRio);
     }
 
 

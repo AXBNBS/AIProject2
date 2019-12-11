@@ -82,7 +82,8 @@ public class UnitMovement : MonoBehaviour
 
             if (Vector3.Distance (feet.position, target) < 0.5f)
             {
-                path.RemoveAt (0);
+                if(path.Count!=0)
+                    path.RemoveAt (0);
 
                 if (path.Count == 0)
                 {
@@ -216,6 +217,7 @@ public class UnitMovement : MonoBehaviour
         {
             previousHex = currentHex;
             currentHex = other.GetComponent<Hexagon> ();
+            //if(moveLmt<0)
             moveLmt -= 1;
 
             for (int i = 0; i < currentHex.neighbours.Length; i += 1)
@@ -241,8 +243,11 @@ public class UnitMovement : MonoBehaviour
             {
                 //if (currentHex.presentUnt != 0)
                 //{
-                target = currentHex.transform.position + offsets[currentHex.presentUnt];
-                currentHex.AddUnit (this, currentHex.presentUnt);
+                if (currentHex.presentUnt < 5)
+                {
+                    target = currentHex.transform.position + offsets[currentHex.presentUnt];
+                    currentHex.AddUnit(this, currentHex.presentUnt);
+                }
                 // }
                 // else 
                 // {
@@ -394,6 +399,61 @@ public class UnitMovement : MonoBehaviour
                 path.RemoveAt (i);
             }
         }
+
+        /*if (this.tag == "Enemy" && this.stats.occupation == "Soldier")
+        {
+            if (path.Count != 0)
+            {
+                Collider[] hitColliders = Physics.OverlapSphere(path[path.Count - 1], 0.5f);
+                int j = 0;
+                while (j < hitColliders.Length)
+                {
+                    if (hitColliders[j].tag == "Hexagon")
+                    {
+                        targetHex = hitColliders[j].GetComponent<Hexagon>();
+                        break;
+                    }
+                    j++;
+                }
+
+                /*for (int i = 0; i < gameManager.AIUnt.Count; i++)
+                {
+                    if (gameManager.AIUnt[i] != this && gameManager.AIUnt[i].targetHex != null && gameManager.AIUnt[i].targetHex == this.targetHex)
+                    {
+                        print(gameManager.AIUnt[i].targetHex);
+                        print(this.targetHex);
+                        foreach (Hexagon h in targetHex.neighbours)
+                        {
+                            if (h != null)
+                            {
+                                targetHex = h;
+                                path[path.Count - 1] = h.transform.position;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                if (targetHex.GetIsBuilded() == true && targetHex.GetCity().GetCitySide() == "Red")
+                {
+                    path.RemoveAt(path.Count - 1);
+                }
+
+                if (targetHex.GetCapacity() < this.allies.Length)
+                {
+                    foreach (Hexagon h in targetHex.neighbours)
+                    {
+                        if (h != null)
+                        {
+                            targetHex = h;
+                            path[path.Count - 1] = h.transform.position;
+                            break;
+                        }
+                    }
+                }
+            }
+        }*/
 
         if (path.Count > 0)
         {

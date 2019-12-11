@@ -64,26 +64,7 @@ public class Builder : MonoBehaviour
         spentWod = wood;
         if (this.tag == "Ally")
         {
-            int x = 0;
-            for (int i = 0; i < allies; i++)
-            {
-                if (unitMvm.GetAllies()[i] != null)
-                {
-                    x++;
-                }
-            }
-            if (x <= 2)
-            {
-                remainingTrn = constructionDat.settings.turns;
-            }
-            else if (x <= 4)
-            {
-                remainingTrn = constructionDat.settings.turns - 1;
-            }
-            else
-            {
-                remainingTrn = constructionDat.settings.turns - 2;
-            }
+            remainingTrn = 1;
         }
         else 
         {
@@ -134,6 +115,7 @@ public class Builder : MonoBehaviour
                 if (this.tag == "Enemy") 
                 {
                     hex.environment.tag = "RedSettlement";
+                    hex.GetCity().SetCitySide("Red");
                 }
             }
             else 
@@ -145,6 +127,7 @@ public class Builder : MonoBehaviour
                     GameManager.instance.AIFrm.Add (hex.environment.GetComponent<Farm> ());
 
                     construction.tag = "RedFarm";
+                    hex.GetCity().SetCitySide("Red");
                 }
                 else
                 {
