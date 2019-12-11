@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humans: 0
+  cats: 0
   craftsmen: 0
   turroncitos: 0
   orcs: 0

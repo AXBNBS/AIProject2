@@ -117,7 +117,25 @@ public class UnitMovement : MonoBehaviour
 
                     if (currentHex.GetHexagonType () == 0)
                     {
-                        moveLmt += 1;
+                        bool reachedAll = true;
+
+                        foreach (UnitMovement a in allies) 
+                        {
+                            if (a.reachedTrg == false) 
+                            {
+                                reachedAll = false;
+
+                                break;
+                            }
+                        }
+
+                        if (reachedAll == true) 
+                        {
+                            foreach (UnitMovement a in allies)
+                            {
+                                a.SetMovement (a.GetMovementLimit () + 1);
+                            }
+                        }
                     }
                 }
                 else 
@@ -393,7 +411,14 @@ public class UnitMovement : MonoBehaviour
         }
         else 
         {
-            path = currentHex.GetPath (hex);
+            if (this.tag == "Ally")
+            {
+                path = currentHex.GetPath (hex);
+            }
+            else 
+            {
+                path = currentHex.GetTacticalPath (hex);
+            }
 
             int longitud = path.Count;
 

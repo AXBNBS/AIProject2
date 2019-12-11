@@ -38,7 +38,7 @@ public class Hexagon : MonoBehaviour
         mountain = false;
         remainingTurnsToCollect = 0;
 
-        InvokeRepeating("CheckVisibility", 0, 0.5f);
+        InvokeRepeating ("CheckVisibility", 0, 0.5f);
     }
 
     public void CheckVisibility()
@@ -324,6 +324,93 @@ public class Hexagon : MonoBehaviour
     }
 
 
+    // Traces a path for the enemy unit that will make sure it avoids the player's units, unless the final destination of the unit is a cell that already has player units in it.
+    public List<Vector3> GetTacticalPath (Hexagon hex) 
+    {
+        print ("Target: " + hex.name);
+        Hexagon current;
+
+        Queue<Hexagon> queue = new Queue<Hexagon> ();
+        HashSet<Hexagon> explored = new HashSet<Hexagon> ();
+        HashSet<Hexagon> avoid = new HashSet<Hexagon> ();
+        List<Vector3> result = new List<Vector3> ();
+        IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
+
+        foreach (Hexagon h in GameManager.instance.avoidedHex) 
+        {
+            avoid.Add (h);
+            print (h.name);
+        }
+        avoid.Remove (hex);
+        print("Not actually avoiding " + hex.name);
+        foreach (Hexagon h in GameManager.instance.avoidedHex)
+        {
+            print (h.name);
+        }
+        /*foreach (Hexagon n in hex.neighbours) 
+        {
+            if (n != null) 
+            {
+                avoid.Remove (n);
+                print("Not actually avoiding " + n.name);
+            }
+        }*/
+        /*foreach (UnitMovement u in GameManager.instance.playerUnt) 
+        {
+            if (u.currentHex != hex) 
+            {
+                avoid.Add (u.currentHex);
+                print ("avoiding " + u.currentHex.name);
+            }
+            foreach (Hexagon n in u.currentHex.neighbours) 
+            {
+                if (n != null && n != hex) 
+                {
+                    avoid.Add (n);
+                    print ("avoiding " + n.name);
+                }
+            }
+        }*/
+
+        queue.Enqueue (this);
+
+        while (queue.Count != 0)
+        {
+            current = queue.Dequeue ();
+
+            if (current == hex)
+            {
+                break;
+            }
+
+            foreach (Hexagon n in current.neighbours)
+            {
+                if (n != null && n.hexagonType >= 0 && avoid.Contains (n) == false && explored.Contains (n) == false)
+                {
+                    explored.Add (n);
+                    parents.Add (n, current);
+                    queue.Enqueue (n);
+                }
+            }
+        }
+
+        if (parents.ContainsKey (hex) == true)
+        {
+            for (Hexagon h = hex; h != this; h = parents[h])
+            {
+                result.Add (h.transform.position);
+            }
+            result.Reverse ();
+
+            return result;
+        }
+        else 
+        {
+            return GetPath (hex);
+        }
+    }
+
+
     public int GetHexagonType ()
     {
         return hexagonType;
@@ -439,8 +526,11 @@ public class Hexagon : MonoBehaviour
     }
 
 
-    /*public Hexagon FindClosestAvailableHex (bool join = false, string race = "", int number = 0) 
+    // We'll call this function if an hexagon is unavailable for whatheaver reason, so it returns the closest available one to it.
+    public Hexagon FindClosestAvailableHex () 
     {
+        Hexagon chosen;
+
         Hexagon available = null;
         Queue<Hexagon> check = new Queue<Hexagon> ();
 
@@ -448,33 +538,26 @@ public class Hexagon : MonoBehaviour
 
         while (available == null && check.Count > 0) 
         {
-            Hexagon chosen = check.Dequeue ();
+            chosen = check.Dequeue ();
 
             foreach (Hexagon n in chosen.neighbours) 
             {
-                if (join == false)
+                if (n.hexagonType >= 0 && n.presentUnt == 0 && (n.environment == null || n.environment.tag == "Tunnel" || n.environment.tag == "Forest"))
                 {
-                    if (n.hexagonType >= 0 && n.presentUnt == 0)
-                    {
-                        available = n;
+                    available = n;
 
-                        break;
-                    }
-                    else
-                    {
-                        if (n.presentUnt != 0 && check.Contains (n) == false)
-                        {
-                            check.Enqueue (n);
-                        }
-                    }
+                    break;
                 }
-                else 
+                else
                 {
-
+                    if (check.Contains (n) == false)
+                    {
+                        check.Enqueue (n);
+                    }
                 }
             }
         }
 
         return available;
-    }*/
+    }
 }

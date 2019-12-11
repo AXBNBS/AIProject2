@@ -220,8 +220,6 @@ public class BuildingMenu : MonoBehaviour
                 gameManager.GetComponent<GameManager>().playerUnt.Add(train.GetComponent<UnitMovement>());
                 gameManager.GetComponent<ResourcesHolder>().changeCurrentPopulation("Blue", 1, true);
                 gameManager.GetComponent<ResourcesHolder>().changeStores("Blue", catSettings.stores, false);
-                print(catSettings.stores);
-                print(gameManager.GetComponent<ResourcesHolder>().GetBlueStores());
 
                 firstPanelUI.SetActive(true);
                 trainPanelUI.SetActive(false);

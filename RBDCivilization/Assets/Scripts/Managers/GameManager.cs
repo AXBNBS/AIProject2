@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<Builder> playerBld, AIBld;
     public List<Collector> playerCll, AICll;
     public List<Hexagon> restoringHexagons;
+    public HashSet<Hexagon> avoidedHex;
     public BehaviourTreeScript behaviourTree;
 
     [SerializeField] private int storesPerFrm;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
         Collector[] collectors = GameObject.FindObjectsOfType<Collector> ();
 
         restoringHexagons = new List<Hexagon>();
-        storesPerFrm = 30;//ESTO ES DE EJEMPLO
+        storesPerFrm = 5;//ESTO ES DE EJEMPLO
 
         instance = this;
         playerUnt = new List<UnitMovement> ();
@@ -115,7 +116,23 @@ public class GameManager : MonoBehaviour
         cameraCtr.SetNullSelectedUnit ();
 
         List<Hexagon> doneJob = new List<Hexagon> ();
+        bool oneActiveFrm = false;
 
+        avoidedHex = new HashSet<Hexagon> ();
+
+        foreach (UnitMovement u in playerUnt) 
+        {
+            avoidedHex.Add (u.currentHex);
+            print("avoiding " + u.currentHex.name);
+            foreach (Hexagon n in u.currentHex.neighbours)
+            {
+                if (n != null)
+                {
+                    avoidedHex.Add (n);
+                    print("avoiding " + n.name);
+                }
+            }
+        }
         foreach (UnitMovement u in AIUnt) 
         {
             u.ResetMovement ();
@@ -174,12 +191,18 @@ public class GameManager : MonoBehaviour
 
             if (f.active == true) 
             {
+                oneActiveFrm = true;
+
                 resourcesHld.changeStores ("red", storesPerFrm, true);
             }
         }
+        if (oneActiveFrm == false) 
+        {
+            resourcesHld.changeStores ("red", 3, true);
+        }
 
-        endTurnButton.SetActive(false);
-        behaviourTree.Evaluate();
+        endTurnButton.SetActive (false);
+        behaviourTree.Evaluate ();
     }
 
 
@@ -187,7 +210,9 @@ public class GameManager : MonoBehaviour
     public void StartPlayerTurn () 
     {
         endTurnButton.SetActive(true);
+
         List<Hexagon> doneJob = new List<Hexagon> ();
+        bool oneActiveFrm = false;
 
         foreach (UnitMovement u in playerUnt)
         {
@@ -258,15 +283,20 @@ public class GameManager : MonoBehaviour
             }
             if (f.active == true)
             {
+                oneActiveFrm = true;
+
                 resourcesHld.changeStores ("blue", storesPerFrm, true);
             }
         }
-
+        if (oneActiveFrm == false) 
+        {
+            resourcesHld.changeStores ("blue", 3, true);
+        }
         if (buildingMenu.remainingTurnsToUpgrade == 0 && buildingMenu.upgrading==true)
         {
-            buildingMenu.Upgrade();
+            buildingMenu.Upgrade ();
         }
-        else if(buildingMenu.remainingTurnsToUpgrade>0)
+        else if (buildingMenu.remainingTurnsToUpgrade > 0)
         {
             buildingMenu.remainingTurnsToUpgrade--;
         }
