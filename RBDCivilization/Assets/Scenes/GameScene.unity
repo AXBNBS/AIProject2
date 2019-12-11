@@ -404,6 +404,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: materialRio
+      value: 
+      objectReference: {fileID: 2100000, guid: f504264b0e7b0ee4aa7851fce88affe6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
 --- !u!1001 &178534695
@@ -2499,6 +2504,11 @@ PrefabInstance:
       propertyPath: endTurnButton
       value: 
       objectReference: {fileID: 1354975554}
+    - target: {fileID: 4363778776442751077, guid: 2ca99fb96044c5e45a2c8ce7e9a6881a,
+        type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 2072230108}
     - target: {fileID: 4363778776442751076, guid: 2ca99fb96044c5e45a2c8ce7e9a6881a,
         type: 3}
       propertyPath: m_LocalPosition.x
