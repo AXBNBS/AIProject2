@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -469649698186968152, guid: 0c211e1719f17a64b991645d3aa26b18, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,8 +152,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: ad55c66b2da10be4183865246dc2a579, type: 2}
   interf: {fileID: 5370942851254565301, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
   moveSpd: 15
-  startHex: 0
-  moveLmt: 0
+  path: []
 --- !u!114 &1877917619048895848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,8 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: ad55c66b2da10be4183865246dc2a579, type: 2}
-  gameManager: {fileID: 4133221044724100647, guid: 2ede30c81a7374b42b112e12a47c6b17,
-    type: 3}
+  movement: {fileID: 0}
   totalPower: 0
 --- !u!114 &1877917617066295101
 MonoBehaviour:

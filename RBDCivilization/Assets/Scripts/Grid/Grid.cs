@@ -154,7 +154,7 @@ public class Grid : MonoBehaviour
         hexagons[15, 0].SetVisible (true);
 
         //Capital roja
-        hexagons[14, 48].SetVisible (true);
+        //hexagons[14, 48].SetVisible (true);
         hexagons[14, 48].SetIsBuilded (true);
 
         GameObject build2 = Instantiate (Capital, new Vector3 (hexagons[14, 48].CentroHexagono.position.x, hexagons[14, 48].CentroHexagono.position.y, hexagons[14, 48].CentroHexagono.position.z), Quaternion.identity);
@@ -167,10 +167,10 @@ public class Grid : MonoBehaviour
 
         hexagons[14, 48].environment.tag = "RedCapital";
 
-        hexagons[13, 47].SetVisible (true);
+        /*hexagons[13, 47].SetVisible (true);
         hexagons[13, 48].SetVisible (true);
         hexagons[15, 48].SetVisible (true);
-        hexagons[14, 47].SetVisible (true);
+        hexagons[14, 47].SetVisible (true);*/
 
         // Generación de rio
         for (int i = 0; i <= hexagonsX; i += 1)

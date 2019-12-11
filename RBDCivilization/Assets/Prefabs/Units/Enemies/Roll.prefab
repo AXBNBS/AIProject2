@@ -91,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: -4984906860265027368, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 9a60473a14d0db144bc87ad649d393bd, type: 2}
   interf: {fileID: 0}
   moveSpd: 15
-  startHex: 0
+  path: []
 --- !u!114 &4711769673049060401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,4 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 9a60473a14d0db144bc87ad649d393bd, type: 2}
+  movement: {fileID: 0}
   totalPower: 0

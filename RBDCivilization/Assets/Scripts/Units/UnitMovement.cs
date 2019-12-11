@@ -220,24 +220,27 @@ public class UnitMovement : MonoBehaviour
             //if(moveLmt<0)
             moveLmt -= 1;
 
-            for (int i = 0; i < currentHex.neighbours.Length; i += 1)
+            if (this.tag == "Ally")
             {
-                if (currentHex.neighbours[i] != null)
+                for (int i = 0; i < currentHex.neighbours.Length; i += 1)
                 {
-                    currentHex.neighbours[i].SetVisible (true);
-                    if (stats.occupation == "Explorer")
+                    if (currentHex.neighbours[i] != null)
                     {
-                        for (int j = 0; j < currentHex.neighbours[i].neighbours.Length; j += 1)
+                        currentHex.neighbours[i].SetVisible(true);
+                        if (stats.occupation == "Explorer")
                         {
-                            if (currentHex.neighbours[i].neighbours[j] != null)
+                            for (int j = 0; j < currentHex.neighbours[i].neighbours.Length; j += 1)
                             {
-                                currentHex.neighbours[i].neighbours[j].SetVisible (true);
+                                if (currentHex.neighbours[i].neighbours[j] != null)
+                                {
+                                    currentHex.neighbours[i].neighbours[j].SetVisible(true);
+                                }
                             }
                         }
                     }
                 }
+                currentHex.SetVisible(true);
             }
-            currentHex.SetVisible (true);
 
             if (path.Count == 1) 
             {

@@ -62,6 +62,13 @@ public class Hexagon : MonoBehaviour
                 units[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
             }
         }
+        else if (presentUnt != 0)
+        {
+            for (int i = 0; i < presentUnt; i++)
+            {
+                units[i].gameObject.GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
     }
 
 
