@@ -183,7 +183,7 @@ public class Grid : MonoBehaviour
             else 
             {
                 hexagons[i, 24].SetHexagonType (-2);
-                hexagons[i, 24].SetVisible (true);
+                //hexagons[i, 24].SetVisible (true);
                 hexagons[i, 24].SetMaterialVisible(materialRio);
             }
         }
