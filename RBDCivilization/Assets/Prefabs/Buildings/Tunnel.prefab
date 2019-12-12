@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Tunnel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6101138444282063202
 Transform:
@@ -91,6 +91,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  humans: 0
+  craftsmen: 0
+  turroncitos: 0
+  orcs: 0
+  "cucta\xF1as": 0
+  witchers: 0
   settings: {fileID: 11400000, guid: b7f81f9bf35e46a4fa28c520a825405b, type: 2}
   nextLevel: {fileID: 0}
   previousLevel: {fileID: 0}
+  currentHex: {fileID: 0}

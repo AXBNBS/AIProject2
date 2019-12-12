@@ -54,7 +54,16 @@ MonoBehaviour:
   AICll: []
   restoringHexagons: []
   behaviourTree: {fileID: 0}
-  storesPerFrm: 0
+  terrainMsk:
+    serializedVersion: 2
+    m_Bits: 256
+  storesPerFrm: 10
+  endTurnButton: {fileID: 0}
+  actionsMenuUI: {fileID: 0}
+  unitMenuUI: {fileID: 0}
+  cityMenuUI: {fileID: 0}
+  confirmationMenuUI: {fileID: 0}
+  grid: {fileID: 0}
 --- !u!114 &4363778776442751078
 MonoBehaviour:
   m_ObjectHideFlags: 0

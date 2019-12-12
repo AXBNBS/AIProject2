@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Forest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1458108211043712657
 Transform:
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &2473662416374155585
 Transform:
@@ -96,6 +96,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}
@@ -257,6 +262,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546570304011 stripped
@@ -276,6 +286,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
@@ -367,6 +382,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArbustoColor2 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -456,6 +476,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor3 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3068488645eed747bebc90f545727a2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3068488645eed747bebc90f545727a2,
         type: 3}
@@ -617,6 +642,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor (6)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546718058825 stripped
@@ -707,6 +737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor (7)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546775454426 stripped
@@ -726,6 +761,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3068488645eed747bebc90f545727a2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3068488645eed747bebc90f545727a2,
         type: 3}
@@ -816,6 +856,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
@@ -977,6 +1022,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor (4)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546928136882 stripped
@@ -1067,6 +1117,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor (3)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546995028329 stripped
@@ -1086,6 +1141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
@@ -1177,6 +1237,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArbustoColor2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1266,6 +1331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor2 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
@@ -1357,6 +1427,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArbustoColor3 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3068488645eed747bebc90f545727a2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3068488645eed747bebc90f545727a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1446,6 +1521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
@@ -1607,6 +1687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor (5)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519547400882361 stripped
@@ -1626,6 +1711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}
@@ -1787,6 +1877,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abetocolor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519547743068600 stripped
@@ -1806,6 +1901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c051359d9cfb8f4596823bb58725760,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c051359d9cfb8f4596823bb58725760,
         type: 3}
@@ -1897,6 +1997,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArbustoColor1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1987,6 +2092,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArbustoColor3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3068488645eed747bebc90f545727a2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3068488645eed747bebc90f545727a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2076,6 +2186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}
@@ -2236,6 +2351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Abetocolor (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}

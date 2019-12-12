@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &2840486041666438635
 Transform:
@@ -49,7 +49,7 @@ GameObject:
   m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &7938264708775335951
 Transform:
@@ -151,8 +151,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
   interf: {fileID: 5370942851254565301, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
   moveSpd: 15
-  startHex: 0
-  allies: []
+  path: []
 --- !u!114 &2054449739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: f1be90b32f7780c41a81bc1b1883359c, type: 2}
-  gameManager: {fileID: 4133221044724100647, guid: 2ede30c81a7374b42b112e12a47c6b17,
-    type: 3}
+  movement: {fileID: 0}
   totalPower: 0
