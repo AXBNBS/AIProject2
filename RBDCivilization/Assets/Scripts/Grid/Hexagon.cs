@@ -28,6 +28,7 @@ public class Hexagon : MonoBehaviour
     private bool mountain;
     private int remainingTurnsToCollect;
 
+
     // Variable initialization.
     private void Awake ()
     {
@@ -38,26 +39,27 @@ public class Hexagon : MonoBehaviour
         mountain = false;
         remainingTurnsToCollect = 0;
 
-        InvokeRepeating ("CheckVisibility", 0, 0.2f);
+        InvokeRepeating ("CheckVisibility", 0, 0.5f);
     }
 
-    public void CheckVisibility()
+
+    public void CheckVisibility ()
     {
         if (this.environment != null)
         {
             if (this.visible == false)
             {
-                this.environment.transform.GetChild(0).gameObject.SetActive(false);
+                this.environment.transform.GetChild(0).gameObject.SetActive (false);
             }
             else
             {
-                this.environment.transform.GetChild(0).gameObject.SetActive(true);
+                this.environment.transform.GetChild(0).gameObject.SetActive (true);
             }
         }
 
-        if (this.visible==false && presentUnt != 0)
+        if (this.visible == false && presentUnt != 0)
         {
-            for(int i=0; i < presentUnt; i++)
+            for (int i = 0; i < presentUnt; i++)
             {
                 units[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
             }
@@ -68,6 +70,11 @@ public class Hexagon : MonoBehaviour
             {
                 units[i].gameObject.GetComponent<MeshRenderer>().enabled = true;
             }
+        }
+
+        if (Grid.instance.visibleAll == true) 
+        {
+            CancelInvoke ("CheckVisibility");
         }
     }
 
@@ -327,51 +334,23 @@ public class Hexagon : MonoBehaviour
     // Traces a path for the enemy unit that will make sure it avoids the player's units, unless the final destination of the unit is a cell that already has player units in it.
     public List<Vector3> GetTacticalPath (Hexagon hex) 
     {
-        print ("Target: " + hex.name);
         Hexagon current;
 
         Queue<Hexagon> queue = new Queue<Hexagon> ();
         HashSet<Hexagon> explored = new HashSet<Hexagon> ();
-        HashSet<Hexagon> avoid = new HashSet<Hexagon> ();
+        List<Hexagon> avoid = new List<Hexagon> ();
         List<Vector3> result = new List<Vector3> ();
         IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
 
         foreach (Hexagon h in GameManager.instance.avoidedHex) 
         {
             avoid.Add (h);
-            print (h.name);
         }
         avoid.Remove (hex);
-        print("Not actually avoiding " + hex.name);
-        foreach (Hexagon h in GameManager.instance.avoidedHex)
+        foreach (Hexagon n in hex.neighbours) 
         {
-            print (h.name);
+            avoid.Remove (n);
         }
-        /*foreach (Hexagon n in hex.neighbours) 
-        {
-            if (n != null) 
-            {
-                avoid.Remove (n);
-                print("Not actually avoiding " + n.name);
-            }
-        }*/
-        /*foreach (UnitMovement u in GameManager.instance.playerUnt) 
-        {
-            if (u.currentHex != hex) 
-            {
-                avoid.Add (u.currentHex);
-                print ("avoiding " + u.currentHex.name);
-            }
-            foreach (Hexagon n in u.currentHex.neighbours) 
-            {
-                if (n != null && n != hex) 
-                {
-                    avoid.Add (n);
-                    print ("avoiding " + n.name);
-                }
-            }
-        }*/
-
         queue.Enqueue (this);
 
         while (queue.Count != 0)
@@ -402,10 +381,12 @@ public class Hexagon : MonoBehaviour
             }
             result.Reverse ();
 
+            print ("AI used tactical pathfinding to reach hexagon " + hex.name);
             return result;
         }
         else 
         {
+            print ("AI used regular pathfinding to reach hexagon " + hex.name);
             return GetPath (hex);
         }
     }

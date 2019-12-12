@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2473662416374155585
 Transform:
   m_ObjectHideFlags: 0
@@ -182,11 +182,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,6 +251,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999988
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
@@ -542,11 +542,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (6)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -617,6 +612,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999987
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (6)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546718058825 stripped
@@ -632,11 +632,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (7)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -706,6 +701,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999987
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
@@ -902,11 +902,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (4)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -977,6 +972,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999987
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (4)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &5856519546928136882 stripped
@@ -992,11 +992,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (3)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1066,6 +1061,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999987
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
@@ -1532,11 +1532,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (5)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1606,6 +1601,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999987
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
@@ -1712,11 +1712,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1786,6 +1781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999987
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
@@ -2162,11 +2162,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2473662416374155585}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (2)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2236,6 +2231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999987
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}

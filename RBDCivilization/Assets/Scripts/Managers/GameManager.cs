@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public List<Hexagon> restoringHexagons;
     public HashSet<Hexagon> avoidedHex;
     public BehaviourTreeScript behaviourTree;
+    public LayerMask terrainMsk;
 
     [SerializeField] private int storesPerFrm;
     private ResourcesHolder resourcesHld;
@@ -96,17 +97,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate ()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown (KeyCode.Z) == true)
         {
             for (int i = 0; i < 49; i++)
             {
                 for (int j = 0; j < 29; j++)
                 {
-                    grid.hexagons[j, i].SetVisible(true);
+                    grid.hexagons[j, i].SetVisible (true);
                 }
             }
+            grid.visibleAll = true;
         }
     }
 
@@ -136,6 +138,8 @@ public class GameManager : MonoBehaviour
         foreach (UnitMovement u in AIUnt) 
         {
             u.ResetMovement ();
+
+            u.targetHex = null;
         }
 
         /*foreach (Builder b in AIBld) 
@@ -182,7 +186,6 @@ public class GameManager : MonoBehaviour
             if (f.GetComponent<City>().GetWitchers() > 0)
             {
                 f.active = true;
-                print("AAAAAA");
             }
             else
             {
@@ -217,6 +220,8 @@ public class GameManager : MonoBehaviour
         foreach (UnitMovement u in playerUnt)
         {
             u.ResetMovement ();
+
+            u.targetHex = null;
         }
 
         foreach(Hexagon h in restoringHexagons)

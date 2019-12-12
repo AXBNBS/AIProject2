@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7896324307404420554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2319917765125701425}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rio1
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -75,16 +75,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7896324307404420554}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (27)
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -155,6 +145,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091094862930139297, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071520094258471217, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 748748645750174535, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &7298281265140274041 stripped
@@ -170,16 +190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7896324307404420554}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (28)
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -250,6 +260,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091094862930139297, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071520094258471217, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 748748645750174535, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &7298281265322925357 stripped
@@ -265,11 +305,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7896324307404420554}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: f976597a61da4044892c0069aef716a2,
-        type: 3}
-      propertyPath: m_Name
-      value: rio1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f976597a61da4044892c0069aef716a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -340,6 +375,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.5000002
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f976597a61da4044892c0069aef716a2,
+        type: 3}
+      propertyPath: m_Name
+      value: rio1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f976597a61da4044892c0069aef716a2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f976597a61da4044892c0069aef716a2, type: 3}
 --- !u!4 &7298281265729393337 stripped
@@ -359,6 +404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}
@@ -450,6 +500,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArbustoColor1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -535,11 +590,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7896324307404420554}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
-        type: 3}
-      propertyPath: m_Name
-      value: PinnoColor (12)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 90325183259c5e94b9d40745bdb1beb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -610,6 +660,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49999952
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Name
+      value: PinnoColor (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90325183259c5e94b9d40745bdb1beb4, type: 3}
 --- !u!4 &7298281266001143201 stripped
@@ -629,6 +689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArbustoColor1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dace5f669e4865941b3f6c43510f35c7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dace5f669e4865941b3f6c43510f35c7,
         type: 3}

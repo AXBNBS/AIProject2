@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5418748444399966918
 Transform:
   m_ObjectHideFlags: 0
@@ -86,11 +86,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (7)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -161,6 +156,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (7)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264765850943251 stripped
@@ -176,11 +176,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (19)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +246,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999975
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (19)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &1754264765936334204 stripped
@@ -266,11 +266,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
-        type: 3}
-      propertyPath: m_Name
-      value: PinnoColor (3)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 90325183259c5e94b9d40745bdb1beb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -341,6 +336,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49999976
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Name
+      value: PinnoColor (3)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90325183259c5e94b9d40745bdb1beb4, type: 3}
 --- !u!4 &1754264765977240439 stripped
@@ -356,11 +356,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (6)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -431,6 +426,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (6)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264766579549210 stripped
@@ -446,11 +446,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
-        type: 3}
-      propertyPath: m_Name
-      value: PinnoColor (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 90325183259c5e94b9d40745bdb1beb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -521,6 +516,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49999976
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Name
+      value: PinnoColor (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90325183259c5e94b9d40745bdb1beb4, type: 3}
 --- !u!4 &1754264766660220489 stripped
@@ -536,11 +536,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -611,6 +606,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264766653504281 stripped
@@ -626,11 +626,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
-        type: 3}
-      propertyPath: m_Name
-      value: PinnoColor (5)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 90325183259c5e94b9d40745bdb1beb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -701,6 +696,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49999976
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Name
+      value: PinnoColor (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90325183259c5e94b9d40745bdb1beb4, type: 3}
 --- !u!4 &1754264766796224714 stripped
@@ -716,11 +716,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (5)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -791,6 +786,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264766820328279 stripped
@@ -806,11 +806,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
-        type: 3}
-      propertyPath: m_Name
-      value: PinnoColor (4)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 90325183259c5e94b9d40745bdb1beb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -881,6 +876,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49999976
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Name
+      value: PinnoColor (4)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90325183259c5e94b9d40745bdb1beb4, type: 3}
 --- !u!4 &1754264766867910685 stripped
@@ -896,11 +896,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (20)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -971,6 +966,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999975
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (20)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &1754264767003260176 stripped
@@ -986,11 +986,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (17)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1061,6 +1056,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999975
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (17)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &1754264766997616019 stripped
@@ -1076,11 +1076,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (18)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1151,6 +1146,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999975
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (18)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &1754264767122523335 stripped
@@ -1166,11 +1166,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Abetocolor (16)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7a852edfbf255d442ad74ab418d8e1cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1241,6 +1236,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.19999975
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7a852edfbf255d442ad74ab418d8e1cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Abetocolor (16)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a852edfbf255d442ad74ab418d8e1cc, type: 3}
 --- !u!4 &1754264767246648286 stripped
@@ -1256,11 +1256,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
-        type: 3}
-      propertyPath: m_Name
-      value: PinnoColor (2)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 90325183259c5e94b9d40745bdb1beb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1331,6 +1326,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49999976
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 90325183259c5e94b9d40745bdb1beb4,
+        type: 3}
+      propertyPath: m_Name
+      value: PinnoColor (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90325183259c5e94b9d40745bdb1beb4, type: 3}
 --- !u!4 &1754264767325353774 stripped
@@ -1346,11 +1346,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (3)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1421,6 +1416,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (3)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264767427568790 stripped
@@ -1436,11 +1436,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (4)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1511,6 +1506,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (4)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264767513108535 stripped
@@ -1526,11 +1526,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (2)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1601,6 +1596,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}
 --- !u!4 &1754264767515709484 stripped
@@ -1616,11 +1616,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5418748444399966918}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
-        type: 3}
-      propertyPath: m_Name
-      value: ArbustoColor2primavera (8)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d02083430cac4d24d8607b98f88d450e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1690,6 +1685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d02083430cac4d24d8607b98f88d450e,
+        type: 3}
+      propertyPath: m_Name
+      value: ArbustoColor2primavera (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02083430cac4d24d8607b98f88d450e, type: 3}

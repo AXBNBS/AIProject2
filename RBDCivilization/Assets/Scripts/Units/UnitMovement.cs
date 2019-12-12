@@ -61,7 +61,7 @@ public class UnitMovement : MonoBehaviour
 
     // In case the current target has not been reached, we move towards it and check if the unit has arrived afterwards. If this last condition has been fullfilled, the next target in the path is defined as its next destination; but if the 
     //previously assigned target was the last one, we indicate the unit has reached its destination and assign its new allies.
-    private void Update ()
+    private void FixedUpdate ()
     {
         if (reachedTrg == false) 
         {
@@ -425,6 +425,70 @@ public class UnitMovement : MonoBehaviour
             for (int i = longitud - 1; i >= moveLmt; i -= 1)
             {
                 path.RemoveAt (i);
+            }
+
+            targetHex = Physics.OverlapSphere(path[path.Count - 1], 0.1f, GameManager.instance.terrainMsk, QueryTriggerInteraction.Collide)[0].GetComponent<Hexagon> ();
+        }
+
+        if (this.tag == "Ally")
+        {
+            while (targetHex != null && targetHex.UnitsPlaced().Length != 0 && targetHex.UnitsPlaced()[0].tag == "Ally" && (allies.Length > targetHex.GetCapacity () || targetHex.UnitsPlaced()[0].stats.race != stats.race)) 
+            {
+                path.RemoveAt (path.Count - 1);
+
+                if (path.Count == 0)
+                {
+                    targetHex = null;
+                }
+                else 
+                {
+                    targetHex = Physics.OverlapSphere(path[path.Count - 1], 0.1f, GameManager.instance.terrainMsk, QueryTriggerInteraction.Collide)[0].GetComponent<Hexagon> ();
+                }
+            }
+        }
+        else 
+        {
+            if (targetHex != null) 
+            {
+                bool sameTrg = false;
+
+                foreach (UnitMovement u in GameManager.instance.AIUnt)
+                {
+                    if (u != this && u.targetHex == targetHex && (u.allies.Length + allies.Length > 5 || u.stats.race != stats.race))
+                    {
+                        sameTrg = true;
+
+                        break;
+                    }
+                }
+
+                while (sameTrg == true || (targetHex != null && targetHex.UnitsPlaced().Length != 0 && targetHex.UnitsPlaced()[0].tag == "Enemy" && (allies.Length > targetHex.GetCapacity () || targetHex.UnitsPlaced()[0].stats.race != stats.race)))
+                {
+                    path.RemoveAt (path.Count - 1);
+
+                    sameTrg = false;
+                    if (path.Count == 0)
+                    {
+                        targetHex = null;
+                    }
+                    else
+                    {
+                        targetHex = Physics.OverlapSphere(path[path.Count - 1], 0.1f, GameManager.instance.terrainMsk, QueryTriggerInteraction.Collide)[0].GetComponent<Hexagon> ();
+                        print ("The target hexagon has been changed to " + targetHex.name);
+                    }
+                    if (targetHex != null)
+                    {
+                        foreach (UnitMovement u in GameManager.instance.AIUnt)
+                        {
+                            if (u != this && u.targetHex == targetHex && (u.allies.Length + allies.Length > 5 || u.stats.race != stats.race))
+                            {
+                                sameTrg = true;
+
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
 

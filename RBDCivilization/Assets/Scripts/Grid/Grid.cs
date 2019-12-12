@@ -20,6 +20,7 @@ public class Grid : MonoBehaviour
     public Material materialPradera3;
     public Material materialMontana;
     public Material materialRio;
+    public bool visibleAll;
 
     [SerializeField] private Transform hexagonPfb;
     //[SerializeField] private int gridWth, gridHgt;
@@ -40,6 +41,7 @@ public class Grid : MonoBehaviour
         hexagonsY = (int) (gridHgt / hexagonHgt);
         ground = this.transform.GetChild (0);
         ground.localScale = new Vector3 (gridWth / 2, 1, gridHgt / 2);
+        visibleAll = false;
         forestHex1 = new int[] {1, 30, 262, 292, 408, 61, 235, 264, 409, 554, 4, 526, 555, 5, 92, 121, 122, 586, 615, 355, 384, 356, 154, 184, 532, 561, 69, 98, 331, 360, 275, 449, 247, 450, 104, 76, 105, 279, 251, 50, 311, 51, 80, 167, 312, 457, 
             197, 458, 487, 603, 632, 403, 432};
         forestHex2 = new int[] {1393, 1364, 1132, 1104, 988, 1337, 1163, 1134, 989, 844, 1396, 874, 845, 1397, 1310, 1281, 1282, 818, 789, 1051, 1022, 1052, 1256, 1228, 880, 851, 1345, 1316, 1085, 1056, 1145, 971, 1175, 972, 1322, 1352, 1323, 1149, 
