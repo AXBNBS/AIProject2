@@ -38,7 +38,7 @@ public class Hexagon : MonoBehaviour
         mountain = false;
         remainingTurnsToCollect = 0;
 
-        InvokeRepeating ("CheckVisibility", 0, 0.5f);
+        InvokeRepeating ("CheckVisibility", 0, 0.2f);
     }
 
     public void CheckVisibility()
@@ -449,6 +449,10 @@ public class Hexagon : MonoBehaviour
 
         if (n == true)
         {
+            if(this.hexagonType==0 || this.hexagonType == -2)
+            {
+                this.GetComponent<MeshRenderer>().enabled = false;
+            }
             renderer.material = MaterialVisible;
         } 
         else

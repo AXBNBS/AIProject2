@@ -91,6 +91,7 @@ public class Builder : MonoBehaviour
             {
                 if (hex.neighbours[n] != null && hex.neighbours[n].GetMountain () == true && hex.neighbours[n].GetHexagonType () == -1)
                 {
+                    Destroy(hex.neighbours[n].environment);
                     hex.neighbours[n].environment = Instantiate (construction, hex.neighbours[n].transform.position, Quaternion.identity);
 
                     hex.neighbours[n].SetHexagonType (1);
@@ -134,6 +135,7 @@ public class Builder : MonoBehaviour
                     GameManager.instance.playerFrm.Add (hex.environment.GetComponent<Farm> ());
                 }
             }
+            hex.SetHexagonType(1);
 
             Hexagon auxHex = hex;
 

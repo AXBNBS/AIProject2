@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 261197515138604190}
   m_Layer: 0
-  m_Name: "Monta\xF1a3 1"
+  m_Name: "Monta\xF1a3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,17 +46,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7f68b7882d7947547b3a3fb933158f5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6888368
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7f68b7882d7947547b3a3fb933158f5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.3013763
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7f68b7882d7947547b3a3fb933158f5a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.6872516
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7f68b7882d7947547b3a3fb933158f5a,
         type: 3}

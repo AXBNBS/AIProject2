@@ -13,12 +13,13 @@ public class ActionsMenu : MonoBehaviour
     public GameObject actionTwoUI;
     public GameObject actionThreeUI;
     public CameraController cam;
-    public GameObject settlement, farm, tunnel;
+    public GameObject settlement, farm, tunnel2, tunnel3, tunnel4, tunnel5;
 
     [SerializeField] private int settlementMin, settlementWod, farmMin, farmWod, tunnelMin, tunnelWod;
     private BuildingMenu buildingMenu;
     private ResourcesHolder resourcesHld;
 
+    private Grid grid;
 
     // Start is called before the first frame update.
     private void Start ()
@@ -26,6 +27,7 @@ public class ActionsMenu : MonoBehaviour
         cam = GameObject.FindObjectOfType<CameraController> ();
         buildingMenu = this.GetComponent<BuildingMenu> ();
         resourcesHld = GameObject.FindObjectOfType<ResourcesHolder> ();
+        grid=GameObject.FindObjectOfType<Grid>();
     }
 
 
@@ -190,7 +192,26 @@ public class ActionsMenu : MonoBehaviour
                 {
                     resourcesHld.changeWood ("Blue", tunnelWod, false);
                     resourcesHld.changeMineral ("Blue", tunnelMin, false);
-                    cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction (tunnel, tunnelMin, tunnelWod);
+                    if (cam.GetSelectedUnits()[0].currentHex.neighbours[i].environment.name == "Montaña2(Clone)")
+                    {
+                        cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction(tunnel2, tunnelMin, tunnelWod);
+                    }
+                    else if (cam.GetSelectedUnits()[0].currentHex.neighbours[i].environment.name == "Montaña3(Clone)")
+                    {
+                        cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction(tunnel3, tunnelMin, tunnelWod);
+                    }
+                    else if (cam.GetSelectedUnits()[0].currentHex.neighbours[i].environment.name == "Montaña4(Clone)")
+                    {
+                        cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction(tunnel4, tunnelMin, tunnelWod);
+                    }
+                    else if (cam.GetSelectedUnits()[0].currentHex.neighbours[i].environment.name == "Montaña5(Clone)")
+                    {
+                        cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction(tunnel5, tunnelMin, tunnelWod);
+                    }
+                    else
+                    {
+                        cam.GetSelectedUnits()[0].GetComponent<Builder>().BeginConstruction(tunnel2, tunnelMin, tunnelWod);
+                    }
                     cam.SetNullSelectedUnit ();
                 }
 

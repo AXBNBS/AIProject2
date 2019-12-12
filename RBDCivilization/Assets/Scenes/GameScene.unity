@@ -340,11 +340,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667840, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 5428051322610667842, guid: 93b842466503ffb41ab639b4936890bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -402,18 +397,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
         type: 3}
-      propertyPath: materialRio
-      value: 
-      objectReference: {fileID: 2100000, guid: f504264b0e7b0ee4aa7851fce88affe6, type: 2}
-    - target: {fileID: 382141374, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
-      propertyPath: m_Layer
-      value: 13
+      propertyPath: mountains.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
         type: 3}
-      propertyPath: materialRio
+      propertyPath: mountains.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f504264b0e7b0ee4aa7851fce88affe6, type: 2}
+      objectReference: {fileID: 3045587049562411722, guid: 298a522e8cef7074683fe131c481fe1c,
+        type: 3}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: mountains.Array.data[1]
+      value: 
+      objectReference: {fileID: 261197515138604191, guid: ed6f78ddef8fa6d45bfb032759ee1c8e,
+        type: 3}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: mountains.Array.data[2]
+      value: 
+      objectReference: {fileID: 6873897527394389352, guid: 61aaaf3cefd6eb74f9ea52dd173ff03c,
+        type: 3}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: mountains.Array.data[3]
+      value: 
+      objectReference: {fileID: 94065172917711815, guid: 2f1d42a531812024c98c37c8069aa074,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
 --- !u!1001 &178534695
@@ -2405,6 +2415,30 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1126064049}
+    - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: tunnel2
+      value: 
+      objectReference: {fileID: 2539525583884582329, guid: 22209b5c92376b6418b879e2f47f694b,
+        type: 3}
+    - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: tunnel3
+      value: 
+      objectReference: {fileID: 6554927254443279912, guid: e9ff969b75667674ca59eb42f6b19cc0,
+        type: 3}
+    - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: tunnel4
+      value: 
+      objectReference: {fileID: 8666868053507653342, guid: 0037a9481d7ade648b39821c38d89d9d,
+        type: 3}
+    - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: tunnel5
+      value: 
+      objectReference: {fileID: 427471342594405958, guid: 0f30f6d5cf6e4ad4288a0b905b4be949,
+        type: 3}
     - target: {fileID: 5502659005119433582, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: m_IsActive
