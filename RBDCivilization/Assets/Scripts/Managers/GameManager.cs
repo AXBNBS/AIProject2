@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject unitMenuUI;
     public GameObject cityMenuUI;
     public GameObject confirmationMenuUI;
+    public GameObject canv;
     public Grid grid;
 
     // We get every present unit, farm, builder and collector (independently of their faction) at the start of the game, and add them to their corresponding lists.
@@ -211,6 +212,7 @@ public class GameManager : MonoBehaviour
         endTurnButton.SetActive (false);
         actionsMenuUI.SetActive(false);
         unitMenuUI.SetActive(false);
+        canv.GetComponent<BuildingMenu>().Restart();
         cityMenuUI.SetActive(false);
         confirmationMenuUI.SetActive(false);
         behaviourTree.Evaluate ();

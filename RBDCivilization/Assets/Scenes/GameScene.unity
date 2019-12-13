@@ -2454,6 +2454,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1126064049}
+    - target: {fileID: 5655992043341710569, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.69999695
+      objectReference: {fileID: 0}
     - target: {fileID: 5502659003898291293, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2508,6 +2513,11 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 2072230108}
+    - target: {fileID: 4363778776442751077, guid: 2ca99fb96044c5e45a2c8ce7e9a6881a,
+        type: 3}
+      propertyPath: canv
+      value: 
+      objectReference: {fileID: 1762768774}
     - target: {fileID: 4363778776442751076, guid: 2ca99fb96044c5e45a2c8ce7e9a6881a,
         type: 3}
       propertyPath: m_LocalPosition.x

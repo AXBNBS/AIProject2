@@ -52,8 +52,17 @@ public class BuildingMenu : MonoBehaviour
         buildingInfoMenuUI.SetActive(true);
     }
 
+    public void Restart()
+    {
+        movePanelUI.SetActive(false);
+        trainPanelUI.SetActive(false);
+        surePanelUI.SetActive(false);
+        firstPanelUI.SetActive(true);
+    }
+
     public void CloseWindow()
     {
+        Restart();
         buildingInfoMenuUI.SetActive(false);
     }
 
