@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Tunnel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2539525583884582328
 Transform:
@@ -69,17 +69,17 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3071520094258471217, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091094862930139297, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
         type: 3}
