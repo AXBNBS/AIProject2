@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
         }
         if (oneActiveFrm == false) 
         {
-            resourcesHld.changeStores ("red", 3, true);
+            //resourcesHld.changeStores ("red", 3, true);
         }
 
         endTurnButton.SetActive (false);
@@ -303,7 +303,7 @@ public class GameManager : MonoBehaviour
         }
         if (oneActiveFrm == false) 
         {
-            resourcesHld.changeStores ("blue", 3, true);
+            //resourcesHld.changeStores ("blue", 3, true);
         }
         if (buildingMenu.remainingTurnsToUpgrade == 0 && buildingMenu.upgrading==true)
         {
