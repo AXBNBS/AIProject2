@@ -108,15 +108,7 @@ public class Unit : MonoBehaviour
         {
             for (int j = 0; j < localUnits.Length; j++)
             {
-                if (movement.currentHex.GetCity().GetCitySide()=="Red")
-                {
-                    enemiesPower += movement.currentHex.GetCity().GetDefense();
-                }
-                else if (movement.currentHex.GetCity().GetCitySide() == "Blue")
-                {
-                    alliesPower += movement.currentHex.GetCity().GetDefense();
-                }
-                else if (localUnits[j].tag == "Ally")
+                if (localUnits[j].tag == "Ally")
                 {
                     alliesPower += localUnits[j].stats.attack;
                 }
@@ -126,39 +118,37 @@ public class Unit : MonoBehaviour
                 }
             }
         }
+
+        if (movement.currentHex.GetCity().GetCitySide() == "Red")
+        {
+            enemiesPower += movement.currentHex.GetCity().GetDefense();
+        }
+        else if (movement.currentHex.GetCity().GetCitySide() == "Blue")
+        {
+            alliesPower += movement.currentHex.GetCity().GetDefense();
+        }
         UnitMovement[] allies = movement.GetAllies();
+
+        print(alliesPower);
+        print(enemiesPower);
 
         if (this.tag=="Ally"? Random.Range(0.0f, 9.0f) >= 5.0f + enemiesPower-alliesPower : Random.Range(0.0f, 9.0f) >= 5.0f - enemiesPower + alliesPower)
         {
-            if (movement.currentHex.GetCity().GetLevel() == 1)
+            if (movement.currentHex.GetCity().GetCityType() == "Farm")
             {
-                if (movement.currentHex.GetCity().GetCityType() == "Farm")
+                if (movement.currentHex.GetCity().tag == "RedFarm")
                 {
-                    if (movement.currentHex.GetCity().tag == "RedFarm")
-                    {
-                        gameManager.GetComponent<GameManager>().AIFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
-                    }
-                    else
-                    {
-                        gameManager.GetComponent<GameManager>().playerFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
-                    }
+                    gameManager.GetComponent<GameManager>().AIFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
                 }
-                if (movement.currentHex.GetCity().GetCityType() == "Capital")
-                    finish = true;
-                Destroy(movement.currentHex.GetCity().gameObject);
-                movement.currentHex.SetIsBuilded(false);                
+                else
+                {
+                    gameManager.GetComponent<GameManager>().playerFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
+                }
             }
-            else
-            {
-                GameObject previousLevel = movement.currentHex.GetCity().previousLevel;
-
-                Object.Destroy(movement.currentHex.GetCity().gameObject);
-
-                movement.currentHex.environment = Instantiate(previousLevel, new Vector3(movement.currentHex.CentroHexagono.position.x, movement.currentHex.CentroHexagono.position.y, movement.currentHex.CentroHexagono.position.z), Quaternion.identity);
-
-                movement.currentHex.SetCity(movement.currentHex.environment.GetComponent<City>());
-                movement.FindPathTo(movement.previousHex);
-            }
+            if (movement.currentHex.GetCity().GetCityType() == "Capital")
+                finish = true;
+            Destroy(movement.currentHex.GetCity().gameObject);
+            movement.currentHex.SetIsBuilded(false);
 
             if (movement.currentHex.GetCity().gameObject.tag == "BlueCapital")
             {
