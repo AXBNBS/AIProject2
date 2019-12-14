@@ -435,6 +435,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
         type: 3}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: suelo
+      value: 
+      objectReference: {fileID: 8058046345296121511, guid: f577eecb3b1f7b643b905aae2a0ea040,
+        type: 3}
     - target: {fileID: 382141374, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295

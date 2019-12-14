@@ -11,7 +11,7 @@ public class Grid : MonoBehaviour
     public int gridWth, gridHgt;
     public Hexagon[,] hexagons;
     public Hexagon[] forestsArray;
-    public GameObject Capital, rio;
+    public GameObject Capital, rio, suelo;
     public GameObject[] forestsModels;
     public GameObject[] lakes;
     public GameObject[] mountains;
@@ -130,6 +130,7 @@ public class Grid : MonoBehaviour
                 hexagons[x, y] = hexagon.GetComponent<Hexagon> ();
                 hexagons[x, y].SetHexagonType (+1);
                 hexagons[x, y].SetMaterialVisible(materialPradera1);
+                hexagons[x, y].environment = Instantiate(suelo, hexagons[x, y].transform.position, Quaternion.identity);
                 if (x == hexagonsX && y == hexagonsY) 
                 {
                     limitX2 = hexagon.position.x + hexagonWth / 2;
@@ -200,6 +201,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera2);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera2);
+                hexagons[i, j].environment=Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -209,6 +212,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera2);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera2);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -218,6 +223,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -227,6 +234,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -234,6 +243,10 @@ public class Grid : MonoBehaviour
         hexagons[12, 15].SetMaterialVisible(materialPradera3);
         hexagons[11, 48 - 15].SetMaterialVisible(materialPradera3);
         hexagons[12, 48 - 15].SetMaterialVisible(materialPradera3);
+        hexagons[11, 15].environment = Instantiate(suelo, hexagons[11, 15].transform.position, Quaternion.identity);
+        hexagons[11, 48 - 15].environment = Instantiate(suelo, hexagons[11, 48-15].transform.position, Quaternion.identity);
+        hexagons[12, 15].environment = Instantiate(suelo, hexagons[12, 15].transform.position, Quaternion.identity);
+        hexagons[12, 48 - 15].environment = Instantiate(suelo, hexagons[12, 48-15].transform.position, Quaternion.identity);
 
         for (int j = 9; j < 12; j++)
         {
@@ -241,6 +254,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -250,6 +265,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -259,6 +276,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -268,6 +287,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
@@ -277,6 +298,8 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, j].SetMaterialVisible(materialPradera3);
                 hexagons[i, 48 - j].SetMaterialVisible(materialPradera3);
+                hexagons[i, j].environment = Instantiate(suelo, hexagons[i, j].transform.position, Quaternion.identity);
+                hexagons[i, 48 - j].environment = Instantiate(suelo, hexagons[i, 48 - j].transform.position, Quaternion.identity);
             }
         }
 
