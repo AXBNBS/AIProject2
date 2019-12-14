@@ -30,6 +30,7 @@ public class UnitMovement : MonoBehaviour
     private bool visibleTarget = false;
     private int moveLmt;
 
+    private Hexagon nextHexagon = null;
 
     // Just some variable initialization.
     private void Start ()
@@ -140,9 +141,21 @@ public class UnitMovement : MonoBehaviour
                 }
                 else 
                 {
-                    if (targetHex != null && Vector3.Distance (path[0], targetHex.transform.position) < 0.5f)
+                    Collider[] hitColliders = Physics.OverlapSphere(path[0], 0.5f);
+                    int z = 0;
+                    while (z < hitColliders.Length)
                     {
-                        UnitMovement[] units = targetHex.UnitsPlaced ();
+                        if (hitColliders[z].tag == "Hexagon")
+                        {
+                            nextHexagon = hitColliders[z].GetComponent<Hexagon>();
+                            break;
+                        }
+                        z++;
+                    }
+
+                    if (this.tag=="Ally" && nextHexagon != null)
+                    {
+                        UnitMovement[] units = nextHexagon.UnitsPlaced ();
 
                         if (units != null) 
                         {
@@ -162,7 +175,7 @@ public class UnitMovement : MonoBehaviour
                                     
                                     if (visibleTarget)
                                     {
-                                        this.SendMessage("Fight", targetHex);
+                                        this.SendMessage("Fight", nextHexagon);
                                     }
                                     else
                                     {
@@ -190,9 +203,9 @@ public class UnitMovement : MonoBehaviour
                         }
                     }
                     //Este if es cuando la unidad que se mueve es enemiga
-                    if (this.tag == "Enemy" && targetHex != null && Vector3.Distance(path[0], targetHex.transform.position) < 0.5f)
+                    if (this.tag == "Enemy" && nextHexagon != null)
                     {
-                        UnitMovement[] units = targetHex.UnitsPlaced();
+                        UnitMovement[] units = nextHexagon.UnitsPlaced();
                         if (units != null)
                         {
                             for (int i = 0; i < units.Length; i++)
@@ -208,7 +221,7 @@ public class UnitMovement : MonoBehaviour
                                         if (allies[x] != null)
                                             currentHex.AddUnit(allies[x], currentHex.presentUnt);
                                     }
-                                    this.SendMessage("Fight", targetHex);
+                                    this.SendMessage("Fight", nextHexagon);
                                     break;
                                 }
                             }
@@ -223,7 +236,7 @@ public class UnitMovement : MonoBehaviour
 
     public void LookForCombat ()
     {
-        this.SendMessage ("Fight", targetHex);
+        this.SendMessage ("Fight", nextHexagon);
     }
 
 
