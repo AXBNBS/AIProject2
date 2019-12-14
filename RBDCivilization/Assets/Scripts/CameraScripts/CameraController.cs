@@ -168,7 +168,27 @@ public class CameraController : MonoBehaviour
                                 }
                             }
 
-                            selectedUnt[0].FindPathTo (hex);
+                            Collider[] hitColliders = Physics.OverlapSphere(selectedUnt[0].currentHex.GetPath(hex)[0], 0.5f);
+                            int z = 0;
+                            Hexagon checkHexToFight = null;
+                            while (z < hitColliders.Length)
+                            {
+                                if (hitColliders[z].tag == "Hexagon")
+                                {
+                                    checkHexToFight = hitColliders[z].GetComponent<Hexagon>();
+                                    break;
+                                }
+                                z++;
+                            }
+
+                            if (checkHexToFight != null && checkHexToFight.UnitsPlaced().Length != 0 && checkHexToFight.UnitsPlaced()[0].tag == "Enemy")
+                            {
+                                selectedUnt[0].SendMessage("Fight", checkHexToFight);
+                            }
+                            else
+                            {
+                                selectedUnt[0].FindPathTo(hex);
+                            }
 
                             if (selectedUnt[0].reachedTrg == false) 
                             {
