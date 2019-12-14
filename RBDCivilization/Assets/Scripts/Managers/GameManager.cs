@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public List<Collector> playerCll, AICll;
     public List<Hexagon> restoringHexagons;
     public HashSet<Hexagon> avoidedHex;
+    public IDictionary<Hexagon, float> weightedHex;
     public BehaviourTreeScript behaviourTree;
     public LayerMask terrainMsk;
 
@@ -122,9 +123,85 @@ public class GameManager : MonoBehaviour
     {
         cameraCtr.SetNullSelectedUnit ();
 
-        List<Hexagon> doneJob = new List<Hexagon> ();
-        bool oneActiveFrm = false;
+        float weight;
+        int range;
+        Hexagon origin, current, aux;
 
+        bool oneActiveFrm = false;
+        Queue<Hexagon> queue = new Queue<Hexagon> ();
+
+        /*weightedHex = new Dictionary<Hexagon, float> ();
+        
+        foreach (UnitMovement u in playerUnt)
+        {
+            if (u.GetAllies()[0] == u) 
+            {
+                weight = u.stats.attack * u.GetAllies().Length;
+                if (weight == 0) 
+                {
+                    weight = 0.5f;
+                }
+                range = (int) u.stats.speed;
+                origin = u.currentHex;
+                current = origin;
+
+                queue.Enqueue (origin);
+
+                for (int n = 0; n < origin.neighbours.Length; n += 1) 
+                {
+                    for (int distance = 0; distance < range; distance += 1)
+                    {
+                        if (current.neighbours[n] != null)
+                        {
+                            queue.Enqueue (current.neighbours[n]);
+                            
+                            current = current.neighbours[n];
+                            aux = current;
+                            print ("Added " + current.name);
+
+                            for (int r = 0; r < distance; r += 1) 
+                            {
+                                int i = n + 2 < 6 ? n + 2 : n - 2;
+
+                                if (current.neighbours[i] != null)
+                                {
+                                    queue.Enqueue (current.neighbours[i]);
+
+                                    current = current.neighbours[i];
+                                    print ("Added " + current.name);
+                                }
+                                else 
+                                {
+                                    break;
+                                }
+                            }
+
+                            current = aux;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    current = origin;
+                }
+                while (queue.Count > 0) 
+                {
+                    current = queue.Dequeue ();
+
+                    if (weightedHex.ContainsKey (current) == true)
+                    {
+                        weightedHex[current] += weight;
+                    }
+                    else
+                    {
+                        weightedHex.Add (current, weight + 1);
+                    }
+                    print ("Current: " + current.name + " Weight: " + weightedHex[current]);
+                }
+            }
+        }*/
         avoidedHex = new HashSet<Hexagon> ();
 
         foreach (UnitMovement u in playerUnt) 
