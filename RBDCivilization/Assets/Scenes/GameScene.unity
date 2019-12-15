@@ -2474,6 +2474,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interface
       objectReference: {fileID: 0}
+    - target: {fileID: 5502659003221559686, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2046470812876249168, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2544,11 +2549,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1017092161}
-    - target: {fileID: 5655992043341710569, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.69999695
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
 --- !u!1001 &5222376111076984531
