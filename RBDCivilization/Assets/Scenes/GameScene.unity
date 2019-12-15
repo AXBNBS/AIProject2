@@ -419,11 +419,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667840, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 5428051322610667842, guid: 93b842466503ffb41ab639b4936890bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -478,51 +473,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: mountains.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: mountains.Array.data[0]
-      value: 
-      objectReference: {fileID: 3045587049562411722, guid: 298a522e8cef7074683fe131c481fe1c,
-        type: 3}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: mountains.Array.data[1]
-      value: 
-      objectReference: {fileID: 261197515138604191, guid: ed6f78ddef8fa6d45bfb032759ee1c8e,
-        type: 3}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: mountains.Array.data[2]
-      value: 
-      objectReference: {fileID: 6873897527394389352, guid: 61aaaf3cefd6eb74f9ea52dd173ff03c,
-        type: 3}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: mountains.Array.data[3]
-      value: 
-      objectReference: {fileID: 94065172917711815, guid: 2f1d42a531812024c98c37c8069aa074,
-        type: 3}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: hexagonPfb
-      value: 
-      objectReference: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
-        type: 3}
-    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
-        type: 3}
-      propertyPath: suelo
-      value: 
-      objectReference: {fileID: 8058046345296121511, guid: f577eecb3b1f7b643b905aae2a0ea040,
-        type: 3}
-    - target: {fileID: 382141374, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b842466503ffb41ab639b4936890bb, type: 3}

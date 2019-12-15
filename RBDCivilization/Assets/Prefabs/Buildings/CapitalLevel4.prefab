@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1390820854976829152}
+  - component: {fileID: -2850628138420329858}
   m_Layer: 0
   m_Name: CapitalLevel4
   m_TagString: Untagged
@@ -25,13 +26,37 @@ Transform:
   m_GameObject: {fileID: 2672439883448952051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
   - {fileID: 3144546438155684851}
   - {fileID: 6799909517878122338}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2850628138420329858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672439883448952051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8caea3a9b6d994a9ab89b6f285c6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humans: 0
+  craftsmen: 0
+  turroncitos: 0
+  orcs: 0
+  "cucta\xF1as": 0
+  witchers: 0
+  settings: {fileID: 11400000, guid: 7fa1548448d3b984cb31caa82ef8e5b1, type: 2}
+  nextLevel: {fileID: 1736087502939355388, guid: 7a8104ba88f1d15488d4382611d08c35,
+    type: 3}
+  previousLevel: {fileID: 4226329297128342171, guid: 9838b3c30cac9d645b83b7c8db783894,
+    type: 3}
+  currentHex: {fileID: 0}
 --- !u!1 &2993991609874159601
 GameObject:
   m_ObjectHideFlags: 0
