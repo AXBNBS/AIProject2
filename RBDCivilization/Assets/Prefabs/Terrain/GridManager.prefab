@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &382141375
 Transform:
@@ -60,7 +60,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5428051322610667842
 Transform:
@@ -98,8 +98,9 @@ MonoBehaviour:
   gridWth: 250
   gridHgt: 480
   forestsArray: []
-  Capital: {fileID: 2393157883664804536, guid: 98c71b32c91036b4f9b3c9fe5e4fbdd3, type: 3}
+  Capital: {fileID: 6966410053393638116, guid: b6d50a7b5bfba644d8842cc2685fbe90, type: 3}
   rio: {fileID: 2319917765125701430, guid: f5bb795dd55255e47896eb384af436c3, type: 3}
+  suelo: {fileID: 8058046345296121511, guid: f577eecb3b1f7b643b905aae2a0ea040, type: 3}
   forestsModels:
   - {fileID: 8058046345296121511, guid: 0faf2c725dfebaa40bc1ea679b361dd2, type: 3}
   - {fileID: 6711157619802589841, guid: 67464be4fe516d4459c9a4cabfa7688e, type: 3}
@@ -110,12 +111,17 @@ MonoBehaviour:
   lakes:
   - {fileID: 4077055129902649323, guid: 5fe81359eb48d864f9a6b125338781d7, type: 3}
   - {fileID: 1890693794235526709, guid: 6f38efd8a913e5545a5ca97d3811de3f, type: 3}
-  mountains: []
+  mountains:
+  - {fileID: 3045587049562411722, guid: 298a522e8cef7074683fe131c481fe1c, type: 3}
+  - {fileID: 261197515138604191, guid: ed6f78ddef8fa6d45bfb032759ee1c8e, type: 3}
+  - {fileID: 6873897527394389352, guid: 61aaaf3cefd6eb74f9ea52dd173ff03c, type: 3}
+  - {fileID: 94065172917711815, guid: 2f1d42a531812024c98c37c8069aa074, type: 3}
   materialPradera1: {fileID: 2100000, guid: bac49cc5b5b389043abc80b25588ebc3, type: 2}
   materialPradera2: {fileID: 2100000, guid: cbc126f86542eba40ab84eac3de2ed8d, type: 2}
   materialPradera3: {fileID: 2100000, guid: 18c6364d1fd7f5844818419cbf5c6d4b, type: 2}
   materialMontana: {fileID: 2100000, guid: 5a5f1d92e23bfdc4c86d98ee94b05423, type: 2}
   materialRio: {fileID: 2100000, guid: f504264b0e7b0ee4aa7851fce88affe6, type: 2}
+  visibleAll: 0
   hexagonPfb: {fileID: 7460350194942429377, guid: 50ef137cabebde24398ec9249bbcfaf1,
     type: 3}
   gap: 0.025
