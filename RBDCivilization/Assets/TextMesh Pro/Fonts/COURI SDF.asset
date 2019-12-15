@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: COURI SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -900625645
   material: {fileID: 2588648514107105270}
-  materialHashCode: 0
+  materialHashCode: -1313496136
   m_Version: 1.1.0
   m_SourceFontFileGUID: 92caec8d64465ce41897485e55b9ece1
   m_SourceFontFile_EditorRef: {fileID: 0}
