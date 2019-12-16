@@ -2328,6 +2328,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1394dc5da4c366042a162751486c03b6, type: 3}
+--- !u!1001 &1521981843590119183
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1521981844246496754, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_Name
+      value: Swords
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521981844246496753, guid: 62cacbed2be7342478d3de93fb6ebe15,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62cacbed2be7342478d3de93fb6ebe15, type: 3}
 --- !u!1001 &2016297772960172447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2502,21 +2571,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3262623180522793088, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: cameraController
-      value: 
-      objectReference: {fileID: 1126064049}
-    - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 1126064049}
-    - target: {fileID: 5502659003898291293, guid: 55961fe0920c67d4fb91d6719993f572,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1017092161}
     - target: {fileID: 5502659003243272823, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: hazelnutPrefab
@@ -2535,6 +2589,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2160569962502813362, guid: c08b2b7fa0281fe408cc96bf50b539ed,
         type: 3}
+    - target: {fileID: 3262623180522793088, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1126064049}
+    - target: {fileID: 7593202725206833688, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1126064049}
+    - target: {fileID: 5502659003898291293, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1017092161}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}
 --- !u!1001 &5222376111076984531
