@@ -67,7 +67,7 @@ public class UnitMovement : MonoBehaviour
         if (reachedTrg == false) 
         {
             //transform.LookAt(target);
-            characterCtr.Move ((new Vector3 (target.x, 1, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
+            characterCtr.Move ((new Vector3 (target.x, 0.1f, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
             //characterCtr.Move ((new Vector3 (target.x, this.transform.position.y, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
 
             /*RaycastHit hit = new RaycastHit ();

@@ -118,6 +118,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    /*private void OnDrawGizmosSelected ()
+    {
+        if (weightedHex.Count > 0) 
+        {
+            foreach (KeyValuePair<Hexagon, float> h in weightedHex) 
+            {
+                Gizmos.DrawWireSphere (h.Key.transform.position, 2);
+            }
+        }
+    }*/
+
+
     // Every enemy unit gets its movement limit reset, buildings are finished (if enough turns have passed), resources are collected (if enough turns have passed) and farms produce new stores if active.
     public void EndPlayerTurn () 
     {
@@ -125,15 +138,17 @@ public class GameManager : MonoBehaviour
 
         float weight;
         int range;
-        Hexagon origin, current, aux;
+        Hexagon origin, current;
+        List<Hexagon> area, discovered;
 
         bool oneActiveFrm = false;
-        Queue<Hexagon> queue = new Queue<Hexagon> ();
+        //HashSet<Hexagon> explored = new HashSet<Hexagon> ();
 
         /*weightedHex = new Dictionary<Hexagon, float> ();
-        
         foreach (UnitMovement u in playerUnt)
         {
+            area = new List<Hexagon> ();
+            discovered = new List<Hexagon> ();
             if (u.GetAllies()[0] == u) 
             {
                 weight = u.stats.attack * u.GetAllies().Length;
@@ -143,11 +158,201 @@ public class GameManager : MonoBehaviour
                 }
                 range = (int) u.stats.speed;
                 origin = u.currentHex;
-                current = origin;
+
+                area.Add (origin);
+                foreach (Hexagon n in origin.neighbours) 
+                {
+                    if (n != null && n.hexagonType >= 0) 
+                    {
+                        area.Add (n);
+                    }
+                }
+
+                switch (range)
+                {
+                    case 1:
+                        while (area.Count > 0) 
+                        {
+                            current = area[0];
+
+                            area.RemoveAt (0);
+
+                            if (weightedHex.ContainsKey (current) == false)
+                            {
+                                weightedHex.Add (current, weight);
+                            }
+                            else 
+                            {
+                                weightedHex[current] += weight;
+                            }
+                        }
+
+                        break;
+                    case 2:
+                        for (int h = 1; h < area.Count; h += 1) 
+                        {
+                            foreach (Hexagon n in area[h].neighbours) 
+                            {
+                                print("Found " + n.name);
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                {
+                                    discovered.Add (n);
+                                    print("Added " + n.name);
+                                }
+                            }
+                        }
+                        area.AddRange (discovered);
+                        discovered.Clear ();
+
+                        while (area.Count > 0)
+                        {
+                            current = area[0];
+
+                            area.RemoveAt (0);
+
+                            if (weightedHex.ContainsKey (current) == false)
+                            {
+                                weightedHex.Add (current, weight + 1);
+                            }
+                            else
+                            {
+                                weightedHex[current] += weight;
+                            }
+                        }
+
+                        break;
+                    case 3:
+                        for (int h = 1; h < area.Count; h += 1)
+                        {
+                            foreach (Hexagon n in area[h].neighbours)
+                            {
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                {
+                                    discovered.Add (n);
+                                }
+                            }
+                        }
+                        area.AddRange (discovered);
+                        discovered.Clear ();
+                        for (int h = 1; h < area.Count; h += 1)
+                        {
+                            foreach (Hexagon n in area[h].neighbours)
+                            {
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                {
+                                    discovered.Add (n);
+                                }
+                            }
+                        }
+                        area.AddRange (discovered);
+                        discovered.Clear ();
+
+                        while (area.Count > 0)
+                        {
+                            current = area[0];
+
+                            area.RemoveAt (0);
+
+                            if (weightedHex.ContainsKey (current) == false)
+                            {
+                                weightedHex.Add (current, weight + 1);
+                            }
+                            else
+                            {
+                                weightedHex[current] += weight;
+                            }
+                        }
+
+                        break;
+                    case 4:
+                        for (int h = 1; h < area.Count; h += 1)
+                        {
+                            foreach (Hexagon n in area[h].neighbours)
+                            {
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                {
+                                    discovered.Add (n);
+                                }
+                            }
+                        }
+                        area.AddRange (discovered);
+                        discovered.Clear ();
+                        for (int h = 1; h < area.Count; h += 1)
+                        {
+                            foreach (Hexagon n in area[h].neighbours)
+                            {
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                {
+                                    discovered.Add (n);
+                                }
+                            }
+                        }
+                        area.AddRange (discovered);
+                        discovered.Clear ();
+                        for (int h = 1; h < area.Count; h += 1)
+                        {
+                            foreach (Hexagon n in area[h].neighbours)
+                            {
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                {
+                                    discovered.Add (n);
+                                }
+                            }
+                        }
+                        area.AddRange (discovered);
+                        discovered.Clear ();
+
+                        while (area.Count > 0)
+                        {
+                            current = area[0];
+
+                            area.RemoveAt (0);
+
+                            if (weightedHex.ContainsKey (current) == false)
+                            {
+                                weightedHex.Add (current, weight + 1);
+                            }
+                            else
+                            {
+                                weightedHex[current] += weight;
+                            }
+                        }
+
+                        break;
+                }*/
+
+
+
+
+                /*hexagons = 1;
+                for (int r = range; range > 0; range -= 1) 
+                {
+                    hexagons += 6 * r;
+                }
+                print(hexagons);
 
                 queue.Enqueue (origin);
 
-                for (int n = 0; n < origin.neighbours.Length; n += 1) 
+                while (hexagons > 0 && queue.Count > 0)
+                {
+                    current = queue.Dequeue ();
+
+                    weightedHex.Add (current, weight);
+                    foreach (Hexagon n in current.neighbours)
+                    {
+                        if (n != null && n.hexagonType >= 0 && queue.Contains (n) == false && weightedHex.ContainsKey (n) == false)
+                        {
+                            //explored.Add (n);
+                            
+                            queue.Enqueue (n);
+                        }
+                    }
+
+                    print("Added " + current.name + " with weight " + weight + ". Hexagon number " + hexagons + " added.");
+                    hexagons -= 1;
+                }*/
+
+                /*for (int n = 0; n < origin.neighbours.Length; n += 1) 
                 {
                     for (int distance = 0; distance < range; distance += 1)
                     {
