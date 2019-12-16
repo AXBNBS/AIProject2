@@ -135,6 +135,8 @@ public class BuildingMenu : MonoBehaviour
         Destroy(hex.environment);
 
         hex.environment = Instantiate(nextLevel, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
+        hex.environment.tag = "BlueCapital";
+
 
         hex.SetCity(hex.environment.GetComponent<City>());
         hex.GetCity().SetCityType(type);

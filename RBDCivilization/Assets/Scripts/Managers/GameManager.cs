@@ -144,44 +144,44 @@ public class GameManager : MonoBehaviour
         bool oneActiveFrm = false;
         //HashSet<Hexagon> explored = new HashSet<Hexagon> ();
 
-        /*weightedHex = new Dictionary<Hexagon, float> ();
+        weightedHex = new Dictionary<Hexagon, float> ();
         foreach (UnitMovement u in playerUnt)
         {
-            area = new List<Hexagon> ();
-            discovered = new List<Hexagon> ();
-            if (u.GetAllies()[0] == u) 
+            area = new List<Hexagon>();
+            discovered = new List<Hexagon>();
+            if (u.GetAllies()[0] == u)
             {
                 weight = u.stats.attack * u.GetAllies().Length;
-                if (weight == 0) 
+                if (weight == 0)
                 {
                     weight = 0.5f;
                 }
-                range = (int) u.stats.speed;
+                range = (int)u.stats.speed;
                 origin = u.currentHex;
 
-                area.Add (origin);
-                foreach (Hexagon n in origin.neighbours) 
+                area.Add(origin);
+                foreach (Hexagon n in origin.neighbours)
                 {
-                    if (n != null && n.hexagonType >= 0) 
+                    if (n != null && n.hexagonType >= 0)
                     {
-                        area.Add (n);
+                        area.Add(n);
                     }
                 }
 
                 switch (range)
                 {
                     case 1:
-                        while (area.Count > 0) 
+                        while (area.Count > 0)
                         {
                             current = area[0];
 
-                            area.RemoveAt (0);
+                            area.RemoveAt(0);
 
-                            if (weightedHex.ContainsKey (current) == false)
+                            if (weightedHex.ContainsKey(current) == false)
                             {
-                                weightedHex.Add (current, weight);
+                                weightedHex.Add(current, weight);
                             }
-                            else 
+                            else
                             {
                                 weightedHex[current] += weight;
                             }
@@ -189,30 +189,28 @@ public class GameManager : MonoBehaviour
 
                         break;
                     case 2:
-                        for (int h = 1; h < area.Count; h += 1) 
+                        for (int h = 1; h < area.Count; h += 1)
                         {
-                            foreach (Hexagon n in area[h].neighbours) 
+                            foreach (Hexagon n in area[h].neighbours)
                             {
-                                print("Found " + n.name);
-                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains(n) == false && area.Contains(n) == false)
                                 {
-                                    discovered.Add (n);
-                                    print("Added " + n.name);
+                                    discovered.Add(n);
                                 }
                             }
                         }
-                        area.AddRange (discovered);
-                        discovered.Clear ();
+                        area.AddRange(discovered);
+                        discovered.Clear();
 
                         while (area.Count > 0)
                         {
                             current = area[0];
 
-                            area.RemoveAt (0);
+                            area.RemoveAt(0);
 
-                            if (weightedHex.ContainsKey (current) == false)
+                            if (weightedHex.ContainsKey(current) == false)
                             {
-                                weightedHex.Add (current, weight + 1);
+                                weightedHex.Add(current, weight);
                             }
                             else
                             {
@@ -226,36 +224,36 @@ public class GameManager : MonoBehaviour
                         {
                             foreach (Hexagon n in area[h].neighbours)
                             {
-                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains(n) == false && area.Contains(n) == false)
                                 {
-                                    discovered.Add (n);
+                                    discovered.Add(n);
                                 }
                             }
                         }
-                        area.AddRange (discovered);
-                        discovered.Clear ();
+                        area.AddRange(discovered);
+                        discovered.Clear();
                         for (int h = 1; h < area.Count; h += 1)
                         {
                             foreach (Hexagon n in area[h].neighbours)
                             {
-                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains(n) == false && area.Contains(n) == false)
                                 {
-                                    discovered.Add (n);
+                                    discovered.Add(n);
                                 }
                             }
                         }
-                        area.AddRange (discovered);
-                        discovered.Clear ();
+                        area.AddRange(discovered);
+                        discovered.Clear();
 
                         while (area.Count > 0)
                         {
                             current = area[0];
 
-                            area.RemoveAt (0);
+                            area.RemoveAt(0);
 
-                            if (weightedHex.ContainsKey (current) == false)
+                            if (weightedHex.ContainsKey(current) == false)
                             {
-                                weightedHex.Add (current, weight + 1);
+                                weightedHex.Add(current, weight);
                             }
                             else
                             {
@@ -269,48 +267,48 @@ public class GameManager : MonoBehaviour
                         {
                             foreach (Hexagon n in area[h].neighbours)
                             {
-                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains(n) == false && area.Contains(n) == false)
                                 {
-                                    discovered.Add (n);
+                                    discovered.Add(n);
                                 }
                             }
                         }
-                        area.AddRange (discovered);
-                        discovered.Clear ();
+                        area.AddRange(discovered);
+                        discovered.Clear();
                         for (int h = 1; h < area.Count; h += 1)
                         {
                             foreach (Hexagon n in area[h].neighbours)
                             {
-                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains(n) == false && area.Contains(n) == false)
                                 {
-                                    discovered.Add (n);
+                                    discovered.Add(n);
                                 }
                             }
                         }
-                        area.AddRange (discovered);
-                        discovered.Clear ();
+                        area.AddRange(discovered);
+                        discovered.Clear();
                         for (int h = 1; h < area.Count; h += 1)
                         {
                             foreach (Hexagon n in area[h].neighbours)
                             {
-                                if (n != null && n.hexagonType >= 0 && discovered.Contains (n) == false && area.Contains (n) == false)
+                                if (n != null && n.hexagonType >= 0 && discovered.Contains(n) == false && area.Contains(n) == false)
                                 {
-                                    discovered.Add (n);
+                                    discovered.Add(n);
                                 }
                             }
                         }
-                        area.AddRange (discovered);
-                        discovered.Clear ();
+                        area.AddRange(discovered);
+                        discovered.Clear();
 
                         while (area.Count > 0)
                         {
                             current = area[0];
 
-                            area.RemoveAt (0);
+                            area.RemoveAt(0);
 
-                            if (weightedHex.ContainsKey (current) == false)
+                            if (weightedHex.ContainsKey(current) == false)
                             {
-                                weightedHex.Add (current, weight + 1);
+                                weightedHex.Add(current, weight);
                             }
                             else
                             {
@@ -319,7 +317,9 @@ public class GameManager : MonoBehaviour
                         }
 
                         break;
-                }*/
+                }
+            }
+        }
 
 
 
@@ -407,7 +407,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }*/
-        avoidedHex = new HashSet<Hexagon> ();
+        /*avoidedHex = new HashSet<Hexagon> ();
 
         foreach (UnitMovement u in playerUnt) 
         {
@@ -421,7 +421,7 @@ public class GameManager : MonoBehaviour
                     print("avoiding " + n.name);
                 }
             }
-        }
+        }*/
         foreach (UnitMovement u in AIUnt) 
         {
             u.ResetMovement ();
