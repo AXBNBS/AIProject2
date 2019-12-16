@@ -19,6 +19,11 @@ public class Unit : MonoBehaviour
     public float totalPower;
     private FinishScript finishScript;
 
+    private bool fighting;
+
+    public GameObject circle;
+    public GameObject swords;
+
     void Awake()
     {
         attack = settings.attack;
@@ -30,6 +35,7 @@ public class Unit : MonoBehaviour
         //Debug.Log("Stores:" + stores);
         movement = this.GetComponent<UnitMovement>();
         totalPower = 0;
+        fighting=false;
 
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         finishScript = GameObject.FindGameObjectWithTag("Interface").GetComponentInChildren<FinishScript>();
@@ -226,10 +232,15 @@ public class Unit : MonoBehaviour
 
     private void Fight(Hexagon hex)
     {
+        if (fighting)
+        {
+            return;
+        }
         if (hex.UnitsPlaced() == null)
         {
             return;
         }
+        fighting = true;
         float alliesPower = 0;
         float enemiesPower = 0;
         bool addCurrentHexagon = true;
@@ -288,9 +299,19 @@ public class Unit : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine(PlayFight(alliesPower, enemiesPower, localUnits, allies, hex));
+    }
+
+    IEnumerator PlayFight(float alliesPower, float enemiesPower, UnitMovement[] localUnits, UnitMovement[] allies, Hexagon hex)
+    {
+        GameObject auxCircle = Instantiate(circle, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y- 0.5f, hex.CentroHexagono.position.z), Quaternion.identity);
+        GameObject auxSwords = Instantiate(swords, new Vector3(hex.CentroHexagono.position.x, swords.transform.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
+        yield return new WaitForSeconds(2);
+
         if (this.tag == "Ally")
         {
-            if (Random.Range(0, 10)>=5-alliesPower+enemiesPower)
+            if (Random.Range(0, 10) >= 5 - alliesPower + enemiesPower)
             {
                 for (int i = 0; i < hex.presentUnt; i++)
                 {
@@ -305,6 +326,8 @@ public class Unit : MonoBehaviour
                             gameManager.GetComponent<GameManager>().AICll.Remove(localUnits[i].GetComponent<Collector>());
                         }
                         gameManager.GetComponent<GameManager>().AIUnt.Remove(localUnits[i].GetComponent<UnitMovement>());
+                        localUnits[i].anim.SetTrigger("death");
+                        //yield return new WaitForSeconds(0.2f);
                         Destroy(localUnits[i].gameObject);
                     }
                 }
@@ -328,6 +351,8 @@ public class Unit : MonoBehaviour
                             gameManager.GetComponent<GameManager>().playerCll.Remove(allies[i].GetComponent<Collector>());
                         }
                         gameManager.GetComponent<GameManager>().playerUnt.Remove(allies[i].GetComponent<UnitMovement>());
+                        allies[i].anim.SetTrigger("death");
+                        //yield return new WaitForSeconds(0.2f);
                         Destroy(allies[i].gameObject);
                     }
                 }
@@ -350,6 +375,8 @@ public class Unit : MonoBehaviour
                             gameManager.GetComponent<GameManager>().playerCll.Remove(localUnits[i].GetComponent<Collector>());
                         }
                         gameManager.GetComponent<GameManager>().playerUnt.Remove(localUnits[i].GetComponent<UnitMovement>());
+                        localUnits[i].anim.SetTrigger("death");
+                        //yield return new WaitForSeconds(0.2f);
                         Destroy(localUnits[i].gameObject);
                     }
                 }
@@ -373,11 +400,16 @@ public class Unit : MonoBehaviour
                             gameManager.GetComponent<GameManager>().AICll.Remove(allies[i].GetComponent<Collector>());
                         }
                         gameManager.GetComponent<GameManager>().AIUnt.Remove(allies[i].GetComponent<UnitMovement>());
+                        localUnits[i].anim.SetTrigger("death");
+                        //yield return new WaitForSeconds(0.2f);
                         Destroy(allies[i].gameObject);
                     }
                 }
             }
         }
+        fighting = false;
+        Destroy(auxCircle);
+        Destroy(auxSwords);
     }
 
     public float GetAttack()

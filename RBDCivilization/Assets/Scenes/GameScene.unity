@@ -474,6 +474,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5428051322610667843, guid: 93b842466503ffb41ab639b4936890bb,
+        type: 3}
+      propertyPath: puente
+      value: 
+      objectReference: {fileID: 2319917765125701430, guid: 5ea95df626c2df849a4bf70ef4302c6b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b842466503ffb41ab639b4936890bb, type: 3}
 --- !u!1001 &178534695
@@ -2427,6 +2433,12 @@ PrefabInstance:
       propertyPath: puppetPrefab
       value: 
       objectReference: {fileID: 4015498457984324917, guid: 4c88dfe886c10aa4189adc8574e035c2,
+        type: 3}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: orcPrefab
+      value: 
+      objectReference: {fileID: 7375791885311038985, guid: 403742297285536448949d0ee0652bb3,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fb577eeec2dbe04fb0bcf88658822bc, type: 3}

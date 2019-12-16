@@ -11,7 +11,7 @@ public class Grid : MonoBehaviour
     public int gridWth, gridHgt;
     public Hexagon[,] hexagons;
     public Hexagon[] forestsArray;
-    public GameObject Capital, rio, suelo;
+    public GameObject Capital, rio, suelo, puente;
     public GameObject[] forestsModels;
     public GameObject[] lakes;
     public GameObject[] mountains;
@@ -172,7 +172,7 @@ public class Grid : MonoBehaviour
         //hexagons[14, 48].SetVisible (true);
         hexagons[14, 48].SetIsBuilded (true);
 
-        GameObject build2 = Instantiate (Capital, new Vector3 (hexagons[14, 48].CentroHexagono.position.x, hexagons[14, 48].CentroHexagono.position.y, hexagons[14, 48].CentroHexagono.position.z), Quaternion.identity);
+        GameObject build2 = Instantiate(Capital, new Vector3(hexagons[14, 48].CentroHexagono2.position.x, hexagons[14, 48].CentroHexagono2.position.y, hexagons[14, 48].CentroHexagono2.position.z), Quaternion.Euler(0, 180, 0));
 
         hexagons[14, 48].environment = build2;
 
@@ -194,6 +194,7 @@ public class Grid : MonoBehaviour
             {
                 hexagons[i, 24].SetHexagonType (+1);
                 hexagons[i, 24].SetVisible (false);
+                hexagons[i, 24].environment = Instantiate(puente, hexagons[i, 24].transform.position, Quaternion.Euler(Quaternion.identity.x, Quaternion.identity.y + 60, Quaternion.identity.z));
             }
             else 
             {
