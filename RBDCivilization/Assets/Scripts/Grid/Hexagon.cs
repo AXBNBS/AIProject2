@@ -341,10 +341,15 @@ public class Hexagon : MonoBehaviour
         List<Hexagon> avoid = new List<Hexagon> ();
         List<Vector3> result = new List<Vector3> ();
         IDictionary<Hexagon, Hexagon> parents = new Dictionary<Hexagon, Hexagon> ();
+        int power = (int) (UnitsPlaced()[0].stats.attack * UnitsPlaced().Length);
 
-        foreach (Hexagon h in GameManager.instance.avoidedHex) 
+        foreach (KeyValuePair<Hexagon, float> d in GameManager.instance.weightedHex) 
         {
-            avoid.Add (h);
+            if (5 - power + d.Value > 4) 
+            {
+                avoid.Add (d.Key);
+                print("Avoiding hexagon " + d.Key.name + " (I have " + power + " attack points and the enemy has " + d.Value +").");
+            }
         }
         avoid.Remove (hex);
         foreach (Hexagon n in hex.neighbours) 

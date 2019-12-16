@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4156335867542262105}
   m_Layer: 0
   m_Name: GRANJA
-  m_TagString: RedFarm
+  m_TagString: BlueFarm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,11 +177,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane.001 (4)
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     - target: {fileID: -4216859302048453862, guid: e70034d2ca076e24d8fde68128b566ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -252,6 +247,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.042390015
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70034d2ca076e24d8fde68128b566ee, type: 3}
 --- !u!4 &4688352471211072318 stripped
@@ -272,11 +272,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane.001 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     - target: {fileID: -4216859302048453862, guid: e70034d2ca076e24d8fde68128b566ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -347,6 +342,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.042389274
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70034d2ca076e24d8fde68128b566ee, type: 3}
 --- !u!4 &6392822472582911351 stripped
@@ -367,11 +367,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane.001
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     - target: {fileID: -4216859302048453862, guid: e70034d2ca076e24d8fde68128b566ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -442,6 +437,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.060939785
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70034d2ca076e24d8fde68128b566ee, type: 3}
 --- !u!4 &7169332254075469939 stripped
@@ -537,11 +537,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane.001 (3)
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     - target: {fileID: -4216859302048453862, guid: e70034d2ca076e24d8fde68128b566ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -612,6 +607,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.042390015
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70034d2ca076e24d8fde68128b566ee, type: 3}
 --- !u!4 &2687879197959011240 stripped
@@ -632,11 +632,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plane.001 (2)
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     - target: {fileID: -4216859302048453862, guid: e70034d2ca076e24d8fde68128b566ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -707,6 +702,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.060940027
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e70034d2ca076e24d8fde68128b566ee,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6be1701fac1b5db4e86f9e9f0b9904c2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70034d2ca076e24d8fde68128b566ee, type: 3}
 --- !u!4 &3836454875255175122 stripped

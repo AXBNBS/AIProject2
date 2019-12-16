@@ -145,10 +145,16 @@ public class Unit : MonoBehaviour
                     gameManager.GetComponent<GameManager>().playerFrm.Remove(movement.currentHex.GetCity().GetComponent<Farm>());
                 }
             }
-            if (movement.currentHex.GetCity().GetCityType() == "Capital")
+            if (movement.currentHex.GetCity().GetCityType() == "Capital") 
+            {
                 finish = true;
-            Destroy(movement.currentHex.GetCity().gameObject);
-            movement.currentHex.SetIsBuilded(false);
+            }
+            /*if (movement.currentHex.environment.tag == "Farm") 
+            {
+
+            }*/
+            Destroy (movement.currentHex.GetCity().gameObject);
+            movement.currentHex.SetIsBuilded (false);
 
             if (movement.currentHex.GetCity().gameObject.tag == "BlueCapital")
             {
