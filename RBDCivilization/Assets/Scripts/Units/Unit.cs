@@ -22,7 +22,7 @@ public class Unit : MonoBehaviour
 
     private bool fighting;
 
-    public GameObject circle;
+    //public GameObject circle;
     public GameObject swords;
 
     void Awake()
@@ -307,7 +307,7 @@ public class Unit : MonoBehaviour
 
     IEnumerator PlayFight(float alliesPower, float enemiesPower, UnitMovement[] localUnits, UnitMovement[] allies, Hexagon hex)
     {
-        GameObject auxCircle = Instantiate(circle, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y- 0.2f, hex.CentroHexagono.position.z), Quaternion.identity);
+        //GameObject auxCircle = Instantiate(circle, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y- 0.2f, hex.CentroHexagono.position.z), Quaternion.identity);
         GameObject auxSwords = Instantiate(swords, new Vector3(hex.CentroHexagono.position.x, swords.transform.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
         yield return new WaitForSeconds(2);
 
@@ -433,7 +433,7 @@ public class Unit : MonoBehaviour
             }
         }
         fighting = false;
-        Destroy(auxCircle);
+        //Destroy(auxCircle);
         Destroy(auxSwords);
     }
 
