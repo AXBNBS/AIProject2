@@ -63,6 +63,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2539525583884582328}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
+        type: 3}
+      propertyPath: m_Name
+      value: "Monta\xF1a2tunel"
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071520094258471217, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091094862930139297, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -133,26 +153,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.45029
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
-        type: 3}
-      propertyPath: m_Name
-      value: "Monta\xF1a2tunel"
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3071520094258471217, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9091094862930139297, guid: 9f08d529a81dc5745870fcf5c9fc33ef,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f08d529a81dc5745870fcf5c9fc33ef, type: 3}
 --- !u!4 &7369157682949610461 stripped
@@ -168,25 +168,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2539525583884582328}
     m_Modifications:
-    - target: {fileID: 6511031903444481551, guid: 2bf5e224c0901c746b49111f614edd66,
-        type: 3}
-      propertyPath: m_Name
-      value: Text 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07000017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2929
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.020000458
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
@@ -231,17 +226,22 @@ PrefabInstance:
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.36602113
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.45029
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.36283
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511031903444481551, guid: 2bf5e224c0901c746b49111f614edd66,
+        type: 3}
+      propertyPath: m_Name
+      value: Text 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bf5e224c0901c746b49111f614edd66, type: 3}

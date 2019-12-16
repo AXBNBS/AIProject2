@@ -19,6 +19,7 @@ TagManager:
   - RedSettlement
   - Interface
   - Forest
+  - Text
   layers:
   - Default
   - TransparentFX

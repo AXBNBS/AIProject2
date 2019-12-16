@@ -253,25 +253,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8666868053507653341}
     m_Modifications:
-    - target: {fileID: 6511031903444481551, guid: 2bf5e224c0901c746b49111f614edd66,
-        type: 3}
-      propertyPath: m_Name
-      value: Text 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.08000004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5860443
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.09000015
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
@@ -316,17 +311,22 @@ PrefabInstance:
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3660211
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3896044
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3350396829731279750, guid: 2bf5e224c0901c746b49111f614edd66,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.36283
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511031903444481551, guid: 2bf5e224c0901c746b49111f614edd66,
+        type: 3}
+      propertyPath: m_Name
+      value: Text 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bf5e224c0901c746b49111f614edd66, type: 3}

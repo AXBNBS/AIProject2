@@ -20,6 +20,13 @@ public class FaceCamera : MonoBehaviour
     // Update is called once per frame.
     private void Update ()
     {
-        this.transform.rotation = Quaternion.LookRotation (camera.position - this.transform.position);
+        if (this.tag == "Text")
+        {
+            this.transform.rotation = Quaternion.LookRotation (this.transform.position - camera.position);
+        }
+        else 
+        {
+            this.transform.rotation = Quaternion.LookRotation (camera.position- this.transform.position);
+        }
     }
 }

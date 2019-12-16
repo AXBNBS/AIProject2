@@ -37,6 +37,7 @@ public class Collector : MonoBehaviour
     {
         int allies = unitMvm.GetAllies().Length;
         int x = 0;
+
         if (this.tag == "Ally")
         {
             for (int i = 0; i < allies; i++)
@@ -79,7 +80,9 @@ public class Collector : MonoBehaviour
         {
             resourcesHld.changeStores (side, Random.Range(10, 31), true);
         }
-        this.unitMvm.currentHex.SetRemainingTurnsToCollect(3);
-        gameManager.restoringHexagons.Add(this.unitMvm.currentHex);
+        unitMvm.currentHex.SetRemainingTurnsToCollect (3);
+        gameManager.restoringHexagons.Add (hex);
+
+        hex.environment.GetComponentInChildren<TextMesh>().text = "3";
     }
 }

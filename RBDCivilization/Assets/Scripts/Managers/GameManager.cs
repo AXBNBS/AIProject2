@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         Builder[] builders = GameObject.FindObjectsOfType<Builder> ();
         Collector[] collectors = GameObject.FindObjectsOfType<Collector> ();
 
-        restoringHexagons = new List<Hexagon>();
+        restoringHexagons = new List<Hexagon> ();
         storesPerFrm = 5;//ESTO ES DE EJEMPLO
 
         instance = this;
@@ -508,6 +508,7 @@ public class GameManager : MonoBehaviour
 
         List<Hexagon> doneJob = new List<Hexagon> ();
         bool oneActiveFrm = false;
+        TextMesh textMsh;
 
         foreach (UnitMovement u in playerUnt)
         {
@@ -516,16 +517,20 @@ public class GameManager : MonoBehaviour
             u.targetHex = null;
         }
 
-        foreach(Hexagon h in restoringHexagons)
+        foreach (Hexagon h in restoringHexagons)
         {
-            h.SetRemainingTurnsToCollect(-1);
+            h.SetRemainingTurnsToCollect (-1);
         }
 
         for (int i = restoringHexagons.Count - 1; i >= 0; i--)
         {
+            textMsh = restoringHexagons[i].environment.GetComponentInChildren<TextMesh> ();
+            textMsh.text = restoringHexagons[i].GetRemainingTurnsToCollect().ToString ();
             if (restoringHexagons[i].GetRemainingTurnsToCollect() == 0)
             {
-                restoringHexagons.RemoveAt(i);
+                textMsh.text = "";
+
+                restoringHexagons.RemoveAt (i);
             }
         }
 
