@@ -2440,6 +2440,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7375791885311038985, guid: 403742297285536448949d0ee0652bb3,
         type: 3}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: settlementMin
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: settlementWod
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: farmMin
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: farmWod
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: tunnelWod
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fb577eeec2dbe04fb0bcf88658822bc, type: 3}
 --- !u!1001 &2683343354763190386

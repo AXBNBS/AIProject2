@@ -354,7 +354,10 @@ public class Hexagon : MonoBehaviour
         avoid.Remove (hex);
         foreach (Hexagon n in hex.neighbours) 
         {
-            avoid.Remove (n);
+            if (UnitsPlaced().Length == 0 || UnitsPlaced()[0].tag == "Enemy") 
+            {
+                avoid.Remove (n);
+            }
         }
         queue.Enqueue (this);
 
