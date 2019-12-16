@@ -2532,6 +2532,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2160569962502813362, guid: c08b2b7fa0281fe408cc96bf50b539ed,
         type: 3}
+    - target: {fileID: 5502659003243272823, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: twiiPrefab
+      value: 
+      objectReference: {fileID: 2348771452672863341, guid: 8f6a7acbee5da8b4f9422e2d137c100e,
+        type: 3}
+    - target: {fileID: 5502659003243272823, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: catPrefab
+      value: 
+      objectReference: {fileID: 8450495105691464237, guid: 877925a6f438d4346b4fa34b8efa29d6,
+        type: 3}
+    - target: {fileID: 5502659003243272823, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: dwarfPrefab
+      value: 
+      objectReference: {fileID: 613435698297476615, guid: c3f56d4e7658fc542a225bfa3275073b,
+        type: 3}
     - target: {fileID: 3262623180522793088, guid: 55961fe0920c67d4fb91d6719993f572,
         type: 3}
       propertyPath: cameraController

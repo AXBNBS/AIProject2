@@ -134,7 +134,7 @@ public class Builder : MonoBehaviour
                 { 
                     GameManager.instance.AIFrm.Add (hex.environment.GetComponent<Farm> ());
 
-                    construction.tag = "RedFarm";
+                    hex.environment.tag = "RedFarm";
                     hex.GetCity().SetCitySide("Red");
                 }
                 else

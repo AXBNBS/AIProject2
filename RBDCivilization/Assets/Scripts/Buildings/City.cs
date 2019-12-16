@@ -12,7 +12,7 @@ public class City : MonoBehaviour
     private string side;
 
     public int humans;
-    private int cats;
+    public int cats;
     private int elves;
     private int dwarfs;
     private int twiis;
