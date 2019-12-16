@@ -57,20 +57,20 @@ public class Hexagon : MonoBehaviour
             }
         }
 
-        /*if (this.visible == false && presentUnt != 0)
+        if (this.visible == false && presentUnt != 0)
         {
             for (int i = 0; i < presentUnt; i++)
             {
-                units[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
+                units[i].gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             }
         }
         else if (presentUnt != 0)
         {
             for (int i = 0; i < presentUnt; i++)
             {
-                units[i].gameObject.GetComponent<MeshRenderer>().enabled = true;
+                units[i].gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             }
-        }*/
+        }
 
         if (Grid.instance.visibleAll == true) 
         {
