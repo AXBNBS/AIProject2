@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Elf
   m_EditorClassIdentifier: 
   attack: 1
-  speed: 99999
+  speed: 3
   defense: 1
   race: Elf
   occupation: Soldier
