@@ -74,7 +74,7 @@ public class UnitMovement : MonoBehaviour
             dir.y = 0; // keep the direction strictly horizontal
             Quaternion rot = Quaternion.LookRotation(dir);
             // slerp to the desired rotation over time
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 2 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 3 * Time.deltaTime);
             characterCtr.Move ((new Vector3 (target.x, 0.1f, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
             //characterCtr.Move ((new Vector3 (target.x, this.transform.position.y, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
 
@@ -243,6 +243,10 @@ public class UnitMovement : MonoBehaviour
         else
         {
             //anim.SetBool("walking", false);
+            if (this != allies[0]) 
+            {
+                this.transform.rotation = Quaternion.Slerp (this.transform.rotation, allies[0].transform.rotation, 3 * Time.deltaTime);
+            }
         }
     }
 
@@ -460,7 +464,10 @@ public class UnitMovement : MonoBehaviour
         {
             while (targetHex != null && targetHex.UnitsPlaced().Length != 0 && targetHex.UnitsPlaced()[0].tag == "Ally" && (allies.Length > targetHex.GetCapacity () || targetHex.UnitsPlaced()[0].stats.race != stats.race)) 
             {
-                path.RemoveAt (path.Count - 1);
+                if (path.Count > 0) 
+                {
+                    path.RemoveAt (path.Count - 1);
+                }
 
                 if (path.Count == 0)
                 {
@@ -490,7 +497,10 @@ public class UnitMovement : MonoBehaviour
 
                 while (sameTrg == true || (targetHex != null && targetHex.UnitsPlaced().Length != 0 && targetHex.UnitsPlaced()[0].tag == "Enemy" && (allies.Length > targetHex.GetCapacity () || targetHex.UnitsPlaced()[0].stats.race != stats.race)))
                 {
-                    path.RemoveAt (path.Count - 1);
+                    if (path.Count > 0)
+                    {
+                        path.RemoveAt (path.Count - 1);
+                    }
 
                     sameTrg = false;
                     if (path.Count == 0)

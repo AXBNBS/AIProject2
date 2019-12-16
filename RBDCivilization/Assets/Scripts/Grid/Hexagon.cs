@@ -23,7 +23,7 @@ public class Hexagon : MonoBehaviour
     public bool visible = false; //Si esta visible o no
     private City building = null; //Tipo de edificio pudiendo ser "capital", "farm", "sawmill" o "mina"
     
-    public Transform CentroHexagono; //Para cuando generes edificios
+    public Transform CentroHexagono, CentroHexagono2; //Para cuando generes edificios
 
     private bool mountain;
     private int remainingTurnsToCollect;
@@ -435,7 +435,7 @@ public class Hexagon : MonoBehaviour
 
         if (n == true)
         {
-            if(this.hexagonType==0 || this.hexagonType == -2)
+            if (hexagonType == 0 || hexagonType == -2 || (environment != null && environment.name == "Rio2(Clone)"))
             {
                 this.GetComponent<MeshRenderer>().enabled = false;
             }

@@ -175,7 +175,7 @@ public class EnemyFunctions : MonoBehaviour
 
             Destroy(hex.environment);
 
-            hex.environment = Instantiate(nextLevel, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
+            hex.environment = Instantiate(nextLevel, new Vector3(hex.CentroHexagono2.position.x, hex.CentroHexagono2.position.y, hex.CentroHexagono2.position.z), Quaternion.Euler (0, 180, 0));
             hex.environment.tag = "RedCapital";
 
             hex.SetCity(hex.environment.GetComponent<City>());

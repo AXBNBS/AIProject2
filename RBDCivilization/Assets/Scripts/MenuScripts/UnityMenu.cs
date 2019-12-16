@@ -32,7 +32,15 @@ public class UnityMenu : MonoBehaviour
         {
             string firstStr = "There are " + length + " " + units[0].stats.occupation.ToLower () + "s in this cell.";
 
-            descriptionText.text = units[0].stats.race;
+            
+            if (units[0].stats.race == "Turroncito")
+            {
+                descriptionText.text = "Lil nougat";
+            }
+            else 
+            {
+                descriptionText.text = units[0].stats.race;
+            }
             if (length == 1)
             {
                 firstStr = "There is 1 " + units[0].stats.occupation.ToLower () + " in this cell.";

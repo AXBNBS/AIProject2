@@ -102,7 +102,14 @@ public class Builder : MonoBehaviour
         }
         else 
         {
-            hex.environment = Instantiate (construction, hex.transform.position, Quaternion.identity);
+            if (this.tag == "Ally") 
+            {
+                hex.environment = Instantiate (construction, hex.transform.position, Quaternion.identity);
+            }
+            else 
+            {
+                hex.environment = Instantiate (construction, hex.transform.position, Quaternion.Euler (0, 180, 0));
+            }
 
             hex.SetCity (hex.environment.GetComponent<City>());
             hex.GetCity().SetCitySide (side);

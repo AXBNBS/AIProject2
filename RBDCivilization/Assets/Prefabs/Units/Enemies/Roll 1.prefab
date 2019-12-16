@@ -75,7 +75,6 @@ MonoBehaviour:
   interf: {fileID: 0}
   moveSpd: 15
   path: []
-  anim: {fileID: 0}
 --- !u!114 &1420741509694948196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +90,6 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 9a60473a14d0db144bc87ad649d393bd, type: 2}
   movement: {fileID: 0}
   totalPower: 0
-  circle: {fileID: 7959350510523781307, guid: 503b33e097c8837489928b6fe0b6c5fa, type: 3}
-  swords: {fileID: 1521981844246496754, guid: 62cacbed2be7342478d3de93fb6ebe15, type: 3}
 --- !u!1 &3358076466613810476
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,22 +165,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
@@ -198,7 +195,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 80051314c1ad5704797fd3f559b29cd2,
         type: 3}
