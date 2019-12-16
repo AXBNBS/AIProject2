@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
 
     public UnitSettings settings;
     private GameObject gameManager;
+    private ResourcesHolder resourcesHolder;
 
     public UnitMovement movement;
 
@@ -38,6 +39,7 @@ public class Unit : MonoBehaviour
         fighting=false;
 
         gameManager = GameObject.FindGameObjectWithTag("GameController");
+        resourcesHolder = gameManager.GetComponent<ResourcesHolder>();
         finishScript = GameObject.FindGameObjectWithTag("Interface").GetComponentInChildren<FinishScript>();
     }
 
@@ -335,6 +337,7 @@ public class Unit : MonoBehaviour
                 for (int i =0; i<hex.presentUnt; i++)
                 {
                     Destroy(localUnits[i].gameObject);
+                    resourcesHolder.changeCurrentPopulation("red", 1, false);
                 }
 
                 hex.presentUnt = 0;
@@ -366,6 +369,7 @@ public class Unit : MonoBehaviour
                 for (int i = 0; i < allies.Length; i++)
                 {
                     Destroy(allies[i].gameObject);
+                    resourcesHolder.changeCurrentPopulation("blue", 1, false);
                 }
             }
         }
@@ -394,6 +398,7 @@ public class Unit : MonoBehaviour
                 for (int i = 0; i < hex.presentUnt; i++)
                 {
                     Destroy(localUnits[i].gameObject);
+                    resourcesHolder.changeCurrentPopulation("blue", 1, false);
                 }
                 hex.presentUnt = 0;
                 movement.FindPathTo(hex);
@@ -423,6 +428,7 @@ public class Unit : MonoBehaviour
                 for (int i = 0; i < allies.Length; i++)
                 {
                     Destroy(allies[i].gameObject);
+                    resourcesHolder.changeCurrentPopulation("red", 1, false);
                 }
             }
         }
