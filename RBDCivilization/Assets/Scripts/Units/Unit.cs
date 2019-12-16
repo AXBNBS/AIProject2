@@ -305,7 +305,7 @@ public class Unit : MonoBehaviour
 
     IEnumerator PlayFight(float alliesPower, float enemiesPower, UnitMovement[] localUnits, UnitMovement[] allies, Hexagon hex)
     {
-        GameObject auxCircle = Instantiate(circle, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y- 0.5f, hex.CentroHexagono.position.z), Quaternion.identity);
+        GameObject auxCircle = Instantiate(circle, new Vector3(hex.CentroHexagono.position.x, hex.CentroHexagono.position.y- 0.2f, hex.CentroHexagono.position.z), Quaternion.identity);
         GameObject auxSwords = Instantiate(swords, new Vector3(hex.CentroHexagono.position.x, swords.transform.position.y, hex.CentroHexagono.position.z), Quaternion.identity);
         yield return new WaitForSeconds(2);
 
@@ -327,10 +327,16 @@ public class Unit : MonoBehaviour
                         }
                         gameManager.GetComponent<GameManager>().AIUnt.Remove(localUnits[i].GetComponent<UnitMovement>());
                         localUnits[i].anim.SetTrigger("death");
-                        //yield return new WaitForSeconds(0.2f);
-                        Destroy(localUnits[i].gameObject);
                     }
                 }
+
+                yield return new WaitForSeconds(0.5f);
+
+                for (int i =0; i<hex.presentUnt; i++)
+                {
+                    Destroy(localUnits[i].gameObject);
+                }
+
                 hex.presentUnt = 0;
                 movement.FindPathTo(hex);
             }
@@ -352,9 +358,14 @@ public class Unit : MonoBehaviour
                         }
                         gameManager.GetComponent<GameManager>().playerUnt.Remove(allies[i].GetComponent<UnitMovement>());
                         allies[i].anim.SetTrigger("death");
-                        //yield return new WaitForSeconds(0.2f);
-                        Destroy(allies[i].gameObject);
                     }
+                }
+
+                yield return new WaitForSeconds(0.5f);
+
+                for (int i = 0; i < allies.Length; i++)
+                {
+                    Destroy(allies[i].gameObject);
                 }
             }
         }
@@ -376,9 +387,13 @@ public class Unit : MonoBehaviour
                         }
                         gameManager.GetComponent<GameManager>().playerUnt.Remove(localUnits[i].GetComponent<UnitMovement>());
                         localUnits[i].anim.SetTrigger("death");
-                        //yield return new WaitForSeconds(0.2f);
-                        Destroy(localUnits[i].gameObject);
                     }
+                }
+                yield return new WaitForSeconds(0.5f);
+
+                for (int i = 0; i < hex.presentUnt; i++)
+                {
+                    Destroy(localUnits[i].gameObject);
                 }
                 hex.presentUnt = 0;
                 movement.FindPathTo(hex);
@@ -401,9 +416,13 @@ public class Unit : MonoBehaviour
                         }
                         gameManager.GetComponent<GameManager>().AIUnt.Remove(allies[i].GetComponent<UnitMovement>());
                         localUnits[i].anim.SetTrigger("death");
-                        //yield return new WaitForSeconds(0.2f);
-                        Destroy(allies[i].gameObject);
                     }
+                }
+                yield return new WaitForSeconds(0.5f);
+
+                for (int i = 0; i < allies.Length; i++)
+                {
+                    Destroy(allies[i].gameObject);
                 }
             }
         }

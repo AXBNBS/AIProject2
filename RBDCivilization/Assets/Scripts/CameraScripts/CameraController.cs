@@ -168,6 +168,39 @@ public class CameraController : MonoBehaviour
                                 }
                             }
 
+                            selectedUnt[0].FindPathTo(hex);
+
+                            if (selectedUnt[0].reachedTrg == false) 
+                            {
+                                if (hex.presentUnt != 0)
+                                {
+                                    foreach (UnitMovement u in selectedUnt)
+                                    {
+                                        u.regroup = true;
+                                    }
+                                }
+                                foreach (UnitMovement u in selectedUnt)
+                                {
+                                    u.targetHex = hex;
+                                }
+                            }
+
+                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
+                        }
+
+                        else if(selectedUnt[0] != null && selectedUnt[0].currentHex != hex && hex.UnitsPlaced().Length >0 && hex.UnitsPlaced()[0].gameObject.tag == "Enemy")
+                        {
+                            //selectedUnt[0].FindPathTo (hex);
+                            //if (selectedUnt[0].reachedTrg == false)
+                            //{
+                            /*foreach (Hexagon neighbour in hex.neighbours)
+                            {
+                                if (neighbour == selectedUnt[0].currentHex)
+                                {
+                                    selectedUnt[0].SendMessage ("Fight", hex);
+                                }
+                            }*/
+
                             Collider[] hitColliders = Physics.OverlapSphere(selectedUnt[0].currentHex.GetPath(hex)[0], 0.5f);
                             int z = 0;
                             Hexagon checkHexToFight = null;
@@ -190,37 +223,8 @@ public class CameraController : MonoBehaviour
                                 selectedUnt[0].FindPathTo(hex);
                             }
 
-                            if (selectedUnt[0].reachedTrg == false) 
-                            {
-                                if (hex.presentUnt != 0)
-                                {
-                                    foreach (UnitMovement u in selectedUnt)
-                                    {
-                                        u.regroup = true;
-                                    }
-                                }
-                                foreach (UnitMovement u in selectedUnt)
-                                {
-                                    u.targetHex = hex;
-                                }
-                            }
-
-                            buildingMenu.GetComponent<UnityMenu>().readHexagonUnity(hex);
-                        }
-
-                        else if(selectedUnt[0] != null && selectedUnt[0].currentHex != hex && hex.UnitsPlaced().Length >0 && hex.UnitsPlaced()[0].gameObject.tag == "Enemy")
-                        {
-                            selectedUnt[0].FindPathTo (hex);
                             if (selectedUnt[0].reachedTrg == false)
                             {
-                                foreach (Hexagon neighbour in hex.neighbours)
-                                {
-                                    if (neighbour == selectedUnt[0].currentHex)
-                                    {
-                                        selectedUnt[0].SendMessage ("Fight", hex);
-                                    }
-                                }
-
                                 if (hex.presentUnt != 0)
                                 {
                                     foreach (UnitMovement u in selectedUnt)
@@ -230,6 +234,7 @@ public class CameraController : MonoBehaviour
                                     }
                                 }
                             }
+                            //}
 
                             buildingMenu.GetComponent<UnityMenu>().readHexagonUnity (hex);
                         }

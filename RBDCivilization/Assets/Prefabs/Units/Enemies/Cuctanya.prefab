@@ -106,6 +106,7 @@ MonoBehaviour:
   interf: {fileID: 0}
   moveSpd: 15
   path: []
+  anim: {fileID: 0}
 --- !u!114 &4070192251221129714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +122,8 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 020bfc38e8bc10c4082a3dd680e0d75a, type: 2}
   movement: {fileID: 0}
   totalPower: 0
+  circle: {fileID: 7959350510523781307, guid: 503b33e097c8837489928b6fe0b6c5fa, type: 3}
+  swords: {fileID: 1521981844246496754, guid: 62cacbed2be7342478d3de93fb6ebe15, type: 3}
 --- !u!114 &5554002342498202866
 MonoBehaviour:
   m_ObjectHideFlags: 0
