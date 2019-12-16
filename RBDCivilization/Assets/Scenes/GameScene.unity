@@ -2410,6 +2410,24 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 2072230108}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: witcherPrefab
+      value: 
+      objectReference: {fileID: 3810681116969353475, guid: aa5ad39e77c530546ba9ef5bc2c8ec25,
+        type: 3}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: cuctanyaPrefab
+      value: 
+      objectReference: {fileID: 7477335831256962897, guid: a4ccfc6441e080845bd9d5230cd7c6ee,
+        type: 3}
+    - target: {fileID: 4251342607064131178, guid: 1fb577eeec2dbe04fb0bcf88658822bc,
+        type: 3}
+      propertyPath: puppetPrefab
+      value: 
+      objectReference: {fileID: 4015498457984324917, guid: 4c88dfe886c10aa4189adc8574e035c2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fb577eeec2dbe04fb0bcf88658822bc, type: 3}
 --- !u!1001 &2683343354763190386
@@ -2504,6 +2522,18 @@ PrefabInstance:
       propertyPath: hazelnutPrefab
       value: 
       objectReference: {fileID: 5676521306214426371, guid: 6bae05fd4488093489c15b6d3c0eb733,
+        type: 3}
+    - target: {fileID: 5502659003243272823, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: elfPrefab
+      value: 
+      objectReference: {fileID: 3980784463063933659, guid: 933ac7b32cefdc347bcb6827c511354b,
+        type: 3}
+    - target: {fileID: 5502659003243272823, guid: 55961fe0920c67d4fb91d6719993f572,
+        type: 3}
+      propertyPath: humanPrefab
+      value: 
+      objectReference: {fileID: 2160569962502813362, guid: c08b2b7fa0281fe408cc96bf50b539ed,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55961fe0920c67d4fb91d6719993f572, type: 3}

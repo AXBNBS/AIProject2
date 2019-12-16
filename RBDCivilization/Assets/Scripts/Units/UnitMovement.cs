@@ -32,6 +32,8 @@ public class UnitMovement : MonoBehaviour
 
     private Hexagon nextHexagon = null;
 
+    private Animator anim;
+
     // Just some variable initialization.
     private void Start ()
     {
@@ -55,6 +57,7 @@ public class UnitMovement : MonoBehaviour
         allies = new UnitMovement[1];
         allies[0] = this;
         moveLmt = (int) stats.speed + 1;
+        anim = this.GetComponentInChildren<Animator>();
 
         path.Add (target);
     }
@@ -66,7 +69,12 @@ public class UnitMovement : MonoBehaviour
     {
         if (reachedTrg == false) 
         {
-            //transform.LookAt(target);
+            anim.SetBool("walking", true);
+            Vector3 dir = target - transform.position;
+            dir.y = 0; // keep the direction strictly horizontal
+            Quaternion rot = Quaternion.LookRotation(dir);
+            // slerp to the desired rotation over time
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 2 * Time.deltaTime);
             characterCtr.Move ((new Vector3 (target.x, 0.1f, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
             //characterCtr.Move ((new Vector3 (target.x, this.transform.position.y, target.z) - this.transform.position).normalized * moveSpd * Time.deltaTime);
 
@@ -231,6 +239,10 @@ public class UnitMovement : MonoBehaviour
                     this.target = path[0];
                 }
             }
+        }
+        else
+        {
+            anim.SetBool("walking", false);
         }
     }
 
