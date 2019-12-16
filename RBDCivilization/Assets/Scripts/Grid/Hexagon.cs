@@ -57,7 +57,7 @@ public class Hexagon : MonoBehaviour
             }
         }
 
-        if (this.visible == false && presentUnt != 0)
+        /*if (this.visible == false && presentUnt != 0)
         {
             for (int i = 0; i < presentUnt; i++)
             {
@@ -70,7 +70,7 @@ public class Hexagon : MonoBehaviour
             {
                 units[i].gameObject.GetComponent<MeshRenderer>().enabled = true;
             }
-        }
+        }*/
 
         if (Grid.instance.visibleAll == true) 
         {
